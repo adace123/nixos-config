@@ -53,6 +53,7 @@ in {
                 mountpoint = "/";
                 mountOptions = ["noatime"];
                 extraArgs = [ "-L" "nixos" ];
+                keyFile = "/tmp/cryptroot.key";
                 subvolumes = {
                   "/home" = {
                     mountOptions = ["compress=zstd"];
