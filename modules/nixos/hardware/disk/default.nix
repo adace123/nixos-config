@@ -12,6 +12,7 @@ with lib; let
 in {
   imports = [
     inputs.disko.nixosModules.disko
+    ./script.nix
   ];
 
   options.modules.hardware.device = mkOption {
