@@ -41,7 +41,7 @@ in {
             };
           }
           {
-            name = "root";
+            name = "primary";
             type = "partition";
             start = "128MiB";
             end = "-1G";
@@ -52,12 +52,15 @@ in {
                 type = "btrfs";
                 mountpoint = "/";
                 mountOptions = ["noatime"];
+                extraArgs = [ "-L" "nixos" ];
                 subvolumes = {
                   "/home" = {
                     mountOptions = ["compress=zstd"];
+                    mountpoint = "/home";
                   };
                   "/nix" = {
                     mountOptions = ["compress=zstd" "noatime"];
+                    mountpoint = "/nix";
                   };
                 };
               };
