@@ -1,0 +1,3 @@
+{...}: {
+  imports = [./wifi.nix];
+}
