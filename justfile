@@ -1,9 +1,11 @@
+export NIX_CONFIG="experimental-features = nix-command flakes"
+
 default:
   just --list
 
 format-disk host:
-  nix --extra-experimental-features 'nix-command flakes' run github:nix-community/disko --no-write-lock-file -- -m create ./hosts/{{host}}/disk.nix
-  nix --extra-experimental-features 'nix-command flakes' run github:nix-community/disko --no-write-lock-file -- -m mount ./hosts/{{host}}/disk.nix
+  nix run github:nix-community/disko --no-write-lock-file -- -m create ./hosts/{{host}}/disk.nix
+  nix run github:nix-community/disko --no-write-lock-file -- -m mount ./hosts/{{host}}/disk.nix
 
 vm:
   nix run .#vm
@@ -13,3 +15,4 @@ iso flake:
 
 build host:
   nix build '.#nixosConfigurations.{{host}}.config.system.build.{{host}}'
+
