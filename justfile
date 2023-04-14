@@ -4,7 +4,7 @@ default:
   just --list
 
 format-disk host:
-  nix run github:nix-community/disko --no-write-lock-file -- -f '.#{{host}}'
+  nix run github:nix-community/disko --no-write-lock-file -- -f '.#nixosConfigurations.{{host}}.config.system.build.{{host}}'
 
 vm:
   nix run .#vm
