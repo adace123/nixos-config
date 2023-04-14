@@ -30,7 +30,7 @@
   in {
     devShells = {
       ${system}.default = pkgs.mkShell {
-        packages = with pkgs; [just statix alejandra];
+        packages = with pkgs; [just statix alejandra disko];
       };
       "x86_64-darwin".default = darwinPkgs.mkShell {
         packages = with darwinPkgs; [just statix alejandra ];
