@@ -23,7 +23,6 @@
   '';
 in {
   disko.enableConfig = lib.mkDefault false;
-
   environment.systemPackages = [
     disko
     disko-mount

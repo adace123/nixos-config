@@ -49,12 +49,12 @@ in {
             content = {
               type = "luks";
               name = "crypted-root";
+              keyFile = "/tmp/cryptroot.key";
               content = {
                 type = "btrfs";
                 mountpoint = "/";
                 mountOptions = ["noatime"];
                 extraArgs = ["-L" "nixos"];
-                keyFile = "/tmp/cryptroot.key";
                 subvolumes = {
                   "/home" = {
                     mountOptions = ["compress=zstd"];
