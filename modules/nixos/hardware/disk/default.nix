@@ -35,7 +35,6 @@ in {
             end = "128MiB";
             fs-type = "fat32";
             bootable = true;
-            extraArgs = ["-L" "boot"];
             content = {
               type = "filesystem";
               format = "vfat";
@@ -75,7 +74,6 @@ in {
             start = "-1G";
             end = "100%";
             part-type = "primary";
-            extraArgs = ["-L" "swap"];
             content = {
               type = "swap";
               randomEncryption = true;
