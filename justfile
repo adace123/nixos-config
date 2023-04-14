@@ -4,8 +4,7 @@ default:
   just --list
 
 format-disk host:
-  nix run github:nix-community/disko --no-write-lock-file -- -m create ./hosts/{{host}}/disk.nix
-  nix run github:nix-community/disko --no-write-lock-file -- -m mount ./hosts/{{host}}/disk.nix
+  nix run github:nix-community/disko --no-write-lock-file -- -f '.#{{host}}'
 
 vm:
   nix run .#vm
