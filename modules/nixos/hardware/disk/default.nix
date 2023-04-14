@@ -34,6 +34,7 @@ in {
             end = "128MiB";
             fs-type = "fat32";
             bootable = true;
+            extraArgs = ["-L" "boot"];
             content = {
               type = "filesystem";
               format = "vfat";
@@ -52,7 +53,7 @@ in {
                 type = "btrfs";
                 mountpoint = "/";
                 mountOptions = ["noatime"];
-                extraArgs = [ "-L" "nixos" ];
+                extraArgs = ["-L" "nixos"];
                 keyFile = "/tmp/cryptroot.key";
                 subvolumes = {
                   "/home" = {
@@ -73,6 +74,7 @@ in {
             start = "-1G";
             end = "100%";
             part-type = "primary";
+            extraArgs = ["-L" "swap"];
             content = {
               type = "swap";
               randomEncryption = true;
