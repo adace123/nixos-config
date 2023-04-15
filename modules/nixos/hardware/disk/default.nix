@@ -7,7 +7,7 @@
   ...
 }:
 with lib; let
-  inherit (config.modules.hardware) device isInstaller;
+  inherit (config.modules.hardware) device enableConfig;
   deviceName = builtins.baseNameOf device;
 in {
   imports = [
@@ -27,7 +27,7 @@ in {
   };
 
   config = {
-    inherit (disko) enableConfig;
+    disko.enableConfig = enableConfig;
     disko.devices.disk.${deviceName} = {
       inherit device;
       type = "disk";
