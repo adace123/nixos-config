@@ -30,47 +30,10 @@
   in {
     devShells = {
       ${system}.default = pkgs.mkShell {
-        packages = with pkgs; [just statix alejandra nushell];
-        SHELL = "${pkgs.nushell}/bin/nu";
+        packages = with pkgs; [just statix alejandra];
       };
       "x86_64-darwin".default = darwinPkgs.mkShell {
-        packages = with darwinPkgs; [just statix alejandra nushell];
-        SHELL = "${darwinPkgs.nushell}/bin/nu";
-      };
-    };
-
-    nixosModules = {
-      vm = {
-        config,
-        pkgs,
-        lib,
-        modulesPath,
-        ...
-      }: {
-        imports = [
-          "${modulesPath}/virtualisation/qemu-vm.nix"
-        ];
-
-        system.stateVersion = "22.05";
-
-        # Configure networking
-        networking.useDHCP = false;
-        networking.interfaces.eth0.useDHCP = true;
-
-        # Create user "test"
-        services.getty.autologinUser = "test";
-        users.users.test.isNormalUser = true;
-
-        # Enable paswordless ‘sudo’ for the "test" user
-        users.users.test.extraGroups = ["wheel"];
-        security.sudo.wheelNeedsPassword = false;
-
-        # Make it output to the terminal instead of separate window
-        virtualisation.graphics = false;
-      };
-      withStoreImage = {
-        virtualisation.useNixStoreImage = true;
-        virtualisation.writableStore = true;
+        packages = with darwinPkgs; [just statix alejandra];
       };
     };
 
