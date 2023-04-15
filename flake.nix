@@ -16,17 +16,20 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nuenv.url = "github:DeterminateSystems/nuenv";
   };
 
   outputs = {
     self,
     nixpkgs,
     disko,
+    nuenv,
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {inherit system;};
-    darwinPkgs = import nixpkgs {system = "x86_64-darwin";};
+    overlays = [ nuenv.overlays.nuenv ];
+    pkgs = import nixpkgs {inherit system overlays;};
+    darwinPkgs = import nixpkgs {system = "x86_64-darwin"; inherit overlays;};
   in {
     devShells = {
       ${system}.default = pkgs.mkShell {
