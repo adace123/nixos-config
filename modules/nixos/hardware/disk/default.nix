@@ -20,7 +20,11 @@ in {
     type = types.str;
   };
 
-  options.modules.hardware.isInstaller = lib.mkDefault false;
+  options.modules.hardware.isInstaller = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Enable Disko config";
+  };
 
   config = {
     disko.enableConfig = !isInstaller;
