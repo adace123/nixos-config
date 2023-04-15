@@ -5,7 +5,7 @@
   ...
 }: {
   system.build = {
-    generate-luks-key = pkgs.nuenv.writeScript {
+    generate-luks-key = pkgs.nuenv.mkScript {
       name = "generate-luks-key";
       script = ''
         def generate [path = "/tmp/cryptroot.key"] {
