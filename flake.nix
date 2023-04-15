@@ -30,10 +30,12 @@
   in {
     devShells = {
       ${system}.default = pkgs.mkShell {
-        packages = with pkgs; [just statix alejandra];
+        packages = with pkgs; [just statix alejandra nushell];
+        SHELL = "${pkgs.nushell}/bin/nu";
       };
       "x86_64-darwin".default = darwinPkgs.mkShell {
-        packages = with darwinPkgs; [just statix alejandra];
+        packages = with darwinPkgs; [just statix alejandra nushell];
+        SHELL = "${darwinPkgs.nushell}/bin/nu";
       };
     };
 

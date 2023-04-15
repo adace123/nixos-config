@@ -27,7 +27,7 @@ in {
   };
 
   config = {
-    disko.enableConfig = enableConfig;
+    disko.enableConfig = builtins.getEnv "NIXOS_INSTALL_MODE" != "1";
     disko.devices.disk.${deviceName} = {
       inherit device;
       type = "disk";

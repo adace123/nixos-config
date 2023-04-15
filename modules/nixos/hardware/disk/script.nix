@@ -8,6 +8,7 @@
     name = "system-install";
     text = ''
       # run disko script
+      export NIXOS_INSTALL_MODE=1
       ${config.system.build.disko}
       # install
       # nixos-install --root /mnt --system ${config.system.build.toplevel} \
