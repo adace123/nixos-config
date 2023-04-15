@@ -5,7 +5,7 @@
   ...
 }: {
   system.build.install = pkgs.writeShellApplication {
-    name = "install";
+    name = "system-install";
     text = ''
       # run disko script
       ${config.system.build.disko}

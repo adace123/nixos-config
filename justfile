@@ -4,7 +4,10 @@ default:
   just --list
 
 install host:
-  nix run '.#nixosConfigurations.{{host}}.config.system.build.install'
+  nix run '.#nixosConfigurations.{{host}}.config.system.build.system-install'
+
+rebuild host:
+  nixos-rebuild switch --flake '.#{{host}}'
 
 vm:
   nix run .#vm

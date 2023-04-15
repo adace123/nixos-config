@@ -20,14 +20,14 @@ in {
     type = types.str;
   };
 
-  options.modules.hardware.isInstaller = mkOption {
+  options.modules.hardware.enableConfig = mkOption {
     type = types.bool;
-    default = false;
+    default = true;
     description = "Enable Disko config";
   };
 
   config = {
-    disko.enableConfig = !isInstaller;
+    inherit (disko) enableConfig;
     disko.devices.disk.${deviceName} = {
       inherit device;
       type = "disk";
