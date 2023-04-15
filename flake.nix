@@ -47,7 +47,7 @@
           ./hosts/hp-pavilion
           ./modules/nixos
         ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs pkgs;};
       };
 
       vm = nixpkgs.lib.nixosSystem {
@@ -56,7 +56,7 @@
           ./hosts/vm
           ./modules/nixos
         ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs pkgs;};
       };
     };
   };
