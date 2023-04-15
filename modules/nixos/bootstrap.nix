@@ -9,7 +9,7 @@
       name = "generate-luks-key";
       script = ''
         def main [path = "/tmp/cryptroot.key"] {
-          ${pkgs.openssl} genrsa -out $path
+          ${pkgs.openssl}/bin/openssl genrsa -out $path
           chmod -v 0400 $path
           chown root:root $path
           echo $"Saved LUKS key to ($path)"
