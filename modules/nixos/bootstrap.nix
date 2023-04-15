@@ -8,7 +8,9 @@
     generate-luks-key = pkgs.nuenv.mkScript {
       name = "generate-luks-key";
       script = ''
-        info "hello world"
+        def main [path = "/tmp/cryptroot.key"] {
+          echo "hello world"
+        }
         #${pkgs.openssl} genrsa -out $path
         # chmod -v 0400 $path
         # chown root:root $path
