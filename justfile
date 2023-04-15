@@ -4,7 +4,7 @@ default:
   just --list
 
 install host:
-  nix run '.#nixosConfigurations.{{host}}.config.system.install'
+  nix run '.#nixosConfigurations.{{host}}.config.system.build.install'
 
 vm:
   nix run .#vm
