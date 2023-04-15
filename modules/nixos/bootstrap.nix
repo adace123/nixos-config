@@ -5,10 +5,14 @@
   ...
 }: {
   system.build = {
-    luks-setup = pkgs.nuenv.writeScript {
-      name = "luks-setup";
+    generate-luks-key = pkgs.nuenv.writeScript {
+      name = "generate-luks-key";
       script = ''
-        ${pkgs.openssl} genrsa -out /tmp/cryptroot.key
+        def generate [path = "/tmp/cryptroot.key"] {
+          ${pkgs.openssl} genrsa -out $path
+          chmod -v 0400 $path
+          chown root:root $path
+        }
       '';
     };
 
