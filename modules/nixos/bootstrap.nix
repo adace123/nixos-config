@@ -9,10 +9,10 @@
       name = "generate-luks-key";
       script = ''
         path = $args.0
-        echo $path
-        ${pkgs.openssl} genrsa -out $path
-        chmod -v 0400 $path
-        chown root:root $path
+        info $path
+        #${pkgs.openssl} genrsa -out $path
+        # chmod -v 0400 $path
+        # chown root:root $path
       '';
     };
 
