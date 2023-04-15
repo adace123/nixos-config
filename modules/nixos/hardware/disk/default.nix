@@ -7,12 +7,11 @@
   ...
 }:
 with lib; let
-  inherit (config.modules.hardware) device enableConfig;
+  inherit (config.modules.hardware) device;
   deviceName = builtins.baseNameOf device;
 in {
   imports = [
     inputs.disko.nixosModules.disko
-    ./script.nix
   ];
 
   options.modules.hardware.device = mkOption {
@@ -20,13 +19,8 @@ in {
     type = types.str;
   };
 
-  options.modules.hardware.enableConfig = mkOption {
-    type = types.bool;
-    default = true;
-    description = "Enable Disko config";
-  };
-
   config = {
+    # TODO:: Find another way to do this
     disko.enableConfig = builtins.getEnv "NIXOS_INSTALL_MODE" != "1";
     disko.devices.disk.${deviceName} = {
       inherit device;
@@ -61,7 +55,6 @@ in {
                 type = "btrfs";
                 mountpoint = "/";
                 mountOptions = ["noatime"];
-                extraArgs = ["-L" "nixos"];
                 subvolumes = {
                   "/home" = {
                     mountOptions = ["compress=zstd"];
