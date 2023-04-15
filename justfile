@@ -3,8 +3,8 @@ export NIX_CONFIG := "experimental-features = nix-command flakes"
 default:
   just --list
 
-format-disk host:
-  nix run github:nix-community/disko --no-write-lock-file -- -f '.#nixosConfigurations.{{host}}.config.system.build.{{host}}'
+install host:
+  nix run '.#nixosConfigurations.{{host}}.config.system.install'
 
 vm:
   nix run .#vm
