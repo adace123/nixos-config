@@ -31,7 +31,6 @@ in {
         partitions = [
           {
             name = "esp";
-            type = "partition";
             start = "1MiB";
             end = "128MiB";
             fs-type = "fat32";
@@ -39,22 +38,22 @@ in {
             content = {
               type = "filesystem";
               format = "vfat";
-              mountpoint = "/boot";
+              mountpoint = "/boot/efi";
             };
           }
           {
             name = "primary";
-            type = "partition";
             start = "128MiB";
             end = "-1G";
             content = {
               type = "luks";
-              name = "crypted-root";
+              name = "cryptroot";
               keyFile = "/tmp/cryptroot.key";
               content = {
                 type = "btrfs";
                 mountpoint = "/";
                 mountOptions = ["noatime"];
+                extraArgs = [ "-L" "nixos" ];
                 subvolumes = {
                   "/home" = {
                     mountOptions = ["compress=zstd"];
@@ -70,7 +69,6 @@ in {
           }
           {
             name = "swap";
-            type = "partition";
             start = "-1G";
             end = "100%";
             part-type = "primary";

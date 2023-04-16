@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./disk ./networking ./peripherals ./virtualization];
+  imports = [./boot ./disk ./networking ./peripherals];
 }
