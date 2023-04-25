@@ -6,7 +6,7 @@
   imports = [./hardware-configuration.nix];
 
   modules.hardware.networking.wifi.enable = true;
-  networking.hostName = "hp-pavilion";
+  networking.hostName = "coruscant";
 
   networking = {
     interfaces.wlp10s0 = {

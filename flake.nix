@@ -23,7 +23,6 @@
     disko,
     nuenv,
     sops-nix,
-    # agenix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -35,13 +34,12 @@
     };
 
     nixosConfigurations = {
-      hp-pavilion = nixpkgs.lib.nixosSystem {
+      coruscant = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./hosts/hp-pavilion
+          ./hosts/coruscant
           ./modules/nixos
           sops-nix.nixosModules.sops
-          # agenix.nixosModules.default
         ];
         specialArgs = {inherit inputs pkgs;};
       };
