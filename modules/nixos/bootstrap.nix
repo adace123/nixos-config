@@ -5,12 +5,6 @@
   ...
 }: {
   system.build = {
-    generate-luks-key = pkgs.nuenv.mkScript {
-      name = "generate-luks-key";
-      script = ''
-      '';
-    };
-
     system-install = pkgs.nuenv.mkScript {
       name = "system-install";
       script = ''
@@ -24,7 +18,7 @@
         }
 
         # run disko script
-        def main [--generate_luks_key] {
+        def main [] {
           let password = (input -s "LUKS password: ")
           let password2 = (input -s "\nConfirm LUKS password: ")
           if $password != $password2 {
@@ -38,12 +32,10 @@
           ${config.system.build.disko}
           echo "Done formatting"
 
-          if $generate_luks_key {
-            generate_luks_key
-          }
+          generate_luks_key
 
           # echo "Copying SSH key pair"
-          # mkdir /mnt/etc/ssh
+          mkdir /mnt/etc/ssh
           # cp /tmp/id_ed25519 /mnt/etc/ssh/ssh_host_ed25519_key
           # ssh-keygen -yf /mnt/etc/ssh/ssh_host_ed25519_key | save -f "/mnt/etc/ssh/ssh_host_ed25519_key"
 
