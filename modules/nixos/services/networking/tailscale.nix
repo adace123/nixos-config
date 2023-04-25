@@ -1,49 +1,60 @@
 {
   pkgs,
   config,
+  lib,
   ...
-}:
-with pkgs; {
-  environment.systemPackages = [tailscale];
+}: let
+  cfg = config.modules.services.networking.tailscale;
+in
+  with pkgs; with lib; {
+    options.modules.services.networking.tailscale.enable = mkEnableOption "tailscale";
 
-  services.tailscale = {
-    enable = true;
-    interfaceName = "tailscale0";
-    port = 41641;
-  };
+    config = mkIf cfg.enable {
+      environment.systemPackages = [tailscale];
 
-  systemd.services.tailscale-autoconnect = {
-    description = "Automatic connection to Tailscale";
+      services.tailscale = {
+        enable = true;
+        interfaceName = "tailscale0";
+        port = 41641;
+      };
 
-    after = ["network-pre.target" "tailscale.service"];
-    wants = ["network-pre.target" "tailscale.service"];
-    wantedBy = ["multi-user.target"];
+      systemd.services.tailscale-autoconnect = {
+        description = "Automatic connection to Tailscale";
 
-    serviceConfig.Type = "oneshot";
+        after = ["network-pre.target" "tailscale.service"];
+        wants = ["network-pre.target" "tailscale.service"];
+        wantedBy = ["multi-user.target"];
 
-    # TODO: provide tskey with sops
-    script = with pkgs; ''
-      # wait for tailscaled to settle
-      sleep 2
+        serviceConfig.Type = "oneshot";
 
-      # check if we are already authenticated to tailscale
-      status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
-      if [ $status = "Running" ]; then # if so, then do nothing
-        exit 0
-      fi
+        # TODO: provide tskey with sops
+        script =
+        let authKey = builtins.readFile "${config.sops.secrets.tailscale-auth-key.path}";
+        in with pkgs; ''
+          # wait for tailscaled to settle
+          sleep 2
 
-      # otherwise authenticate with tailscale
-      ${tailscale}/bin/tailscale up -authkey tskey-examplekeyhere
-    '';
-  };
+          # check if we are already authenticated to tailscale
+          status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
+          if [ $status = "Running" ]; then # if so, then do nothing
+            exit 0
+          fi
 
-  networking.firewall = {
-    enable = true;
+          # otherwise authenticate with tailscale
+          ${tailscale}/bin/tailscale up -authkey ${authKey}
+        '';
+      };
 
-    trustedInterfaces = ["tailscale0"];
+      networking.firewall = {
+        trustedInterfaces = ["tailscale0"];
 
-    allowedUDPPorts = [config.services.tailscale.port];
+        allowedUDPPorts = [config.services.tailscale.port];
 
-    allowedTCPPorts = [22];
-  };
-}
+        allowedTCPPorts = [22];
+      };
+
+      sops.secrets.tailscale-auth-key = {
+        restartUnits = [ "tailscale-autoconnect.service" ];
+      };
+    };
+  }

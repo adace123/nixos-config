@@ -5,7 +5,15 @@
 }: {
   imports = [./hardware-configuration.nix];
 
-  modules.hardware.networking.wifi.enable = true;
+  modules = {
+    hardware = {
+      networking.wifi.enable = true;
+    };
+
+    services = {
+      networking.tailscale.enable = true;
+    };
+  };
   networking.hostName = "coruscant";
 
   networking = {
