@@ -3,10 +3,12 @@
   lib,
   options,
   modulesPath,
+  pkgs,
   ...
 }:
 with lib; let
   inherit (config.modules.boot) configLimit;
+  inherit (config.modules.hardware) device;
 in {
   options.modules.boot.configLimit = mkOption {
     default = 10;
@@ -17,7 +19,6 @@ in {
   config = {
     boot.loader.efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
     };
     boot.loader.grub = {
       enable = true;
@@ -37,5 +38,6 @@ in {
         "/keyfile.bin" = "/boot/initrd/keyfile.bin";
       };
     };
+    boot.kernelPackages = pkgs.linuxPackages_latest;
   };
 }

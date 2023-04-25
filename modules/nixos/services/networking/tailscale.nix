@@ -21,7 +21,7 @@ with pkgs; {
 
     serviceConfig.Type = "oneshot";
 
-    # TODO: provide tskey with age
+    # TODO: provide tskey with sops
     script = with pkgs; ''
       # wait for tailscaled to settle
       sleep 2

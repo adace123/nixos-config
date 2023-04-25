@@ -38,7 +38,7 @@ in {
             content = {
               type = "filesystem";
               format = "vfat";
-              mountpoint = "/boot/efi";
+              mountpoint = "/boot";
             };
           }
           {
@@ -53,7 +53,7 @@ in {
                 type = "btrfs";
                 mountpoint = "/";
                 mountOptions = ["noatime"];
-                extraArgs = [ "-L" "nixos" ];
+                extraArgs = ["-L" "nixos"];
                 subvolumes = {
                   "/home" = {
                     mountOptions = ["compress=zstd"];
@@ -65,16 +65,6 @@ in {
                   };
                 };
               };
-            };
-          }
-          {
-            name = "swap";
-            start = "-1G";
-            end = "100%";
-            part-type = "primary";
-            content = {
-              type = "swap";
-              randomEncryption = true;
             };
           }
         ];

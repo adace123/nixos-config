@@ -7,6 +7,7 @@
     ./packages.nix
     ./nix.nix
     ./users.nix
+    ./secrets
   ];
   time.timeZone = "America/Los_Angeles";
 

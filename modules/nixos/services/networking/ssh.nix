@@ -7,13 +7,21 @@
 with lib; let
   cfg = config.modules.services.ssh;
 in {
-  options.modules.services.ssh.enable = mkEnableOption "ssh";
+  options.modules.services.ssh.enable = mkOption {
+    description = "Enable SSH";
+    default = true;
+  };
+
   config = mkIf cfg.enable {
     services.openssh = {
       enable = true;
-      passwordAuthentication = false;
+      settings = {
+        PasswordAuthentication = false;
+      };
     };
 
     networking.firewall.allowedTCPPorts = [22];
+
+    users.users.${config.user.name}.openssh.authorizedKeys.keys = config.user.sshKeys;
   };
 }

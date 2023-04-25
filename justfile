@@ -4,7 +4,8 @@ default:
   just --list
 
 install host:
-  nix run '.#nixosConfigurations.{{host}}.config.system.build.system-install'
+  export NIXOS_INSTALL_MODE=1
+  nix run '.#nixosConfigurations.{{host}}.config.system.build.system-install' -- --generate_luks_key
 
 rebuild host:
   nixos-rebuild switch --flake '.#{{host}}'
@@ -18,3 +19,5 @@ iso flake:
 build host:
   nix build '.#nixosConfigurations.{{host}}.config.system.build.{{host}}'
 
+check:
+  nix flake check

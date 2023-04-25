@@ -1,7 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}:
+with inputs; {
   environment.systemPackages = with pkgs; [
     bat
     bottom
+    curl
     dnsutils
     duf
     du-dust
@@ -10,21 +16,22 @@
     fzf
     git
     jq
-    kubectl
+    neofetch
     nushell
     openssl
+    pciutils
     ripgrep
     rsync
+    sops
     unzip
     vim
     xh
   ];
 
   environment.shellAliases = with pkgs; {
-    cat = "${bat}";
-    ll = "${exa} -l";
-    htop = "${bottom} --fahrenheit";
-    grep = "${ripgrep}";
-    k = "${kubectl}";
+    cat = "bat";
+    ll = "exa -l";
+    htop = "bottom --fahrenheit";
+    grep = "rg";
   };
 }

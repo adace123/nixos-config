@@ -6,33 +6,45 @@
   ...
 }:
 with lib; let
-  cfg = config.primary-user;
+  cfg = config.user;
 in {
   options = {
-    primary-user.name = mkOption {
-      type = types.str;
-      default = "aaron";
-    };
-    primary-user.sudo = mkEnableOption "sudo";
-    primary-user.shell = mkOption {
+    user = {
+      name = mkOption {type = types.str;};
+      sudo = mkEnableOption "sudo";
+      shell = mkOption {
         type = types.enum ["nushell" "bash" "zsh"];
         default = "nushell";
       };
+      sshKeys = mkOption {
+        type = types.listOf types.str;
+        description = "List of user SSH keys";
+        default = [];
+      };
+    };
   };
 
   config = {
+    sops.secrets."${cfg.name}-password" = {
+      sopsFile = ../common/secrets/secrets.yaml;
+      neededForUsers = true;
+    };
+
     users = {
-      mutableUsers = true;
+      mutableUsers = false;
+      defaultUserShell = pkgs.${cfg.shell};
+
       users.${cfg.name} = mkMerge [
         {
           isNormalUser = true;
-          uid = 1000;
-          shell = pkgs.${cfg.shell};
+          passwordFile = config.sops.secrets."${cfg.name}-password".path;
         }
         (mkIf cfg.sudo {
           extraGroups = ["wheel"];
         })
       ];
     };
+
+    security.sudo.wheelNeedsPassword = false;
   };
 }

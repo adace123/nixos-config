@@ -8,20 +8,21 @@
     generate-luks-key = pkgs.nuenv.mkScript {
       name = "generate-luks-key";
       script = ''
-        def main [--path: string] {
-          echo "Generating LUKS key file"
-          ${pkgs.openssl}/bin/openssl genrsa -out keyfile.bin
-          chmod -v 000 keyfile.bin
-          cryptsetup luksAddKey /dev/disk/by-partlabel/primary --key-file=/tmp/cryptroot.key keyfile.bin
-          mkdir -p /mnt/boot/initrd
-          mv keyfile.bin /mnt/boot/initrd/keyfile.bin
-        }
       '';
     };
 
     system-install = pkgs.nuenv.mkScript {
       name = "system-install";
       script = ''
+        def generate_luks_key [] {
+          echo "Generating LUKS key file"
+          ${pkgs.openssl}/bin/openssl genrsa -out keyfile.bin
+          chmod -v 000 keyfile.bin
+          cryptsetup luksAddKey /dev/disk/by-partlabel/primary --key-file=/tmp/cryptroot.key keyfile.bin
+          mkdir /mnt/boot/initrd
+          mv keyfile.bin /mnt/boot/initrd/keyfile.bin
+        }
+
         # run disko script
         def main [--generate_luks_key] {
           let password = (input -s "LUKS password: ")
@@ -32,16 +33,24 @@
           }
           $password | save -f "/tmp/cryptroot.key"
 
+          echo "Formatting drive"
+          let-env NIXOS_INSTALL_MODE = "1"
           ${config.system.build.disko}
+          echo "Done formatting"
+
           if $generate_luks_key {
-            ${config.system.build.generate-luks-key}
+            generate_luks_key
           }
-          #
+
+          # echo "Copying SSH key pair"
+          # mkdir /mnt/etc/ssh
+          # cp /tmp/id_ed25519 /mnt/etc/ssh/ssh_host_ed25519_key
+          # ssh-keygen -yf /mnt/etc/ssh/ssh_host_ed25519_key | save -f "/mnt/etc/ssh/ssh_host_ed25519_key"
+
           echo "Installing NixOS"
-          nixos-install --root /mnt --system ${config.system.build.toplevel}
+          nixos-install --root /mnt --system ${config.system.build.toplevel} --no-root-password
         }
       '';
+    };
   };
-  };
-
 }
