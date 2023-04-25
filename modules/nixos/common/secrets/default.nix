@@ -21,9 +21,8 @@
   #   identityPaths = ["/etc/ssh/ssh_host_ed25519_key"];
   # };
   sops = {
-    age = {
-      # keyFile = "/root/.config/sops/age/keys.txt";
-      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-    };
+    defaultSopsFile = ./secrets.yaml;
+    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+    gnupg.sshKeyPaths = [];
   };
 }
