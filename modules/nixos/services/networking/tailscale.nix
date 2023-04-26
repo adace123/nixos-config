@@ -6,7 +6,8 @@
 }: let
   cfg = config.modules.services.networking.tailscale;
 in
-  with pkgs; with lib; {
+  with pkgs;
+  with lib; {
     options.modules.services.networking.tailscale.enable = mkEnableOption "tailscale";
 
     config = mkIf cfg.enable {
@@ -28,9 +29,7 @@ in
         serviceConfig.Type = "oneshot";
 
         # TODO: provide tskey with sops
-        script =
-        let authKey = builtins.readFile "${config.sops.secrets.tailscale-auth-key.path}";
-        in with pkgs; ''
+        script = with pkgs; ''
           # wait for tailscaled to settle
           sleep 2
 
@@ -41,7 +40,7 @@ in
           fi
 
           # otherwise authenticate with tailscale
-          ${tailscale}/bin/tailscale up -authkey ${authKey}
+          ${tailscale}/bin/tailscale up -authkey "file:${config.sops.secrets.tailscale-auth-key.path}"
         '';
       };
 
@@ -54,7 +53,7 @@ in
       };
 
       sops.secrets.tailscale-auth-key = {
-        restartUnits = [ "tailscale-autoconnect.service" ];
+        restartUnits = ["tailscale-autoconnect.service"];
       };
     };
   }
