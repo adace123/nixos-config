@@ -7,14 +7,14 @@
   ...
 }:
 with lib; let
-  inherit (config.modules.hardware) device;
+  inherit (config.sys.boot) device;
   deviceName = builtins.baseNameOf device;
 in {
   imports = [
     inputs.disko.nixosModules.disko
   ];
 
-  options.modules.hardware.device = mkOption {
+  options.sys.boot.device = mkOption {
     description = "Drive to install NixOS on";
     type = types.str;
   };

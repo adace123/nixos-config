@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.services.prometheus;
+  cfg = config.sys.monitoring;
 in {
-  options.modules.services.prometheus.enable = mkEnableOption "prometheus";
+  options.sys.monitoring.enable = mkEnableOption "prometheus";
   config = mkIf cfg.enable {
     services.prometheus = {
       enable = true;

@@ -4,11 +4,11 @@
   lib,
   ...
 }: let
-  cfg = config.modules.services.networking.tailscale;
+  cfg = config.sys.networking.tailscale;
 in
   with pkgs;
   with lib; {
-    options.modules.services.networking.tailscale.enable = mkEnableOption "tailscale";
+    options.sys.networking.tailscale.enable = mkEnableOption "tailscale";
 
     config = mkIf cfg.enable {
       environment.systemPackages = [tailscale];

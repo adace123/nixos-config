@@ -6,9 +6,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.hardware.bluetooth;
+  cfg = config.sys.bluetooth;
 in {
-  options.modules.hardware.bluetooth.enable = mkEnableOption "bluetooth";
+  options.sys.bluetooth.enable = mkEnableOption "bluetooth";
 
   config = mkIf cfg.enable {
     hardware.bluetooth = {
