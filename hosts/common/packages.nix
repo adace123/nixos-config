@@ -16,6 +16,7 @@ with inputs; {
     fzf
     git
     jq
+    just
     neofetch
     nushell
     openssl

@@ -11,7 +11,7 @@ in {
 
   config = mkIf cfg.enable {
     sops.secrets.wireless = {
-      sopsFile = ../../common/secrets/secrets.yaml;
+      sopsFile = ../../secrets/secrets.yaml;
       mode = "0440";
     };
     networking.wireless = {

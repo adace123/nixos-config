@@ -5,15 +5,20 @@
 }: {
   imports = [./hardware-configuration.nix];
 
+  desktop = {
+    enable = true;
+  };
+
   sys = {
     networking = {
       wifi.enable = true;
       tailscale.enable = true;
     };
+    graphics.nvidia.enable = true;
   };
 
   networking = {
-    hostName = "coruscane";
+    hostName = "coruscant";
     interfaces.wlp10s0 = {
       useDHCP = true;
       ipv4.addresses = [

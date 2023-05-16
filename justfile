@@ -1,4 +1,5 @@
 export NIX_CONFIG := "experimental-features = nix-command flakes"
+export SOPS_AGE_KEY_FILE := "~/.config/sops/age/keys.txt"
 
 default:
   just --list
@@ -21,3 +22,9 @@ build host:
 
 check:
   nix flake check
+
+infra:
+  nix run .#infra
+
+hm user:
+  nix run nixpkgs#home-manager -- switch --flake .#{{user}}
