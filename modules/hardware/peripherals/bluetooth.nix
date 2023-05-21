@@ -13,7 +13,7 @@ in {
   config = mkIf cfg.enable {
     hardware.bluetooth = {
       powerOnBoot = true;
-      enable = mkEnableOption "bluetooth";
+      enable = true;
       # battery info support
       package = pkgs.bluez5-experimental;
       # HSP/HFP support
@@ -24,5 +24,6 @@ in {
         };
       };
     };
+    environment.systemPackages = [pkgs.bluez5];
   };
 }

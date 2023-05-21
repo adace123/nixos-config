@@ -1,11 +1,10 @@
-{...}: {
+{lib, ...}: with lib; {
   imports = [
-    ./alacritty
+    ./terminal
   ];
 
   home = {
     sessionVariables = {
-      TERMINAL = "alacritty";
       BROWSER = "firefox";
       EDITOR = "nvim";
     };

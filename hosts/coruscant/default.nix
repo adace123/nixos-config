@@ -15,10 +15,12 @@
       tailscale.enable = true;
     };
     graphics.nvidia.enable = true;
+    sound.enable = true;
   };
 
   networking = {
     hostName = "coruscant";
+    nameservers = ["192.168.4.1"];
     interfaces.wlp10s0 = {
       useDHCP = true;
       ipv4.addresses = [

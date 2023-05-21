@@ -1,0 +1,204 @@
+{
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (config.home.sessionVariables) TERMINAL BROWSER EDITOR;
+
+  genSubmap = name: binds: let
+    bindType =
+      if name == "resize"
+      then "binde"
+      else "bind";
+  in ''
+    submap = ${name}
+    ${builtins.concatStringsSep "\n" (builtins.map (bind: "${bindType} = ${bind}") binds)}
+    bind = , escape, submap, reset
+    submap = reset
+  '';
+
+  hyprConfig = rec {
+    mod = "SUPER";
+
+    exec-once = [
+      "${TERMINAL}"
+    ];
+
+    monitor = "HDMI-A-1, 2560x1540, 0x0, 1";
+
+    input = ''
+      kb_layout = us
+    '';
+
+    general = ''
+      sensitivity = 1.0
+      gaps_in = 8
+      gaps_out = 10
+      border_size = 3
+      col.active_border = 0xfff5c2e7
+      col.inactive_border = 0xff45475a
+      apply_sens_to_raw = 0
+      col.group_border = 0xff89dceb
+      col.group_border_active = 0xfff9e2af
+    '';
+
+    decoration = ''
+      active_opacity = 0.94
+      inactive_opacity = 0.84
+      blur_new_optimizations = true
+      drop_shadow = true
+      shadow_range = 100
+      shadow_render_power = 5
+      col.shadow = 0x33000000
+      col.shadow_inactive = 0x22000000
+      rounding = 10
+      blur = 0
+      blur_size = 1
+      blur_passes = 1
+    '';
+
+    animations = ''
+      enabled = true
+      bezier = overshot, 0.13, 0.99, 0.29, 1.1
+      animation = windows, 1, 4, overshot, slide
+      animation = border, 1, 10, default
+      animation = fade, 1, 10, default
+      animation = workspaces, 1, 6, overshot, slidevert
+    '';
+
+    dwindle = ''
+      pseudotile = 1
+      force_split = 0
+    '';
+
+    binds = {
+      main = [
+        "${mod}, q, killactive"
+        "${mod} SHIFT, r, execr, hyprctl reload"
+        "${mod} SHIFT, e, exit"
+      ];
+
+      apps = [
+        "${mod}, w, exec, ${BROWSER}"
+        "${mod}, Return, exec, ${TERMINAL}"
+      ];
+
+      window = [
+        "${mod} SHIFT, Space, togglefloating"
+        "${mod}, A, togglesplit"
+        "${mod}, f, fullscreen"
+      ];
+
+      navigation = [
+        "${mod}, left, movefocus, l"
+        "${mod}, right, movefocus, r"
+        "${mod}, up, movefocus, u"
+        "${mod}, down, movefocus, d"
+        "${mod}, h, movefocus, l"
+        "${mod}, l, movefocus, r"
+        "${mod}, k, movefocus, u"
+        "${mod}, j, movefocus, d"
+        "${mod} SHIFT, left, swapwindow, l"
+        "${mod} SHIFT, right, swapwindow, r"
+        "${mod} SHIFT, up, swapwindow, u"
+        "${mod} SHIFT, down, swapwindow, d"
+        "${mod} SHIFT, h, swapwindow, l"
+        "${mod} SHIFT, l, swapwindow, r"
+        "${mod} SHIFT, k, swapwindow, u"
+        "${mod} SHIFT, j, swapwindow, d"
+      ];
+
+      media = [
+        "${mod} SHIFT, p, exec, playerctl play-pause"
+        "${mod} SHIFT, plus, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        "${mod} SHIFT, minus, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
+
+      workspace = let
+        numberedBinds =
+          builtins.genList (
+            x: let
+              ws = let
+                c = (x + 1) / 10;
+              in
+                builtins.toString (x + 1 - (c * 10));
+            in ''
+              ${mod}, ${ws}, workspace, ${toString (x + 1)}
+              bind = ${mod} SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
+            ''
+          )
+          10;
+      in
+        [
+          "${mod}, tab, workspace, e+1"
+          "${mod} SHIFT, tab, workspace, e-1"
+        ]
+        ++ numberedBinds;
+
+      scratchpad = [
+        "${mod} SHIFT, s, movetoworkspace, special"
+        "${mod}, s, togglespecialworkspace"
+      ];
+
+      activateModes = [
+        "ALT SHIFT, r, submap, resize"
+        "ALT SHIFT, s, submap, system"
+      ];
+
+      modes = {
+        resize = [
+          ", right, resizeactive, 10 0"
+          ", left, resizeactive, -10 0"
+          ", up, resizeactive, 0 -10"
+          ", down, resizeactive, 0 10"
+        ];
+
+        system = [
+          ", l, exec, swaylock"
+          ", r, execr, systemctl reboot"
+          ", s, execr, systemctl poweroff -i"
+        ];
+      };
+    };
+
+    mainBinds = with binds; main ++ workspace ++ media ++ activateModes ++ scratchpad ++ navigation ++ window ++ apps;
+
+    submaps = with binds.modes;
+      builtins.concatStringsSep "\n" [
+        (genSubmap "resize" resize)
+        (genSubmap "system" system)
+      ];
+  };
+in {
+  wayland.windowManager.hyprland.extraConfig = with hyprConfig; ''
+    $mod = ${mod}
+
+    ${builtins.concatStringsSep "\n" (builtins.map (exec: "exec-once = ${exec}") exec-once)}
+
+    monitor = ${monitor}
+
+    input {
+      ${input}
+    }
+
+    general {
+      ${general}
+    }
+
+    decoration {
+      ${decoration}
+    }
+
+    animations {
+      ${animations}
+    }
+
+    dwindle {
+      ${dwindle}
+    }
+
+    ${builtins.concatStringsSep "\n" (builtins.map (bind: "bind = ${bind}") mainBinds)}
+
+    ${submaps}
+  '';
+}
