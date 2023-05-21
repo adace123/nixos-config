@@ -1,19 +1,17 @@
 {
-  home-manager,
   inputs,
   nixpkgs,
-  lib,
   system ? "x86_64-linux",
   ...
 }: let
   mkHome = username: isDesktop:
-    home-manager.lib.homeManagerConfiguration {
+    inputs.home-manager.lib.homeManagerConfiguration rec {
       pkgs = import nixpkgs {inherit system;};
       modules =
         [
           ./profiles/common
         ]
-        ++ (lib.optional isDesktop [./profiles/desktop]);
+        ++ (pkgs.lib.optional isDesktop ./profiles/desktop);
       extraSpecialArgs = {
         inherit inputs username;
       };
