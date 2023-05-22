@@ -13,7 +13,7 @@
   in ''
     submap = ${name}
     ${builtins.concatStringsSep "\n" (builtins.map (bind: "${bindType} = ${bind}") binds)}
-    bind = , escape, submap, reset
+    bind = , Return, submap, reset
     submap = reset
   '';
 
@@ -151,6 +151,10 @@
           ", left, resizeactive, -10 0"
           ", up, resizeactive, 0 -10"
           ", down, resizeactive, 0 10"
+          ", l, resizeactive, 10 0"
+          ", h, resizeactive, -10 0"
+          ", k, resizeactive, 0 -10"
+          ", j, resizeactive, 0 10"
         ];
 
         system = [

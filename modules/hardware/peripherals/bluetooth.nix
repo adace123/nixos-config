@@ -12,18 +12,14 @@ in {
 
   config = mkIf cfg.enable {
     hardware.bluetooth = {
-      powerOnBoot = true;
       enable = true;
-      # battery info support
-      package = pkgs.bluez5-experimental;
-      # HSP/HFP support
-      hsphfpd.enable = true;
+      powerOnBoot = true;
       settings = {
         General = {
           Enable = "Source,Sink,Media,Socket";
         };
       };
     };
-    environment.systemPackages = [pkgs.bluez5];
+    environment.systemPackages = [pkgs.bluez];
   };
 }

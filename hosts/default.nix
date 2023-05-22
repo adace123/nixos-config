@@ -1,6 +1,7 @@
 {
   nixpkgs,
   inputs,
+  system ? "x86_64-linux",
   ...
 }: let
   sharedModules = with inputs; [
@@ -8,10 +9,20 @@
     ../modules
     ./common
   ];
+
+  mkSystem = host:
+    nixpkgs.lib.nixosSystem {
+      inherit system;
+      modules =
+        [
+          ./${host}
+          {
+            networking.hostName = host;
+          }
+        ]
+        ++ sharedModules;
+      specialArgs = {inherit inputs;};
+    };
 in {
-  coruscant = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [./coruscant] ++ sharedModules;
-    specialArgs = {inherit inputs;};
-  };
+  coruscant = mkSystem "coruscant";
 }
