@@ -5,9 +5,7 @@
 }: {
   imports = [./hardware-configuration.nix];
 
-  desktop = {
-    enable = true;
-  };
+  window-manager.enable = true;
 
   sys = {
     networking = {

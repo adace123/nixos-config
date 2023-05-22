@@ -4,18 +4,16 @@
   system ? "x86_64-linux",
   ...
 }: let
-  mkHome = username: isDesktop:
-    inputs.home-manager.lib.homeManagerConfiguration rec {
+  mkHome = username:
+    inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {inherit system;};
-      modules =
-        [
-          ./profiles/common
-        ]
-        ++ (pkgs.lib.optional isDesktop ./profiles/desktop);
+      modules = [
+        ./users/${username}
+      ];
       extraSpecialArgs = {
         inherit inputs username;
       };
     };
 in {
-  aaron = mkHome "aaron" true;
+  aaron = mkHome "aaron";
 }

@@ -10,7 +10,7 @@
     ./common
   ];
 
-  mkSystem = host:
+  mkSystem = host: username:
     nixpkgs.lib.nixosSystem {
       inherit system;
       modules =
@@ -24,5 +24,5 @@
       specialArgs = {inherit inputs;};
     };
 in {
-  coruscant = mkSystem "coruscant";
+  coruscant = mkSystem "coruscant" "aaron";
 }
