@@ -76,6 +76,7 @@
         "${mod}, q, killactive"
         "${mod} SHIFT, r, execr, hyprctl reload"
         "${mod} SHIFT, e, exit"
+        "${mod} SHIFT, l, exec, swaylock"
       ];
 
       apps = [
@@ -158,7 +159,6 @@
         ];
 
         system = [
-          ", l, exec, swaylock"
           ", r, execr, systemctl reboot"
           ", s, execr, systemctl poweroff -i"
         ];
