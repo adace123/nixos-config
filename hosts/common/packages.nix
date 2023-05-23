@@ -17,7 +17,6 @@ with inputs; {
     git
     jq
     just
-    neofetch
     nushell
     openssl
     pciutils

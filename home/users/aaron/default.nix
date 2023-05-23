@@ -2,7 +2,7 @@
   imports = [
     ../common
     ../../desktop
-    ../../terminal
+    ../../shell
   ];
 
   desktop.hyprland.enable = true;
