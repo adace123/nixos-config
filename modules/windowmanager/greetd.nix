@@ -6,17 +6,9 @@
   ...
 }: let
   cfg = config.window-manager;
-  wm = lib.getExe config.programs.${cfg.name}.package;
 in
   with lib; {
     config = mkIf cfg.enable {
-      services.greetd = {
-        enable = true;
-        settings = {
-          default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd ${wm}";
-        };
-      };
-
       environment.systemPackages = with pkgs; [
         (catppuccin-gtk.override {
           accents = ["mauve"];
@@ -26,5 +18,19 @@ in
         bibata-cursors
         papirus-icon-theme
       ];
+
+      programs.${cfg.name}.enable = true;
+
+      programs.regreet = {
+        enable = true;
+        settings = {
+          GTK = {
+            cursor_theme_name = "Bibata-Modern-Classic";
+            font_name = "Jost * 12";
+            icon_theme_name = "Papirus-Dark";
+            theme_name = "Catppuccin-Mocha-Compact-Mauve-Dark";
+          };
+        };
+      };
     };
   }
