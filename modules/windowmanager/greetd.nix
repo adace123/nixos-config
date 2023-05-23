@@ -19,8 +19,6 @@ in
         papirus-icon-theme
       ];
 
-      programs.${cfg.name}.enable = true;
-
       programs.regreet = {
         enable = true;
         settings = {

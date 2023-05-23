@@ -21,6 +21,8 @@ in
         pam.services.swaylock.text = "auth include login";
       };
 
+      programs.${cfg.name}.enable = true;
+
       services.dbus.enable = true;
 
       programs = {
