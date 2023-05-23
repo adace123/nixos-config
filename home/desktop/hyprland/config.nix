@@ -35,11 +35,11 @@
       gaps_in = 8
       gaps_out = 10
       border_size = 3
-      col.active_border = 0xfff5c2e7
-      col.inactive_border = 0xff45475a
+      col.active_border=0xff7e9cd8
+      col.inactive_border=0xff54546d
+      col.group_border=0xff54546d
+      col.group_border_active=0xff957fb8
       apply_sens_to_raw = 0
-      col.group_border = 0xff89dceb
-      col.group_border_active = 0xfff9e2af
     '';
 
     decoration = ''
@@ -51,7 +51,7 @@
       shadow_render_power = 5
       col.shadow = 0x33000000
       col.shadow_inactive = 0x22000000
-      rounding = 10
+      rounding = 5
       blur = 0
       blur_size = 1
       blur_passes = 1
