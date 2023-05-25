@@ -6,11 +6,11 @@
 }: let
   sharedModules = with inputs; [
     sops-nix.nixosModules.sops
-    ../modules
+    ../modules/nixos
     ./common
   ];
 
-  mkSystem = host: username:
+  mkSystem = host:
     nixpkgs.lib.nixosSystem {
       inherit system;
       modules =
@@ -19,10 +19,15 @@
           {
             networking.hostName = host;
           }
+          inputs.home-manager.nixosModules.home-manager
+          {
+            imports = [./common/home-manager.nix];
+            home-manager.extraSpecialArgs = {inherit host;};
+          }
         ]
         ++ sharedModules;
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs system;};
     };
 in {
-  coruscant = mkSystem "coruscant" "aaron";
+  coruscant = mkSystem "coruscant";
 }

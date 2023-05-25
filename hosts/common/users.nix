@@ -26,7 +26,7 @@ in {
 
   config = {
     sops.secrets."${cfg.name}-password" = {
-      sopsFile = ../../modules/secrets/secrets.yaml;
+      sopsFile = ../../modules/nixos/secrets/secrets.yaml;
       neededForUsers = true;
     };
 

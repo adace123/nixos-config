@@ -26,8 +26,5 @@ check:
 infra:
   nix run .#infra
 
-hm user:
-  nix run nixpkgs#home-manager -- switch --flake .#{{user}}
-
 clean:
   sudo nix-collect-garbage --delete-old

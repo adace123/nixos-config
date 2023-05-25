@@ -1,20 +1,22 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
-  imports = [./hardware-configuration.nix];
+  modules = {
+    window-manager.hyprland.enable = true;
 
-  window-manager.enable = true;
-
-  sys = {
-    networking = {
-      wifi.enable = true;
-      tailscale.enable = true;
+    sys = {
+      networking = {
+        wifi.enable = true;
+        tailscale.enable = true;
+      };
+      graphics.nvidia.enable = true;
+      sound.enable = true;
+      bluetooth.enable = true;
+      boot.device = "/dev/sda";
     };
-    graphics.nvidia.enable = true;
-    sound.enable = true;
-    bluetooth.enable = true;
   };
 
   networking = {
@@ -28,6 +30,10 @@
       ];
     };
   };
+
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   user = {
     name = "aaron";
