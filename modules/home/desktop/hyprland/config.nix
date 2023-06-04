@@ -1,8 +1,12 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: let
+  cfg = config.modules.desktop.hyprland;
+  inherit (config.modules.desktop) monitor;
+  inherit (config.modules.desktop) wallpaper;
   inherit (config.home.sessionVariables) TERMINAL BROWSER EDITOR;
 
   genSubmap = name: binds: let
@@ -22,9 +26,10 @@
 
     exec-once = [
       "${TERMINAL}"
+      "hyprctl setcursor Bibata-Modern-Classic 24"
     ];
 
-    monitor = "HDMI-A-1, 2560x1540, 0x0, 1";
+    display = "${monitor.output}, ${monitor.resolution}, 0x0, 1";
 
     input = ''
       kb_layout = us
@@ -35,26 +40,28 @@
       gaps_in = 8
       gaps_out = 10
       border_size = 3
-      col.active_border=0xff7e9cd8
-      col.inactive_border=0xff54546d
-      col.group_border=0xff54546d
-      col.group_border_active=0xff957fb8
+      col.active_border=0xff${config.colorScheme.colors.base0C}
+      col.inactive_border=0xff${config.colorScheme.colors.base02}
+      col.group_border_active=0xff${config.colorScheme.colors.base0B}
+      col.group_border=0xff${config.colorScheme.colors.base04}
       apply_sens_to_raw = 0
     '';
 
     decoration = ''
-      active_opacity = 0.94
-      inactive_opacity = 0.84
-      blur_new_optimizations = true
-      drop_shadow = true
-      shadow_range = 100
-      shadow_render_power = 5
-      col.shadow = 0x33000000
-      col.shadow_inactive = 0x22000000
-      rounding = 5
-      blur = 0
-      blur_size = 1
-      blur_passes = 1
+      active_opacity=0.94
+      inactive_opacity=0.84
+      fullscreen_opacity=1.0
+      rounding=5
+      blur=true
+      blur_size=5
+      blur_passes=3
+      blur_new_optimizations=true
+      blur_ignore_opacity=true
+      drop_shadow=true
+      shadow_range=12
+      shadow_offset=3 3
+      col.shadow=0x44000000
+      col.shadow_inactive=0x66000000
     '';
 
     animations = ''
@@ -160,7 +167,7 @@
         system = [
           ", r, execr, systemctl reboot"
           ", s, execr, systemctl poweroff -i"
-          ", l, exec, swaylock"
+          ", l, exec, gtklock"
         ];
       };
     };
@@ -173,36 +180,39 @@
         (genSubmap "system" system)
       ];
   };
-in {
-  xdg.configFile."hypr/hyprland.conf".text = with hyprConfig; ''
-    $mod = ${mod}
+in
+  with lib; {
+    config = mkIf cfg.enable {
+      xdg.configFile."hypr/hyprland.conf".text = with hyprConfig; ''
+          $mod = ${mod}
 
-    ${builtins.concatStringsSep "\n" (builtins.map (exec: "exec-once = ${exec}") exec-once)}
+        ${builtins.concatStringsSep "\n" (map (exec: "exec-once = ${exec}") exec-once)}
 
-    monitor = ${monitor}
+        monitor = ${display}
 
-    input {
-      ${input}
-    }
+        input {
+          ${input}
+        }
 
-    general {
-      ${general}
-    }
+        general {
+          ${general}
+        }
 
-    decoration {
-      ${decoration}
-    }
+        decoration {
+          ${decoration}
+        }
 
-    animations {
-      ${animations}
-    }
+        animations {
+          ${animations}
+        }
 
-    dwindle {
-      ${dwindle}
-    }
+        dwindle {
+          ${dwindle}
+        }
 
-    ${builtins.concatStringsSep "\n" (builtins.map (bind: "bind = ${bind}") mainBinds)}
+        ${builtins.concatStringsSep "\n" (map (bind: "bind = ${bind}") mainBinds)}
 
-    ${submaps}
-  '';
-}
+        ${submaps}
+      '';
+    };
+  }

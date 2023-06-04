@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./swaylock.nix];
+  imports = [./wallpaper.nix ./idle.nix];
 }

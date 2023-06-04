@@ -1,4 +1,6 @@
 {
+  pkgs,
+  inputs,
   config,
   ...
 }: {
@@ -7,7 +9,12 @@
     useUserPackages = true;
     users.${config.user.name} = {
       home.stateVersion = config.system.stateVersion;
-      imports = [../../modules/home ../${config.networking.hostName}/home.nix];
+      imports = with inputs; [
+        ../../modules/home
+        ../${config.networking.hostName}/home.nix
+        hyprland.homeManagerModules.default
+        nix-colors.homeManagerModules.default
+      ];
     };
   };
 }

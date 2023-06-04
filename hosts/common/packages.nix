@@ -17,6 +17,7 @@ with inputs; {
     git
     jq
     just
+    kmon
     nushell
     openssl
     pciutils

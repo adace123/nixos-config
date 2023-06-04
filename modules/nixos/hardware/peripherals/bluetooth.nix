@@ -20,6 +20,6 @@ in {
         };
       };
     };
-    environment.systemPackages = [pkgs.bluez];
+    environment.systemPackages = with pkgs; [bluez bluetuith];
   };
 }

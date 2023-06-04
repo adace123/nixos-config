@@ -13,7 +13,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
-    stylix.url = "github:danth/stylix";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {

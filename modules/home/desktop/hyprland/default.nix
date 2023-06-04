@@ -3,9 +3,11 @@
   config,
   pkgs,
   lib,
+  osConfig,
   ...
 }: let
   cfg = config.modules.desktop.hyprland;
+  inherit (osConfig.modules.sys.graphics) nvidia;
 in
   with lib; {
     options.modules.desktop.hyprland.enable = mkEnableOption "Enable Hyprland";
@@ -15,6 +17,12 @@ in
     ];
 
     config = mkIf cfg.enable {
+      wayland.windowManager.hyprland = {
+        enable = true;
+        systemdIntegration = true;
+        nvidiaPatches = nvidia.enable;
+      };
+
       home = {
         sessionVariables = {
           WLR_NO_HARDWARE_CURSORS = "1";
@@ -34,7 +42,6 @@ in
           slurp
 
           # idle/lock
-          swww
           swayidle
         ];
       };

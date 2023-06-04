@@ -4,28 +4,25 @@
   ...
 }: let
   cfg = config.modules.window-manager.hyprland;
-  inherit (config.sys.graphics) nvidia;
+  inherit (config.modules.sys.graphics) nvidia;
 in
   with lib; {
     imports = [./greetd.nix];
-    options.modules.window-manager = {
-      hyprland.enable = mkEnableOption "Enable Hyprland";
-    };
+    options.modules.window-manager.hyprland.enable = mkEnableOption "Enable Hyprland";
 
     config = mkIf cfg.enable {
       security = {
-        pam.services.swaylock.text = "auth include login";
+        pam.services.gtklock.text = ''
+          auth include login
+          auth sufficient pam_unix.so try_first_pass likeauth nullok
+          auth sufficient pam_fprintd.so
+        '';
       };
 
-      programs.hyprland = {
-        enable = true;
-        nvidiaPatches = nvidia.enable;
-      };
+      programs.hyprland.enable = true;
 
       services.dbus.enable = true;
 
-      programs = {
-        light.enable = true;
-      };
+      programs.light.enable = true;
     };
   }
