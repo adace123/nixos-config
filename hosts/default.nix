@@ -10,6 +10,10 @@
     ./common
   ];
 
+  overlays = [inputs.nuenv.overlays.nuenv];
+
+  pkgs = import nixpkgs {inherit overlays system;};
+
   mkSystem = host:
     nixpkgs.lib.nixosSystem {
       inherit system;
@@ -24,7 +28,7 @@
           inputs.home-manager.nixosModules.home-manager
         ]
         ++ sharedModules;
-      specialArgs = {inherit inputs system;};
+      specialArgs = {inherit inputs system pkgs;};
     };
 in {
   coruscant = mkSystem "coruscant";

@@ -28,7 +28,6 @@
     ...
   } @ inputs: let
     defaultSystem = "x86_64-linux";
-    overlays = [nuenv.overlays.nuenv];
   in
     flake-parts.lib.mkFlake {inherit inputs;} (_: {
       systems = ["x86_64-linux" "x86_64-darwin"];
@@ -44,7 +43,6 @@
       };
 
       flake = {
-        nixpkgs.overlays = overlays;
         nixosConfigurations = import ./hosts {inherit inputs nixpkgs;};
       };
     });
