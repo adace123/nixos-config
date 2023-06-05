@@ -1,5 +1,4 @@
 export NIX_CONFIG := "experimental-features = nix-command flakes"
-export NIXPKGS_ALLOW_UNFREE := "1"
 export SOPS_AGE_KEY_FILE := "~/.config/sops/age/keys.txt"
 
 default:
@@ -7,6 +6,7 @@ default:
 
 install host:
   export NIXOS_INSTALL_MODE=1
+  export NIXPKGS_ALLOW_UNFREE=1
   nix run '.#nixosConfigurations.{{host}}.config.system.build.system-install' -- --generate_luks_key
 
 rebuild host:
