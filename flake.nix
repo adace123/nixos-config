@@ -43,13 +43,9 @@
         # packages.infra = import ./infra {inherit pkgs;};
       };
 
-      flake = let
-        pkgs = import nixpkgs {
-          system = defaultSystem;
-          inherit overlays;
-        };
-      in {
-        nixosConfigurations = import ./hosts {inherit inputs pkgs;};
+      flake = {
+        nixpkgs.overlays = overlays;
+        nixosConfigurations = import ./hosts {inherit inputs nixpkgs;};
       };
     });
 }
