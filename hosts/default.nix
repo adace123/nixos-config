@@ -1,5 +1,5 @@
 {
-  nixpkgs,
+  pkgs,
   inputs,
   system ? "x86_64-linux",
   ...
@@ -11,7 +11,7 @@
   ];
 
   mkSystem = host:
-    nixpkgs.lib.nixosSystem {
+    pkgs.lib.nixosSystem {
       inherit system;
       modules =
         [
