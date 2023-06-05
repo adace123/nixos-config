@@ -24,7 +24,7 @@ def main [--host: string] {
   # let-env NIXPKGS_ALLOW_UNFREE = "1"
   #
   let disko = (nix build --no-link --print-out-paths $".#nixosConfigurations.($host).config.system.build.diskoScript")
-  $"./($disko)"
+  bash -c $disko
   #
   # echo "Done formatting"
   #
