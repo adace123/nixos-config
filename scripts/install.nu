@@ -17,14 +17,14 @@ def main [--host: string] {
     echo "\nError: Passwords don't match"
     exit 1
   }
-  $password | save --force "/tmp/cryptroot.key"
+  $password | save "/tmp/cryptroot.key"
   # #
   echo "Formatting drive"
   # let-env NIXOS_INSTALL_MODE = "1"
   # let-env NIXPKGS_ALLOW_UNFREE = "1"
   #
   let disko = (nix build --no-link --print-out-paths $".#nixosConfigurations.($host).config.system.build.diskoScript")
-  echo $disko
+  $"./($disko)"
   #
   # echo "Done formatting"
   #
