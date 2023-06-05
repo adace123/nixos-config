@@ -1,6 +1,6 @@
 {...}: {
   imports = [
     ./desktop
-    ./shell
+    ./cli
   ];
 }

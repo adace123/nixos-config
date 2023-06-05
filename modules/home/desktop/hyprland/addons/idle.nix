@@ -9,14 +9,22 @@ in
   with lib; {
     options.modules.desktop.idle = {
       enable = mkEnableOption "enable swayidle";
-      lockTimeout = mkOption {type = types.int; default = 300;};
-      screenTimeout = mkOption {type = types.int; default = 350;};
+      timeout = mkOption {
+        type = types.int;
+        default = 600;
+      };
     };
 
     config = mkIf cfg.enable {
+      home.packages = [pkgs.swayidle];
+
       services.swayidle = {
         enable = true;
         events = [
+          {
+            event = "before-sleep";
+            command = "${pkgs.gtklock}/bin/gtklock";
+          }
           {
             event = "lock";
             command = "${pkgs.gtklock}/bin/gtklock";
@@ -24,13 +32,12 @@ in
         ];
         timeouts = [
           {
-            timeout = cfg.lockTimeout;
+            inherit (cfg) timeout;
             command = "${pkgs.gtklock}/bin/gtklock";
           }
           {
-            timeout = cfg.screenTimeout;
-            command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-            resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+            timeout = cfg.timeout + 5;
+            command = "${pkgs.systemd}/bin/systemctl suspend";
           }
         ];
         systemdTarget = "hyprland-session.target";

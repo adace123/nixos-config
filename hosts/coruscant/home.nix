@@ -14,15 +14,12 @@
         resolution = "2048x1152";
       };
     };
+    shell = {
+      nushell.enable = true;
+    };
   };
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-
-  home.sessionVariables = {
-    TERMINAL = "wezterm";
-    BROWSER = "firefox";
-    EDITOR = "nvim";
-  };
 
   home.pointerCursor = {
     package = pkgs.bibata-cursors;

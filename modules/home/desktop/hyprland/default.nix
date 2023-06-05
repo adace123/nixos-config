@@ -40,9 +40,6 @@ in
           # screenshot
           grim
           slurp
-
-          # idle/lock
-          swayidle
         ];
       };
     };

@@ -15,7 +15,6 @@ in
         pam.services.gtklock.text = ''
           auth include login
           auth sufficient pam_unix.so try_first_pass likeauth nullok
-          auth sufficient pam_fprintd.so
         '';
       };
 
