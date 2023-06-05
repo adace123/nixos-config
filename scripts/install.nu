@@ -20,8 +20,8 @@ def main [--host: string] {
   $password | save "/tmp/cryptroot.key"
   # #
   echo "Formatting drive"
-  # let-env NIXOS_INSTALL_MODE = "1"
-  # let-env NIXPKGS_ALLOW_UNFREE = "1"
+  let-env NIXOS_INSTALL_MODE = "1"
+  let-env NIXPKGS_ALLOW_UNFREE = "1"
   #
   let disko = (nix build --no-link --print-out-paths $".#nixosConfigurations.($host).config.system.build.diskoScript")
   bash -c $disko
