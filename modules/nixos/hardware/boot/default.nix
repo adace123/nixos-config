@@ -25,6 +25,7 @@ in {
       efiSupport = true;
       enableCryptodisk = true;
       device = "nodev";
+      configurationLimit = configLimit;
     };
 
     boot.initrd = {
