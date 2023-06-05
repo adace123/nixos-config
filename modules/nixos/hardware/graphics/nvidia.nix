@@ -27,6 +27,7 @@ in
         "splash"
         "boot.shell_on_fail"
       ];
+      boot.blacklistedKernelModules = ["i2c_nvidia_gpu"];
 
       services.xserver.videoDrivers = ["nvidia"];
     };
