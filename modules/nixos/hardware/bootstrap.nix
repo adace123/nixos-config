@@ -29,6 +29,7 @@
 
           echo "Formatting drive"
           let-env NIXOS_INSTALL_MODE = "1"
+          let-env NIXPKGS_ALLOW_UNFREE = "1"
           ${config.system.build.diskoScript}
           echo "Done formatting"
 
