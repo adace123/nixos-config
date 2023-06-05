@@ -17,7 +17,7 @@ def main [--host: string] {
     echo "\nError: Passwords don't match"
     exit 1
   }
-  $password | save -f "/tmp/cryptroot.key"
+  $password | save --force "/tmp/cryptroot.key"
   # #
   echo "Formatting drive"
   # let-env NIXOS_INSTALL_MODE = "1"
