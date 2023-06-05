@@ -21,7 +21,6 @@
         [
           ./common/home-manager.nix
           ./${host}
-          ../installer/script.nix
           {
             networking.hostName = host;
             home-manager.extraSpecialArgs = {inherit host inputs;};
