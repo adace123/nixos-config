@@ -29,7 +29,7 @@
 
           echo "Formatting drive"
           let-env NIXOS_INSTALL_MODE = "1"
-          ${config.system.build.disko}
+          ${config.system.build.diskoScript}
           echo "Done formatting"
 
           generate_luks_key
