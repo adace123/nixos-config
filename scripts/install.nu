@@ -25,16 +25,15 @@ def main [--host: string] {
   #
   let disko = (nix build --no-link --print-out-paths $".#nixosConfigurations.($host).config.system.build.diskoScript")
   bash -c $disko
-  #
-  # echo "Done formatting"
-  #
-  # generate_luks_key
-  #
+  echo "Done formatting"
+
+  generate_luks_key
+
   # # echo "Copying SSH key pair"
   # mkdir /mnt/etc/ssh
   # # cp /tmp/id_ed25519 /mnt/etc/ssh/ssh_host_ed25519_key
   # # ssh-keygen -yf /mnt/etc/ssh/ssh_host_ed25519_key | save -f "/mnt/etc/ssh/ssh_host_ed25519_key"
-  #
-  # echo "Installing NixOS"
-  # nixos-install --root /mnt --flake  --no-root-password
+
+  echo "Installing NixOS"
+  nixos-install --root /mnt --flake  --no-root-password
 }
