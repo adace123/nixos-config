@@ -1,5 +1,5 @@
 {...}: {
-  imports = [./boot ./disk ./networking ./peripherals ./graphics ./bootstrap.nix];
+  imports = [./boot ./disk ./networking ./peripherals ./graphics];
 
   hardware.enableRedistributableFirmware = true;
 }
