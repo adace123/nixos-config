@@ -5,7 +5,7 @@ default:
   just --list
 
 install host:
-  nix run '.#nixosConfigurations.{{host}}.config.system.build.system-install' -- --generate_luks_key
+  nix run --impure '.#nixosConfigurations.{{host}}.config.system.build.system-install' -- --generate_luks_key
 
 rebuild host:
   nixos-rebuild switch --flake '.#{{host}}'
