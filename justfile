@@ -1,5 +1,5 @@
 export NIX_CONFIG := "experimental-features = nix-command flakes"
-export NIXPKGS_ALLOW_UNFREE := 1
+export NIXPKGS_ALLOW_UNFREE := "1"
 export SOPS_AGE_KEY_FILE := "~/.config/sops/age/keys.txt"
 
 default:
