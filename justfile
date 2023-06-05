@@ -5,8 +5,6 @@ default:
   just --list
 
 install host:
-  export NIXOS_INSTALL_MODE=1
-  export NIXPKGS_ALLOW_UNFREE=1
   nix run '.#nixosConfigurations.{{host}}.config.system.build.system-install' -- --generate_luks_key
 
 rebuild host:
