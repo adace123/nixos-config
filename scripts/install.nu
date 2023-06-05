@@ -35,5 +35,5 @@ def main [--host: string] {
   # # ssh-keygen -yf /mnt/etc/ssh/ssh_host_ed25519_key | save -f "/mnt/etc/ssh/ssh_host_ed25519_key"
 
   echo "Installing NixOS"
-  nixos-install --root /mnt --flake  --no-root-password
+  nixos-install --root /mnt --flake $".#($host)" --no-root-password
 }
