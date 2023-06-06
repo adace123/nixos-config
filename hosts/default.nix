@@ -12,7 +12,10 @@
 
   overlays = [inputs.nuenv.overlays.nuenv];
 
-  pkgs = import nixpkgs {inherit overlays system;};
+  pkgs = import nixpkgs {
+    inherit overlays system;
+    config.allowUnfree = true;
+  };
 
   mkSystem = host:
     nixpkgs.lib.nixosSystem {
