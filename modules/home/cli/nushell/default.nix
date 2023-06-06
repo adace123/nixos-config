@@ -17,6 +17,8 @@ in
           ll = "ls -la";
           sc = "systemctl";
           jc = "journalctl";
+          tree = "exa -T --icons";
+          rm = "rm -i";
         };
         extraConfig = with config.colorScheme.colors; ''
           let theme = {
