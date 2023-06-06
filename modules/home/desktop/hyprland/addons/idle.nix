@@ -11,7 +11,7 @@ in
       enable = mkEnableOption "enable swayidle";
       timeout = mkOption {
         type = types.int;
-        default = 600;
+        default = 15;
       };
     };
 
@@ -23,20 +23,25 @@ in
         events = [
           {
             event = "before-sleep";
-            command = "${pkgs.gtklock}/bin/gtklock";
+            command = "${pkgs.gtklock}/bin/gtklock -d";
           }
           {
             event = "lock";
-            command = "${pkgs.gtklock}/bin/gtklock";
+            command = "${pkgs.gtklock}/bin/gtklock -d";
           }
         ];
         timeouts = [
           {
             inherit (cfg) timeout;
-            command = "${pkgs.gtklock}/bin/gtklock";
+            command = "${pkgs.gtklock}/bin/gtklock -d";
           }
           {
-            timeout = cfg.timeout + 5;
+            timeout = cfg.timeout + 120;
+            command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+            resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+          }
+          {
+            timeout = cfg.timeout + 300;
             command = "${pkgs.systemd}/bin/systemctl suspend";
           }
         ];
