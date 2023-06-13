@@ -10,7 +10,7 @@ with lib; let
   inherit (config.modules.sys.boot) configLimit;
 in {
   options.modules.sys.boot.configLimit = mkOption {
-    default = 10;
+    default = 5;
     description = "Boot configuration limit";
     type = types.int;
   };
@@ -33,10 +33,10 @@ in {
         allowDiscards = true;
         bypassWorkqueues = true;
         fallbackToPassword = true;
-        keyFile = "/keyfile.bin";
+        keyFile = "/cryptroot.key";
       };
       secrets = {
-        "/keyfile.bin" = "/boot/initrd/keyfile.bin";
+        "/cryptroot.key" = "/cryptroot.key";
       };
     };
     boot.kernelPackages = pkgs.linuxPackages_latest;

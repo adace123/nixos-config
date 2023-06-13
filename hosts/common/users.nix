@@ -12,10 +12,6 @@ in {
     user = {
       name = mkOption {type = types.str;};
       sudo = mkEnableOption "sudo";
-      shell = mkOption {
-        type = types.enum ["nushell" "bash" "zsh"];
-        default = "nushell";
-      };
       sshKeys = mkOption {
         type = types.listOf types.str;
         description = "List of user SSH keys";
@@ -32,12 +28,12 @@ in {
 
     users = {
       mutableUsers = false;
-      defaultUserShell = pkgs.${cfg.shell};
-
+      defaultUserShell = pkgs.nushell;
       users.${cfg.name} = mkMerge [
         {
           isNormalUser = true;
           passwordFile = config.sops.secrets."${cfg.name}-password".path;
+          openssh.authorizedKeys.keys = cfg.sshKeys;
         }
         (mkIf cfg.sudo {
           extraGroups = ["wheel"];

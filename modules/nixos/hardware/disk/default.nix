@@ -9,17 +9,24 @@
 with lib; let
   inherit (config.modules.sys.boot) device;
   deviceName = builtins.baseNameOf device;
+  cfg = config.modules.sys.disko;
 in {
   imports = [
     inputs.disko.nixosModules.disko
   ];
+
+  options.modules.sys.disko.enable = mkOption {
+    description = "Enable disko partitioning";
+    type = types.bool;
+    default = true;
+  };
 
   options.modules.sys.boot.device = mkOption {
     description = "Drive to install NixOS on";
     type = types.str;
   };
 
-  config = {
+  config = mkIf cfg.enable {
     # TODO:: Find another way to do this
     disko.enableConfig = builtins.getEnv "NIXOS_INSTALL_MODE" != "1";
     disko.devices.disk.${deviceName} = {
@@ -32,7 +39,7 @@ in {
           {
             name = "esp";
             start = "1MiB";
-            end = "128MiB";
+            end = "1G";
             fs-type = "fat32";
             bootable = true;
             content = {
@@ -43,12 +50,12 @@ in {
           }
           {
             name = "primary";
-            start = "128MiB";
+            start = "1G";
             end = "-1G";
             content = {
               type = "luks";
               name = "cryptroot";
-              keyFile = "/tmp/cryptroot.key";
+              keyFile = "/cryptroot.key";
               content = {
                 type = "btrfs";
                 mountpoint = "/";

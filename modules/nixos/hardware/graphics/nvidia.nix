@@ -20,14 +20,12 @@ in
 
       environment.systemPackages = with pkgs; [nvitop cudaPackages.cuda_nvml_dev];
 
-      boot.initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
-      boot.kernelParams = [
-        "clearcpuid=514" # Fixes certain wine games crash on launch
-        "quiet"
-        "splash"
-        "boot.shell_on_fail"
-      ];
-      boot.blacklistedKernelModules = ["i2c_nvidia_gpu"];
+      environment.sessionVariables = {
+        LIBVA_DRIVER_NAME = "nvidia";
+        GBM_BACKEND = "nvidia";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        MOZ_DISABLE_RDD_SANDBOX = "1";
+      };
 
       services.xserver.videoDrivers = ["nvidia"];
     };

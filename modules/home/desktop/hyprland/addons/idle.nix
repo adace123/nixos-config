@@ -11,7 +11,7 @@ in
       enable = mkEnableOption "enable swayidle";
       timeout = mkOption {
         type = types.int;
-        default = 15;
+        default = 300;
       };
     };
 

@@ -17,22 +17,33 @@
     config.allowUnfree = true;
   };
 
-  mkSystem = host:
+  mkSystem = host: let
+    homeModules =
+      if builtins.pathExists ./${host}/home.nix
+      then [
+        inputs.home-manager.nixosModules.home-manager
+        ./common/home-manager.nix
+        {
+          home-manager.extraSpecialArgs = {inherit host inputs;};
+        }
+      ]
+      else [];
+  in
     nixpkgs.lib.nixosSystem {
       inherit system;
       modules =
         [
-          ./common/home-manager.nix
           ./${host}
           {
             networking.hostName = host;
-            home-manager.extraSpecialArgs = {inherit host inputs;};
           }
-          inputs.home-manager.nixosModules.home-manager
         ]
+        ++ homeModules
         ++ sharedModules;
       specialArgs = {inherit inputs system pkgs;};
     };
 in {
   coruscant = mkSystem "coruscant";
+  # iso = mkSystem "iso";
+  vm = mkSystem "vm";
 }

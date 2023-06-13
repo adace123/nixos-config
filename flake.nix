@@ -21,21 +21,14 @@
     nixpkgs,
     disko,
     nuenv,
-    sops-nix,
     flake-parts,
-    hyprland,
-    home-manager,
     ...
   } @ inputs: let
     defaultSystem = "x86_64-linux";
   in
     flake-parts.lib.mkFlake {inherit inputs;} (_: {
       systems = ["x86_64-linux" "x86_64-darwin"];
-      perSystem = {
-        pkgs,
-        lib,
-        ...
-      }: {
+      perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [just statix alejandra sops ssh-to-age pulumi];
         };

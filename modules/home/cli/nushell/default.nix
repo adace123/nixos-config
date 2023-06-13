@@ -19,6 +19,7 @@ in
           jc = "journalctl";
           tree = "exa -T --icons";
           rm = "rm -i";
+          ts = "tailscale";
         };
         extraConfig = with config.colorScheme.colors; ''
           let theme = {
