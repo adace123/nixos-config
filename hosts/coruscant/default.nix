@@ -11,7 +11,9 @@
       networking = {
         wifi.enable = true;
         tailscale.enable = true;
+        tools.enable = true;
       };
+      hardware.tools.enable = true;
       graphics.nvidia.enable = true;
       sound.enable = true;
       bluetooth.enable = true;
