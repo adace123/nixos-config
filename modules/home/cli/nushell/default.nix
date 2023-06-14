@@ -14,12 +14,16 @@ in
         configFile.source = ./config.nu;
         # envFile.source = ./env.nu;
         shellAliases = {
+          cat = "bat";
+          htop = "bottom --fahrenheit";
+          grep = "rg";
           ll = "ls -la";
           sc = "systemctl";
           jc = "journalctl";
           tree = "exa -T --icons";
           rm = "rm -i";
           ts = "tailscale";
+          k = "kubectl";
         };
         extraConfig = with config.colorScheme.colors; ''
           let theme = {
