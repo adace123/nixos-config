@@ -143,13 +143,13 @@
         ++ numberedBinds;
 
       scratchpad = [
-        "${mod} SHIFT, s, movetoworkspace, special"
-        "${mod}, s, togglespecialworkspace"
+        "${mod}, minus, movetoworkspace, special"
+        "${mod}, equal, togglespecialworkspace"
       ];
 
       activateModes = [
-        "ALT SHIFT, r, submap, resize"
-        "ALT SHIFT, s, submap, system"
+        "${mod} SHIFT, r, submap, resize"
+        "${mod} SHIFT, s, submap, system"
       ];
 
       modes = {
