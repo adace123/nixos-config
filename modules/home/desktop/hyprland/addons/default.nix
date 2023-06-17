@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./wallpaper.nix ./idle.nix];
+  imports = [./wallpaper.nix ./idle.nix ./waybar];
 }

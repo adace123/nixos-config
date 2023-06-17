@@ -8,11 +8,13 @@
       wallpaper = ../../assets/blue_circuit.png;
       lock.enable = true;
       idle.enable = true;
+      waybar.enable = true;
       hyprland.enable = true;
       monitor = {
         output = "HDMI-A-1";
-        resolution = "2048x1152";
+        resolution = "2048x1080";
       };
+      terminal.alacritty.enable = true;
     };
     shell = {
       nushell.enable = true;
@@ -21,6 +23,7 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
+  home.sessionVariables.TERMINAL = "alacritty";
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";

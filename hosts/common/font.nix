@@ -3,5 +3,6 @@
     material-symbols
     roboto
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+    font-awesome
   ];
 }

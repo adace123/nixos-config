@@ -5,3 +5,11 @@ let-env config = {
 def sc-list [] {
   systemctl -o json | from json
 }
+
+def dmesg-err [] {
+  sudo dmesg -J --level=warn+ | from json | get dmesg | sort-by pri
+}
+
+def kget [] {
+  # TODO
+}
