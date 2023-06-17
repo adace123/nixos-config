@@ -15,7 +15,8 @@ in
         # envFile.source = ./env.nu;
         shellAliases = {
           cat = "bat";
-          htop = "bottom --fahrenheit";
+          bt = "bluetoothctl";
+          htop = "btm --fahrenheit";
           grep = "rg";
           ll = "ls -la";
           sc = "systemctl";
