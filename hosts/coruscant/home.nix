@@ -15,6 +15,7 @@
         resolution = "2048x1080";
       };
       terminal.alacritty.enable = true;
+      browsers.firefox.enable = true;
     };
     shell = {
       nushell.enable = true;
