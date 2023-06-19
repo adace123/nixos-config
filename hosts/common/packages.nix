@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     bat
     bottom
@@ -10,8 +7,9 @@
     fd
     fzf
     git
-    kmon
     jq
+    kmon
+    lsof
     nushell
     openssl
     ripgrep
