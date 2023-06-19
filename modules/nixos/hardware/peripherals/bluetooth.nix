@@ -7,7 +7,7 @@
 }:
 with lib; let
   cfg = config.modules.sys.bluetooth;
- in {
+in {
   options.modules.sys.bluetooth.enable = mkEnableOption "bluetooth";
   config = mkIf cfg.enable {
     hardware.bluetooth = {
@@ -20,6 +20,7 @@ with lib; let
           AutoConnect = "true";
           MultiProfile = "multiple";
           Enable = "Source,Sink,Media,Socket";
+          Experimental = "true";
         };
       };
     };
