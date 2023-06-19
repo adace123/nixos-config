@@ -86,12 +86,13 @@
       ];
 
       apps = [
-        # "${mod}, w, exec, ${BROWSER}"
+        "${mod}, b, exec, ${BROWSER}"
         "${mod}, Return, exec, ${TERMINAL}"
+        "${mod} SHIFT, i, exec, ${pkgs.systemd-toggle}/bin/systemd-toggle swayidle --user"
       ];
 
       window = [
-        "${mod} SHIFT, Space, togglefloating"
+        "${mod} SHIFT, f, togglefloating"
         "${mod}, A, togglesplit"
         "${mod}, f, fullscreen"
       ];
@@ -179,16 +180,22 @@
         (genSubmap "resize" resize)
         (genSubmap "system" system)
       ];
+
+    windowRules = [
+      "opacity 1.0 override 1.0 override,class:^(firefox)$"
+    ];
   };
 in
   with lib; {
     config = mkIf cfg.enable {
       xdg.configFile."hypr/hyprland.conf".text = with hyprConfig; ''
-          $mod = ${mod}
+        $mod = ${mod}
 
         ${builtins.concatStringsSep "\n" (map (exec: "exec-once = ${exec}") exec-once)}
 
         monitor = ${display}
+
+        ${builtins.concatStringsSep "\n" (map (rule: "windowrulev2 = ${rule}") windowRules)}
 
         input {
           ${input}
@@ -213,6 +220,7 @@ in
         ${builtins.concatStringsSep "\n" (map (bind: "bind = ${bind}") mainBinds)}
 
         ${submaps}
+
       '';
     };
   }

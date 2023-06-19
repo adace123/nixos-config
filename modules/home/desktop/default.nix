@@ -1,3 +1,3 @@
 _: {
-  imports = [./gtklock.nix ./options.nix ./hyprland ./terminal];
+  imports = [./gtklock.nix ./options.nix ./hyprland ./terminal ./browsers/firefox];
 }
