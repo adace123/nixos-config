@@ -1,6 +1,7 @@
 {
   nixpkgs,
   inputs,
+  outputs,
   system ? "x86_64-linux",
   ...
 }: let
@@ -10,7 +11,11 @@
     ./common
   ];
 
-  overlays = [inputs.nuenv.overlays.nuenv];
+  overlays = [
+    inputs.nuenv.overlays.nuenv
+    inputs.nur.overlay
+    outputs.overlays.default
+  ];
 
   pkgs = import nixpkgs {
     inherit overlays system;
@@ -24,7 +29,7 @@
         inputs.home-manager.nixosModules.home-manager
         ./common/home-manager.nix
         {
-          home-manager.extraSpecialArgs = {inherit host inputs;};
+          home-manager.extraSpecialArgs = {inherit host inputs pkgs;};
         }
       ]
       else [];
@@ -45,5 +50,5 @@
 in {
   coruscant = mkSystem "coruscant";
   # iso = mkSystem "iso";
-  vm = mkSystem "vm";
+  # vm = mkSystem "vm";
 }
