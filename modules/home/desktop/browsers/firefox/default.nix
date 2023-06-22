@@ -27,14 +27,13 @@ in
           extensions = with pkgs.nur.repos.rycee.firefox-addons;
             [
               ublock-origin
-              # tridactyl
+              tridactyl
               nighttab
               tree-style-tab
               darkreader
               bypass-paywalls-clean
-              gruvbox-dark-theme
               return-youtube-dislikes
-              # pkgs.firefox-theme-catppuccin-mocha
+              pkgs.firefox-theme-catppuccin-mocha
             ]
             ++ (with pkgs.nur.repos.bandithedoge.firefoxAddons; [
               material-icons-for-github
