@@ -17,6 +17,22 @@
         "type": "github"
       }
     },
+    "astronvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1687190500,
+        "narHash": "sha256-YZv8Z92axw3nhD68gG1iJ/PqL39mpuQoVWu18+rR3uA=",
+        "owner": "AstroNvim",
+        "repo": "AstroNvim",
+        "rev": "b6d70ee852e7df9ffbaa3d4a9a5cbdee575f3da1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AstroNvim",
+        "repo": "AstroNvim",
+        "type": "github"
+      }
+    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -283,6 +299,7 @@
     "root": {
       "inputs": {
         "amadeus-dotfiles-hyprland": "amadeus-dotfiles-hyprland",
+        "astronvim": "astronvim",
         "disko": "disko",
         "home-manager": "home-manager",
         "hyprland": "hyprland",

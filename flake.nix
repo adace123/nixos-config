@@ -18,6 +18,10 @@
       url = "github:AmadeusWM/dotfiles-hyprland?rev=6818be21d8b1d193168bda85017c277393e00589";
       flake = false;
     };
+    astronvim = {
+      url = "github:AstroNvim/AstroNvim";
+      flake = false;
+    };
   };
 
   outputs = {

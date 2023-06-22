@@ -16,6 +16,7 @@
       };
       terminal.alacritty.enable = true;
       browsers.firefox.enable = true;
+      editors.neovim.enable = true;
     };
     shell = {
       nushell.enable = true;
