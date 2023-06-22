@@ -167,7 +167,8 @@
 
         system = [
           ", r, execr, systemctl reboot"
-          ", s, execr, systemctl poweroff -i"
+          ", p, execr, systemctl poweroff -i"
+          ", s, execr, systemctl suspend"
           ", l, exec, gtklock"
         ];
       };
