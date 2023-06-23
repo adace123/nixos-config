@@ -122,12 +122,11 @@ return {
 			},
 			sources = {
 				{ name = "nvim_lsp" },
+				{ name = "codeium" },
 				{ name = "nvim_lua" },
 				{ name = "luasnip" },
-				{ name = "codeium" },
 				{ name = "buffer" },
 				{ name = "path" },
-				{ name = "cmdline" },
 				{ name = "treesitter" },
 				{ name = "crates" },
 			},
