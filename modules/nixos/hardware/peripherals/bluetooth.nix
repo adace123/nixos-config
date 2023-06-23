@@ -13,16 +13,6 @@ in {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;
-      settings = {
-        General = {
-          ControllerMode = "bredr";
-          AutoEnable = "true";
-          AutoConnect = "true";
-          MultiProfile = "multiple";
-          Enable = "Source,Sink,Media,Socket";
-          Experimental = "true";
-        };
-      };
     };
     environment.systemPackages = with pkgs; [bluez bluetuith];
   };
