@@ -31,11 +31,13 @@ return {
 		end,
 	},
 	{ "hrsh7th/cmp-cmdline" },
-  {
-		"ggandor/leap.nvim",
+	{ "rcarriga/nvim-notify" },
+	{
+		"folke/zen-mode.nvim",
 		config = function()
-			require("leap").add_default_mappings()
+			require("zen-mode").setup()
 		end,
+		event = "VeryLazy",
 	},
-  { "rcarriga/nvim-notify" },
+	{ "folke/twilight.nvim" },
 }

@@ -40,6 +40,11 @@ return {
 				R = { "<cmd>lua require('gitsigns').reset_buffer()<cr>", "Reset Buffer" },
 			},
 
+			-- Telescope
+			f = {
+				j = { "<cmd>Telescope jumplist<cr>", "Jumplist" },
+			},
+
 			-- lsp
 			l = {
 				a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -74,6 +79,8 @@ return {
 		F = "<cmd>Telescope grep_string<cr>",
 		-- Save without formatting
 		W = "<cmd>:noautocmd w<cr>",
+		-- Zen mode
+		Z = "<cmd>ZenMode<cr>",
 	},
 
 	v = {
