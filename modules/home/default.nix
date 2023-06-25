@@ -2,5 +2,6 @@
   imports = [
     ./desktop
     ./cli
+    ./dev
   ];
 }

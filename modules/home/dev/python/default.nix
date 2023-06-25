@@ -16,14 +16,26 @@ in
           with p; [
             requests
             ipython
+            jupyterlab # TODO: use jupyenv
           ]))
-        ruff
-        black
-        isort
       ];
 
-      programs.neovim.extraPackages = mkIf nvim_cfg.enable (with pkgs; [
-        nodePackages.pyright
-      ]);
+      modules.editors.neovim = mkIf nvim_cfg.enable {
+        lsp-servers = ["pyright" "ruff_lsp"];
+        formatters = ["ruff" "black"];
+        diagnostics = ["ruff"];
+        tsLanguages = ["python"];
+      };
+
+      programs.neovim = mkIf nvim_cfg.enable {
+        extraPackages = with pkgs; [
+          pyright
+          mypy
+          ruff
+          (python311.withPackages (p: [p.ruff-lsp p.black]))
+        ];
+
+        plugins = [(pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.python]))];
+      };
     };
   }
