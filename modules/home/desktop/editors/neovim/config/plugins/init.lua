@@ -15,9 +15,11 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
-		config = function()
-			require("todo-comments").setup()
-		end,
+    config = function ()
+     require("todo-comments").setup()
+    end,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
 	},
 	{
 		"petertriho/nvim-scrollbar",

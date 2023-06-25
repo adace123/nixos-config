@@ -14,12 +14,18 @@
         output = "HDMI-A-1";
         resolution = "2048x1080";
       };
-      terminal.alacritty.enable = true;
+      terminal.alacritty = {
+        enable = true;
+        themeOverride = "shades-of-purple";
+      };
       browsers.firefox.enable = true;
-      editors.neovim.enable = true;
     };
     shell = {
       nushell.enable = true;
+    };
+    editors.neovim.enable = true;
+    dev = {
+      python.enable = true;
     };
   };
 

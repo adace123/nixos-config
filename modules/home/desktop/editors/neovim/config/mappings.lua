@@ -43,6 +43,7 @@ return {
 			-- Telescope
 			f = {
 				j = { "<cmd>Telescope jumplist<cr>", "Jumplist" },
+				T = { "<cmd>TodoTelescope<cr>", "Todos" },
 			},
 
 			-- lsp
@@ -56,6 +57,13 @@ return {
 				s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
 				t = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
 				["@"] = { "<cmd>lua require('neogen').generate()<cr>", "Generate Annotation" },
+				l = { "<cmd>LspLog<cr>", "Lsp Log" },
+			},
+
+			-- Null-Ls
+			N = {
+				i = { "<cmd>NullLsInfo<cr>", "Null-Ls Info" },
+				l = { "<cmd>NullLsLog<cr>", "Null-Ls Log" },
 			},
 
 			-- split
