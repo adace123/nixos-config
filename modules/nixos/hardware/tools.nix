@@ -16,6 +16,7 @@ in
         pciutils
         smartmontools
         nvme-cli
+        usbutils
       ];
     };
   }
