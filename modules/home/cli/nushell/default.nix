@@ -1,69 +1,49 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.modules.shell.nushell;
+  nu_script_path = "${pkgs.nu_scripts}/share/nu_scripts";
 in
   with lib; {
     options.modules.shell.nushell.enable = mkEnableOption "nushell";
 
     config = mkIf cfg.enable {
+      home.packages = with pkgs; [jc carapace zoxide];
+
+      home.file.".config/nushell" = {
+        recursive = true;
+        source = ./config;
+      };
+
       programs.nushell = {
         enable = true;
-        configFile.source = ./config.nu;
-        # envFile.source = ./env.nu;
-        shellAliases = {
-          cat = "bat";
-          bt = "bluetoothctl";
-          htop = "btm --fahrenheit";
-          grep = "rg";
-          ll = "ls -la";
-          sc = "systemctl";
-          jc = "journalctl";
-          tree = "exa -T --icons";
-          rm = "rm -i";
-          ts = "tailscale";
-          k = "kubectl";
-        };
-        extraConfig = with config.colorScheme.colors; ''
-          let theme = {
-            separator: ${base03}
-            leading_trailing_space_bg: ${base04}
-            header: ${base0B}
-            date: ${base0E}
-            filesize: ${base0D}
-            row_index: ${base0C}
-            bool: ${base08}
-            int: ${base0B}
-            duration: ${base08}
-            range: ${base08}
-            float: ${base08}
-            string: ${base04}
-            nothing: ${base08}
-            binary: ${base08}
-            cellpath: ${base08}
-            hints: gray
-            shape_garbage: { fg: ${base07} bg: ${base08} attr: b}
-            shape_bool: ${base0D}
-            shape_int: { fg: ${base0E} attr: b}
-            shape_float: { fg: ${base0E} attr: b}
-            shape_range: { fg: ${base0A} attr: b}
-            shape_internalcall: { fg: ${base0C} attr: b}
-            shape_external: ${base0C}
-            shape_externalarg: { fg: ${base0B} attr: b}
-            shape_literal: ${base0D}
-            shape_operator: ${base0A}
-            shape_signature: { fg: ${base0B} attr: b}
-            shape_string: ${base0B}
-            shape_filepath: ${base0D}
-            shape_globpattern: { fg: ${base0D} attr: b}
-            shape_variable: ${base0E}
-            shape_flag: { fg: ${base0D} attr: b}
-            shape_custom: {attr: b}
-          }
+        configFile.source = ./config/main.nu;
+        package = pkgs.nushell;
+        envFile.source = ./config/env.nu;
+        extraConfig = ''
+          # completions
+          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/btm/btm-completions.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/cargo/cargo-completions.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/tealdeer/tldr-completions.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/zellij/zellij-completions.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/just/just.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
 
-          let-env config = ($env.config | upsert color_config $theme)
+          # modules
+          use ${pkgs.nu_scripts}/share/nu_scripts/modules/kubernetes/kubernetes.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/modules/data_extraction/ultimate_extractor.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/modules/network/ssh.nu *
+
+          # themes
+          use ${pkgs.nu_scripts}/share/nu_scripts/themes/themes/everforest.nu
+
+          let-env config = ($env.config | merge {color_config: (everforest)})
+          source ~/.config/nushell/zoxide.nu
         '';
       };
     };
