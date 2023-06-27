@@ -11,18 +11,20 @@ in
     options.modules.shell.nushell.enable = mkEnableOption "nushell";
 
     config = mkIf cfg.enable {
-      home.packages = with pkgs; [jc carapace zoxide];
+      home.packages = with pkgs; [jc carapace direnv nix-direnv];
 
       home.file.".config/nushell" = {
         recursive = true;
         source = ./config;
       };
 
+      programs.zoxide.enable = true;
+
       programs.nushell = {
         enable = true;
-        configFile.source = ./config/main.nu;
         package = pkgs.nushell;
-        envFile.source = ./config/env.nu;
+        envFile.source = ./config/environment.nu;
+        configFile.source = ./config/main.nu;
         extraConfig = ''
           # completions
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu *
@@ -43,7 +45,6 @@ in
           use ${pkgs.nu_scripts}/share/nu_scripts/themes/themes/everforest.nu
 
           let-env config = ($env.config | merge {color_config: (everforest)})
-          source ~/.config/nushell/zoxide.nu
         '';
       };
     };

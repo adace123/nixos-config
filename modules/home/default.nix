@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./desktop
-    ./cli
+    ./shell
     ./dev
   ];
 }
