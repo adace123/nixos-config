@@ -22,6 +22,7 @@
     };
     shell = {
       nushell.enable = true;
+      starship.enable = true;
     };
     editors.neovim.enable = true;
     dev = {
