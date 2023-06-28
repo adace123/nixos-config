@@ -12,6 +12,7 @@
     nuenv.url = "github:DeterminateSystems/nuenv";
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprkeys.url = "github:hyprland-community/Hyprkeys";
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
     amadeus-dotfiles-hyprland = {

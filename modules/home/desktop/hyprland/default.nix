@@ -28,6 +28,7 @@ in
           # screenshot
           grim
           slurp
+          inputs.hyprkeys.packages.${pkgs.system}.default
         ];
       };
     };
