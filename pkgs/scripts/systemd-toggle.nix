@@ -14,9 +14,15 @@ pkgs.nuenv.mkScript {
       if $is_active == "inactive" {
         std log info $"Restarting service $service"
         systemctl $flag restart $service
+        if not (which notify-send | is-empty) {
+          notify-send "Restarted service" $service
+        }
       } else {
         std log info $"Stopping service $service"
         systemctl $flag stop $service
+        if not (which notify-send | is-empty) {
+          notify-send "Stopped service" $service
+        }
       }
     }
   '';
