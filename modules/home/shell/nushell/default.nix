@@ -10,6 +10,8 @@ in
   with lib; {
     options.modules.shell.nushell.enable = mkEnableOption "nushell";
 
+    imports = [./scripts];
+
     config = mkIf cfg.enable {
       home.packages = with pkgs; [jc carapace direnv nix-direnv];
 

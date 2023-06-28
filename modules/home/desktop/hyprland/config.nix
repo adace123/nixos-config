@@ -18,6 +18,8 @@
     submap = ${name}
     ${builtins.concatStringsSep "\n" (builtins.map (bind: "${bindType} = ${bind}") binds)}
     bind = , Return, submap, reset
+    bind = , Escape, submap, reset
+    bind = CTRL, C, submap, reset
     submap = reset
   '';
 
@@ -88,7 +90,7 @@
       apps = [
         "${mod}, b, exec, ${BROWSER}"
         "${mod}, Return, exec, ${TERMINAL}"
-        "${mod} SHIFT, i, exec, ${pkgs.systemd-toggle}/bin/systemd-toggle swayidle --user"
+        "${mod} SHIFT, i, exec, systemd-toggle swayidle --user"
       ];
 
       window = [
