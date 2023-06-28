@@ -3,4 +3,4 @@ let
   flake = builtins.getFlake (toString ./.);
 in
   {hostname ? currentHostname}:
-    flake // flake.nixosConfigurations.${hostname}
+    flake // flake.nixosConfigurations.${hostname} // {inherit (flake.nixosConfigurations.${hostname}.pkgs) lib;}
