@@ -91,6 +91,7 @@
         "${mod}, b, exec, ${BROWSER}"
         "${mod}, Return, exec, ${TERMINAL}"
         "${mod} SHIFT, i, exec, systemd-toggle swayidle --user"
+        "${mod} SHIFT, w, exec, makoctl dismiss"
       ];
 
       window = [
