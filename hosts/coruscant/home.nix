@@ -10,6 +10,8 @@
       idle.enable = true;
       waybar.enable = true;
       hyprland.enable = true;
+      notifications.enable = true;
+      media.enable = true;
       monitor = {
         output = "HDMI-A-1";
         resolution = "2048x1080";

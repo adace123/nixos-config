@@ -120,9 +120,9 @@
       ];
 
       media = [
-        "${mod} SHIFT, p, exec, playerctl play-pause"
-        "${mod} SHIFT, plus, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        "${mod} SHIFT, minus, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        "${mod}, p, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+        "${mod} SHIFT, v, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        "${mod}, v, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
 
       workspace = let
