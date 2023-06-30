@@ -10,6 +10,7 @@ in
     options.modules.desktop.waybar.enable = mkEnableOption "waybar";
 
     config = mkIf cfg.enable {
+      programs.wlogout.enable = true;
       programs.waybar = {
         enable = true;
         package = pkgs.waybar.overrideAttrs (oa: {
@@ -38,6 +39,7 @@ in
               "memory"
               "network"
               "disk"
+              "custom/power"
             ];
             "wlr/workspaces" = {
               format-icons = {
@@ -60,7 +62,7 @@ in
               };
             };
             clock = {
-              format = "{:%b %d; %Y | %H:%M}  ";
+              format = "{:%b %d %Y | %H:%M}  ";
               format-alt = "{:%A, %B %d, %Y (%R)}  ";
               timezone = "America/Los_Angeles";
             };
@@ -146,6 +148,11 @@ in
                 ""
                 ""
               ];
+            };
+            "custom/power" = {
+              tooltip = false;
+              on-click = "${pkgs.wlogout}/bin/wlogout";
+              format = "";
             };
           };
         };

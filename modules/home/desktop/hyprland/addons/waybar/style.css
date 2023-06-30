@@ -78,6 +78,7 @@ window#waybar.solo {
 #pulseaudio,
 #wireplumber,
 #custom-media,
+#custom-power,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -207,6 +208,11 @@ label:focus {
   background-color: #66cc99;
   color: #2a5c45;
   min-width: 100px;
+}
+
+#custom-power {
+  background-color: #BF3100;
+  min-width: 45px;
 }
 
 #custom-media.custom-spotify {
