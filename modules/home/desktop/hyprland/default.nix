@@ -28,6 +28,7 @@ in
           # screenshot
           grim
           slurp
+          wl-clipboard
           inputs.hyprkeys.packages.${pkgs.system}.default
         ];
       };
