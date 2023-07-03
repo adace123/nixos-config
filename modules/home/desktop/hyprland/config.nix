@@ -120,7 +120,7 @@
       ];
 
       media = [
-        "${mod}, p, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+        "${mod}, p, exec, playerctl play-pause"
         "${mod} SHIFT, v, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         "${mod}, v, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
