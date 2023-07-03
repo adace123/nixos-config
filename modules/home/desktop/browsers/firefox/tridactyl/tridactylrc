@@ -20,6 +20,7 @@ bind k scrollline -5
 set searchurls.amazon https://amazon.com/s?k=%s
 set searchurls.google https://google.com/search?q=%s
 set searchurls.gh https://github.com/search?q=%s
+set searchurls.gh-nix https://github.com/search?q=%s+language:Nix&type=code
 set searchurls.ghgists https://gist.github.com/search?q=%s
 set searchurls.ebay https://ebay.com/sch/i.html?_nkw=%s
 set searchurls.perplexity https://perplexity.ai/search/?q=%s
@@ -37,6 +38,7 @@ bind i focusinput -l
 bind ,y fillcmdline tabopen youtube
 bind ,g fillcmdline tabopen gh
 bind ,G fillcmdline tabopen ghgists
+bind ,n fillcmdline tabopen gh-nix
 bind ,a fillcmdline tabopen amazon
 bind ,A fillcmdline tabopen arxiv
 bind ,e fillcmdline tabopen ebay
