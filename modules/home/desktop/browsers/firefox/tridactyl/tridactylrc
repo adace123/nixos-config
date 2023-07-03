@@ -1,0 +1,65 @@
+" vim: filetype=vim
+
+sanitize tridactyllocal tridactylsync
+
+colourscheme catppuccin
+
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
+bind J tabprev
+bind K tabnext
+bind <S-ArrowLeft> tabprev
+bind <S-ArrowRight> tabnext
+
+bind j scrollline 5
+bind k scrollline -5
+
+set searchurls.amz https://amazon.com/s?k=%s
+set searchurls.gh https://github.com/search?q=%s
+set searchurls.ghgists https://gist.github.com/search?q=%s
+set searchurls.ebay https://ebay.com/sch/i.html?_nkw=%s
+
+set smoothscroll true
+set editorcmd /usr/bin/alacritty -e vim
+
+bind ,y fillcmdline tabopen youtube
+bind ,g fillcmdline tabopen gh
+bind ,G fillcmdline tabopen ghgists
+bind ,a fillcmdline tabopen amazon
+bind ,e fillcmdline tabopen ebay
+
+bind B fillcmdline bmarks -t
+bind x tabclose
+
+bind --mode=ex <C-x> text.backword_kill_word
+bind --mode=insert <C-x> text.backword_kill_word
+bind --mode=input <C-x> text.backward_kill_word
+
+bind --mode=ex <C-k> text.kill_line
+bind --mode=insert <C-k> text.kill_line
+bind --mode=input <C-k> text.kill_line
+
+bind --mode=ex <C-a> text.beginning_of_line
+bind --mode=insert <C-a> text.beginning_of_line
+bind --mode=input <C-a> text.beginning_of_line
+
+bind --mode=ex <C-e> text.end_of_line
+bind --mode=insert <C-e> text.end_of_line
+bind --mode=input <C-e> text.end_of_line
+
+bind gu composite focusinput -l; text.backward_kill_line
+
+bind --mode=visual ,y composite js document.getSelection().toString() | tabopen youtube
+bind --mode=visual ,g composite js document.getSelection().toString() | tabopen github
+bind --mode=visual ,a composite js document.getSelection().toString() | tabopen amazon
+bind --mode=visual ,e composite js document.getSelection().toString() | tabopen ebay
+
+bind gd tabdetach
+
+unbind --mode=ex <C-a>
+unbind --mode=ex <C-c>
+
+blacklistadd youtube.com
