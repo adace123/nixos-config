@@ -17,19 +17,31 @@ bind <S-ArrowRight> tabnext
 bind j scrollline 5
 bind k scrollline -5
 
-set searchurls.amz https://amazon.com/s?k=%s
+set searchurls.amazon https://amazon.com/s?k=%s
+set searchurls.google https://google.com/search?q=%s
 set searchurls.gh https://github.com/search?q=%s
 set searchurls.ghgists https://gist.github.com/search?q=%s
 set searchurls.ebay https://ebay.com/sch/i.html?_nkw=%s
+set searchurls.perplexity https://perplexity.ai/search/?q=%s
+set searchurls.lbb http://libgen.is/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
+set searchurls.arxiv https://arxiv.org/search/?query=%s&searchtype=all&source=header
+set searchurls.phind https://phind.com/search?q=%s
+
+set searchengine google
 
 set smoothscroll true
 set editorcmd /usr/bin/alacritty -e vim
+
+bind i focusinput -l
 
 bind ,y fillcmdline tabopen youtube
 bind ,g fillcmdline tabopen gh
 bind ,G fillcmdline tabopen ghgists
 bind ,a fillcmdline tabopen amazon
+bind ,A fillcmdline tabopen arxiv
 bind ,e fillcmdline tabopen ebay
+bind ,p fillcmdline tabopen perplexity
+bind ,P fillcmdline tabopen phind
 
 bind B fillcmdline bmarks -t
 bind x tabclose
@@ -50,6 +62,12 @@ bind --mode=ex <C-e> text.end_of_line
 bind --mode=insert <C-e> text.end_of_line
 bind --mode=input <C-e> text.end_of_line
 
+bind --mode=ex <C-u> text.backward_kill_line
+bind --mode=insert <C-u> text.backward_kill_line
+bind --mode=input <C-u> text.backward_kill_line
+
+set externalclipboardcmd wl-copy
+
 bind gu composite focusinput -l; text.backward_kill_line
 
 bind --mode=visual ,y composite js document.getSelection().toString() | tabopen youtube
@@ -57,9 +75,18 @@ bind --mode=visual ,g composite js document.getSelection().toString() | tabopen 
 bind --mode=visual ,a composite js document.getSelection().toString() | tabopen amazon
 bind --mode=visual ,e composite js document.getSelection().toString() | tabopen ebay
 
-bind gd tabdetach
+" Git{Hub,Lab} git clone via SSH yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 
-unbind --mode=ex <C-a>
-unbind --mode=ex <C-c>
+bind gd tabdetach
+bind gD composite tabduplicate | tabdetach
+bind D tabduplicate
 
 blacklistadd youtube.com
+blacklistadd mail.google.com/mail
+
+" Allow Ctrl-f to start a search
+unbind <C-f>
+
+" Comment toggler for Reddit and Hacker News
+bind ;c hint -c [class*="expand"],[class="togg"]
