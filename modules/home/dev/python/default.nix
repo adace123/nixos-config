@@ -15,16 +15,17 @@ in
         (python311.withPackages (p:
           with p; [
             requests
-            ipython
+            ptpython
             jupyterlab # TODO: use jupyenv
           ]))
       ];
+
+      home.file.".config/ptpython/config.py".source = ./ptpython.py;
 
       modules.editors.neovim = mkIf nvim_cfg.enable {
         lsp-servers = ["pyright" "ruff_lsp"];
         formatters = ["ruff" "black"];
         diagnostics = ["ruff"];
-        tsLanguages = ["python"];
       };
 
       programs.neovim = mkIf nvim_cfg.enable {
