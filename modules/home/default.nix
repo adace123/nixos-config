@@ -3,5 +3,6 @@
     ./desktop
     ./shell
     ./dev
+    ./programs
   ];
 }
