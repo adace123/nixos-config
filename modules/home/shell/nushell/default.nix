@@ -28,6 +28,9 @@ in
         envFile.source = ./config/environment.nu;
         configFile.source = ./config/main.nu;
         extraConfig = ''
+          # plugins
+          register ${pkgs.nushellPlugins.query}/bin/nu_plugin_query
+
           # completions
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu *
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/btm/btm-completions.nu *
