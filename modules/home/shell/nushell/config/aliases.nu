@@ -14,3 +14,4 @@ alias k = kubectl
 alias vim = nvim
 alias v = nvim
 alias nb = newsboat
+alias py = ptpython
