@@ -20,13 +20,20 @@
         enable = true;
         themeOverride = "shades-of-purple";
       };
-      browsers.firefox.enable = true;
+      browsers = {
+        firefox.enable = true;
+        amfora.enable = true;
+      };
     };
     shell = {
       nushell.enable = true;
       starship.enable = true;
     };
     editors.neovim.enable = true;
+    feeds = {
+      enable = true;
+      auto-refresh = true;
+    };
     dev = {
       python.enable = true;
     };
