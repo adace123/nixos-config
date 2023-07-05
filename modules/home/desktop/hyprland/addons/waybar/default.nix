@@ -34,6 +34,7 @@ in
               "hyprland/submap"
             ];
             "modules-right" = [
+              "custom/rss"
               "wireplumber"
               "cpu"
               "memory"
@@ -126,6 +127,11 @@ in
                 ""
                 ""
               ];
+            };
+            "custom/rss" = {
+              format = "{} ";
+              exec = "${pkgs.newsboat}/bin/newsboat -x print-unread | ${pkgs.coreutils}/bin/cut -d ' ' -f 1";
+              interval = 60;
             };
             "custom/power" = {
               tooltip = false;
