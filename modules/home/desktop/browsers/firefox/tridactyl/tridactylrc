@@ -90,5 +90,12 @@ blacklistadd mail.google.com/mail
 " Allow Ctrl-f to start a search
 unbind <C-f>
 
+bind ,d tabopen about:downloads
+bind <C-f> fillcmdline tab
+
 " Comment toggler for Reddit and Hacker News
 bind ;c hint -c [class*="expand"],[class="togg"]
+
+" TODO: enable miniflux
+" command subscribe composite js "<miniflux url>/bookmarklet?uri="+encodeURIComponent(location.href) | tabopen
+" bind ,s subscribe
