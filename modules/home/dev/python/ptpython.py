@@ -88,7 +88,7 @@ def configure(repl):
 
     # Enable auto suggestions. (Pressing right arrow will complete the input,
     # based on the history.)
-    repl.enable_auto_suggest = False
+    repl.enable_auto_suggest = True
 
     # Enable open-in-editor. Pressing C-x C-e in emacs mode or 'v' in
     # Vi navigation mode will open the input in the current editor.
@@ -163,31 +163,30 @@ def configure(repl):
         "Map 'jj' to Escape."
         event.cli.key_processor.feed(KeyPress(Keys("escape")))
 
-    @repl.add_key_binding('(')
+    @repl.add_key_binding("(")
     def _(event):
         event.cli.current_buffer.insert_text("(")
-        event.cli.current_buffer.insert_text(")" ,  move_cursor=False)
+        event.cli.current_buffer.insert_text(")", move_cursor=False)
 
-    @repl.add_key_binding('[')
+    @repl.add_key_binding("[")
     def _(event):
         event.cli.current_buffer.insert_text("[")
-        event.cli.current_buffer.insert_text("]" ,  move_cursor=False)
+        event.cli.current_buffer.insert_text("]", move_cursor=False)
 
-    @repl.add_key_binding('{')
+    @repl.add_key_binding("{")
     def _(event):
         event.cli.current_buffer.insert_text("{")
-        event.cli.current_buffer.insert_text("}" ,  move_cursor=False)
+        event.cli.current_buffer.insert_text("}", move_cursor=False)
 
     @repl.add_key_binding("'")
     def _(event):
         event.cli.current_buffer.insert_text("'")
-        event.cli.current_buffer.insert_text("'" ,  move_cursor=False)
+        event.cli.current_buffer.insert_text("'", move_cursor=False)
 
     @repl.add_key_binding('"')
     def _(event):
         event.cli.current_buffer.insert_text('"')
-        event.cli.current_buffer.insert_text('"' ,  move_cursor=False)
-
+        event.cli.current_buffer.insert_text('"', move_cursor=False)
 
     # Custom key binding for some simple autocorrection while typing.
     corrections = {
@@ -197,7 +196,7 @@ def configure(repl):
 
     @repl.add_key_binding(" ")
     def _(event):
-        " When a space is pressed. Check & correct word before cursor. "
+        "When a space is pressed. Check & correct word before cursor."
         b = event.cli.current_buffer
         w = b.document.get_word_before_cursor()
 
