@@ -1,5 +1,6 @@
 # Nushell Environment Config File
 let-env STARSHIP_SHELL = "nu"
+let-env DOTFILES_DIR = $"($env.HOME)/dotfiles"
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
