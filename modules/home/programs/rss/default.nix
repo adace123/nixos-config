@@ -62,7 +62,7 @@ in
           bind-key S rev-sort
           bind-key SPACE	toggle-article-read
 
-          feed-sort-order lastupdated
+          feed-sort-order unreadarticlecountdesc
 
           macro y set browser "echo -n %u | wl-copy"; open-in-browser; set browser "firefox --new-tab %u"
 
