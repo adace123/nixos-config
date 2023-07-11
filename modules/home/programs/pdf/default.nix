@@ -3,10 +3,10 @@
   lib,
   ...
 }: let
-  cfg = config.modules.programs.zathura;
+  cfg = config.modules.desktop.pdf;
 in
   with lib; {
-    options.modules.programs.zathura.enable = mkEnableOption "zathura";
+    options.modules.desktop.pdf.enable = mkEnableOption "zathura";
     config = mkIf cfg.enable {
       programs.zathura = {
         enable = true;
@@ -51,9 +51,9 @@ in
           recolor = true;
           recolor-keephue = true;
         };
-
         extraConfig = ''
-
+          map = zoom in
+          map + zoom
         '';
       };
     };
