@@ -15,6 +15,7 @@
     ripgrep
     sops
     sysz
+    tldr
     vim
     unzip
     yq
