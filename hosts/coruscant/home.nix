@@ -24,6 +24,8 @@
         firefox.enable = true;
         amfora.enable = true;
       };
+      pdf.enable = true;
+      rofi.enable = true;
     };
     shell = {
       nushell.enable = true;

@@ -92,7 +92,7 @@
         "${mod}, Return, exec, ${TERMINAL}"
         "${mod} SHIFT, i, exec, systemd-toggle swayidle --user"
         "${mod} SHIFT, w, exec, makoctl dismiss"
-        "${mod}, n, exec, alacritty -e newsboat"
+        "${mod}, SPACE, exec, rofi -show drun"
       ];
 
       window = [

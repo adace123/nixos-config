@@ -25,10 +25,10 @@ in
 
       home = {
         packages = with pkgs; [
-          # screenshot
           grim
           slurp
           wl-clipboard
+          wtype
           inputs.hyprkeys.packages.${pkgs.system}.default
         ];
       };
