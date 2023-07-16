@@ -37,8 +37,10 @@
       auto-refresh = true;
     };
     dev = {
+      git.enable = true;
       python.enable = true;
     };
+    ssh.enable = true;
   };
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
