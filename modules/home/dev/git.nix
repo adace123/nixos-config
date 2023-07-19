@@ -54,31 +54,14 @@ in
         ];
       };
 
-      sops.secrets.github-private-key = {};
+      sops.secrets.github-private-key = {
+        path = "${config.xdg.configHome}/git/credentials";
+      };
 
       programs.ssh.matchBlocks."github.com" = {
         hostname = "github.com";
         user = "git";
-        # identityFile = ["${config.sops.secrets.github-private-key.path}"];
-        identityFile = ["${config.home.homeDirectory}/.ssh/github"];
+        identityFile = ["${config.sops.secrets.github-private-key.path}"];
       };
     };
-    # // (mkIf githubCfg.enable {
-    # programs.ssh = {
-    #   matchBlocks.github = {
-    #     hostname = "github.com";
-    #     user = "git";
-    #     identityFile = ["${config.sops.secrets.github-private-key.path}"];
-    #   };
-    # };
-
-    #   programs.gh = {
-    #     enable = true;
-    #     settings.git_protocol = "ssh";
-    #     extensions = with pkgs; [
-    #       gh-dash
-    #       gh-eco
-    #     ];
-    #   };
-    # });
   }
