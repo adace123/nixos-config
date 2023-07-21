@@ -29,7 +29,10 @@
         inputs.home-manager.nixosModules.home-manager
         ./common/home-manager.nix
         {
-          home-manager.extraSpecialArgs = {inherit host inputs pkgs; std = inputs.nix-std.lib;};
+          home-manager.extraSpecialArgs = {
+            inherit host inputs pkgs;
+            std = inputs.nix-std.lib;
+          };
         }
       ]
       else [];
@@ -45,7 +48,10 @@
         ]
         ++ homeModules
         ++ sharedModules;
-      specialArgs = {inherit inputs system pkgs; std = inputs.nix-std.lib;};
+      specialArgs = {
+        inherit host inputs system pkgs;
+        std = inputs.nix-std.lib;
+      };
     };
 in {
   coruscant = mkSystem "coruscant";

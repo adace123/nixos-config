@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./python];
+  imports = [./python ./git.nix];
 }

@@ -18,7 +18,6 @@
       };
       terminal.alacritty = {
         enable = true;
-        themeOverride = "shades-of-purple";
       };
       browsers = {
         firefox.enable = true;

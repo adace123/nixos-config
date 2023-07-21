@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./rss ./pdf];
+  imports = [./rss ./pdf ./ssh];
 }
