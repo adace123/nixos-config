@@ -1,4 +1,5 @@
 return {
+	-- insert mode
 	i = {
 		-- Escape
 		["kj"] = "<ESC>",
@@ -7,6 +8,7 @@ return {
 		["<C-z>"] = "<Esc>ui",
 	},
 
+	-- normal mode
 	n = {
 		-- lsp
 		gd = "<cmd>lua vim.lsp.buf.definition()<cr>",
@@ -16,7 +18,7 @@ return {
 		["<S-h>"] = ":bprevious<cr>",
 		["<TAB>"] = ":bnext<cr>",
 		["<S-TAB>"] = ":bprevious<cr>",
-		["<S-x>"] = ":Bdelete!<cr>",
+		["<S-x>"] = ":lua require('astronvim.utils.buffer').close()<cr>",
 
 		-- Windows
 		["<C-x>"] = "<C-w>q",
@@ -91,9 +93,10 @@ return {
 		Z = "<cmd>ZenMode<cr>",
 	},
 
+	-- visual mode
 	v = {
 		J = ":m '>+1<cr>gv=gv",
-		V = ":m '<-2<cr>gv=gv",
+		K = ":m '<-2<cr>gv=gv",
 
 		-- make cursor stay at end of selection
 		y = "ygv<esc>",
