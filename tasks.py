@@ -9,6 +9,7 @@ from invoke import Context, task
 age_key_path = Path.home() / ".config/sops/age/keys.txt"
 os.environ["SOPS_AGE_KEY_FILE"] = str(age_key_path)
 
+
 @task
 def update_lock(c: Context, flake_input: Optional[str] = None):
     if flake_input is not None:
@@ -17,13 +18,16 @@ def update_lock(c: Context, flake_input: Optional[str] = None):
         cmd = "nix flake update"
     c.run(cmd)
 
+
 @task
-def edit_secrets(c: Context):
-    c.run("sops modules/nixos/secrets/secrets.yaml", pty=True)
+def edit_secrets(c: Context, path: str):
+    c.run(f"sops {path}", pty=True)
+
 
 @task
 def get_secret(c: Context, key: str):
     c.run(f"sops --extract '[\"{key}\"]' -d modules/nixos/secrets/secrets.yaml")
+
 
 @task
 def install_nixos(c: Context, flake_attr: str, host: str):
@@ -58,11 +62,12 @@ def install_nixos(c: Context, flake_attr: str, host: str):
             f"nix run github:adace123/nixos-anywhere -- {host} --build-on-remote --debug --flake .#{flake_attr} --extra-files {root} --disk-encryption-keys /cryptroot.key {luks_key}"
         )
 
+
 @task
 def switch(c: Context, flake_attr: str, host: str, install_bootloader: bool = False):
     cwd = Path.cwd()
     rsync_cmd = f"rsync -a {cwd} host:/home/aaron"
-    cmd = f"cd dotfiles; sudo nixos-rebuild switch --flake .#{flake_attr}"
+    cmd = f"cd nixos-config; sudo nixos-rebuild switch --flake .#{flake_attr}"
     if install_bootloader:
         cmd = f"cd dotfiles; sudo nix-collect-garbage -d; sudo rm -rvf /boot/*; {cmd} --install-bootloader"
     c.run(f"{rsync_cmd}; ssh {host} '{cmd}'")

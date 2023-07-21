@@ -7,7 +7,6 @@
   ...
 }: let
   cfg = config.modules.dev.git;
-  sopsFile = ../../../hosts/${host}/secrets.yaml;
 in
   with lib; {
     options.modules.dev.git.enable = mkEnableOption "git user config";
@@ -55,7 +54,7 @@ in
       };
 
       sops.secrets.github-private-key = {
-        path = "${config.xdg.configHome}/git/credentials";
+        path = "${config.xdg.configHome}/git/credentials/github";
       };
 
       programs.ssh.matchBlocks."github.com" = {
