@@ -13,8 +13,7 @@
     ++ (null-ls-builder "diagnostics" cfg.diagnostics)
   );
 in
-  with lib;
-  {
+  with lib; {
     options.modules.editors.neovim = with types; {
       enable = mkEnableOption "neovim";
       # lsp-packages = mkOption {
@@ -49,6 +48,8 @@ in
     };
 
     config = mkIf cfg.enable {
+      home.sessionVariables.EDITOR = "nvim";
+      programs.nushell.extraConfig = ''$env.EDITOR = "nvim"'';
       programs.neovim = {
         enable = true;
         defaultEditor = true;
@@ -59,8 +60,7 @@ in
         extraPackages = with pkgs; [
           # nix
           alejandra
-          statix
-          # nixd TODO: re-enable once this is more stable
+          nixd
 
           # lua
           stylua
@@ -112,8 +112,7 @@ in
       modules.editors.neovim = {
         lsp-servers = [
           "lua_ls"
-          # "nixd" TODO: re-enable once this is more stable
-          "statix"
+          "nixd"
           "jsonls"
           "taplo"
         ];
