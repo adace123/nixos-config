@@ -87,6 +87,7 @@ bind D tabduplicate
 blacklistadd youtube.com
 blacklistadd mail.google.com/mail
 blacklistadd play.rust-lang.org
+blacklistadd github.com
 
 " Allow Ctrl-f to start a search
 unbind <C-f>
