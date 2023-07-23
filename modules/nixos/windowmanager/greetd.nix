@@ -30,5 +30,9 @@ in
           };
         };
       };
+
+      environment.etc."greetd/environments".text = ''
+        Hyprland
+      '';
     };
   }
