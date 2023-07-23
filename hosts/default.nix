@@ -2,6 +2,7 @@
   nixpkgs,
   inputs,
   outputs,
+  overlays,
   system ? "x86_64-linux",
   ...
 }: let
@@ -9,12 +10,6 @@
     sops-nix.nixosModules.sops
     ../modules/nixos
     ./common
-  ];
-
-  overlays = [
-    inputs.nuenv.overlays.nuenv
-    inputs.nur.overlay
-    outputs.overlays.default
   ];
 
   pkgs = import nixpkgs {
