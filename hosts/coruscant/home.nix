@@ -30,7 +30,10 @@
       nushell.enable = true;
       starship.enable = true;
     };
-    editors.neovim.enable = true;
+    editors = {
+      helix.enable = true;
+      neovim.enable = true;
+    };
     feeds = {
       enable = true;
       auto-refresh = true;
@@ -38,6 +41,7 @@
     dev = {
       git.enable = true;
       python.enable = true;
+      rust.enable = true;
     };
     ssh.enable = true;
   };
