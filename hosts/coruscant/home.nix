@@ -46,6 +46,7 @@
       rust.enable = true;
     };
     ssh.enable = true;
+    file-explorer.enable = true;
   };
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;

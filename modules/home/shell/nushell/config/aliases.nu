@@ -21,3 +21,4 @@ alias gcm = git commit -m
 alias gs = git status
 alias gp = git pull
 alias gps = git push origin (git rev-parse --abbrev-ref HEAD)
+alias x = xplr
