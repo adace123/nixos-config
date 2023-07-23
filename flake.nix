@@ -9,6 +9,7 @@
     };
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    fenix.url = "github:nix-community/fenix";
     nuenv.url = "github:DeterminateSystems/nuenv";
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -17,7 +18,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
     amadeus-dotfiles-hyprland = {
-      url = "github:AmadeusWM/dotfiles-hyprland?rev=6818be21d8b1d193168bda85017c277393e00589";
+      url = "github:AmadeusWM/dotfiles-hyprland";
       flake = false;
     };
     astronvim = {
@@ -38,6 +39,7 @@
       nuenv.overlays.nuenv
       nur.overlay
       outputs.overlays.default
+      fenix.overlays.default
     ];
 
     forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux" "x86_64-darwin"];
@@ -46,6 +48,6 @@
     packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
     overlays = import ./overlays {inherit inputs;};
     devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs;});
-    nixosConfigurations = import ./hosts {inherit inputs outputs nixpkgs;};
+    nixosConfigurations = import ./hosts {inherit overlays inputs outputs nixpkgs;};
   };
 }

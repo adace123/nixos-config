@@ -9,22 +9,22 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-hlslens",
+		event = "VeryLazy",
 		config = function()
 			require("hlslens").setup()
 		end,
 	},
 	{
 		"folke/todo-comments.nvim",
-    config = function ()
-     require("todo-comments").setup()
-    end,
-    dependencies = { "nvim-lua/plenary.nvim" },
-    event = "VeryLazy",
+		config = function()
+			require("todo-comments").setup()
+		end,
+		dependencies = { "nvim-lua/plenary.nvim" },
+		event = "VeryLazy",
 	},
 	{
 		"petertriho/nvim-scrollbar",
 		config = function()
-			local colors = require("tokyonight.colors").setup()
 			require("scrollbar").setup({
 				handle = {
 					color = "#8338ec",
