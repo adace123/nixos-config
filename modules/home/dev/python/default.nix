@@ -12,11 +12,13 @@ in
 
     config = mkIf cfg.enable {
       home.packages = with pkgs; [
+        poetry
         (python311.withPackages (p:
           with p; [
             requests
             ptpython
             jupyterlab # TODO: use jupyenv
+            pytest
           ]))
       ];
 
