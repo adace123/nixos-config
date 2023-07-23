@@ -41,6 +41,7 @@
     dev = {
       elixir.enable = true;
       git.enable = true;
+      go.enable = true;
       python.enable = true;
       rust.enable = true;
     };
