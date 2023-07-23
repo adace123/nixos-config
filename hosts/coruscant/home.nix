@@ -39,6 +39,7 @@
       auto-refresh = true;
     };
     dev = {
+      elixir.enable = true;
       git.enable = true;
       python.enable = true;
       rust.enable = true;

@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./python ./rust ./git.nix];
+  imports = [./elixir ./python ./rust ./git.nix];
 }

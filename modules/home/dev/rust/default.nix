@@ -40,7 +40,7 @@ in
         formatters = ["rustfmt"];
       };
 
-      home.file.".config/astronvim/lua/user/lsp/config/rust_analyzer.lua".text = ''
+      home.file.".config/astronvim/lua/user/lsp/config/rust_analyzer.lua".text = mkIf nvim_cfg.enable ''
         return {
           cmd = { "${pkgs.rust-analyzer}/bin/rust-analyzer" }
         }
