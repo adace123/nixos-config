@@ -10,8 +10,12 @@ def jt-debug [] {
   journalctl -b -p warning -o json | lines | each {|| from json} | sort-by PRIORITY | select _TRANSPORT PRIORITY MESSAGE | where MESSAGE != null | less
 }
 
-def rebuild [] {
-  sudo nixos-rebuild switch --flake $"($env.DOTFILES_DIR)#(hostname)"
+def rebuild [--verbose (-v)] {
+  if $verbose {
+      sudo nixos-rebuild switch --flake $"($env.DOTFILES_DIR)#(hostname)" --show-trace
+  } else {
+      sudo nixos-rebuild switch --flake $"($env.DOTFILES_DIR)#(hostname)"
+  }
 }
 
 module jc-functions {
