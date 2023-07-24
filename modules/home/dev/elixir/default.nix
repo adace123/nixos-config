@@ -13,7 +13,7 @@ in
       home.packages = with pkgs; [elixir elixir-ls] ++ (with pkgs.beam.packages.erlang; [livebook]);
       modules.editors.neovim = mkIf nvim_cfg.enable {
         lsp-servers = ["elixirls"];
-        formatters = ["credo"];
+        # formatters = ["credo"];
       };
 
       programs.neovim = mkIf nvim_cfg.enable {

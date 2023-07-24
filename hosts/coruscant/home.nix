@@ -44,6 +44,7 @@
       go.enable = true;
       python.enable = true;
       rust.enable = true;
+      zig.enable = true;
     };
     ssh.enable = true;
     file-explorer.enable = true;
