@@ -105,6 +105,16 @@ in
                   keyword = "Phind";
                   url = "https://phind.com";
                 }
+                {
+                  name = "NixOS";
+                  keyword = "NixOS";
+                  url = "https://search.nixos.org";
+                }
+                {
+                  name = "Notion";
+                  keyword = "Notion";
+                  url = "https://notion.so";
+                }
               ];
             }
           ];

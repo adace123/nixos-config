@@ -79,4 +79,9 @@
     url = "https://medium.com/feed/@alpha2phi";
     tags = ["neovim" "programming"];
   }
+  {
+    title = "Dotfyle";
+    url = "https://dotfyle.com/this-week-in-neovim/rss.xml";
+    tags = ["neovim" "programming"];
+  }
 ]
