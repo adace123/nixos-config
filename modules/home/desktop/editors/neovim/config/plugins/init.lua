@@ -1,4 +1,7 @@
 return {
+	{ "AstroNvim/astrocommunity" },
+	{ import = "astrocommunity.project.nvim-spectre" },
+	{ import = "astrocommunity.diagnostics.trouble-nvim" },
 	{ "sam4llis/nvim-tundra" },
 	{ "LunarVim/horizon.nvim" },
 	{
