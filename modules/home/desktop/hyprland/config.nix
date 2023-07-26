@@ -93,6 +93,7 @@
         "${mod} SHIFT, i, exec, systemd-toggle swayidle --user"
         "${mod} SHIFT, w, exec, makoctl dismiss"
         "${mod}, SPACE, exec, rofi -show drun"
+        "${mod}, d, exec, webcord"
       ];
 
       window = [

@@ -25,6 +25,7 @@
       };
       pdf.enable = true;
       rofi.enable = true;
+      social.discord.enable = true;
     };
     shell = {
       nushell.enable = true;
