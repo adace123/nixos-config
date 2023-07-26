@@ -24,18 +24,37 @@ in
 
       home.file.".config/ptpython/config.py".source = ./ptpython.py;
 
-      modules.editors.neovim = mkIf nvim_cfg.enable {
-        lsp-servers = ["pyright" "ruff_lsp"];
-        formatters = ["ruff" "black"];
-        diagnostics = ["ruff"];
-      };
+      modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
+        {
+          name = "pyright";
+          package = pkgs.pyright;
+          type = "lsp";
+        }
+        {
+          name = "ruff_lsp";
+          package = pkgs.python311Packages.ruff-lsp;
+          type = "lsp";
+        }
+        {
+          name = "ruff";
+          package = pkgs.ruff;
+          type = "formatting";
+        }
+        {
+          name = "black";
+          package = pkgs.python311Packages.black;
+          type = "formatting";
+        }
+        {
+          name = "ruff";
+          package = pkgs.ruff;
+          type = "diagnostics";
+        }
+      ];
 
       programs.neovim = mkIf nvim_cfg.enable {
-        extraPackages = with pkgs; [
-          pyright
-          mypy
-          ruff
-          (python311.withPackages (p: [p.ruff-lsp p.black]))
+        extraPackages = [
+          pkgs.mypy
         ];
 
         plugins = [(pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [p.python]))];

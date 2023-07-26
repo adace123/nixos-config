@@ -10,12 +10,25 @@ in
   with lib; {
     options.modules.dev.go.enable = mkEnableOption "go";
     config = mkIf cfg.enable {
-      home.packages = with pkgs; [go gopls gotools];
+      home.packages = [pkgs.go];
 
-      modules.editors.neovim = mkIf nvim_cfg.enable {
-        lsp-servers = ["gopls"];
-        formatters = ["gofmt" "goimports"];
-      };
+      modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
+        {
+          name = "gopls";
+          package = pkgs.gopls;
+          type = "lsp";
+        }
+        {
+          name = "gofmt";
+          package = pkgs.gotools;
+          type = "formatting";
+        }
+        {
+          name = "goimports";
+          package = pkgs.gotools;
+          type = "formatting";
+        }
+      ];
 
       programs.neovim = mkIf nvim_cfg.enable {
         plugins = with pkgs.vimPlugins; [(nvim-treesitter.withPlugins (p: [p.go]))];

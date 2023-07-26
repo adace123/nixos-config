@@ -11,12 +11,20 @@ in
     options.modules.dev.zig.enable = mkEnableOption "zig";
     config = mkIf cfg.enable {
       home.packages =
-        [pkgs.zls] ++ (optionals (!nvim_cfg.enable) [pkgs.zig]);
+        optionals (!nvim_cfg.enable) [pkgs.zig];
 
-      modules.editors.neovim = mkIf nvim_cfg.enable {
-        lsp-servers = ["zls"];
-        formatters = ["zigfmt"];
-      };
+      modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
+        {
+          name = "zls";
+          package = pkgs.zls;
+          type = "lsp";
+        }
+        # {
+        #   name = "zigfmt";
+        #   package = pkgs.zigfmt;
+        #   type = "formatting";
+        # }
+      ];
 
       programs.neovim = mkIf nvim_cfg.enable {
         plugins = with pkgs.vimPlugins; [(nvim-treesitter.withPlugins (p: [p.zig]))];

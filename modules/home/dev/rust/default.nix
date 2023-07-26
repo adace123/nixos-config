@@ -19,9 +19,7 @@ in
         cargo-xbuild
         clang
         mold
-        rust-analyzer
         rustc
-        rustfmt
       ];
 
       home.file.".cargo/config.toml".text = std.serde.toTOML {
@@ -35,16 +33,18 @@ in
         };
       };
 
-      modules.editors.neovim = mkIf nvim_cfg.enable {
-        lsp-servers = ["rust_analyzer"];
-        formatters = ["rustfmt"];
-      };
-
-      home.file.".config/astronvim/lua/user/lsp/config/rust_analyzer.lua".text = mkIf nvim_cfg.enable ''
-        return {
-          cmd = { "${pkgs.rust-analyzer}/bin/rust-analyzer" }
+      modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
+        {
+          name = "rust_analyzer";
+          package = pkgs.rust-analyzer;
+          type = "lsp";
         }
-      '';
+        {
+          name = "rustfmt";
+          package = pkgs.rustfmt;
+          type = "formatting";
+        }
+      ];
 
       programs.neovim = mkIf nvim_cfg.enable {
         extraPackages = with pkgs; [rust-analyzer];
