@@ -30,5 +30,9 @@ in
       security.polkit.enable = true;
 
       services.dbus.enable = true;
+
+      security.pam.services.gtklock.text = ''
+        auth include login
+      '';
     };
   }
