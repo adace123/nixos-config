@@ -18,6 +18,8 @@ in
             requests
             ptpython
             jupyterlab # TODO: use jupyenv
+            polars
+            plotly
             pytest
           ]))
       ];
