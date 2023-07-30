@@ -35,7 +35,7 @@ in {
           openssh.authorizedKeys.keys = cfg.sshKeys;
         }
         (mkIf cfg.sudo {
-          extraGroups = ["wheel"];
+          extraGroups = ["wheel"] ++ (optionals config.virtualisation.podman.enable ["podman"]);
         })
       ];
     };
