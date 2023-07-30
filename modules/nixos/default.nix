@@ -5,5 +5,6 @@
     ./secrets
     ./networking
     ./monitoring
+    ./virtualisation
   ];
 }
