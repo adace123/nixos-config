@@ -7,7 +7,7 @@
   ...
 }: let
   cfg = config.modules.desktop.hyprland;
-  inherit (osConfig.modules.sys.graphics) nvidia;
+  inherit (osConfig.modules.graphics) nvidia;
 in
   with lib; {
     options.modules.desktop.hyprland.enable = mkEnableOption "Enable Hyprland";
