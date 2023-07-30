@@ -10,6 +10,13 @@ in
     options.modules.desktop.browsers.qutebrowser.enable = mkEnableOption "qutebrowser";
     config = mkIf cfg.enable {
       home.packages = [pkgs.python311Packages.adblock];
+      xdg.configFile."qutebrowser/greasemonkey/youtube-sponsorblock.js".source =
+        pkgs.fetchurl
+        {
+          name = "qute-youtube-adblock.js";
+          url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/1d1be041a65c251692ee082eda64d2637edf6444/youtube_adblock.js";
+          sha256 = "sha256-EuGTJ9Am5C6g3MeTsjBQqyNFBiGAIWh+f6cUtEHu3iI=";
+        };
       programs.qutebrowser = {
         enable = true;
         keyBindings = {
@@ -36,6 +43,52 @@ in
           url.start_pages = "https://google.com";
           url.default_page = "https://google.com";
           downloads.location.directory = "~/Downloads";
+          confirm_quit = ["multiple-tabs"];
+          content = {
+            autoplay = false;
+            blocking = {
+              adblock.lists = [
+                "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt"
+                "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt"
+                "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt"
+                "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/quick-fixes.txt"
+                "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt"
+                "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt"
+                "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_English/filter.txt"
+                "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_11_Mobile/filter.txt"
+                "https://easylist.to/easylist/easylist.txt"
+                "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Spyware/filter.txt"
+                "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_17_TrackParam/filter.txt"
+                "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/lan-block.txt"
+                "https://easylist.to/easylist/easyprivacy.txt"
+                "https://curben.gitlab.io/malware-filter/urlhaus-filter.txt"
+                "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_14_Annoyances/filter.txt"
+                "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_4_Social/filter.txt"
+                "https://secure.fanboy.co.nz/fanboy-antifacebook.txt"
+                "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt"
+                "https://secure.fanboy.co.nz/fanboy-annoyance.txt"
+                "https://easylist.to/easylist/fanboy-social.txt"
+                "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances.txt"
+                "https://someonewhocares.org/hosts/hosts"
+                "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&mimetype=plaintext"
+                "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_16_French/filter.txt"
+                "https://easylist-downloads.adblockplus.org/easylistitaly.txt"
+                "https://easylist-downloads.adblockplus.org/advblock.txt"
+                "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt"
+                "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+                "https://raw.githubusercontent.com/gioxx/xfiles/master/filtri.txt"
+                "https://secure.fanboy.co.nz/enhancedstats.txt"
+                "https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt"
+              ];
+
+              hosts.lists = [
+                "https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt"
+                "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+              ];
+
+              method = "both";
+            };
+          };
           tabs = {
             show = "never";
             background = true;
@@ -48,6 +101,7 @@ in
             default_family = "JetBrainsMono Nerd Font";
           };
           zoom.default = "140%";
+          editor.command = ["${pkgs.alacritty}/bin/alacritty" "-e" "${pkgs.neovim}/bin/nvim" "{file}"];
         };
 
         aliases = {
@@ -55,6 +109,7 @@ in
           q = "quit";
           wq = "quit --save";
           yt = "open https://youtube.com/feed/subscriptions";
+          paywall = "open https://12ft.io/proxy?q={url}";
         };
 
         searchEngines = {
@@ -71,6 +126,8 @@ in
           ph = "https://phind.com/search?q={}";
           w = "https://en.wikipedia.org/?search={}";
         };
+
+        quickmarks = {};
       };
     };
   }
