@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.sys.networking.wifi;
+  cfg = config.modules.networking.wifi;
 in {
-  options.modules.sys.networking.wifi.enable = mkEnableOption "wifi";
+  options.modules.networking.wifi.enable = mkEnableOption "wifi";
 
   config = mkIf cfg.enable {
     sops.secrets.wireless = {

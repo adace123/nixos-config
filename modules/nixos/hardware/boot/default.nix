@@ -7,9 +7,9 @@
   ...
 }:
 with lib; let
-  inherit (config.modules.sys.boot) configLimit;
+  inherit (config.modules.boot) configLimit;
 in {
-  options.modules.sys.boot.configLimit = mkOption {
+  options.modules.boot.configLimit = mkOption {
     default = 5;
     description = "Boot configuration limit";
     type = types.int;

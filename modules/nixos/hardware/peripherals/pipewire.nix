@@ -3,11 +3,11 @@
   config,
   ...
 }: let
-  cfg = config.modules.sys.sound;
-  bluetoothCfg = config.modules.sys.bluetooth;
+  cfg = config.modules.sound;
+  bluetoothCfg = config.modules.bluetooth;
 in
   with lib; {
-    options.modules.sys.sound.enable = mkEnableOption "Sound";
+    options.modules.sound.enable = mkEnableOption "Sound";
 
     config = mkIf cfg.enable {
       security.rtkit.enable = true;

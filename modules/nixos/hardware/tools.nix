@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.sys.hardware.tools;
+  cfg = config.modules.hardware.tools;
 in
   with lib; {
-    options.modules.sys.hardware.tools.enable = mkEnableOption "Hardware debugging tools";
+    options.modules.hardware.tools.enable = mkEnableOption "Hardware debugging tools";
 
     config = mkIf cfg.enable {
       environment.systemPackages = with pkgs; [

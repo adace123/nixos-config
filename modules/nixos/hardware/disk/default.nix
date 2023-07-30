@@ -7,21 +7,21 @@
   ...
 }:
 with lib; let
-  inherit (config.modules.sys.boot) device;
+  inherit (config.modules.boot) device;
   deviceName = builtins.baseNameOf device;
-  cfg = config.modules.sys.disko;
+  cfg = config.modules.disko;
 in {
   imports = [
     inputs.disko.nixosModules.disko
   ];
 
-  options.modules.sys.disko.enable = mkOption {
+  options.modules.disko.enable = mkOption {
     description = "Enable disko partitioning";
     type = types.bool;
     default = true;
   };
 
-  options.modules.sys.boot.device = mkOption {
+  options.modules.boot.device = mkOption {
     description = "Drive to install NixOS on";
     type = types.str;
   };

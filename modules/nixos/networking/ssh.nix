@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.sys.networking.ssh;
+  cfg = config.modules.networking.ssh;
 in {
-  options.modules.sys.networking.ssh.enable = mkOption {
+  options.modules.networking.ssh.enable = mkOption {
     description = "Enable SSH";
     default = true;
   };

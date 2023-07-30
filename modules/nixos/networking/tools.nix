@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.sys.networking.tools;
+  cfg = config.modules.networking.tools;
 in
   with lib; {
-    options.modules.sys.networking.tools.enable = mkEnableOption "Networking tools";
+    options.modules.networking.tools.enable = mkEnableOption "Networking tools";
 
     config = mkIf cfg.enable {
       environment.systemPackages = with pkgs; [
