@@ -7,17 +7,18 @@
   modules = {
     window-manager.hyprland.enable = true;
 
-    sys = {
-      networking = {
-        wifi.enable = true;
-        tailscale.enable = true;
-        tools.enable = true;
-      };
-      hardware.tools.enable = true;
-      graphics.nvidia.enable = true;
-      sound.enable = true;
-      bluetooth.enable = true;
-      boot.device = "/dev/sda";
+    networking = {
+      wifi.enable = true;
+      tailscale.enable = true;
+      tools.enable = true;
+    };
+    hardware.tools.enable = true;
+    graphics.nvidia.enable = true;
+    sound.enable = true;
+    bluetooth.enable = true;
+    boot.device = "/dev/sda";
+    virtualisation = {
+      podman.enable = true;
     };
   };
 
