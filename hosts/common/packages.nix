@@ -7,6 +7,7 @@
     fd
     fzf
     git
+    hyperfine
     jq
     just
     kmon
