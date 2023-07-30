@@ -94,6 +94,7 @@
         "${mod} SHIFT, w, exec, makoctl dismiss"
         "${mod}, SPACE, exec, rofi -show drun"
         "${mod}, d, exec, webcord"
+        "${mod}, c, exec, ${TERMINAL} -e cava"
       ];
 
       window = [
