@@ -1,15 +1,8 @@
 {config, ...}:
-with config.heme.colors; {
+with config.colorScheme.colors; {
   webpage = {
     darkmode = {
-      enabled = false;
-      algorithm = "lightness-hsl";
-      threshold = {
-        text = 150;
-        background = 100;
-      };
-      policy.images = "always";
-      grayscale.images = 0.35;
+      enabled = true;
     };
     preferred_color_scheme = "dark";
     bg = "#${base00}";

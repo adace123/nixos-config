@@ -21,6 +21,7 @@
       };
       browsers = {
         firefox.enable = true;
+        qutebrowser.enable = true;
         amfora.enable = true;
       };
       pdf.enable = true;
@@ -43,6 +44,7 @@
       elixir.enable = true;
       git.enable = true;
       go.enable = true;
+      kubernetes.enable = true;
       python.enable = true;
       rust.enable = true;
       zig.enable = true;
