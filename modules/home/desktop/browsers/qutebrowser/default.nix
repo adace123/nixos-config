@@ -21,7 +21,14 @@ in
         enable = true;
         keyBindings = {
           normal = {
-            ",a" = "set-cmd-text :open -T amazon ";
+            ",a" = "set-cmd-text -s :open -t amazon";
+            ",e" = "set-cmd-text -s :open -t ebay";
+            ",g" = "set-cmd-text -s :open -t github";
+            ",n" = "set-cmd-text -s :open -t nixpkgs";
+            ",N" = "set-cmd-text -s :open -t nix-code";
+            ",y" = "set-cmd-text -s :open -t youtube";
+            ",p" = "set-cmd-text -s :open -t perplexity";
+            ",w" = "set-cmd-text -s :open -t wikipedia";
             "tt" = "set tabs.show never";
             "tT" = "set tabs.show always";
             "gu" = "hint inputs --first;; fake-key <Ctrl-u>";
@@ -109,7 +116,8 @@ in
           q = "quit";
           wq = "quit --save";
           yt = "open https://youtube.com/feed/subscriptions";
-          paywall = "open https://12ft.io/proxy?q={url}";
+          pw = "open https://1ft.io/proxy?q={url}";
+          gpw = "open https://www.google.com/search?q=cache:{url}";
         };
 
         searchEngines = {
@@ -117,14 +125,12 @@ in
           amazon = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords={}";
           arxiv = "https://arxiv.org/search/?query={}&searchtype=all&source=header";
           ebay = "https://www.ebay.com/sch/items/?_nkw={}";
-          gh = "https://github.com/search?utf8=/%E2%9C%93&q={}&type=";
-          gh-nix = "https://github.com/search?q={}+language:Nix&type=code";
-          lbb = "http://libgen.is/search.php?req={}&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def";
-          nix = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
-          nw = "https://nixos.wiki/index.php?search={}&go=Go";
-          p = "https://perplexity.ai/search/?q={}";
-          ph = "https://phind.com/search?q={}";
-          w = "https://en.wikipedia.org/?search={}";
+          github = "https://github.com/search?q={}";
+          github-nix = "https://github.com/search?q={}+language:Nix&type=code";
+          nix-code = "https://github.com/search?q={}+language:Nix&type=code";
+          nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+          perplexity = "https://perplexity.ai/search/?q={}";
+          wikipedia = "https://en.wikipedia.org/?search={}";
         };
 
         quickmarks = {};
