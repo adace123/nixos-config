@@ -19,11 +19,11 @@ in
           package = pkgs.zls;
           type = "lsp";
         }
-        # {
-        #   name = "zigfmt";
-        #   package = pkgs.zigfmt;
-        #   type = "formatting";
-        # }
+        {
+          name = "zigfmt";
+          package = pkgs.zig;
+          type = "formatting";
+        }
       ];
 
       programs.neovim = mkIf nvim_cfg.enable {
