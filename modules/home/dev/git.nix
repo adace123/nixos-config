@@ -4,6 +4,7 @@
   pkgs,
   host,
   inputs,
+  osConfig,
   ...
 }: let
   cfg = config.modules.dev.git;
@@ -36,10 +37,6 @@ in
             if config.modules.editors.neovim.enable
             then "nvim"
             else "vim";
-          url = {
-            "https://github.com/".insteadOf = "gh:";
-            "ssh://git@github.com".pushInsteadOf = "gh:";
-          };
           push.autoSetupRemote = true;
         };
       };
@@ -53,14 +50,10 @@ in
         ];
       };
 
-      sops.secrets.github-private-key = {
-        path = "${config.xdg.configHome}/git/credentials/github";
-      };
-
       programs.ssh.matchBlocks."github.com" = {
         hostname = "github.com";
         user = "git";
-        identityFile = ["${config.sops.secrets.github-private-key.path}"];
+        identityFile = ["${osConfig.sops.secrets.github-private-key.path}"];
       };
     };
   }

@@ -1,5 +1,6 @@
 {
   config,
+  host,
   options,
   lib,
   pkgs,
@@ -21,8 +22,9 @@ in {
   };
 
   config = {
-    sops.secrets."${cfg.name}-password" = {
+    sops.secrets.password = {
       neededForUsers = true;
+      sopsFile = ../../hosts/${host}/secrets.yaml;
     };
 
     users = {
@@ -31,7 +33,7 @@ in {
       users.${cfg.name} = mkMerge [
         {
           isNormalUser = true;
-          passwordFile = config.sops.secrets."${cfg.name}-password".path;
+          passwordFile = config.sops.secrets.password.path;
           openssh.authorizedKeys.keys = cfg.sshKeys;
         }
         (mkIf cfg.sudo {

@@ -43,4 +43,10 @@
     sudo = true;
     sshKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINeg6I1BsevUn9zYaYrwLg5l2UKzPqlxn2Q68cs37CyV"];
   };
+
+  # TODO: use sops-nix hm module once https://github.com/Mic92/sops-nix/issues/287 is fixed
+  sops.secrets.github-private-key = {
+    sopsFile = ./secrets.yaml;
+    owner = config.user.name;
+  };
 }
