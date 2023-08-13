@@ -132,6 +132,7 @@ in
           nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
           perplexity = "https://perplexity.ai/search/?q={}";
           wikipedia = "https://en.wikipedia.org/?search={}";
+          youtube = "https://youtube.com/results?q={}";
         };
 
         quickmarks = {
