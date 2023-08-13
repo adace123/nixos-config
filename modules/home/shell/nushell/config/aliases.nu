@@ -12,7 +12,8 @@ alias hf = hyperfine
 alias htop = btm --fahrenheit
 alias ll = ls -la
 alias lg = lazygit
-alias lzd = lazydocker
+# TODO: remove need to run lazydocker with sudo
+alias lzd = sudo lazydocker
 alias jt = journalctl -xe
 alias k = kubectl
 alias nb = newsboat
