@@ -31,7 +31,7 @@ in
             ",w" = "set-cmd-text -s :open -t wikipedia";
             "tt" = "set tabs.show never";
             "tT" = "set tabs.show always";
-            "gu" = "hint inputs --first;; fake-key <Ctrl-u>";
+            "gu" = "hint inputs --first;; fake-key <Shift-Home>;; fake-key <Delete>";
           };
           insert = {
             "<Ctrl-b>" = "fake-key <Left>";
@@ -51,6 +51,7 @@ in
           url.default_page = "https://google.com";
           downloads.location.directory = "~/Downloads";
           confirm_quit = ["multiple-tabs"];
+          auto_save.session = true;
           content = {
             autoplay = false;
             blocking = {
@@ -133,7 +134,19 @@ in
           wikipedia = "https://en.wikipedia.org/?search={}";
         };
 
-        quickmarks = {};
+        quickmarks = {
+          amazon = "https://amazon.com";
+          ebay = "https://ebay.com";
+          github = "https://github.com";
+          gmail = "https://mail.google.com/mail/u/0/#inbox";
+          google = "https://google.com";
+          hackernews = "https://news.ycombinator.com";
+          lobsters = "https://lobste.rs";
+          nixpkgs = "https://github.com/NixOS/nixpkgs";
+          protonmail = "https://mail.proton.me/u/0/inbox";
+          youtube = "https://youtube.com";
+          wikipedia = "https://en.wikipedia.org/wiki/Portal:Current_events";
+        };
       };
     };
   }
