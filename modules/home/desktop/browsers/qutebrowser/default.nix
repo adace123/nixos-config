@@ -31,7 +31,7 @@ in
             ",w" = "set-cmd-text -s :open -t wikipedia";
             "tt" = "set tabs.show never";
             "tT" = "set tabs.show always";
-            "gu" = "hint inputs --first;; fake-key <Shift-Home>;; fake-key <Delete>";
+            "gu" = "hint inputs --first;; later 3 fake-key <Shift-Home>;; later 3 fake-key <Delete>";
           };
           insert = {
             "<Ctrl-b>" = "fake-key <Left>";
