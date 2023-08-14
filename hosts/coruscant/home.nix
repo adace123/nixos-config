@@ -42,7 +42,10 @@
     };
     dev = {
       elixir.enable = true;
-      git.enable = true;
+      git = {
+        enable = true;
+        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhNNJWrql+UrZHP7KUw0cfnF7XqhIAVQ6S/JF8ecbPV";
+      };
       go.enable = true;
       kubernetes.enable = true;
       python.enable = true;
