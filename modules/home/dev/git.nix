@@ -10,9 +10,14 @@
   cfg = config.modules.dev.git;
 in
   with lib; {
-    options.modules.dev.git.enable = mkEnableOption "git user config";
+    options.modules.dev.git = {
+      enable = mkEnableOption "git user config";
+      signingKey = mkOption {type = types.str;};
+    };
+
     config = mkIf cfg.enable {
       programs.lazygit.enable = true;
+
       programs.git = {
         enable = true;
         difftastic.enable = true;
@@ -38,6 +43,9 @@ in
             then "nvim"
             else "vim";
           push.autoSetupRemote = true;
+          user.signingkey = cfg.signingKey;
+          gpg.format = "ssh";
+          commit.gpgsign = true;
         };
       };
 
