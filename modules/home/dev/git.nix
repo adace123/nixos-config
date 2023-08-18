@@ -43,6 +43,7 @@ in
             then "nvim"
             else "vim";
           push.autoSetupRemote = true;
+          # TODO: make key configurable
           user.signingkey = osConfig.sops.secrets.github-private-key.path;
           gpg.format = "ssh";
           commit.gpgsign = true;

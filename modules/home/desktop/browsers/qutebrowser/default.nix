@@ -29,6 +29,7 @@ in
             ",y" = "set-cmd-text -s :open -t youtube";
             ",p" = "set-cmd-text -s :open -t perplexity";
             ",w" = "set-cmd-text -s :open -t wikipedia";
+            ",x" = "set-cmd-text -s :open -t arxiv";
             "tt" = "set tabs.show never";
             "tT" = "set tabs.show always";
             "gu" = "hint inputs --first;; later 3 fake-key <Shift-Home>;; later 3 fake-key <Delete>";
@@ -145,7 +146,7 @@ in
           lobsters = "https://lobste.rs";
           nixpkgs = "https://github.com/NixOS/nixpkgs";
           protonmail = "https://mail.proton.me/u/0/inbox";
-          youtube = "https://youtube.com";
+          youtube = "https://www.youtube.com/feed/subscriptions";
           wikipedia = "https://en.wikipedia.org/wiki/Portal:Current_events";
         };
       };
