@@ -42,10 +42,7 @@
     };
     dev = {
       elixir.enable = true;
-      git = {
-        enable = true;
-        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhNNJWrql+UrZHP7KUw0cfnF7XqhIAVQ6S/JF8ecbPV";
-      };
+      git.enable = true;
       go.enable = true;
       kubernetes.enable = true;
       python.enable = true;
@@ -58,7 +55,11 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
-  home.sessionVariables.TERMINAL = "alacritty";
+  home.sessionVariables = {
+    TERMINAL = "alacritty";
+    BROWSER = "qutebrowser";
+  };
+
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";

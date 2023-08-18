@@ -45,8 +45,10 @@
   };
 
   # TODO: use sops-nix hm module once https://github.com/Mic92/sops-nix/issues/287 is fixed
-  sops.secrets.github-private-key = {
-    sopsFile = ./secrets.yaml;
-    owner = config.user.name;
+  sops.secrets = {
+    github-private-key = {
+      sopsFile = ./secrets.yaml;
+      owner = config.user.name;
+    };
   };
 }

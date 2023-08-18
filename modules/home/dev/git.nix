@@ -61,7 +61,7 @@ in
       programs.ssh.matchBlocks."github.com" = {
         hostname = "github.com";
         user = "git";
-        identityFile = ["${osConfig.sops.secrets.github-private-key.path}"];
+        identityFile = [osConfig.sops.secrets.github-private-key.path];
       };
     };
   }
