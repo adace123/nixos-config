@@ -43,8 +43,10 @@ in
             then "nvim"
             else "vim";
           push.autoSetupRemote = true;
-          user.signingkey = cfg.signingKey;
+          # user.signingkey = cfg.signingKey;
+          user.signingkey = "${config.home.homeDirectory}/.ssh/github_signing_key.pub";
           gpg.format = "ssh";
+          gpg.ssh.defaultKeyCommand = "ssh-add -L";
           commit.gpgsign = true;
         };
       };
