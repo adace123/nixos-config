@@ -6,12 +6,15 @@
   ...
 }: let
   cfg = config.modules.editors.neovim;
-  mkLspServer = server: {
+  mkLspServer = server: let
+    cmd = ["${lib.getExe server.package}"] ++ server.cmdArgs;
+    cmdString = builtins.concatStringsSep ", " (map (s: "\"${s}\"") cmd);
+  in {
     name = ".config/astronvim/lua/user/lsp/config/${server.name}.lua";
     value = {
       text = ''
         return {
-          cmd = { "${lib.getExe server.package}" },
+          cmd = { ${cmdString} },
           ${server.extraConfig}
         }
       '';
@@ -94,6 +97,10 @@ in
             name = mkOption {type = str;};
             package = mkOption {type = package;};
             type = mkOption {type = enum ["lsp" "diagnostics" "formatting"];};
+            cmdArgs = mkOption {
+              type = listOf str;
+              default = [];
+            };
             extraConfig = mkOption {
               type = str;
               default = "";
