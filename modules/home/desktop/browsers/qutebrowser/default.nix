@@ -144,7 +144,8 @@ in
           google = "https://google.com";
           hackernews = "https://news.ycombinator.com";
           lobsters = "https://lobste.rs";
-          nixpkgs = "https://github.com/NixOS/nixpkgs";
+          notion = "https://notion.so";
+          nixpkgs = "https://search.nixos.org";
           protonmail = "https://mail.proton.me/u/0/inbox";
           youtube = "https://www.youtube.com/feed/subscriptions";
           wikipedia = "https://en.wikipedia.org/wiki/Portal:Current_events";
