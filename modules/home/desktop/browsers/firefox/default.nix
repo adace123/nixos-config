@@ -39,7 +39,6 @@ in
               nighttab
               tree-style-tab
               darkreader
-              bypass-paywalls-clean
               return-youtube-dislikes
               pkgs.firefox-theme-catppuccin-mocha
             ]

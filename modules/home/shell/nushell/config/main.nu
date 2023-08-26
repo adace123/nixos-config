@@ -10,7 +10,7 @@ let carapace_completer = {|spans|
   carapace $spans.0 nushell $spans | from json
 }
 
-let-env config = {
+$env.config = {
   use_grid_icons: true
   footer_mode: "25"
   float_precision: 2

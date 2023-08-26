@@ -14,7 +14,7 @@ in
       modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
         {
           name = "elixirls";
-          package = pkgs.elixir-ls;
+          command = "${pkgs.elixir-ls}/bin/elixir-ls";
           type = "lsp";
           extraConfig = ''
             settings = {

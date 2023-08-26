@@ -28,9 +28,6 @@ in
         envFile.source = ./config/environment.nu;
         configFile.source = ./config/main.nu;
         extraConfig = ''
-          # plugins
-          register ${pkgs.nushellPlugins.query}/bin/nu_plugin_query
-
           # completions
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu *
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/btm/btm-completions.nu *
@@ -38,7 +35,6 @@ in
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu *
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/tealdeer/tldr-completions.nu *
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/zellij/zellij-completions.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/just/just.nu *
           use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
 
           # modules
@@ -49,7 +45,7 @@ in
           # themes
           use ${pkgs.nu_scripts}/share/nu_scripts/themes/themes/everforest.nu
 
-          let-env config = ($env.config | merge {color_config: (everforest)})
+          $env.config = ($env.config | merge {color_config: (everforest)})
         '';
       };
     };

@@ -29,27 +29,27 @@ in
       modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
         {
           name = "pyright";
-          package = pkgs.pyright;
+          command = "${pkgs.pyright}/bin/pyright";
           type = "lsp";
         }
         {
           name = "ruff_lsp";
-          package = pkgs.python311Packages.ruff-lsp;
+          command = "${pkgs.ruff}/bin/ruff";
           type = "lsp";
         }
         {
           name = "ruff";
-          package = pkgs.ruff;
+          command = "${pkgs.ruff}/bin/ruff";
           type = "formatting";
         }
         {
           name = "black";
-          package = pkgs.python311Packages.black;
+          command = "${pkgs.black}/bin/black";
           type = "formatting";
         }
         {
           name = "ruff";
-          package = pkgs.ruff;
+          command = "${pkgs.ruff}/bin/ruff";
           type = "diagnostics";
         }
       ];

@@ -16,12 +16,13 @@ in
       modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
         {
           name = "zls";
-          package = pkgs.zls;
+          command = "${pkgs.zls}/bin/zls";
           type = "lsp";
         }
         {
           name = "zigfmt";
-          package = pkgs.zig;
+          command = "${pkgs.zig}/bin/zig";
+          cmdArgs = ["fmt"];
           type = "formatting";
         }
       ];

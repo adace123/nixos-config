@@ -18,18 +18,18 @@ in
       modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
         {
           name = "tsserver";
-          package = pkgs.nodePackages.typescript-language-server;
+          command = "${getExe pkgs.nodePackages.typescript-language-server}";
           cmdArgs = ["--stdio"];
           type = "lsp";
         }
         {
           name = "prettier";
-          package = pkgs.nodePackages.prettier;
+          command = "${pkgs.prettierd}/bin/prettierd";
           type = "formatting";
         }
         {
-          name = "eslint";
-          package = pkgs.nodePackages.eslint;
+          name = "eslint_d";
+          command = "${pkgs.eslint_d}/bin/eslint_d";
           type = "formatting";
         }
       ];

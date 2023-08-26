@@ -7,8 +7,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     fenix.url = "github:nix-community/fenix";
     nuenv.url = "github:DeterminateSystems/nuenv";
     sops-nix.url = "github:Mic92/sops-nix";

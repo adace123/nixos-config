@@ -15,17 +15,17 @@ in
       modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
         {
           name = "gopls";
-          package = pkgs.gopls;
+          command = "${pkgs.gopls}/bin/gopls";
           type = "lsp";
         }
         {
           name = "gofmt";
-          package = pkgs.gotools;
+          command = "${pkgs.gotools}/bin/gotools";
           type = "formatting";
         }
         {
           name = "goimports";
-          package = pkgs.gotools;
+          command = "${pkgs.gotools}/bin/gotools";
           type = "formatting";
         }
       ];

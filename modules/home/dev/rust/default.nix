@@ -37,12 +37,12 @@ in
       modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
         {
           name = "rust_analyzer";
-          package = pkgs.rust-analyzer;
+          command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
           type = "lsp";
         }
         {
           name = "rustfmt";
-          package = pkgs.rustfmt;
+          command = "${pkgs.rustfmt}/bin/rustfmt";
           type = "formatting";
         }
       ];

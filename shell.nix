@@ -3,6 +3,7 @@
     nativeBuildInputs = with pkgs; [
       alejandra
       pulumi
+      pulumiPackages.pulumi-language-nodejs
       sops
       ssh-to-age
     ];

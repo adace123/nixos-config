@@ -7,7 +7,7 @@
 }: let
   cfg = config.modules.editors.neovim;
   mkLspServer = server: let
-    cmd = ["${lib.getExe server.package}"] ++ server.cmdArgs;
+    cmd = [server.command] ++ server.cmdArgs;
     cmdString = builtins.concatStringsSep ", " (map (s: "\"${s}\"") cmd);
   in {
     name = ".config/astronvim/lua/user/lsp/config/${server.name}.lua";
@@ -25,7 +25,7 @@
   formatters = builtins.filter (l: l.type == "formatting") cfg.languageSupport;
   diagnostics = builtins.filter (l: l.type == "diagnostics") cfg.languageSupport;
   null-ls-builder = builtins.map (x: ''
-    null_ls.builtins.${x.type}.${x.name}.with({ prefer_local = "${lib.getExe x.package}" })
+    null_ls.builtins.${x.type}.${x.name}.with({ command = "${x.command}" })
   '');
   null-ls-settings = builtins.concatStringsSep ", " (
     (null-ls-builder formatters)
@@ -35,22 +35,22 @@
   defaultLsps = [
     {
       name = "nixd";
-      package = pkgs.nixd;
+      command = "${pkgs.nixd}/bin/nixd";
       type = "lsp";
     }
     {
       name = "lua_ls";
-      package = pkgs.lua-language-server;
+      command = "${pkgs.lua-language-server}/bin/lua-language-server";
       type = "lsp";
     }
     {
       name = "yamlls";
-      package = pkgs.yaml-language-server;
+      command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
       type = "lsp";
     }
     {
       name = "taplo";
-      package = pkgs.taplo-lsp;
+      command = "${pkgs.taplo-lsp}/bin/taplo-lsp";
       type = "lsp";
     }
   ];
@@ -58,17 +58,17 @@
   defaultFormatters = [
     {
       name = "alejandra";
-      package = pkgs.alejandra;
+      command = "${pkgs.alejandra}/bin/alejandra";
       type = "formatting";
     }
     {
       name = "stylua";
-      package = pkgs.stylua;
+      command = "${pkgs.stylua}/bin/stylua";
       type = "formatting";
     }
     {
       name = "yamlfmt";
-      package = pkgs.yamlfmt;
+      command = "${pkgs.yamlfmt}/bin/yamlfmt";
       type = "formatting";
     }
   ];
@@ -76,12 +76,12 @@
   defaultDiagnostics = [
     {
       name = "selene";
-      package = pkgs.selene;
+      command = "${pkgs.selene}/bin/selene";
       type = "diagnostics";
     }
     {
       name = "yamllint";
-      package = pkgs.yamllint;
+      command = "${pkgs.yamllint}/bin/yamllint";
       type = "diagnostics";
     }
   ];
@@ -95,12 +95,12 @@ in
         type = listOf (submodule {
           options = {
             name = mkOption {type = str;};
-            package = mkOption {type = package;};
-            type = mkOption {type = enum ["lsp" "diagnostics" "formatting"];};
+            command = mkOption {type = str;};
             cmdArgs = mkOption {
               type = listOf str;
               default = [];
             };
+            type = mkOption {type = enum ["lsp" "diagnostics" "formatting"];};
             extraConfig = mkOption {
               type = str;
               default = "";
@@ -112,9 +112,6 @@ in
 
     config = mkIf cfg.enable {
       modules.editors.neovim.languageSupport = defaultSources;
-
-      programs.neovim.extraPackages = builtins.map (l: l.package) cfg.languageSupport;
-
       home.file =
         builtins.listToAttrs (builtins.map mkLspServer servers)
         // {
