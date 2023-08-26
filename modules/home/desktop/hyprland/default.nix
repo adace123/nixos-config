@@ -20,7 +20,7 @@ in
       wayland.windowManager.hyprland = {
         enable = true;
         systemdIntegration = true;
-        nvidiaPatches = nvidia.enable;
+        enableNvidiaPatches = nvidia.enable;
       };
 
       home = {
