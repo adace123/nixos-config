@@ -20,6 +20,9 @@
     virtualisation = {
       podman.enable = true;
     };
+    monitoring = {
+      tools.enable = true;
+    };
   };
 
   networking = {
