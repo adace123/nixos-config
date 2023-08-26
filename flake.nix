@@ -14,6 +14,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprkeys.url = "github:hyprland-community/Hyprkeys";
+    hyprland-contrib.url = "github:hyprwm/contrib";
     nix-std.url = "github:chessai/nix-std";
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
@@ -40,6 +41,7 @@
       nur.overlay
       outputs.overlays.default
       fenix.overlays.default
+      hyprland-contrib.overlays.default
     ];
 
     forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux" "x86_64-darwin"];
