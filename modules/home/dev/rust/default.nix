@@ -15,6 +15,7 @@ in
       home.packages = with pkgs; [
         cargo
         cargo-edit
+        cargo-generate
         cargo-watch
         cargo-xbuild
         clang
