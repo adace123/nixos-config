@@ -2,9 +2,13 @@
   default = pkgs.mkShell {
     nativeBuildInputs = with pkgs; [
       alejandra
-      statix
+      pulumi
       sops
       ssh-to-age
     ];
+
+    shellHook = ''
+      exec ${pkgs.nushell}/bin/nu
+    '';
   };
 }
