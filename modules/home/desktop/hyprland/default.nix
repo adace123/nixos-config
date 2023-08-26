@@ -25,9 +25,9 @@ in
 
       home = {
         packages = with pkgs; [
-          grim
-          slurp
+          grimblast
           wl-clipboard
+          swayimg
           wtype
           inputs.hyprkeys.packages.${pkgs.system}.default
         ];
