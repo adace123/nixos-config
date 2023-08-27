@@ -24,8 +24,10 @@
   servers = builtins.filter (l: l.type == "lsp") cfg.languageSupport;
   formatters = builtins.filter (l: l.type == "formatting") cfg.languageSupport;
   diagnostics = builtins.filter (l: l.type == "diagnostics") cfg.languageSupport;
-  null-ls-builder = builtins.map (x: ''
-    null_ls.builtins.${x.type}.${x.name}.with({ command = "${x.command}" })
+  null-ls-builder = builtins.map (x: let
+    cmdArgs = builtins.concatStringsSep ", " (map (s: "\"${s}\"") x.cmdArgs);
+  in ''
+    null_ls.builtins.${x.type}.${x.name}.with({ command = "${x.command}", args = { ${cmdArgs} } })
   '');
   null-ls-settings = builtins.concatStringsSep ", " (
     (null-ls-builder formatters)
