@@ -30,6 +30,7 @@ in
         {
           name = "eslint_d";
           command = "${pkgs.eslint_d}/bin/eslint_d";
+          cmdArgs = ["-f" "json" "--stdin" "--stdin-filename" "$FILENAME"];
           type = "formatting";
         }
       ];

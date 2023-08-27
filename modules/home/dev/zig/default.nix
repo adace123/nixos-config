@@ -22,7 +22,7 @@ in
         {
           name = "zigfmt";
           command = "${pkgs.zig}/bin/zig";
-          cmdArgs = ["fmt"];
+          cmdArgs = ["fmt" "--stdin"];
           type = "formatting";
         }
       ];

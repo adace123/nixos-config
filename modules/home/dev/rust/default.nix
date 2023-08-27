@@ -43,6 +43,7 @@ in
         {
           name = "rustfmt";
           command = "${pkgs.rustfmt}/bin/rustfmt";
+          cmdArgs = ["--emit=stdout"];
           type = "formatting";
         }
       ];

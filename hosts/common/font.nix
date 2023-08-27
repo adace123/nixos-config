@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     material-symbols
     roboto
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})

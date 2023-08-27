@@ -26,6 +26,7 @@ in
         {
           name = "goimports";
           command = "${pkgs.gotools}/bin/gotools";
+          cmdArgs = ["--srcdir" "$DIRNAME"];
           type = "formatting";
         }
       ];
