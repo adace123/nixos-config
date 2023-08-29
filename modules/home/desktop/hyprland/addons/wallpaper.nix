@@ -10,25 +10,36 @@ in
     config = mkIf (wallpaper
       != null
       && hyprland.enable) {
-      home.packages = [pkgs.hyprpaper];
-
-      xdg.configFile."hypr/hyprpaper.conf".text = ''
-        preload = ${wallpaper}
-        wallpaper = ,${wallpaper}
-      '';
+      home.packages = [pkgs.swww];
 
       systemd.user.services = {
-        hyprpaper = {
+        swww = {
           Unit = {
-            Description = "Hyprpaper wallpaper";
+            Description = "Swww wallpaper";
             After = ["hyprland-session.target"];
           };
           Service = {
-            ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
-            Restart = "always";
+            ExecStart = "${pkgs.swww}/bin/swww-daemon";
+            ExecStop = "${pkgs.swww}/bin/swww kill";
+            Restart = "on-failure";
             Type = "simple";
           };
           Install.WantedBy = ["hyprland-session.target"];
+        };
+
+        set_wallpaper = {
+          Unit = {
+            Description = "Set default wallpaper";
+            Requires = ["swww.service"];
+            After = ["swww.service"];
+            PartOf = ["swww.service"];
+          };
+          Install.WantedBy = ["swww.service"];
+          Service = {
+            ExecStart = "${pkgs.swww}/bin/swww img ${wallpaper}";
+            Restart = "on-failure";
+            Type = "oneshot";
+          };
         };
       };
     };

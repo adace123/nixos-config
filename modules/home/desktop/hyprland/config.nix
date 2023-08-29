@@ -6,7 +6,6 @@
 }: let
   cfg = config.modules.desktop.hyprland;
   inherit (config.modules.desktop) monitor;
-  inherit (config.modules.desktop) wallpaper;
   inherit (config.home.sessionVariables) TERMINAL BROWSER EDITOR;
 
   genSubmap = name: binds: let
