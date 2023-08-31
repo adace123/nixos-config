@@ -9,5 +9,6 @@
   # default home packages
   home.packages = with pkgs; [
     mdcat
+    nvd
   ];
 }

@@ -18,6 +18,11 @@ def rebuild [--verbose (-v)] {
   }
 }
 
+def nix-diff [] {
+  nixos-rebuild build --flake $"($env.DOTFILES_DIR)#(hostname)"
+  nvd diff /run/current-system $"($env.DOTFILES_DIR)/result"
+}
+
 module jc-functions {
   export def bt-table [] {
     bluetoothctl devices | jc --bluetoothctl | from json
