@@ -32,7 +32,7 @@ in
             ",x" = "cmd-set-text -s :open -t arxiv";
             "tt" = "set tabs.show never";
             "tT" = "set tabs.show always";
-            "gu" = "hint inputs --first;; later 3 fake-key <Shift-Home>;; later 3 fake-key <Delete>";
+            "gu" = "hint inputs --first;; cmd-later 3 fake-key <Shift-Home>;; cmd-later 3 fake-key <Delete>";
           };
           insert = {
             "<Ctrl-b>" = "fake-key <Left>";
@@ -44,7 +44,7 @@ in
             "<Ctrl-e>" = "fake-key <End>";
             "<Ctrl-a>" = "fake-key <Home>";
             "<Ctrl-w>" = "fake-key <Ctrl-Backspace>";
-            "<Ctrl-u>" = "fake-key <Shift-Home>;; later 3 fake-key <Delete>";
+            "<Ctrl-u>" = "fake-key <Shift-Home>;; cmd-later 3 fake-key <Delete>";
           };
         };
         settings = {
