@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }: let
@@ -11,6 +12,8 @@ in
       != null
       && hyprland.enable) {
       home.packages = [pkgs.swww];
+
+      home.file."Pictures/wallpapers".source = inputs.wallpapers;
 
       systemd.user.services = {
         swww = {

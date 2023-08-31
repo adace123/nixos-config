@@ -1,11 +1,12 @@
 {
   pkgs,
+  config,
   inputs,
   ...
 }: {
   modules = {
     desktop = {
-      wallpaper = ../../assets/blue_circuit.png;
+      wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/scifi-background.jpg";
       lock.enable = true;
       idle.enable = true;
       waybar.enable = true;

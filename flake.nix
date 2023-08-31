@@ -7,6 +7,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wallpapers = {
+      url = "github:adace123/wallpapers";
+      flake = false;
+    };
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     fenix.url = "github:nix-community/fenix";
     nuenv.url = "github:DeterminateSystems/nuenv";

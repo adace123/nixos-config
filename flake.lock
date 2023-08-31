@@ -464,7 +464,8 @@
         "nixpkgs": "nixpkgs_6",
         "nuenv": "nuenv",
         "nur": "nur",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "wallpapers": "wallpapers"
       }
     },
     "rust-analyzer-src": {
@@ -552,6 +553,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693359828,
+        "narHash": "sha256-wG/fd62JhUtHktlnzJExlJTICIHpSRWDk6ix8/qWu6Q=",
+        "owner": "adace123",
+        "repo": "wallpapers",
+        "rev": "66502a8e77092a31dd78e0a8aa676027be60d0f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "adace123",
+        "repo": "wallpapers",
         "type": "github"
       }
     },

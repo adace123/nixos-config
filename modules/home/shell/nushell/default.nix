@@ -6,14 +6,17 @@
 }: let
   cfg = config.modules.shell.nushell;
   nu_script_path = "${pkgs.nu_scripts}/share/nu_scripts";
+  custom_scripts = builtins.map (x:
+    pkgs.nuenv.mkScript {
+      name = builtins.replaceStrings [".nu"] [""] (builtins.baseNameOf x);
+      script = builtins.readFile ./scripts/${x};
+    }) (builtins.attrNames (builtins.readDir ./scripts));
 in
   with lib; {
     options.modules.shell.nushell.enable = mkEnableOption "nushell";
 
-    imports = [./scripts];
-
     config = mkIf cfg.enable {
-      home.packages = with pkgs; [jc carapace direnv nix-direnv];
+      home.packages = with pkgs; [jc carapace direnv nix-direnv] ++ custom_scripts;
 
       home.file.".config/nushell" = {
         recursive = true;
@@ -41,6 +44,7 @@ in
           use ${pkgs.nu_scripts}/share/nu_scripts/modules/kubernetes/kubernetes.nu *
           use ${pkgs.nu_scripts}/share/nu_scripts/modules/data_extraction/ultimate_extractor.nu *
           use ${pkgs.nu_scripts}/share/nu_scripts/modules/network/ssh.nu *
+          use ${pkgs.nu_scripts}/share/nu_scripts/modules/nix/nix.nu *
 
           # themes
           use ${pkgs.nu_scripts}/share/nu_scripts/themes/themes/everforest.nu
