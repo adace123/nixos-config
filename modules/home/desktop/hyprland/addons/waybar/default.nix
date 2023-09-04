@@ -156,7 +156,7 @@ in
               on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
             };
             "custom/gpu" = {
-              format = ''{}% '';
+              format = ''{}% 󰢮'';
               exec = "${pkgs.coreutils}/bin/cat /sys/class/drm/card1/device/gpu_busy_percent";
               interval = 2;
             };
