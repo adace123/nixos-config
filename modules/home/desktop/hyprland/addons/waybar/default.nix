@@ -23,7 +23,6 @@ in
         style = builtins.readFile ./style.css;
         settings = {
           mainBar = {
-            height = 40;
             spacing = 4;
             "modules-left" = [
               "hyprland/workspaces"
@@ -32,11 +31,13 @@ in
               "clock"
               "hyprland/window"
               "hyprland/submap"
+              "custom/playerctl"
             ];
             "modules-right" = [
               "wireplumber"
               "cpu"
               "memory"
+              "custom/gpu"
               "network"
               "disk"
               "custom/power"
@@ -139,6 +140,25 @@ in
               tooltip = false;
               on-click = "${pkgs.wlogout}/bin/wlogout";
               format = "";
+            };
+            "custom/playerctl" = {
+              exec = ''
+                ${pkgs.playerctl}/bin/playerctl -i mpd metadata --format '{"text": "{{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F
+              '';
+              return-type = "json";
+              max-length = 30;
+              format = "{} {icon}";
+              format-icons = {
+                Playing = " ";
+                Paused = "  ";
+                Stopped = " ";
+              };
+              on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
+            };
+            "custom/gpu" = {
+              format = ''{}% '';
+              exec = "${pkgs.coreutils}/bin/cat /sys/class/drm/card1/device/gpu_busy_percent";
+              interval = 2;
             };
           };
         };

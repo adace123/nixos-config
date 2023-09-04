@@ -43,23 +43,24 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 2px 0px;
+    padding: 4px;
     margin-top: 10px;
     background-color: #3b4252;
-    color: #d8dee9;
+    border-radius: 5px;
+    color: #ffffff;
 }
 
 #workspaces button.focused,
 #workspaces button.active {
   background-color: #81a1c1;
-  color: #ffffff;
+  color: #000000;
 }
 
 #mode {
     color: #ebcb8b;
 }
 
-#clock, #battery, #cpu, #disk, #memory,#idle_inhibitor, #temperature, #custom-power, #backlight, #network, #wireplumber, #mode, #tray, #window, #submap {
+#custom-playerctl, #custom-gpu, #clock, #battery, #cpu, #disk, #memory, #idle_inhibitor, #temperature, #custom-power, #backlight, #network, #wireplumber, #mode, #tray, #window, #submap {
     padding: 0 3px;
     border-bottom: 2px;
     border-style: solid;
@@ -119,7 +120,7 @@ window#waybar {
     color:#bf616a;
 }
 
-#network{
+#network {
     color:#a3be8c;
 }
 
@@ -147,21 +148,22 @@ window#waybar {
    color: #ebcb8b;
 }
 
-#tray {
+#custom-playerctl {
+    color: #d08770;
 }
 
-#custom-launcher,#custom-power{
-    color: #bf616a;
+#custom-gpu {
+    color: #88c0d0;
 }
 
-#window{
+#window {
     color: #ebcb8b;
 }    
-#mode{
-    margin-bottom:3px;
+
+#custom-power {
+    color: #e63946;
 }
 
-#custom-keyboard-layout{
-   color:#d08770;
-}   
-
+#mode {
+    margin-bottom:3px;
+}
