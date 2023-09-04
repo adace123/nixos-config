@@ -26,7 +26,7 @@ in
             height = 40;
             spacing = 4;
             "modules-left" = [
-              "wlr/workspaces"
+              "hyprland/workspaces"
             ];
             "modules-center" = [
               "clock"
@@ -34,7 +34,6 @@ in
               "hyprland/submap"
             ];
             "modules-right" = [
-              "custom/rss"
               "wireplumber"
               "cpu"
               "memory"
@@ -42,7 +41,7 @@ in
               "disk"
               "custom/power"
             ];
-            "wlr/workspaces" = {
+            "hyprland/workspaces" = {
               format-icons = {
                 default = "";
               };
@@ -54,6 +53,9 @@ in
               on-scroll-up = "hyprctl dispatch workspace -1";
               on-scroll-down = "hyprctl dispatch workspace +1";
               sort-by-number = true;
+            };
+            "hyprland/window" = {
+              format = "{class}";
             };
             idle_inhibitor = {
               format = "{icon}";
