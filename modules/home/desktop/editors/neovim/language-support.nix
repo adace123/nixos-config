@@ -49,6 +49,7 @@
       name = "yamlls";
       command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
       type = "lsp";
+      cmdArgs = ["--stdio"];
     }
     {
       name = "taplo";
@@ -72,6 +73,7 @@
       name = "yamlfmt";
       command = "${pkgs.yamlfmt}/bin/yamlfmt";
       type = "formatting";
+      cmdArgs = ["-"];
     }
   ];
 
@@ -80,11 +82,13 @@
       name = "selene";
       command = "${pkgs.selene}/bin/selene";
       type = "diagnostics";
+      cmdArgs = ["--display-style" "quiet" "-"];
     }
     {
       name = "yamllint";
       command = "${pkgs.yamllint}/bin/yamllint";
       type = "diagnostics";
+      cmdArgs = ["--format" "parsable" "-"];
     }
   ];
 
