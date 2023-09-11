@@ -2,7 +2,7 @@ name: update-flake-lock
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 0 * * *' # runs daily at 00:00
+    - cron: '0 0 * * 0' # runs every Sunday at 00:00
 jobs:
   lockfile:
     runs-on: ubuntu-latest
@@ -14,6 +14,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@v4
       - uses: DeterminateSystems/magic-nix-cache-action@v2
       - name: Update flake.lock
+        id: update-flake-lock
         uses: DeterminateSystems/update-flake-lock@v20
         with:
           token: ${{ secrets.NIX_FLAKE_UPDATE_TOKEN }}
@@ -22,3 +23,7 @@ jobs:
             dependencies
             automated
             nix
+          git-author-name: "github-actions[bot]"
+          git-author-email: "github-actions[bot]@users.noreply.github.com"
+          git-committer-name: "github-actions[bot]"
+          git-committer-email: "github-actions[bot]@users.noreply.github.com"
