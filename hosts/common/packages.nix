@@ -3,7 +3,7 @@
     bat
     bottom
     curl
-    exa
+    eza
     fd
     fzf
     git

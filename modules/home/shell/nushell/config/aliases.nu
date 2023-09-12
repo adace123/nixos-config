@@ -1,5 +1,6 @@
 alias bt = bluetoothctl
 alias cat = bat
+alias exa = eza --icons
 alias ga = git add
 alias gc = git commit
 alias gcm = git commit -m

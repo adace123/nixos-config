@@ -7,7 +7,7 @@
   cfg = config.modules.shell.nushell;
   nu_script_path = "${pkgs.nu_scripts}/share/nu_scripts";
   custom_scripts = builtins.map (x:
-    pkgs.nuenv.mkScript {
+    pkgs.nuenv.writeScriptBin {
       name = builtins.replaceStrings [".nu"] [""] (builtins.baseNameOf x);
       script = builtins.readFile ./scripts/${x};
     }) (builtins.attrNames (builtins.readDir ./scripts));
