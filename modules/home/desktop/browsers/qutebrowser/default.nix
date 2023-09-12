@@ -10,6 +10,13 @@ in
     options.modules.desktop.browsers.qutebrowser.enable = mkEnableOption "qutebrowser";
     config = mkIf cfg.enable {
       home.packages = [pkgs.python311Packages.adblock];
+      xdg.mimeApps.defaultApplications = {
+        "text/html" = "org.qutebrowser.qutebrowser.desktop";
+        "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
+        "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
+        "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
+        "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
+      };
       xdg.configFile."qutebrowser/greasemonkey/youtube-sponsorblock.js".source =
         pkgs.fetchurl
         {

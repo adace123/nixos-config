@@ -8,6 +8,10 @@ in
   with lib; {
     options.modules.desktop.pdf.enable = mkEnableOption "zathura";
     config = mkIf cfg.enable {
+      xdg.mimeApps = {
+        defaultApplications."application/pdf" = ["org.pwmt.zathura.desktop"];
+      };
+
       programs.zathura = {
         enable = true;
         options = with config.colorScheme.colors; {
