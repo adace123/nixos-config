@@ -41,7 +41,7 @@
       gaps_in = 8
       gaps_out = 10
       border_size = 3
-      col.active_border=0xff${config.colorScheme.colors.base0C}
+      col.active_border=0xff9b5de5
       col.inactive_border=0xff${config.colorScheme.colors.base02}
       col.group_border_active=0xff${config.colorScheme.colors.base0B}
       col.group_border=0xff${config.colorScheme.colors.base04}
@@ -123,6 +123,7 @@
         "${mod}, p, exec, playerctl play-pause"
         "${mod} SHIFT, v, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         "${mod}, v, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        "${mod}, m, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ];
 
       workspace = let
