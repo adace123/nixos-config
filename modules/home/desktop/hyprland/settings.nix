@@ -68,6 +68,7 @@ in {
       exec-once = [
         "${TERMINAL}"
         "hyprctl setcursor Bibata-Modern-Classic 24"
+        "${TERMINAL} --class scratchpad"
       ];
 
       bind = let
@@ -158,7 +159,7 @@ in {
       windowrulev2 = [
         "opacity 1.0 override 1.0 override,class:^(firefox)$"
         "opacity 1.0 override 1.0 override,class:^(qutebrowser)$"
-        "workspace special silent, title:^(scratchpad)$"
+        "workspace special silent, class:^(scratchpad)$"
       ];
     };
     extraConfig = let
