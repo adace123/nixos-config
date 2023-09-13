@@ -10,9 +10,6 @@ in
   with lib; {
     options.modules.desktop.browsers.firefox.enable = mkEnableOption "Firefox browser";
     config = mkIf cfg.enable {
-      # home.file.".mozilla/firefox/default/chrome".source = "${inputs.amadeus-dotfiles-hyprland}/dots/firefox/chrome";
-      home.file.".mozille/firefox/default/night-tab".source = "${inputs.amadeus-dotfiles-hyprland}/dots/firefox/night-tab";
-      home.file.".mozille/firefox/default/treestyletab".source = "${inputs.amadeus-dotfiles-hyprland}/dots/firefox/treestyletab";
       home.file.".config/tridactyl/tridactylrc".source = ./tridactyl/tridactylrc;
       home.file.".config/tridactyl/themes/catppuccin.css".source = ./tridactyl/themes/catppuccin.css;
 
