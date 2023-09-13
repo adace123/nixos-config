@@ -12,7 +12,6 @@
       imports = with inputs; [
         ../../modules/home
         ../${config.networking.hostName}/home.nix
-        hyprland.homeManagerModules.default
         nix-colors.homeManagerModules.default
       ];
     };

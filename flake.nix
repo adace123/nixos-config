@@ -11,20 +11,17 @@
       url = "github:adace123/wallpapers";
       flake = false;
     };
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
-    fenix.url = "github:nix-community/fenix";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nuenv.url = "github:DeterminateSystems/nuenv";
     sops-nix.url = "github:Mic92/sops-nix";
-    hyprland.url = "github:hyprwm/Hyprland";
     hyprkeys.url = "github:hyprland-community/Hyprkeys";
     hyprland-contrib.url = "github:hyprwm/contrib";
     nix-std.url = "github:chessai/nix-std";
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
-    amadeus-dotfiles-hyprland = {
-      url = "github:AmadeusWM/dotfiles-hyprland";
-      flake = false;
-    };
     astronvim = {
       url = "github:AstroNvim/AstroNvim";
       flake = false;
@@ -43,7 +40,6 @@
       nuenv.overlays.nuenv
       nur.overlay
       outputs.overlays.default
-      fenix.overlays.default
       hyprland-contrib.overlays.default
     ];
 

@@ -12,7 +12,7 @@ in
   with lib; {
     options.modules.desktop.hyprland.enable = mkEnableOption "Enable Hyprland";
     imports = [
-      ./config.nix
+      ./settings.nix
       ./addons
     ];
 
