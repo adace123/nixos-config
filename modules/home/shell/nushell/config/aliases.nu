@@ -27,4 +27,4 @@ alias sc = systemctl
 alias tree = exa -T --icons
 alias ts = tailscale
 alias v = nvim
-alias x = xplr
+alias y = yazi
