@@ -67,7 +67,7 @@ in {
 
       exec-once = [
         "${TERMINAL}"
-        "hyprctl setcursor Bibata-Modern-Classic 24"
+        "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"
         "${TERMINAL} --class scratchpad"
         "${BROWSER}"
       ];
