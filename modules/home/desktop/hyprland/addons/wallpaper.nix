@@ -15,35 +15,8 @@ in
 
       home.file."Pictures/wallpapers".source = inputs.wallpapers;
 
-      systemd.user.services = {
-        swww = {
-          Unit = {
-            Description = "Swww wallpaper";
-            After = ["hyprland-session.target"];
-          };
-          Service = {
-            ExecStart = "${pkgs.swww}/bin/swww-daemon";
-            ExecStop = "${pkgs.swww}/bin/swww kill";
-            Restart = "on-failure";
-            Type = "simple";
-          };
-          Install.WantedBy = ["hyprland-session.target"];
-        };
-
-        set_wallpaper = {
-          Unit = {
-            Description = "Set default wallpaper";
-            Requires = ["swww.service"];
-            After = ["swww.service"];
-            PartOf = ["swww.service"];
-          };
-          Install.WantedBy = ["swww.service"];
-          Service = {
-            ExecStart = "${pkgs.swww}/bin/swww img ${wallpaper}";
-            Restart = "on-failure";
-            Type = "oneshot";
-          };
-        };
-      };
+      wayland.windowManager.hyprland.settings.exec-once = [
+        "${pkgs.swww}/bin/swww init; sleep 1; ${pkgs.swww}/bin/swww img ${wallpaper}"
+      ];
     };
   }

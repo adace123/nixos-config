@@ -11,15 +11,12 @@ in
 
     config = mkIf cfg.enable {
       programs.wlogout.enable = true;
+      wayland.windowManager.hyprland.settings.exec-once = ["${pkgs.waybar}/bin/waybar"];
       programs.waybar = {
         enable = true;
         package = pkgs.waybar.overrideAttrs (oa: {
           mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
         });
-        systemd = {
-          enable = true;
-          target = "hyprland-session.target";
-        };
         style = builtins.readFile ./style.css;
         settings = {
           mainBar = {
