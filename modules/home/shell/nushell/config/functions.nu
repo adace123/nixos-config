@@ -18,6 +18,10 @@ def rebuild [--verbose (-v)] {
   }
 }
 
+def hyprlogs [] {
+  tail -f $"/tmp/hypr/($env.HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log"
+}
+
 def nix-diff [] {
   nixos-rebuild build --flake $"($env.DOTFILES_DIR)#(hostname)"
   nvd diff /run/current-system $"($env.DOTFILES_DIR)/result"
