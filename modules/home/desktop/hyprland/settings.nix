@@ -69,6 +69,7 @@ in {
         "${TERMINAL}"
         "hyprctl setcursor Bibata-Modern-Classic 24"
         "${TERMINAL} --class scratchpad"
+        "${BROWSER}"
       ];
 
       bind = let
