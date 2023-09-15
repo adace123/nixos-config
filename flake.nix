@@ -26,6 +26,10 @@
       url = "github:AstroNvim/AstroNvim";
       flake = false;
     };
+    pre-commit = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -49,6 +53,16 @@
     packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
     overlays = import ./overlays {inherit inputs;};
     devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs;});
+    checks = forEachPkgs (pkgs: {
+      pre-commit-check = inputs.pre-commit.lib.${pkgs.system}.run {
+        src = ./.;
+        hooks = {
+          alejandra.enable = true;
+          stylua.enable = true;
+          lua-ls.enable = true;
+        };
+      };
+    });
     nixosConfigurations = import ./hosts {inherit overlays inputs outputs nixpkgs;};
   };
 }
