@@ -11,9 +11,5 @@
       sops
       ssh-to-age
     ];
-
-    # shellHook = ''
-    #   exec ${pkgs.nushell}/bin/nu
-    # '';
   };
 }
