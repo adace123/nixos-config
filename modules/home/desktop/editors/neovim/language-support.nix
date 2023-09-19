@@ -90,6 +90,12 @@
       type = "diagnostics";
       cmdArgs = ["--format" "parsable" "-"];
     }
+    {
+      name = "deadnix";
+      command = "${pkgs.deadnix}/bin/deadnix";
+      type = "diagnostics";
+      cmdArgs = ["--output-format=json" "$FILENAME"];
+    }
   ];
 
   defaultSources = defaultLsps ++ defaultFormatters ++ defaultDiagnostics;

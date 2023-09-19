@@ -35,7 +35,6 @@
   outputs = {
     self,
     nixpkgs,
-    disko,
     nuenv,
     ...
   } @ inputs: let
@@ -47,19 +46,19 @@
       hyprland-contrib.overlays.default
     ];
 
-    forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux" "x86_64-darwin"];
+    forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux"];
     forEachPkgs = f: forEachSystem (system: f (import nixpkgs {inherit system overlays;}));
   in {
     packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
     overlays = import ./overlays {inherit inputs;};
-    devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs;});
+    devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs self;});
     checks = forEachPkgs (pkgs: {
       pre-commit-check = inputs.pre-commit.lib.${pkgs.system}.run {
         src = ./.;
         hooks = {
           alejandra.enable = true;
-          stylua.enable = true;
-          lua-ls.enable = true;
+          deadnix.enable = true;
+          nil.enable = true;
         };
       };
     });

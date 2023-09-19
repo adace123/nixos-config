@@ -31,7 +31,7 @@ _: {
     overlays = [
       (
         _: prev: {
-          zig = prev.zig.overrideAttrs (old: {version = "0.11.0";});
+          zig = prev.zig.overrideAttrs (_: {version = "0.11.0";});
         }
       )
     ];

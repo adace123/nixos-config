@@ -16,7 +16,7 @@ in
     options.modules.shell.nushell.enable = mkEnableOption "nushell";
 
     config = mkIf cfg.enable {
-      home.packages = with pkgs; [jc carapace direnv nix-direnv] ++ custom_scripts;
+      home.packages = with pkgs; [jc carapace] ++ custom_scripts;
 
       home.file.".config/nushell" = {
         recursive = true;
@@ -32,22 +32,22 @@ in
         configFile.source = ./config/main.nu;
         extraConfig = ''
           # completions
-          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/btm/btm-completions.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/cargo/cargo-completions.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/tealdeer/tldr-completions.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/zellij/zellij-completions.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
+          use ${nu_script_path}/custom-completions/git/git-completions.nu *
+          use ${nu_script_path}/custom-completions/btm/btm-completions.nu *
+          use ${nu_script_path}/custom-completions/cargo/cargo-completions.nu *
+          use ${nu_script_path}/custom-completions/nix/nix-completions.nu *
+          use ${nu_script_path}/custom-completions/tealdeer/tldr-completions.nu *
+          use ${nu_script_path}/custom-completions/zellij/zellij-completions.nu *
+          use ${nu_script_path}/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
 
           # modules
-          use ${pkgs.nu_scripts}/share/nu_scripts/modules/kubernetes/kubernetes.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/modules/data_extraction/ultimate_extractor.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/modules/network/ssh.nu *
-          use ${pkgs.nu_scripts}/share/nu_scripts/modules/nix/nix.nu *
+          use ${nu_script_path}/modules/kubernetes/kubernetes.nu *
+          use ${nu_script_path}/modules/data_extraction/ultimate_extractor.nu *
+          use ${nu_script_path}/modules/network/ssh.nu *
+          use ${nu_script_path}/modules/nix/nix.nu *
 
           # themes
-          use ${pkgs.nu_scripts}/share/nu_scripts/themes/themes/everforest.nu
+          use ${nu_script_path}/themes/themes/everforest.nu
 
           $env.config = ($env.config | merge {color_config: (everforest)})
         '';

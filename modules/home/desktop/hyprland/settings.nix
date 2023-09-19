@@ -1,11 +1,10 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: let
   inherit (config.modules.desktop) monitor;
-  inherit (config.home.sessionVariables) TERMINAL BROWSER EDITOR;
+  inherit (config.home.sessionVariables) TERMINAL BROWSER;
   mod = "SUPER";
   genSubmap = name: binds: let
     bindType =

@@ -1,5 +1,9 @@
-{pkgs}: {
+{
+  self,
+  pkgs,
+}: {
   default = pkgs.mkShell {
+    inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
     nativeBuildInputs = with pkgs; [
       alejandra
       pulumi
@@ -8,8 +12,8 @@
       ssh-to-age
     ];
 
-    shellHook = ''
-      exec ${pkgs.nushell}/bin/nu
-    '';
+    # shellHook = ''
+    #   exec ${pkgs.nushell}/bin/nu
+    # '';
   };
 }

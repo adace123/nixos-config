@@ -1,12 +1,5 @@
-{
-  stdenv,
-  fetchFromGitHub,
-  inputs,
-  pkgs,
-  ...
-}: let
+{stdenv, ...}: let
   addonId = "{5b78178f-135d-4df2-821f-1f289be7f348}";
-  inherit ((import inputs.nur).repos.rycee.firefox-addons) buildFirefoxXpiAddon;
 in
   stdenv.mkDerivation {
     name = "catppuccin-mocha";

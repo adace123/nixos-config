@@ -6,7 +6,7 @@
       inherit inputs;
     };
 
-  modifications = final: prev: {
+  modifications = _: prev: {
     nushell = prev.nushell.override {additionalFeatures = p: p ++ ["dataframe"];};
   };
 in {

@@ -2,8 +2,6 @@
   inputs,
   config,
   lib,
-  pkgs,
-  options,
   ...
 }:
 with lib; let

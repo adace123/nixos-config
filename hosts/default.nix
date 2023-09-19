@@ -1,7 +1,6 @@
 {
   nixpkgs,
   inputs,
-  outputs,
   overlays,
   system ? "x86_64-linux",
   ...

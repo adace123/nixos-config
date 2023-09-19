@@ -2,8 +2,6 @@
   config,
   lib,
   pkgs,
-  host,
-  inputs,
   osConfig,
   ...
 }: let
