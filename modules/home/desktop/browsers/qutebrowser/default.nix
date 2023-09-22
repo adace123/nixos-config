@@ -151,6 +151,7 @@ in
           google = "https://google.com";
           hackernews = "https://news.ycombinator.com";
           lobsters = "https://lobste.rs";
+          reddit = "https://reddit.com";
           notion = "https://notion.so";
           nixpkgs = "https://search.nixos.org";
           protonmail = "https://mail.proton.me/u/0/inbox";
