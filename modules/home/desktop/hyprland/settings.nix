@@ -84,7 +84,7 @@ in {
           "${mod} SHIFT, i, exec, systemd-toggle swayidle --user"
           "${mod} SHIFT, w, exec, makoctl dismiss"
           "${mod}, SPACE, exec, rofi -show drun"
-          "${mod}, d, exec, webcord"
+          "${mod}, d, exec, discord"
           "${mod}, c, exec, ${TERMINAL} -e cava"
           "SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast --notify copy screen"
           ", Print, exec, ${pkgs.grimblast}/bin/grimblast --notify copy area"
