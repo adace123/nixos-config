@@ -11,11 +11,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v4
-      - uses: DeterminateSystems/magic-nix-cache-action@v2
+        uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Update flake.lock
         id: update-flake-lock
-        uses: DeterminateSystems/update-flake-lock@v20
+        uses: DeterminateSystems/update-flake-lock@main
         with:
           token: ${{ secrets.NIX_FLAKE_UPDATE_TOKEN }}
           pr-title: "Update flake.lock"
@@ -23,7 +23,7 @@ jobs:
             dependencies
             automated
             nix
-          git-author-name: "github-actions[bot]"
+          git-author-name: "Nix flake updater"
           git-author-email: "github-actions[bot]@users.noreply.github.com"
-          git-committer-name: "github-actions[bot]"
+          git-committer-name: "Nix flake updater"
           git-committer-email: "github-actions[bot]@users.noreply.github.com"
