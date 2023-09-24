@@ -53,7 +53,8 @@
     }
     {
       name = "taplo";
-      command = "${pkgs.taplo-lsp}/bin/taplo-lsp";
+      command = "${pkgs.taplo-lsp}/bin/taplo";
+      cmdArgs = ["lsp" "stdio"];
       type = "lsp";
     }
   ];
