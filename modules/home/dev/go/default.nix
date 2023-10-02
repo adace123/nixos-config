@@ -10,7 +10,7 @@ in
   with lib; {
     options.modules.dev.go.enable = mkEnableOption "go";
     config = mkIf cfg.enable {
-      home.packages = [pkgs.go];
+      home.packages = [pkgs.go pkgs.gotools];
 
       modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
         {
@@ -20,12 +20,13 @@ in
         }
         {
           name = "gofmt";
-          command = "${pkgs.gotools}/bin/gotools";
+          command = "${pkgs.go}/bin/go";
+          cmdArgs = ["fmt"];
           type = "formatting";
         }
         {
           name = "goimports";
-          command = "${pkgs.gotools}/bin/gotools";
+          command = "${pkgs.gotools}/bin/goimports";
           cmdArgs = ["--srcdir" "$DIRNAME"];
           type = "formatting";
         }
