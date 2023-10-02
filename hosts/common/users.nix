@@ -33,7 +33,7 @@ in {
       users.${cfg.name} = mkMerge [
         {
           isNormalUser = true;
-          passwordFile = config.sops.secrets.password.path;
+          hashedPasswordFile = config.sops.secrets.password.path;
           openssh.authorizedKeys.keys = cfg.sshKeys;
         }
         (mkIf cfg.sudo {
