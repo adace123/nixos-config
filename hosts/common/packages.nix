@@ -14,6 +14,7 @@
     lsof
     nushell
     openssl
+    pkg-config
     python311Packages.invoke
     ripgrep
     sops
@@ -22,5 +23,6 @@
     vim
     unzip
     yq
+    tailspin
   ];
 }
