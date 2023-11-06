@@ -18,6 +18,7 @@
     boot.device = "/dev/sda";
     virtualisation = {
       podman.enable = true;
+      qemu.enable = true;
     };
     monitoring = {
       tools.enable = true;

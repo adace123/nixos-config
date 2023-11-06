@@ -7,7 +7,6 @@
   modules = {
     desktop = {
       wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/scifi-background.jpg";
-      lock.enable = true;
       idle.enable = true;
       waybar.enable = true;
       hyprland.enable = true;
@@ -36,6 +35,7 @@
     editors = {
       helix.enable = true;
       neovim.enable = true;
+      vscode.enable = true;
     };
     feeds = {
       enable = true;
@@ -59,7 +59,7 @@
 
   home.sessionVariables = {
     TERMINAL = "alacritty";
-    BROWSER = "qutebrowser";
+    BROWSER = "firefox";
   };
 
   home.pointerCursor = {
