@@ -1,6 +1,6 @@
 use std
 
-def main [service: string --user: bool] {
+def main [service: string --user] {
   let flag = if $user { "--user" } else { "" }
   let is_active = (systemctl $flag is-active $service)
 

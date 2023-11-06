@@ -30,6 +30,10 @@ $env.config = {
     clickable_links: true
   }
 
+  cursor_shape: {
+    vi_insert: block
+  }
+
   completions: {
     case_sensitive: false
     quick: true  # set this to false to prevent auto-selecting completions when only one remains
@@ -70,11 +74,11 @@ $env.config = {
       } | transpose -ird | load-env
     }]
     pre_execution: [{
-      $nothing  # replace with source code to run before the repl input is run
+      null # replace with source code to run before the repl input is run
     }]
     env_change: {
       PWD: [{|before, after|
-        $nothing  # replace with source code to run if the PWD environment is different since the last repl input
+        null  # replace with source code to run if the PWD environment is different since the last repl input
       }]
     }
   }

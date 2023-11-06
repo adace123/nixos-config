@@ -6,7 +6,6 @@
   ...
 }: let
   cfg = config.modules.dev.rust;
-  nvim_cfg = config.modules.editors.neovim;
 in
   with lib; {
     options.modules.dev.rust.enable = mkEnableOption "Rust";
@@ -31,25 +30,6 @@ in
         registries.crates-io = {
           protocol = "sparse";
         };
-      };
-
-      modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
-        {
-          name = "rust_analyzer";
-          command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-          type = "lsp";
-        }
-        {
-          name = "rustfmt";
-          command = "${pkgs.rustfmt}/bin/rustfmt";
-          cmdArgs = ["--emit=stdout"];
-          type = "formatting";
-        }
-      ];
-
-      programs.neovim = mkIf nvim_cfg.enable {
-        extraPackages = with pkgs; [rust-analyzer];
-        plugins = with pkgs.vimPlugins; [(nvim-treesitter.withPlugins (p: [p.rust]))];
       };
     };
   }

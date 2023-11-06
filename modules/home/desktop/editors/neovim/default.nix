@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -8,29 +7,40 @@
   cfg = config.modules.editors.neovim;
 in
   with lib; {
-    imports = [./language-support.nix];
+    imports = [./config ./plugins];
 
     options.modules.editors.neovim.enable = mkEnableOption "neovim";
 
     config = mkIf cfg.enable {
       home.sessionVariables.EDITOR = "nvim";
       programs.nushell.extraConfig = ''$env.EDITOR = "nvim"'';
-      programs.neovim = {
+
+      programs.nixvim = {
         enable = true;
-        defaultEditor = true;
-      };
-
-      home.file.".config/nvim".source = inputs.astronvim;
-
-      home.file.".config/astronvim/lua/user" = {
-        source = ./config;
-        recursive = true;
+        colorschemes.kanagawa.enable = true;
+        clipboard.providers = {
+          wl-copy.enable = true;
+          xclip.enable = true;
+        };
       };
 
       home.packages = with pkgs; [
         zig # Treesitter compiler
         tree-sitter
         nodejs
+
+        # language-servers
+        nixd
+        lua-language-server
+        rust-analyzer
+        pyright
+        ruff
+        ruff-lsp
+
+        # formatters
+        alejandra
+        stylua
+        yamlfmt
       ];
     };
   }

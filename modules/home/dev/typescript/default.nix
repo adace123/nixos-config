@@ -5,7 +5,6 @@
   ...
 }: let
   cfg = config.modules.dev.typescript;
-  nvim_cfg = config.modules.editors.neovim;
 in
   with lib; {
     options.modules.dev.typescript.enable = mkEnableOption "Typescript";
@@ -13,26 +12,6 @@ in
       home.packages = with pkgs; [
         bun
         typescript
-      ];
-
-      modules.editors.neovim.languageSupport = mkIf nvim_cfg.enable [
-        {
-          name = "tsserver";
-          command = "${getExe pkgs.nodePackages.typescript-language-server}";
-          cmdArgs = ["--stdio"];
-          type = "lsp";
-        }
-        {
-          name = "prettier";
-          command = "${pkgs.prettierd}/bin/prettierd";
-          type = "formatting";
-        }
-        {
-          name = "eslint_d";
-          command = "${pkgs.eslint_d}/bin/eslint_d";
-          cmdArgs = ["-f" "json" "--stdin" "--stdin-filename" "$FILENAME"];
-          type = "formatting";
-        }
       ];
 
       home.file.".eslintrc".text = builtins.toJSON {
