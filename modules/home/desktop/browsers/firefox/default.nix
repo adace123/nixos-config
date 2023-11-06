@@ -21,8 +21,8 @@ in
             else pkgs.firefox
           )
           .override {
+            nativeMessagingHosts = [pkgs.tridactyl-native];
             cfg = {
-              enableTridactylNative = true;
               browser.pipewireSupport = true;
             };
           };
