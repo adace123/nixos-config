@@ -31,8 +31,6 @@ in
 
       services.dbus.enable = true;
 
-      security.pam.services.gtklock.text = ''
-        auth include login
-      '';
+      security.pam.services.swaylock = {};
     };
   }
