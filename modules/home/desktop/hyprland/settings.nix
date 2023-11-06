@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   pkgs,
   ...
@@ -30,8 +31,6 @@ in {
         border_size = 3;
         "col.active_border" = "0xff9b5de5";
         "col.inactive_border" = "0xff${config.colorScheme.colors.base02}";
-        "col.group_border_active" = "0xff${config.colorScheme.colors.base0B}";
-        "col.group_border" = "0xff${config.colorScheme.colors.base04}";
       };
 
       decoration = {
@@ -82,7 +81,8 @@ in {
           "${mod}, b, exec, ${BROWSER}"
           "${mod}, Return, exec, ${TERMINAL}"
           "${mod} SHIFT, i, exec, systemd-toggle swayidle --user"
-          "${mod} SHIFT, w, exec, makoctl dismiss"
+          "${mod} SHIFT, n, exec, rebuild"
+          "${mod} SHIFT, w, exec, makoctl dismiss -a"
           "${mod}, SPACE, exec, rofi -show drun"
           "${mod}, d, exec, discord"
           "${mod}, c, exec, ${TERMINAL} -e cava"
@@ -179,7 +179,7 @@ in {
           ", r, execr, systemctl reboot"
           ", p, execr, systemctl poweroff -i"
           ", s, execr, systemctl suspend"
-          ", l, exec, gtklock"
+          ", l, exec, hyprctl dispatch submap reset && swaylock"
         ];
       };
       submaps = with modes;
@@ -188,6 +188,7 @@ in {
           (genSubmap "system" system)
         ];
     in ''
+      env = DOTFILES_DIR,/home/${osConfig.user.name}/nixos-config
       ${submaps}
     '';
   };
