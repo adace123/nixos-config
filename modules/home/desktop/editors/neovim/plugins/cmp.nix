@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
     options.completeopt = "menu,menuone,noselect";
     plugins = {
@@ -115,5 +115,6 @@
           sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
       })
     '';
+    extraPlugins = [pkgs.vimPlugins.friendly-snippets];
   };
 }

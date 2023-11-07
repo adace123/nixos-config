@@ -6,7 +6,6 @@
         lsp.autoAttach = true;
       };
       navic.enable = true;
-      bufferline.diagnostics = "nvim_lsp";
       fidget.enable = true;
       lsp = {
         enable = true;

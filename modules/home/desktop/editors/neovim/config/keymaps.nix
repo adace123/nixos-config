@@ -37,24 +37,6 @@
       mode = ["n"];
     }
     {
-      key = "<S-l>";
-      action = ":bnext<CR>";
-      options.desc = "Next buffer";
-      mode = ["n"];
-    }
-    {
-      key = "<S-h>";
-      action = ":bprevious<CR>";
-      options.desc = "Prev buffer";
-      mode = ["n"];
-    }
-    {
-      key = "<S-x>";
-      action = ":bdelete!<CR>";
-      options.desc = "Close buffer";
-      mode = ["n"];
-    }
-    {
       key = "<leader>/";
       action = ''
         function()
@@ -242,16 +224,28 @@
       mode = ["n"];
     }
     {
-      mode = "v";
       key = "J";
       action = ":m '>+1<cr>gv=gv";
       options.desc = "move selection down";
+      mode = "v";
     }
     {
-      mode = "v";
       key = "K";
       action = ":m '<-2<CR>gv=gv";
       options.desc = "move selection up";
+      mode = "v";
+    }
+    {
+      key = "W";
+      action = ":noautocmd w<CR>";
+      options.desc = "Write without formatting";
+      mode = ["n"];
+    }
+    {
+      key = "<leader>R";
+      action = ":Spectre<CR>";
+      options.desc = "Spectre";
+      mode = ["n"];
     }
   ];
 }

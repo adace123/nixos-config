@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./lsp.nix ./treesitter.nix ./telescope.nix ./file-explorer.nix ./git.nix ./cmp.nix ./indent-blankline.nix ./lualine.nix ./none-ls.nix ./startup.nix ./lspsaga.nix];
+  imports = [./lsp.nix ./treesitter.nix ./telescope.nix ./file-explorer.nix ./git.nix ./cmp.nix ./indent-blankline.nix ./lualine.nix ./none-ls.nix ./startup.nix ./lspsaga.nix ./barbar.nix];
 
   programs.nixvim = {
     plugins = {
@@ -25,7 +25,6 @@
         enable = true;
         checkTs = true;
       };
-      bufferline.enable = true;
       nvim-colorizer.enable = true;
       illuminate.enable = true;
       nix.enable = true;
@@ -40,6 +39,8 @@
     extraPlugins = with pkgs.vimPlugins; [
       overseer-nvim
       plenary-nvim
+      nvim-web-devicons
+      nvim-spectre
     ];
   };
 }

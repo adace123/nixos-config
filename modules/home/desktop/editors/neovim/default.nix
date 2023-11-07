@@ -17,7 +17,6 @@ in
 
       programs.nixvim = {
         enable = true;
-        colorschemes.kanagawa.enable = true;
         clipboard.providers = {
           wl-copy.enable = true;
           xclip.enable = true;
