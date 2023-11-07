@@ -37,6 +37,18 @@
         options.desc = "Pick buffer to close";
         mode = ["n"];
       }
+      {
+        key = "<TAB>";
+        action = "<cmd>BufferNext<CR>";
+        options.desc = "Next buffer";
+        mode = ["n"];
+      }
+      {
+        key = "<S-TAB>";
+        action = "<cmd>BufferPrevious<CR>";
+        options.desc = "Previous buffer";
+        mode = ["n"];
+      }
     ];
   };
 }
