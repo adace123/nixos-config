@@ -43,11 +43,15 @@
           zig
           markdown
           markdown_inline
+          kdl
+          norg
         ];
       };
     };
     extraPlugins = with pkgs.vimPlugins; [
       nvim-treesitter-textobjects
+      # TODO: remove this once nu works in grammarPackages
+      (nvim-treesitter.withPlugins (p: [p.tree-sitter-nu]))
     ];
 
     extraConfigLua = ''

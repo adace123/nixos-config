@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
     plugins = {
       navbuddy = {
@@ -77,7 +77,11 @@
         mode = ["n"];
       }
     ];
+    extraPlugins = [pkgs.vimPlugins.nvim-nu];
     extraConfigLua = ''
+      -- set up nvim-nu
+      require("nu").setup()
+
       -- show diagnostics when InsertLeave
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "go", "rust", "nix", "haskell" },
