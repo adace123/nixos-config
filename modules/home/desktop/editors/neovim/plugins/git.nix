@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
     plugins = {
       gitsigns.enable = true;
@@ -6,6 +6,7 @@
         "<leader>g" = "+git";
       };
     };
+    extraPlugins = [pkgs.vimPlugins.lazygit-nvim];
     keymaps = [
       {
         key = "<leader>gr";
@@ -23,6 +24,12 @@
         key = "<leader>gs";
         action = "<cmd>Gitsigns stage_hunk<CR>";
         options.desc = "Stage hunk";
+        mode = ["n"];
+      }
+      {
+        key = "<leader>gg";
+        action = "<cmd>LazyGit<CR>";
+        options.desc = "LazyGit";
         mode = ["n"];
       }
       {
