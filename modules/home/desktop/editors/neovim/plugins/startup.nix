@@ -1,8 +1,26 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
+    extraPlugins = [pkgs.vimPlugins.persistence-nvim];
+    autoCmd = [
+      {
+        event = "BufReadPre";
+        command = ":lua require('persistence').save()";
+      }
+    ];
+    userCommands = {
+      SessionRestore = {
+        nargs = "*";
+        command = ":lua require('persistence').load()";
+      };
+      LastSessionRestore = {
+        nargs = "*";
+        command = ":lua require('persistence').load({ last = true })";
+      };
+    };
+    extraConfigLua = "require('persistence').setup()";
     plugins = {
       auto-session = {
-        enable = true;
+        enable = false;
         autoSave.enabled = true;
       };
 
@@ -41,17 +59,17 @@
                 shortcut = "e";
               }
               {
-                command = "<CMD>:lua require('auto-session.session-lens').search_session()<CR>";
-                desc = "  Find Session";
-                shortcut = "<leader>sS";
-              }
-              {
                 command = "<CMD>:SessionRestore<CR>";
-                desc = "󰦛 Restore Last Session";
+                desc = "󰦛 Restore Session";
                 shortcut = "<leader>sr";
               }
               {
-                command = "<CMD>:Telescope git_files<CR>";
+                command = "<CMD>:LastSessionRestore<CR>";
+                desc = "󰦛 Restore Last Session";
+                shortcut = "<leader>sR";
+              }
+              {
+                command = "<CMD>:Telescope oldfiles<CR>";
                 desc = "󰱽 Find File";
                 shortcut = "<C-p>";
               }
@@ -61,8 +79,8 @@
                 shortcut = "<leader>fg";
               }
               {
-                command = "<CMD>:Neogit<CR>";
-                desc = " Neogit";
+                command = "<CMD>:LazyGit<CR>";
+                desc = " LazyGit";
                 shortcut = "<leader>gg";
               }
               {
