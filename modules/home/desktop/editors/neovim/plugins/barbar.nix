@@ -5,6 +5,11 @@
       animation = true;
       clickable = true;
       semanticLetters = true;
+      sidebarFiletypes = {
+        neo-tree = {
+          event = "BufWipeout";
+        };
+      };
     };
     keymaps = [
       {
