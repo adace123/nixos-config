@@ -40,6 +40,8 @@ in
             "tt" = "set tabs.show never";
             "tT" = "set tabs.show always";
             "gu" = "hint inputs --first;; cmd-later 3 fake-key <Shift-Home>;; cmd-later 3 fake-key <Delete>";
+            "<Ctrl-Shift-i>" = "devtools";
+            "<Ctrl-p>" = "print";
           };
           insert = {
             "<Ctrl-b>" = "fake-key <Left>";
@@ -58,7 +60,7 @@ in
           url.start_pages = "https://google.com";
           url.default_page = "https://google.com";
           downloads.location.directory = "~/Downloads";
-          confirm_quit = ["multiple-tabs"];
+          confirm_quit = ["multiple-tabs" "downloads"];
           auto_save.session = true;
           content = {
             autoplay = false;
@@ -106,7 +108,6 @@ in
             };
           };
           tabs = {
-            show = "never";
             background = true;
             position = "left";
             width = "10%";
