@@ -16,8 +16,10 @@
         output = "HDMI-A-1";
         resolution = "2048x1080";
       };
-      terminal.alacritty = {
-        enable = true;
+      terminal = {
+        alacritty.enable = true;
+        wezterm.enable = true;
+        zellij.enable = true;
       };
       browsers = {
         firefox.enable = true;
