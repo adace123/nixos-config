@@ -25,6 +25,7 @@ in
         podman
         podman-compose
         podman-tui
+        stern
         lazydocker
       ];
     };
