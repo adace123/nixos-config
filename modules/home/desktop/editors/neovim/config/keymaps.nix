@@ -247,5 +247,17 @@
       options.desc = "Spectre";
       mode = ["n"];
     }
+    {
+      key = "<leader>D";
+      action = "ggVGd";
+      options.desc = "Blank out file";
+      mode = ["n"];
+    }
+    {
+      key = "<C-Q>";
+      action = "<cmd>qa!<CR>";
+      options.desc = "Exit";
+      mode = ["n"];
+    }
   ];
 }
