@@ -6,6 +6,7 @@
       closeIfLastWindow = true;
       enableDiagnostics = true;
       enableGitStatus = true;
+      autoCleanAfterSessionRestore = true;
       window.mappings = {
         "e".__raw = "function() vim.api.nvim_exec('Neotree filesystem', true) end";
         "b".__raw = "function() vim.api.nvim_exec('Neotree buffers', true) end";
