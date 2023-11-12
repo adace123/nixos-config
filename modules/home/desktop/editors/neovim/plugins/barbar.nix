@@ -54,6 +54,12 @@
         options.desc = "Previous buffer";
         mode = ["n"];
       }
+      {
+        key = "<leader>bc";
+        action = "<cmd>BufferCloseAllButCurrent<CR>";
+        options.desc = "Close all buffers but current";
+        mode = ["n"];
+      }
     ];
   };
 }
