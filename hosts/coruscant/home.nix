@@ -13,8 +13,8 @@
       notifications.enable = true;
       media.enable = true;
       monitor = {
-        output = "HDMI-A-1";
-        resolution = "2048x1080";
+        output = "DP-1";
+        resolution = "3440x1440";
       };
       terminal = {
         alacritty.enable = true;
