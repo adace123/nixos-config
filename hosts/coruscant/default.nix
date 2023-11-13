@@ -15,7 +15,10 @@
     graphics.nvidia.enable = true;
     sound.enable = true;
     bluetooth.enable = true;
-    boot.device = "/dev/sda";
+    boot = {
+      device = "/dev/sda";
+      plymouthEnable = true;
+    };
     virtualisation = {
       podman.enable = true;
       qemu.enable = true;
@@ -25,13 +28,20 @@
     };
   };
 
-  networking = {
+  networking = rec {
+    defaultGateway = "192.168.4.1";
     interfaces.wlp10s0 = {
       useDHCP = true;
       ipv4.addresses = [
         {
           address = "192.168.5.10";
           prefixLength = 24;
+        }
+      ];
+      ipv4.routes = [
+        {
+          address = defaultGateway;
+          prefixLength = 16;
         }
       ];
     };
