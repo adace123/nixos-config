@@ -343,6 +343,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-latest": {
+      "locked": {
+        "lastModified": 1699946177,
+        "narHash": "sha256-b+qhvtsAxFCeUaaEuXFXVuCV3dlFHFutnXP4ErLKIAc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "599fefe03acaed5bfe6e2e76e03590546014b295",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1694911725,
@@ -610,6 +625,7 @@
         "nix-colors": "nix-colors",
         "nix-std": "nix-std",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-latest": "nixpkgs-latest",
         "nixvim": "nixvim",
         "nuenv": "nuenv",
         "nur": "nur",
