@@ -16,7 +16,11 @@ in
         powerManagement.enable = true;
       };
 
-      hardware.opengl.enable = true;
+      hardware.opengl = {
+        enable = true;
+        driSupport32Bit = true;
+        extraPackages = [pkgs.nvidia-vaapi-driver];
+      };
 
       environment.systemPackages = with pkgs; [nvitop cudaPackages.cuda_nvml_dev];
 
@@ -27,6 +31,12 @@ in
         MOZ_DISABLE_RDD_SANDBOX = "1";
       };
 
-      services.xserver.videoDrivers = ["nvidia"];
+      services.xserver = {
+        videoDrivers = ["nvidia"];
+        deviceSection = ''
+          Option "DRI3" "on"
+          Option "AllowSHMPixmaps" "on"
+        '';
+      };
     };
   }
