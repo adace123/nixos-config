@@ -32,6 +32,7 @@
     defaultGateway = "192.168.4.1";
     interfaces.wlp10s0 = {
       useDHCP = true;
+      wakeOnLan.enable = true;
       ipv4.addresses = [
         {
           address = "192.168.5.10";
@@ -41,7 +42,7 @@
       ipv4.routes = [
         {
           address = defaultGateway;
-          prefixLength = 16;
+          prefixLength = 32;
         }
       ];
     };
