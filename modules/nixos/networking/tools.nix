@@ -13,6 +13,7 @@ in
       environment.systemPackages = with pkgs; [
         bmon
         dnsutils
+        ethtool
         tcpdump
         termshark
         xh
