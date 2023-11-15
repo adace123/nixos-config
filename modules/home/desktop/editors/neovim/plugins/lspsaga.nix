@@ -39,6 +39,13 @@
         mode = ["n"];
       }
       {
+        key = "<leader>cF";
+        action = "function() vim.lsp.buf.format() end";
+        lua = true;
+        options.desc = "Format";
+        mode = ["n"];
+      }
+      {
         key = "gD";
         action = "<cmd>Lspsaga peek_definition<CR>";
         options.desc = "Peek definition";
@@ -81,9 +88,21 @@
         mode = ["n"];
       }
       {
-        key = "<leader>co";
+        key = "<leader>cO";
         action = "<cmd>Lspsaga outline<CR>";
         options.desc = "Toggle outline";
+        mode = ["n"];
+      }
+      {
+        key = "<leader>ci";
+        action = "<cmd>Lspsaga incoming_calls<CR>";
+        options.desc = "Incoming calls";
+        mode = ["n"];
+      }
+      {
+        key = "<leader>co";
+        action = "<cmd>Lspsaga outgoing_calls<CR>";
+        options.desc = "Outgoing calls";
         mode = ["n"];
       }
     ];

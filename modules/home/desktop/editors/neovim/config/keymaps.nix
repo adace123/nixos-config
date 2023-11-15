@@ -259,5 +259,42 @@
       options.desc = "Exit";
       mode = ["n"];
     }
+    {
+      key = "n";
+      action = "nzz";
+      options.desc = "Recenter search";
+      mode = ["n"];
+    }
+    {
+      key = "N";
+      action = "Nzz";
+      options.desc = "Recenter search";
+      mode = ["n"];
+    }
+    # resize window
+    {
+      key = "<S-Up>";
+      action = ":resize +2<CR>";
+      options.desc = "Increase vertical window size";
+      mode = ["n"];
+    }
+    {
+      key = "<S-Down>";
+      action = ":resize -2<CR>";
+      options.desc = "Decrease vertical window size";
+      mode = ["n"];
+    }
+    {
+      key = "<S-Right>";
+      action = ":vertical resize +2<CR>";
+      options.desc = "Increase horizontal window size";
+      mode = ["n"];
+    }
+    {
+      key = "<S-Left>";
+      action = ":vertical resize -2<CR>";
+      options.desc = "Decrease horizontal window size";
+      mode = ["n"];
+    }
   ];
 }

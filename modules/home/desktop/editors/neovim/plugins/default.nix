@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./lsp.nix ./treesitter.nix ./telescope.nix ./file-explorer.nix ./git.nix ./cmp.nix ./indent-blankline.nix ./lualine.nix ./none-ls.nix ./startup.nix ./lspsaga.nix ./barbar.nix ./neorg.nix];
+  imports = [./lsp.nix ./treesitter.nix ./telescope.nix ./file-explorer.nix ./git.nix ./cmp.nix ./indent-blankline.nix ./lualine.nix ./none-ls.nix ./startup.nix ./lspsaga.nix ./barbar.nix ./neorg.nix ./toggleterm.nix];
 
   programs.nixvim = {
     plugins = {
