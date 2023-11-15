@@ -12,6 +12,7 @@ alias hc = hyprctl
 alias hf = hyperfine
 alias htop = btm --fahrenheit
 alias ll = ls -la
+alias p = pulumi
 alias lg = lazygit
 # TODO: remove need to run lazydocker with sudo
 alias lzd = sudo lazydocker
