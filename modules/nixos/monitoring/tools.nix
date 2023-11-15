@@ -13,6 +13,7 @@ in
         bcc
         bpftool
         bpftrace
+        s-tui
       ];
     };
   }
