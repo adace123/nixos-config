@@ -41,3 +41,69 @@ module jc-functions {
   }
 }
 
+module sys {
+  export def "sys usb" [] {
+    ^lsusb | lines | parse "Bus {busId} Device {deviceId}: ID {id} {name}"
+  }
+
+  export def "sys pci" [] {
+    ^lspci -v -mm | parse --regex "Slot:(?<slot>.+)\nClass:(?<class>.+)\nVendor:(?<vendor>.+)\n(?<device>.+)\nSVendor:(?<svendor>.+)\nSDevice:(?<sdevice>.+)\nRev:(?<rev>.+)\nProgIf:(?<progif>.+)"
+  }
+
+  export def "sys disk" [] {
+    ^lsblk -l --json | from json | get blockdevices | flatten
+  }
+
+  export def "sys disk-health" [disk: string] {
+    sudo smartctl $disk --attributes | str trim | detect columns --skip 6
+  }
+
+  export def "sys vuln" [] {
+    ls /sys/devices/system/cpu/vulnerabilities
+    | each {|it|
+      {
+        name: ($it.name | path basename),
+        migitation: (open $it.name | str trim)
+      }
+    }
+  }
+
+  export def "sys users" [] {
+    open -r /etc/passwd
+    | from csv -s ':' --noheaders
+    | reject password
+    | rename username password userid groupid comment home shell
+  }
+
+  export def "sys os" [] {
+   open -r /etc/os-release
+    | from csv -s "=" --noheaders
+    | rename key value
+  }
+
+  export def "sys bpf" [] {
+    sudo bpftool prog show -j | from json
+  }
+}
+
+module ssh {
+  export def "ssh keys ls" [--short (-s)] {
+    ls ~/.ssh
+    | where name =~ ".*.pub$"
+    | each {|it|
+      let name = ($it.name | path parse | get stem)
+      open $it.name
+      | parse "{method} {pubkey} {comment}"
+      | merge ([$name] | wrap name)
+      | update comment {|it| $it.comment | str trim}
+    }
+    | flatten
+    | select name method comment pubkey
+    | if ($short) {
+      update pubkey {|it|
+        let end = ($it.pubkey | split chars | last 10 | str join)
+        $"...($end)"
+      }
+    } else { $in }
+  }
+}

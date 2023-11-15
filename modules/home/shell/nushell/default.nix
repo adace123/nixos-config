@@ -45,6 +45,7 @@ in
           use ${nu_script_path}/modules/data_extraction/ultimate_extractor.nu *
           use ${nu_script_path}/modules/network/ssh.nu *
           use ${nu_script_path}/modules/nix/nix.nu *
+          use ${nu_script_path}/modules/weather/get-weather.nu *
 
           # themes
           use ${nu_script_path}/themes/themes/everforest.nu

@@ -4,6 +4,8 @@ use std
 source ~/.config/nushell/aliases.nu
 source ~/.config/nushell/functions.nu
 use jc-functions *
+use sys *
+use ssh *
 source ~/.config/nushell/keybindings.nu
 
 let carapace_completer = {|spans|
