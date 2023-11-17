@@ -28,11 +28,11 @@
     };
   };
 
-  networking = rec {
+  networking = {
     defaultGateway = "192.168.4.1";
+    interfaces.enp11s0.wakeOnLan.enable = true;
     interfaces.wlp10s0 = {
       useDHCP = true;
-      wakeOnLan.enable = true;
       ipv4.addresses = [
         {
           address = "192.168.5.10";
@@ -41,8 +41,8 @@
       ];
       ipv4.routes = [
         {
-          address = defaultGateway;
-          prefixLength = 32;
+          address = "192.168.0.0";
+          prefixLength = 16;
         }
       ];
     };
