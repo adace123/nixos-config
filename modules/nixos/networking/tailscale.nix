@@ -21,12 +21,15 @@ in
         authKeyFile = config.sops.secrets.tailscale-auth-key.path;
       };
 
-      networking.firewall = {
-        trustedInterfaces = ["tailscale0"];
+      networking = {
+        firewall = {
+          trustedInterfaces = ["tailscale0"];
 
-        allowedUDPPorts = [config.services.tailscale.port];
+          allowedUDPPorts = [config.services.tailscale.port];
 
-        allowedTCPPorts = [22];
+          allowedTCPPorts = [22];
+        };
+        nameservers = ["100.100.100.100"];
       };
 
       sops.secrets.tailscale-auth-key = {
