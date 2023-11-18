@@ -31,18 +31,21 @@
   networking = {
     defaultGateway = "192.168.4.1";
     interfaces.enp11s0.wakeOnLan.enable = true;
+    extraHosts = ''
+      192.168.4.90 proxmox.homelab
+    '';
     interfaces.wlp10s0 = {
       useDHCP = true;
       ipv4.addresses = [
         {
-          address = "192.168.5.10";
-          prefixLength = 24;
+          address = "192.168.4.10";
+          prefixLength = 32;
         }
       ];
       ipv4.routes = [
         {
-          address = "192.168.0.0";
-          prefixLength = 16;
+          address = "192.168.4.90";
+          prefixLength = 32;
         }
       ];
     };
@@ -61,6 +64,10 @@
   # TODO: use sops-nix hm module once https://github.com/Mic92/sops-nix/issues/287 is fixed
   sops.secrets = {
     github-private-key = {
+      sopsFile = ./secrets.yaml;
+      owner = config.user.name;
+    };
+    proxmox-private-key = {
       sopsFile = ./secrets.yaml;
       owner = config.user.name;
     };

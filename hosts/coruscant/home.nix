@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  osConfig,
   inputs,
   ...
 }: {
@@ -70,5 +71,11 @@
     size = 24;
     gtk.enable = true;
     x11.enable = true;
+  };
+
+  programs.ssh.matchBlocks."proxmox.homelab" = {
+    hostname = "proxmox.homelab";
+    user = "root";
+    identityFile = [osConfig.sops.secrets.proxmox-private-key.path];
   };
 }
