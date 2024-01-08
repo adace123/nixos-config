@@ -1,0 +1,3 @@
+name: nixos-keys
+runtime: nodejs
+description: Manage secrets for NixOS

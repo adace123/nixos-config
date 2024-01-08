@@ -8,7 +8,6 @@
   sharedModules = with inputs; [
     sops-nix.nixosModules.sops
     ../modules/nixos
-    ./common
   ];
 
   pkgs = import nixpkgs {
@@ -21,7 +20,7 @@
       if builtins.pathExists ./${host}/home.nix
       then [
         inputs.home-manager.nixosModules.home-manager
-        ./common/home-manager.nix
+        ./home-manager.nix
         {
           home-manager.extraSpecialArgs = {
             inherit host inputs pkgs;
@@ -49,6 +48,5 @@
     };
 in {
   coruscant = mkSystem "coruscant";
-  # iso = mkSystem "iso";
-  # vm = mkSystem "vm";
+  iso = mkSystem "iso";
 }

@@ -17,7 +17,8 @@
     bluetooth.enable = true;
     boot = {
       device = "/dev/sda";
-      plymouthEnable = true;
+      plymouth.enable = true;
+      luks.enable = true;
     };
     virtualisation = {
       podman.enable = true;
@@ -58,7 +59,7 @@
   user = {
     name = "aaron";
     sudo = true;
-    sshKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINeg6I1BsevUn9zYaYrwLg5l2UKzPqlxn2Q68cs37CyV"];
+    sshKeys = [(builtins.readFile ./coruscant.pub)];
   };
 
   # TODO: use sops-nix hm module once https://github.com/Mic92/sops-nix/issues/287 is fixed

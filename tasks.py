@@ -25,6 +25,11 @@ def edit_secrets(c: Context, path: str):
 
 
 @task
+def decrypt_secrets(c: Context, path: str):
+    c.run(f"sops -d {path}")
+
+
+@task
 def get_secret(c: Context, key: str):
     c.run(f"sops --extract '[\"{key}\"]' -d modules/nixos/secrets/secrets.yaml")
 

@@ -1,7 +1,11 @@
 keys:
-  - &main age1zjmhl9xc3jrxnwxpe6hhwp4sf5c6gzs7qjk6y4tgdr9ufvdwayhs79afen
+  - age1duxq5dnyhtxxp0yhsfqeup40ug7a4yp70vc8jgkytaqrq95mxq5qnmefdz
 creation_rules:
-  - path_regex: hosts/.*/secrets.yaml
+  - path_regex: hosts/*/secrets.yaml
     key_groups:
       - age:
-          - *main
+          - age1duxq5dnyhtxxp0yhsfqeup40ug7a4yp70vc8jgkytaqrq95mxq5qnmefdz
+  - path_regex: hosts/secrets.yaml
+    key_groups:
+      - age:
+          - age1duxq5dnyhtxxp0yhsfqeup40ug7a4yp70vc8jgkytaqrq95mxq5qnmefdz

@@ -1,0 +1,13 @@
+{
+  "name": "nixos-keys",
+  "main": "index.ts",
+  "devDependencies": {
+    "@types/node": "^18"
+  },
+  "dependencies": {
+    "@pulumi/command": "^0.9.2",
+    "@pulumi/pulumi": "^3.0.0",
+    "@pulumi/tls": "^5.0.0",
+    "yaml": "^2.3.4"
+  }
+}

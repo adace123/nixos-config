@@ -6,7 +6,7 @@
   ...
 }:
 with lib; let
-  inherit (config.modules.boot) configLimit plymouthEnable;
+  cfg = config.modules.boot;
 in {
   options.modules.boot = {
     configLimit = mkOption {
@@ -14,7 +14,8 @@ in {
       description = "Boot configuration limit";
       type = types.int;
     };
-    plymouthEnable = mkEnableOption "plymouth";
+    plymouth.enable = mkEnableOption "plymouth";
+    luks.enable = mkEnableOption "luks";
   };
 
   config = {
@@ -26,9 +27,9 @@ in {
         efiSupport = true;
         enableCryptodisk = true;
         device = "nodev";
-        configurationLimit = configLimit;
+        configurationLimit = cfg.configLimit;
       };
-      initrd = {
+      initrd = mkIf cfg.luks.enable {
         luks.devices."cryptroot" = {
           allowDiscards = true;
           bypassWorkqueues = true;
@@ -40,7 +41,7 @@ in {
         };
       };
       plymouth = {
-        enable = plymouthEnable;
+        inherit (cfg.plymouth) enable;
         theme = "catppuccin-mocha";
         themePackages = [
           (pkgs.catppuccin-plymouth.override {

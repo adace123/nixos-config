@@ -2,3 +2,4 @@
 result/
 infra/vendor
 /.pre-commit-config.yaml
+**/*secrets-raw.yaml

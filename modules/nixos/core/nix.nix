@@ -28,12 +28,5 @@ _: {
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [
-      (
-        _: prev: {
-          zig = prev.zig.overrideAttrs (_: {version = "0.11.0";});
-        }
-      )
-    ];
   };
 }

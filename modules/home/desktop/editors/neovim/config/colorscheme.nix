@@ -7,7 +7,7 @@
         integrations = {
           cmp = true;
           treesitter = true;
-          telescope = true;
+          telescope.enabled = true;
           indent_blankline.enabled = true;
           barbar = true;
         };

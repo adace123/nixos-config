@@ -19,6 +19,12 @@ def nix-diff [] {
   nvd diff /run/current-system $"($env.DOTFILES_DIR)/result"
 }
 
+def rf [pattern: string] {
+  # open ripgrep file matches in editor
+  let result = rg -l $pattern | fzf -m | lines
+  $result | str join " " | xargs $env.EDITOR
+}
+
 module jc-functions {
   export def bt-table [] {
     bluetoothctl devices | jc --bluetoothctl | from json

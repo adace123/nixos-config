@@ -1,0 +1,13 @@
+config:
+  nixos-keys:host-configs:
+    - name: common
+      sops:
+        rawPath: hosts/secrets-raw.yaml
+        encryptedPath: hosts/secrets.yaml
+    - name: iso
+      sshPubKeyPath: hosts/iso/ssh.pub
+    - name: coruscant
+      sops:
+        rawPath: hosts/coruscant/secrets-raw.yaml
+        encryptedPath: hosts/coruscant/secrets.yaml
+      sshPubKeyPath: hosts/coruscant/ssh.pub
