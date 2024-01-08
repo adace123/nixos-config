@@ -15,5 +15,5 @@ jobs:
           echo "iso_path=$ISO_PATH" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v4
         with:
-          name: nixos-iso
+          name: nixos.iso
           path: ${{ env.iso_path }}
