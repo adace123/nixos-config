@@ -4,8 +4,7 @@ on: workflow_dispatch
 
 jobs:
   build-iso:
-    runs-on: ubuntu:latest
-
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
