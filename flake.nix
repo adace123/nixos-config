@@ -50,8 +50,9 @@
       outputs.overlays.default
       hyprland-contrib.overlays.default
     ];
+    systems = ["x86_64-linux" "x86_64-darwin"];
 
-    forEachSystem = nixpkgs.lib.genAttrs ["x86_64-linux"];
+    forEachSystem = nixpkgs.lib.genAttrs systems;
     forEachPkgs = f: forEachSystem (system: f (import nixpkgs {inherit system overlays;}));
   in {
     packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
