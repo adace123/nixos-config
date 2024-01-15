@@ -81,7 +81,28 @@ bootstrap build-mode="local": (bootstrap-build build-mode)
   bootstrap-write
 
 install host:
-  let sops_key = pulumi stack output --show-secrets -C keys sops | jq -r '.privKey'
+  #!/usr/bin/env nu
+  let sops_age_key = pulumi stack output --show-secrets -C keys age | jq -r '.privKey'
+  with-env [SOPS_AGE_KEY $sops_age_key] {
+    (
+      nix run github:nix-community/nixos-anywhere -- 
+      --flake .#{{host}} root@{{host}}.local 
+      --disk-encryption-keys /cryptroot.key 
+    )
+  }
+
+get-secret key host="":
+  #!/usr/bin/env nu
+  let yaml_path = if ("{{host}}" == "") {
+    "hosts/secrets.yaml"
+  } else {
+    "hosts/{{host}}/secrets.yaml"
+  }
+
+  let sops_age_key = pulumi stack output --show-secrets -C keys age | jq -r '.privKey'
+  with-env [SOPS_AGE_KEY $sops_age_key] {
+    sops -d $yaml_path | yq '.{{key}}'
+  }
 
 check:
   nix flake check
@@ -95,3 +116,6 @@ ssh user host:
   pulumi stack output -C keys --show-secrets {{host}} | jq -r '.privKey' | save -f $tmp
   ssh -i $tmp {{user}}@{{host}}.local
   
+rotate-keys:
+  pulumi destroy -y -C keys
+  pulumi up -y -C keys
