@@ -3,11 +3,9 @@
   config,
   pkgs,
   lib,
-  osConfig,
   ...
 }: let
   cfg = config.modules.desktop.hyprland;
-  inherit (osConfig.modules.graphics) nvidia;
 in
   with lib; {
     options.modules.desktop.hyprland.enable = mkEnableOption "Enable Hyprland";
@@ -20,7 +18,6 @@ in
       wayland.windowManager.hyprland = {
         enable = true;
         systemd.enable = true;
-        enableNvidiaPatches = nvidia.enable;
       };
 
       home = {
