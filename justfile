@@ -8,11 +8,11 @@ rebuild host:
 
 docker:
   #!/usr/bin/env nu
-  if (docker ps | detect columns | where NAMES = "nixos" | is-empty) {
+  if (docker ps | detect columns | where NAMES =~ "nixos" | is-empty) {
     (
       docker run --name=nixos --restart=always -d  
       -e NIX_CONFIG="experimental-features = nix-command flakes" 
-      -it -v $"(pwd):/nixos-config" -w /nixos-config
+      -it -v $"(pwd):/nixos-config" -w /nixos-config nixos/nix
     )
   }
 
@@ -104,8 +104,13 @@ get-secret key host="":
     sops -d $yaml_path | yq '.{{key}}'
   }
 
+[linux]
 check:
   nix flake check
+
+[macos]
+check: docker
+  docker exec -it nixos nix flake check
 
 clean:
   sudo nix-collect-garbage --delete-old
