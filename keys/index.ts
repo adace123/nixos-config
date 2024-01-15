@@ -55,11 +55,11 @@ function updateSopsConfig(agePubKey: pulumi.Output<string>) {
 
     sopsConfigYAML.creation_rules = [
       {
-        path_regex: "hosts/*/secrets.yaml",
+        path_regex: "hosts/.*/secrets.yaml",
         key_groups: [{ age: [key] }],
       },
       {
-        path_regex: "hosts/secrets.yaml",
+        path_regex: "hosts/.*.yaml",
         key_groups: [{ age: [key] }],
       },
     ];
@@ -74,13 +74,9 @@ function generateAgeKeyPair(): SopsAgeKeys {
   });
 
   const agePrivKey = sopsSSHKey.privateKeyOpenssh.apply((key) => {
-    return new local.Command(
-      "ssh-to-age",
-      {
-        create: `echo "${key}" | ssh-to-age -private-key`,
-      },
-      { dependsOn: [sopsSSHKey] },
-    ).stdout;
+    return new local.Command("ssh-to-age", {
+      create: `echo "${key}" | ssh-to-age -private-key`,
+    }).stdout;
   });
 
   const agePubKey = new local.Command("age-public-key", {
@@ -99,19 +95,13 @@ function generateAgeKeyPair(): SopsAgeKeys {
   };
 }
 
-function encryptSecretsFile(
-  hostConfig: HostSecretConfig,
-  agePrivKey: pulumi.Output<string>,
-) {
-  if (
-    hostConfig.sops?.rawPath !== undefined &&
-    fs.existsSync(hostConfig.sops.rawPath)
-  ) {
-    new local.Command(`encrypt-${hostConfig.name}`, {
-      create: pulumi.interpolate`sops -e ${hostConfig.sops?.rawPath} --output ${hostConfig.sops?.encryptedPath}`,
-      update: pulumi.interpolate`sops -e ${hostConfig.sops?.rawPath} --output ${hostConfig.sops?.encryptedPath}`,
+function encryptSecretsFile(hostConfig: HostSecretConfig, agePrivKey: string) {
+  if (hostConfig.sops?.rawPath !== undefined) {
+    new local.Command(`encrypt-sops-${hostConfig.name}`, {
+      create: pulumi.interpolate`sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
+      update: pulumi.interpolate`sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
       environment: {
-        SOPS_AGE_KEY: pulumi.interpolate`${agePrivKey}`,
+        SOPS_AGE_KEY: agePrivKey,
       },
       dir: "..",
     });
@@ -128,20 +118,21 @@ const { sops, age } = generateAgeKeyPair();
 updateSopsConfig(age.pubKey);
 
 const keys = new Map<string, KeyPair>([
-  ["age", { privKey: pulumi.secret(age.privKey), pubKey: age.pubKey }],
-  ["sops", { privKey: pulumi.secret(sops.privKey), pubKey: sops.pubKey }],
+  ["age", { privKey: age.privKey, pubKey: age.pubKey }],
+  ["sops", { privKey: sops.privKey, pubKey: sops.pubKey }],
 ]);
 
-for (const hostConfig of hostConfigs) {
-  encryptSecretsFile(hostConfig, age.privKey);
-
-  if (hostConfig.sshPubKeyPath !== undefined) {
-    const sshKeyPair = generateSshKeyPair(hostConfig);
-    keys.set(hostConfig.name, {
-      privKey: pulumi.secret(sshKeyPair.privKey),
-      pubKey: sshKeyPair.pubKey,
-    });
+pulumi.all([age.privKey, age.pubKey]).apply(([privKey, _pubKey]) => {
+  for (const hostConfig of hostConfigs) {
+    encryptSecretsFile(hostConfig, privKey);
+    if (hostConfig.sshPubKeyPath !== undefined) {
+      const sshKeyPair = generateSshKeyPair(hostConfig);
+      keys.set(hostConfig.name, {
+        privKey: pulumi.secret(sshKeyPair.privKey),
+        pubKey: sshKeyPair.pubKey,
+      });
+    }
   }
-}
+});
 
 module.exports = Object.fromEntries(keys);
