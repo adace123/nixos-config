@@ -7,16 +7,19 @@
 with lib; let
   cfg = config.modules.networking.ssh;
 in {
-  options.modules.networking.ssh.enable = mkOption {
-    description = "Enable SSH";
-    default = true;
+  options.modules.networking.ssh = {
+    enable = mkOption {
+      description = "Enable SSH";
+      default = true;
+    };
+    password = mkEnableOption "SSH password";
   };
 
   config = mkIf cfg.enable {
     services.openssh = {
       enable = true;
       settings = {
-        PasswordAuthentication = false;
+        PasswordAuthentication = cfg.password;
       };
     };
 
