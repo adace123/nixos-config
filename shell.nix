@@ -9,7 +9,6 @@
       sops
       ssh-to-age
       just
-      nushell
       gh
       pulumi-bin
     ];
