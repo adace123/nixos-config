@@ -33,9 +33,9 @@ function generateSshKeyPair(hostConfig: HostSecretConfig): KeyPair {
   });
 
   const sshConfigPath = path.join(os.homedir(), ".ssh");
-  const sshKeyPath = path.join(sshConfigPath, hostConfig.name);
+  const privateKeyPath = path.join(sshConfigPath, hostConfig.name);
   sshKeyPair.privateKeyOpenssh.apply((key) =>
-    fs.writeFileSync(sshKeyPath, key),
+    fs.writeFileSync(privateKeyPath, key),
   );
   sshKeyPair.publicKeyOpenssh.apply((key) =>
     fs.writeFileSync(`../hosts/${hostConfig.name}/${hostConfig.name}.pub`, key),
@@ -86,11 +86,6 @@ function generateAgeKeyPair(): SopsAgeKeys {
   const agePubKey = new local.Command("age-public-key", {
     create: pulumi.interpolate`echo ${agePrivKey} | age-keygen -y`,
   }).stdout;
-
-  sopsSSHKey.privateKeyOpenssh.apply((key) => {
-    const sshConfigPath = path.join(os.homedir(), ".ssh");
-    fs.writeFileSync(path.join(sshConfigPath, "sops-nix"), key);
-  });
 
   return {
     sops: {
