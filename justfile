@@ -25,23 +25,7 @@ bootstrap-build-remote:
   sleep 10sec
   let run_id = gh run list --workflow=build.yaml --json=databaseId | jq '.[0].databaseId'
 
-  while (true) {
-    let run = gh run view $run_id --json="status,startedAt,conclusion" | from json
-    match $run.status {
-      "in_progress" => {
-        echo $"Waiting for run ($run_id) to finish. Started ($run.startedAt | date humanize)"
-        sleep 10sec
-      },
-      "completed" => {
-        match $run.conclusion {
-          "completed" | "success" => {break},
-          "failed" => { error make {msg: $"Build workflow ($run_id) failed"} },
-          "cancelled" => { error make {msg: $"Build workflow ($run_id) cancelled"} },
-          $status => { error make {msg: $"Unexepected status for build workflow ($run_id): ($status)"} },
-        }
-      },
-    }
-  }
+  gh run watch --exit-status $run_id
 
   if ("nixos.iso" | path exists) {
     echo "Removing old iso file"
