@@ -28,8 +28,8 @@ bootstrap-build-remote:
   gh run watch --exit-status $run_id
 
   if ("nixos.iso" | path exists) {
-    echo "Removing old iso file"
     rm --force nixos.iso
+    echo "Removed old iso file"
   }
   gh run download -n nixos.iso $run_id
 
