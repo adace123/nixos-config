@@ -23,12 +23,8 @@
     nix-std.url = "github:chessai/nix-std";
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
-    astronvim = {
-      url = "github:AstroNvim/AstroNvim";
-      flake = false;
-    };
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    neovim-flake = {
+      url = "github:adace123/neovim-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit = {

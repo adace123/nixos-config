@@ -12,7 +12,6 @@
         ../modules/home
         ./${config.networking.hostName}/home.nix
         nix-colors.homeManagerModules.default
-        nixvim.homeManagerModules.nixvim
       ];
     };
   };

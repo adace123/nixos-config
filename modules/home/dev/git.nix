@@ -36,10 +36,7 @@ in
 
         extraConfig = {
           init.defaultBranch = "main";
-          core.editor =
-            if config.modules.editors.neovim.enable
-            then "nvim"
-            else "vim";
+          core.editor = "nvim";
           push.autoSetupRemote = true;
           # TODO: make key configurable
           user.signingkey = osConfig.sops.secrets.github-private-key.path;
