@@ -53,16 +53,9 @@ function updateSopsConfig(agePubKey: pulumi.Output<string>) {
 
     sopsConfigYAML.keys = [key];
 
-    sopsConfigYAML.creation_rules = [
-      {
-        path_regex: "hosts/.*/secrets.yaml",
-        key_groups: [{ age: [key] }],
-      },
-      {
-        path_regex: "hosts/.*.yaml",
-        key_groups: [{ age: [key] }],
-      },
-    ];
+    for (const rule of sopsConfigYAML.creation_rules) {
+      rule.key_groups = [{ age: [key] }]
+    }
 
     fs.writeFileSync("../.sops.yaml", stringify(sopsConfigYAML));
   });
@@ -95,21 +88,6 @@ function generateAgeKeyPair(): SopsAgeKeys {
   };
 }
 
-function encryptSecretsFile(hostConfig: HostSecretConfig, agePrivKey: pulumi.Output<string>) {
-  if (hostConfig.sops?.rawPath !== undefined) {
-    new local.Command(`encrypt-sops-${hostConfig.name}`, {
-      create: pulumi.interpolate`sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
-      update: pulumi.interpolate`sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
-      environment: {
-        SOPS_AGE_KEY: pulumi.interpolate`${agePrivKey}`,
-      },
-      dir: "..",
-    });
-  } else {
-    pulumi.log.warn(`No sops secrets found for host ${hostConfig.name}`);
-  }
-}
-
 const config = new pulumi.Config();
 const hostConfigs =
   config.requireObject<Array<HostSecretConfig>>("host-configs");
@@ -122,8 +100,23 @@ const keys = new Map<string, KeyPair>([
   ["sops", { privKey: sops.privKey, pubKey: sops.pubKey }],
 ]);
 
+// make sure secrets are encrypted with new private key, not old one
+pulumi.all([age.privKey, age.pubKey]).apply(([privKey, _pubKey]) => {
+  for (const hostConfig of hostConfigs) {
+    if (hostConfig.sops?.rawPath !== undefined) {
+      new local.Command(`encrypt-sops-${hostConfig.name}`, {
+        create: `sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
+        update: `sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
+        environment: {
+          SOPS_AGE_KEY: privKey,
+        },
+        dir: ".."
+      })
+    }
+  }
+})
+
 for (const hostConfig of hostConfigs) {
-  encryptSecretsFile(hostConfig, age.privKey)
   if (hostConfig.sshPubKeyPath !== undefined) {
     const sshKeyPair = generateSshKeyPair(hostConfig)
     keys.set(hostConfig.name, {
