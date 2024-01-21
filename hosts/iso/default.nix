@@ -18,7 +18,7 @@
   };
 
   imports = [
-    "${toString modulesPath}/installer/cd-dvd/installation-cd-base.nix"
+    "${toString modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
   ];
 
   user = {
