@@ -22,13 +22,13 @@
   ];
 
   user = {
-    name = "nixos";
+    name = "root";
     sudo = true;
     sshKeys = [(builtins.readFile ./iso.pub)];
     usePassword = false;
   };
 
-  users.users.nixos.initialPassword = "nixos";
+  users.users.root.initialPassword = "nixos";
 
   # Enable SSH in the boot process.
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
