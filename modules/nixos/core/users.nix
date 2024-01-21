@@ -7,47 +7,37 @@
   ...
 }:
 with lib; let
-  cfg = config.user;
+  cfg = config.modules.user;
 in {
-  options = {
-    user = {
-      name = mkOption {
-        type = types.str;
-        default = "root";
-      };
-      sudo = mkEnableOption "sudo";
-      sshKeys = mkOption {
-        type = types.listOf types.str;
-        description = "List of user SSH keys";
-        default = [];
-      };
-      usePassword = mkOption {
-        type = types.bool;
-        description = "Set user password";
-        default = true;
-      };
+  # options.modules.user.password = mkEnableOption "Set user password";
+  options.modules.user = {
+    name = mkOption {
+      type = types.str;
+      description = "Default user name";
     };
+    password.enable = mkEnableOption "Set user password";
+    sudo.enable = mkEnableOption "Enble sudo privileges";
   };
 
   config = {
-    sops.secrets.password = mkIf cfg.usePassword {
+    sops.secrets.password = mkIf cfg.password.enable {
       neededForUsers = true;
       sopsFile = ../../../hosts/${host}/secrets.yaml;
     };
 
     users = {
       mutableUsers = false;
-      defaultUserShell = pkgs.nushell;
       users.${cfg.name} = mkMerge [
         {
           isNormalUser = true;
-          openssh.authorizedKeys.keys = cfg.sshKeys;
+          shell = pkgs.nushell;
+          extraGroups =
+            (optionals cfg.sudo.enable ["wheel"])
+            ++ (optionals config.virtualisation.podman.enable ["podman"])
+            ++ (optionals config.modules.virtualisation.qemu.enable ["libvirtd"]);
         }
-        (mkIf cfg.usePassword {
+        (mkIf cfg.password.enable {
           hashedPasswordFile = config.sops.secrets.password.path;
-        })
-        (mkIf cfg.sudo {
-          extraGroups = ["wheel"] ++ (optionals config.virtualisation.podman.enable ["podman"]);
         })
       ];
     };

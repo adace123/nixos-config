@@ -10,7 +10,6 @@ in
     options.modules.virtualisation.qemu.enable = mkEnableOption "qemu";
     config = mkIf cfg.enable {
       environment.systemPackages = with pkgs; [qemu];
-      users.users.${config.user.name}.extraGroups = ["libvirtd"];
       virtualisation.libvirtd = {
         enable = true;
         qemu = {

@@ -6,7 +6,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.${config.user.name} = {
+    users.${config.modules.user.name} = {
       home.stateVersion = config.system.stateVersion;
       imports = with inputs; [
         ../modules/home

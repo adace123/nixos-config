@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  host,
   options,
   ...
 }:
@@ -12,19 +13,20 @@ in {
       description = "Enable SSH";
       default = true;
     };
-    password = mkEnableOption "SSH password";
   };
 
   config = mkIf cfg.enable {
     services.openssh = {
       enable = true;
       settings = {
-        PasswordAuthentication = cfg.password;
+        PasswordAuthentication = false;
       };
     };
 
     networking.firewall.allowedTCPPorts = [22];
 
-    users.users.${config.user.name}.openssh.authorizedKeys.keys = config.user.sshKeys;
+    users.users.${config.modules.user.name}.openssh.authorizedKeys.keys = [
+      (builtins.readFile ../../../hosts/${host}/${host}.pub)
+    ];
   };
 }

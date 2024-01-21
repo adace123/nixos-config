@@ -188,7 +188,7 @@ in {
           (genSubmap "system" system)
         ];
     in ''
-      env = DOTFILES_DIR,/home/${osConfig.user.name}/nixos-config
+      env = DOTFILES_DIR,/home/${osConfig.modules.user.name}/nixos-config
       ${submaps}
     '';
   };

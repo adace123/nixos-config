@@ -4,6 +4,11 @@
   ...
 }: {
   modules = {
+    user = {
+      name = "aaron";
+      password.enable = true;
+      sudo.enable = true;
+    };
     window-manager.hyprland.enable = true;
 
     networking = {
@@ -56,21 +61,15 @@
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  user = {
-    name = "aaron";
-    sudo = true;
-    sshKeys = [(builtins.readFile ./coruscant.pub)];
-  };
-
   # TODO: use sops-nix hm module once https://github.com/Mic92/sops-nix/issues/287 is fixed
   sops.secrets = {
     github-private-key = {
       sopsFile = ./secrets.yaml;
-      owner = config.user.name;
+      owner = config.modules.user.name;
     };
     proxmox-private-key = {
       sopsFile = ./secrets.yaml;
-      owner = config.user.name;
+      owner = config.modules.user.name;
     };
   };
 }
