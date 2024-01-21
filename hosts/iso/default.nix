@@ -37,4 +37,8 @@
   boot.loader.grub.enable = lib.mkForce true;
 
   isoImage.isoName = lib.mkForce "nixos.iso";
+
+  environment.systemPackages = [
+    pkgs.execline # provides umask, needed for nixos-anywhere
+  ];
 }
