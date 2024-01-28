@@ -32,6 +32,7 @@
     openssl
     pkg-config
     ripgrep
+    rsync
     sops
     sysz
     tldr
