@@ -11,10 +11,12 @@ interface HostSopsConfig {
   rawPath: string;
 }
 
+
 interface HostSecretConfig {
   name: string;
+  url?: string;
   sops?: HostSopsConfig;
-  sshPubKeyPath?: string;
+  sshUrl?: string;
 }
 
 interface KeyPair {
@@ -95,7 +97,7 @@ const hostConfigs =
 const { sops, age } = generateAgeKeyPair();
 updateSopsConfig(age.pubKey);
 
-const keys = new Map<string, KeyPair>([
+const keys = new Map<string, object>([
   ["age", { privKey: age.privKey, pubKey: age.pubKey }],
   ["sops", { privKey: sops.privKey, pubKey: sops.pubKey }],
 ]);
@@ -117,11 +119,12 @@ pulumi.all([age.privKey, age.pubKey]).apply(([privKey, _pubKey]) => {
 })
 
 for (const hostConfig of hostConfigs) {
-  if (hostConfig.sshPubKeyPath !== undefined) {
+  if (hostConfig.sshUrl !== undefined) {
     const sshKeyPair = generateSshKeyPair(hostConfig)
     keys.set(hostConfig.name, {
       privKey: pulumi.secret(sshKeyPair.privKey),
-      pubKey: sshKeyPair.pubKey
+      pubKey: sshKeyPair.pubKey,
+      url: pulumi.output(hostConfig.sshUrl),
     })
   }
 }

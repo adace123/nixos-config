@@ -5,9 +5,9 @@ config:
         encryptedPath: hosts/secrets.yaml
         rawPath: hosts/secrets-raw.yaml
     - name: iso
-      sshPubKeyPath: hosts/iso/ssh.pub
+      sshUrl: root@iso.local
     - name: coruscant
       sops:
         encryptedPath: hosts/coruscant/secrets.yaml
         rawPath: hosts/coruscant/secrets-raw.yaml
-      sshPubKeyPath: hosts/coruscant/ssh.pub
+      sshUrl: root@coruscant.local
