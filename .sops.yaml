@@ -1,11 +1,11 @@
 keys:
-  - age15x7qjfqjrqv2zrah40jywjf8txv65msvx9gfx66vmjehfx8rvs4qx8tj4h
+  - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf
 creation_rules:
   - path_regex: hosts/.*/.*.yaml
     key_groups:
       - age:
-          - age15x7qjfqjrqv2zrah40jywjf8txv65msvx9gfx66vmjehfx8rvs4qx8tj4h
+          - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf
   - path_regex: hosts/.*.yaml
     key_groups:
       - age:
-          - age15x7qjfqjrqv2zrah40jywjf8txv65msvx9gfx66vmjehfx8rvs4qx8tj4h
+          - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf
