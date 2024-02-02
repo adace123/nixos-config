@@ -15,12 +15,11 @@ in {
       type = types.int;
     };
     plymouth.enable = mkEnableOption "plymouth";
-    luks.enable = mkEnableOption "luks";
   };
 
   config = {
     boot = {
-      kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
+      kernelPackages = pkgs.linuxKernel.packages.linux_6_7;
       loader.efi.canTouchEfiVariables = true;
       loader.grub = {
         enable = true;
@@ -29,13 +28,13 @@ in {
         device = "nodev";
         configurationLimit = cfg.configLimit;
       };
-      initrd = mkIf cfg.luks.enable {
-        luks.devices."cryptroot" = {
-          allowDiscards = true;
-          bypassWorkqueues = true;
-          fallbackToPassword = true;
-          keyFile = "/cryptroot.key";
-        };
+      initrd = {
+        # luks.devices."cryptroot" = {
+        # allowDiscards = true;
+        # bypassWorkqueues = true;
+        # fallbackToPassword = true;
+        # keyFile = "/cryptroot.key";
+        # };
         secrets = {
           "/cryptroot.key" = "/cryptroot.key";
         };

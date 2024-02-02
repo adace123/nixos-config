@@ -25,54 +25,55 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO:: Find another way to do this
-    disko.enableConfig = builtins.getEnv "NIXOS_INSTALL_MODE" != "1";
     disko.devices.disk.${deviceName} = {
       inherit device;
       type = "disk";
       content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
-            name = "esp";
-            start = "1MiB";
-            end = "1G";
-            fs-type = "fat32";
-            bootable = true;
+        type = "gpt";
+        partitions = {
+          ESP = {
+            end = "1GiB";
+            type = "EF00";
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
             };
-          }
-          {
-            name = "primary";
-            start = "1G";
-            end = "-1G";
+          };
+          luks = {
+            size = "100%";
             content = {
               type = "luks";
-              name = "cryptroot";
-              keyFile = "/cryptroot.key";
+              name = "crypted";
+              settings = {
+                allowDiscards = true;
+                keyFile = "/cryptroot.key";
+              };
               content = {
                 type = "btrfs";
-                mountpoint = "/";
-                mountOptions = ["noatime"];
-                extraArgs = ["-L" "nixos"];
+                extraArgs = ["-f"];
                 subvolumes = {
-                  "/home" = {
-                    mountOptions = ["compress=zstd"];
-                    mountpoint = "/home";
-                  };
-                  "/nix" = {
+                  "root" = {
+                    mountpoint = "/";
                     mountOptions = ["compress=zstd" "noatime"];
+                  };
+                  "home" = {
+                    mountpoint = "/home";
+                    mountOptions = ["compress=zstd" "noatime"];
+                  };
+                  "nix" = {
                     mountpoint = "/nix";
+                    mountOptions = ["compress=zstd" "noatime" "noacl"];
+                  };
+                  "/swap" = {
+                    mountpoint = "/.swapvol";
+                    swap.swapfile.size = "20M";
                   };
                 };
               };
             };
-          }
-        ];
+          };
+        };
       };
     };
   };

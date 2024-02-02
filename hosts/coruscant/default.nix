@@ -23,7 +23,6 @@
     boot = {
       device = "/dev/sda";
       plymouth.enable = true;
-      luks.enable = true;
     };
     virtualisation = {
       podman.enable = true;
