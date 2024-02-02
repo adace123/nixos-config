@@ -32,13 +32,17 @@
                 type = "btrfs";
                 extraArgs = ["-f"];
                 subvolumes = {
+                  "/" = {
+                    mountpoint = "/";
+                    mountOptions = ["compress=zstd" "noatime" "noacl"];
+                  };
                   "/nix" = {
                     mountpoint = "/nix";
                     mountOptions = ["compress=zstd" "noatime" "noacl"];
                   };
                   "/tmp" = {
                     mountpoint = "/tmp";
-                    mountOptions = ["compress=zstd" "noatime"];
+                    mountOptions = ["compress=zstd" "noatime" "noacl"];
                   };
                   "/swap" = {
                     mountpoint = "/.swapvol";
