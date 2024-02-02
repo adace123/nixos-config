@@ -7,7 +7,6 @@
     };
 
   modifications = _: prev: {
-    nushell = prev.nushell.override {additionalFeatures = p: p ++ ["dataframe"];};
     neovim = inputs.neovim-flake.packages.${prev.system}.default;
   };
 in {
