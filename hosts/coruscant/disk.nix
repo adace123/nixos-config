@@ -29,29 +29,26 @@
                 keyFile = "/cryptroot.key";
               };
               content = {
-                # type = "btrfs";
-                # extraArgs = ["-f"];
-                # subvolumes = {
-                #   "/" = {
-                #     mountpoint = "/";
-                #     mountOptions = ["compress=zstd" "noatime" "noacl"];
-                #   };
-                #   "/nix" = {
-                #     mountpoint = "/nix";
-                #     mountOptions = ["compress=zstd" "noatime" "noacl"];
-                #   };
-                #   "/tmp" = {
-                #     mountpoint = "/tmp";
-                #     mountOptions = ["compress=zstd" "noatime" "noacl"];
-                #   };
-                #   "/swap" = {
-                #     mountpoint = "/.swapvol";
-                #     swap.swapfile.size = "20M";
-                #   };
-                # };
-                type = "filesystem";
-                format = "bcachefs";
-                mountpoint = "/";
+                type = "btrfs";
+                extraArgs = ["-f"];
+                subvolumes = {
+                  "/" = {
+                    mountpoint = "/";
+                    mountOptions = ["compress=zstd" "noatime" "noacl"];
+                  };
+                  "/nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = ["compress=zstd" "noatime" "noacl"];
+                  };
+                  "/tmp" = {
+                    mountpoint = "/tmp";
+                    mountOptions = ["compress=zstd" "noatime" "noacl"];
+                  };
+                  "/swap" = {
+                    mountpoint = "/.swapvol";
+                    swap.swapfile.size = "20M";
+                  };
+                };
               };
             };
           };
