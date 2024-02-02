@@ -40,10 +40,6 @@
                     mountpoint = "/nix";
                     mountOptions = ["compress=zstd" "noatime" "noacl"];
                   };
-                  "/tmp" = {
-                    mountpoint = "/tmp";
-                    mountOptions = ["compress=zstd" "noatime" "noacl"];
-                  };
                   "/swap" = {
                     mountpoint = "/.swapvol";
                     swap.swapfile.size = "20M";
