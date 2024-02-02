@@ -26,7 +26,6 @@
     };
     virtualisation = {
       podman.enable = true;
-      qemu.enable = true;
     };
     monitoring = {
       tools.enable = true;
