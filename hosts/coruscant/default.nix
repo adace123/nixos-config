@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  fullBuild,
   ...
 }: {
   imports = [./disk.nix];
@@ -10,25 +11,25 @@
       password.enable = true;
       sudo.enable = true;
     };
-    window-manager.hyprland.enable = true;
+    window-manager.hyprland.enable = fullBuild;
 
     networking = {
       wifi.enable = true;
       tailscale.enable = true;
-      tools.enable = true;
+      tools.enable = fullBuild;
     };
-    hardware.tools.enable = true;
-    graphics.nvidia.enable = true;
+    hardware.tools.enable = fullBuild;
+    graphics.nvidia.enable = fullBuild;
     sound.enable = true;
     bluetooth.enable = true;
     boot = {
       plymouth.enable = true;
     };
     virtualisation = {
-      podman.enable = true;
+      podman.enable = fullBuild;
     };
     monitoring = {
-      tools.enable = true;
+      tools.enable = fullBuild;
     };
   };
 

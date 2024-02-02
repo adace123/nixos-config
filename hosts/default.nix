@@ -15,9 +15,12 @@
     config.allowUnfree = true;
   };
 
-  mkSystem = host: let
+  mkSystem = {
+    host,
+    fullBuild ? true,
+  }: let
     homeModules =
-      if builtins.pathExists ./${host}/home.nix
+      if (builtins.pathExists ./${host}/home.nix && fullBuild)
       then [
         inputs.home-manager.nixosModules.home-manager
         ./home-manager.nix
@@ -42,11 +45,15 @@
         ++ homeModules
         ++ sharedModules;
       specialArgs = {
-        inherit host inputs system pkgs;
+        inherit host inputs system pkgs fullBuild;
         std = inputs.nix-std.lib;
       };
     };
 in {
-  coruscant = mkSystem "coruscant";
-  iso = mkSystem "iso";
+  coruscant = mkSystem {host = "coruscant";};
+  coruscant-minimal = mkSystem {
+    host = "coruscant";
+    fullBuild = false;
+  };
+  iso = mkSystem {host = "iso";};
 }
