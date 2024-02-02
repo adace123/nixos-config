@@ -3,6 +3,7 @@
   lib,
   ...
 }: {
+  imports = [./disk.nix];
   modules = {
     user = {
       name = "aaron";
@@ -21,7 +22,6 @@
     sound.enable = true;
     bluetooth.enable = true;
     boot = {
-      device = "/dev/sda";
       plymouth.enable = true;
     };
     virtualisation = {

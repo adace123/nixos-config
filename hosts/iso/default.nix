@@ -12,7 +12,6 @@
       wifi.enable = true;
       avahi.enable = true;
     };
-    disko.enable = false;
     sops.enable = false;
     user.name = "nixos";
   };
