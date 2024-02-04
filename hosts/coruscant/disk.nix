@@ -27,6 +27,7 @@
               settings = {
                 allowDiscards = true;
                 keyFile = "/cryptroot.key";
+                fallbackToPassword = true;
               };
               content = {
                 type = "btrfs";
