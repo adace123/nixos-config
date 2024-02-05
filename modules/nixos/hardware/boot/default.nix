@@ -26,6 +26,7 @@ in {
         efiSupport = true;
         enableCryptodisk = true;
         device = "nodev";
+        useOSProber = true;
         configurationLimit = cfg.configLimit;
       };
       initrd = {
