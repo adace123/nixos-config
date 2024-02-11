@@ -7,7 +7,7 @@
 }: {
   modules = {
     desktop = {
-      wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/scifi-background.jpg";
+      wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/minimal-space.png";
       idle.enable = true;
       waybar.enable = true;
       hyprland.enable = true;

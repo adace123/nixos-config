@@ -31,7 +31,7 @@ in
 
           font = {
             normal.family = "JetBrainsMono Nerd Font";
-            size = 16;
+            size = 14;
             builtin_box_drawing = true;
           };
 
