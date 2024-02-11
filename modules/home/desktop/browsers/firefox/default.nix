@@ -9,8 +9,7 @@ in
   with lib; {
     options.modules.desktop.browsers.firefox.enable = mkEnableOption "Firefox browser";
     config = mkIf cfg.enable {
-      home.file.".config/tridactyl/tridactylrc".source = ./tridactyl/tridactylrc;
-      home.file.".config/tridactyl/themes/catppuccin.css".source = ./tridactyl/themes/catppuccin.css;
+      home.file.".config/tridactyl/tridactylrc".source = ./tridactylrc;
 
       programs.firefox = {
         enable = true;
@@ -36,7 +35,6 @@ in
               tree-style-tab
               darkreader
               return-youtube-dislikes
-              pkgs.firefox-theme-catppuccin-mocha
             ]
             ++ (with pkgs.nur.repos.bandithedoge.firefoxAddons; [
               material-icons-for-github
