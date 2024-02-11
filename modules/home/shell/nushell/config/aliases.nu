@@ -1,5 +1,5 @@
 alias bios = sudo systemctl reboot --firmware
-alias bt = bluetoothctl
+alias bt = bluetuith
 alias cat = bat
 alias exa = eza --icons
 alias ga = git add
