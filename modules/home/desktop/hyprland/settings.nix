@@ -30,7 +30,7 @@ in {
         gaps_out = 10;
         border_size = 3;
         "col.active_border" = "0xff9b5de5";
-        "col.inactive_border" = "0xff${config.colorScheme.colors.base02}";
+        "col.inactive_border" = "0xff${config.colorScheme.palette.base02}";
       };
 
       decoration = {

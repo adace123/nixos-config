@@ -10,4 +10,4 @@ config:
       sops:
         encryptedPath: hosts/coruscant/secrets.yaml
         rawPath: hosts/coruscant/secrets-raw.yaml
-      sshUrl: root@coruscant.local
+      sshUrl: aaron@coruscant.local

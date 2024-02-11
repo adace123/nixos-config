@@ -12,7 +12,7 @@ in
     config = mkIf cfg.enable {
       home.packages = [pkgs.amfora];
       home.file.".local/share/amfora/bookmarks.xml".source = ./bookmarks.xml;
-      home.file.".config/amfora/config.toml".text = with config.colorScheme.colors;
+      home.file.".config/amfora/config.toml".text = with config.colorScheme.palette;
         std.serde.toTOML {
           theme = {
             bg = "#${base00}";

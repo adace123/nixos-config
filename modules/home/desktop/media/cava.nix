@@ -9,7 +9,7 @@ in
   with lib; {
     config = mkIf cfg.enable {
       home.packages = [pkgs.cava];
-      xdg.configFile."cava/config".text = with config.colorScheme.colors; ''
+      xdg.configFile."cava/config".text = with config.colorScheme.palette; ''
           [output]
 
         # Output method. Can be 'ncurses', 'noncurses', 'raw', 'noritake' or 'sdl'.

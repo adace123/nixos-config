@@ -51,6 +51,8 @@
     };
 in {
   coruscant = mkSystem {host = "coruscant";};
+  # The full system is too large to install via nixos-anywhere
+  # Need to install a minimal version first
   coruscant-minimal = mkSystem {
     host = "coruscant";
     fullBuild = false;

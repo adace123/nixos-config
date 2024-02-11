@@ -1,3 +1,4 @@
+alias bios = sudo systemctl reboot --firmware
 alias bt = bluetoothctl
 alias cat = bat
 alias exa = eza --icons

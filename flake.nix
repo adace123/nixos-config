@@ -31,6 +31,10 @@
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    grub-theme = {
+      url = "github:shvchk/fallout-grub-theme";
+      flake = false;
+    };
   };
 
   outputs = {

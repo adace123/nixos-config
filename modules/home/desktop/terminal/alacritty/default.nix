@@ -40,9 +40,7 @@ in
             blinking = "On";
           };
 
-          draw_bold_text_with_bright_colors = true;
-
-          colors = with config.colorscheme.colors; {
+          colors = with config.colorScheme.palette; {
             cursor = {
               text = "0x${base00}";
               cursor = "0x${base05}";

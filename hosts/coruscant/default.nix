@@ -16,12 +16,13 @@
     networking = {
       wifi.enable = true;
       tailscale.enable = true;
+      avahi.enable = true;
       tools.enable = fullBuild;
     };
     hardware.tools.enable = fullBuild;
     graphics.nvidia.enable = fullBuild;
-    sound.enable = true;
-    bluetooth.enable = true;
+    sound.enable = fullBuild;
+    bluetooth.enable = fullBuild;
     boot = {
       plymouth.enable = true;
     };
@@ -39,8 +40,7 @@
     extraHosts = ''
       192.168.4.90 proxmox.homelab
     '';
-    interfaces.wlp10s0 = {
-      useDHCP = true;
+    interfaces.wlan0 = {
       ipv4.addresses = [
         {
           address = "192.168.4.10";

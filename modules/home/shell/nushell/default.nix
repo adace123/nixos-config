@@ -32,24 +32,22 @@ in
         configFile.source = ./config/main.nu;
         extraConfig = ''
           # completions
-          use ${nu_script_path}/custom-completions/git/git-completions.nu *
-          use ${nu_script_path}/custom-completions/btm/btm-completions.nu *
-          use ${nu_script_path}/custom-completions/cargo/cargo-completions.nu *
-          use ${nu_script_path}/custom-completions/nix/nix-completions.nu *
-          use ${nu_script_path}/custom-completions/tealdeer/tldr-completions.nu *
-          use ${nu_script_path}/custom-completions/zellij/zellij-completions.nu *
-          use ${nu_script_path}/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
+          source ${nu_script_path}/custom-completions/git/git-completions.nu
+          source ${nu_script_path}/custom-completions/btm/btm-completions.nu
+          source ${nu_script_path}/custom-completions/cargo/cargo-completions.nu
+          source ${nu_script_path}/custom-completions/nix/nix-completions.nu
+          source ${nu_script_path}/custom-completions/tealdeer/tldr-completions.nu
+          source ${nu_script_path}/custom-completions/zellij/zellij-completions.nu
+          source ${nu_script_path}/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu
 
           # modules
-          use ${nu_script_path}/modules/kubernetes/kubernetes.nu *
-          use ${nu_script_path}/modules/data_extraction/ultimate_extractor.nu *
-          use ${nu_script_path}/modules/network/ssh.nu *
-          use ${nu_script_path}/modules/nix/nix.nu *
-          use ${nu_script_path}/modules/weather/get-weather.nu *
+          source ${nu_script_path}/modules/argx/argx.nu
+          source ${nu_script_path}/modules/data_extraction/ultimate_extractor.nu
+          source ${nu_script_path}/modules/nix/nix.nu
+          source ${nu_script_path}/modules/weather/get-weather.nu
 
           # themes
-          use ${nu_script_path}/themes/themes/everforest.nu
-
+          use ${nu_script_path}/themes/nu-themes/everforest.nu
           $env.config = ($env.config | merge {color_config: (everforest)})
         '';
       };

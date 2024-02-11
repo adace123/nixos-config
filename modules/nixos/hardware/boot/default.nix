@@ -3,6 +3,7 @@
   lib,
   options,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
@@ -28,26 +29,7 @@ in {
         device = "nodev";
         useOSProber = true;
         configurationLimit = cfg.configLimit;
-      };
-      initrd = {
-        # luks.devices."cryptroot" = {
-        # allowDiscards = true;
-        # bypassWorkqueues = true;
-        # fallbackToPassword = true;
-        # keyFile = "/cryptroot.key";
-        # };
-        secrets = {
-          "/cryptroot.key" = "/cryptroot.key";
-        };
-      };
-      plymouth = {
-        inherit (cfg.plymouth) enable;
-        theme = "catppuccin-mocha";
-        themePackages = [
-          (pkgs.catppuccin-plymouth.override {
-            variant = "mocha";
-          })
-        ];
+        theme = inputs.grub-theme;
       };
     };
   };

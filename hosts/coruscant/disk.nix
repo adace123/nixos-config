@@ -24,10 +24,9 @@
             content = {
               type = "luks";
               name = "crypted";
+              passwordFile = "/tmp/secret.key";
               settings = {
                 allowDiscards = true;
-                keyFile = "/cryptroot.key";
-                fallbackToPassword = true;
               };
               content = {
                 type = "btrfs";
