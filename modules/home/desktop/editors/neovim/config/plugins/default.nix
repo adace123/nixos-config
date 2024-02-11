@@ -1,5 +1,20 @@
 {pkgs, ...}: {
-  imports = [./lsp.nix ./treesitter.nix ./telescope.nix ./file-explorer.nix ./git.nix ./cmp.nix ./indent-blankline.nix ./lualine.nix ./none-ls.nix ./startup.nix ./lspsaga.nix ./barbar.nix ./neorg.nix ./toggleterm.nix];
+  imports = [
+    ./lsp.nix
+    ./telescope.nix
+    ./treesitter.nix
+    ./barbar.nix
+    ./git.nix
+    ./file-explorer.nix
+    ./indent-blankline.nix
+    ./lspsaga.nix
+    ./lualine.nix
+    ./neorg.nix
+    ./none-ls.nix
+    ./startup.nix
+    ./toggleterm.nix
+    ./cmp.nix
+  ];
 
   programs.nixvim = {
     plugins = {
@@ -20,7 +35,6 @@
           navPrev = "[[";
         };
       };
-      # notify.enable = true;
       nvim-autopairs = {
         enable = true;
         checkTs = true;
@@ -33,14 +47,34 @@
       which-key.enable = true;
       better-escape.enable = true;
       undotree.enable = true;
-      project-nvim.enable = true;
-      # noice.enable = true;
+      floaterm = {
+        enable = true;
+        opener = "edit";
+      };
     };
     extraPlugins = with pkgs.vimPlugins; [
       overseer-nvim
       plenary-nvim
       nvim-web-devicons
       nvim-spectre
+      persistence-nvim
     ];
+    userCommands = {
+      SessionRestore = {
+        nargs = "*";
+        command = ":lua require('persistence').load()";
+      };
+      LastSessionRestore = {
+        nargs = "*";
+        command = ":lua require('persistence').load({ last = true })";
+      };
+    };
   };
+
+  # autoCmd = [
+  #   {
+  #     event = "BufReadPre";
+  #     command = ":lua require('persistence').save()";
+  #   }
+  # ];
 }

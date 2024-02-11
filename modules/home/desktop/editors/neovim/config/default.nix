@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./options.nix ./keymaps.nix ./autocmds.nix ./colorscheme.nix];
+  imports = [./options.nix ./keymaps.nix ./autocmds.nix ./colorscheme.nix ./plugins];
 }

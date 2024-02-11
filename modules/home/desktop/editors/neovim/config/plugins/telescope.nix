@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   programs.nixvim = {
     plugins.telescope = {
       enable = true;
@@ -45,10 +45,6 @@
           action = "keymaps";
           desc = "Keymaps";
         };
-        "<leader>fw" = {
-          action = "live_grep";
-          desc = "Grep";
-        };
         "<leader>fj" = {
           action = "jumplist";
           desc = "Jumplist";
@@ -68,8 +64,6 @@
       };
       extensions = {
         fzf-native.enable = true;
-        frecency.enable = true;
-        undo.enable = true;
       };
     };
     keymaps = [
@@ -80,12 +74,6 @@
         mode = ["n"];
       }
       {
-        key = "<leader>fu";
-        action = "Telescope undo<CR>";
-        options.desc = "Undo";
-        mode = ["n"];
-      }
-      {
         key = "<leader>fC";
         action = "function() require('telescope.builtin').colorscheme({ enable_preview = true }) end";
         lua = true;
@@ -93,18 +81,12 @@
         mode = ["n"];
       }
       {
-        key = "<leader>fz";
-        action = "<cmd>Telescope zoxide list<CR>";
-        options.desc = "Zoxide";
+        key = "<leader>fw";
+        action = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '--smart-case'} }) end";
+        lua = true;
+        options.desc = "Grep";
         mode = ["n"];
       }
-    ];
-    extraConfigLua = ''
-      require('telescope').load_extension('zoxide')
-    '';
-    extraPlugins = with pkgs.vimPlugins; [
-      telescope-zoxide
-      nvim-code-action-menu
     ];
   };
 }

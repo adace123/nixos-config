@@ -19,6 +19,7 @@ in
         clang
         mold
         rustc
+        rust-analyzer
       ];
 
       home.file.".cargo/config.toml".text = std.serde.toTOML {

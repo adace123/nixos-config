@@ -1,11 +1,10 @@
-{pkgs, ...}: {
+_: {
   programs.nixvim = {
     plugins = {
       navbuddy = {
         enable = true;
         lsp.autoAttach = true;
       };
-      navic.enable = true;
       fidget.enable = true;
       lsp = {
         enable = true;
@@ -40,20 +39,21 @@
           };
           nixd.enable = true;
           ruff-lsp.enable = true;
-          rust-analyzer.enable = true;
+          rust-analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
           tsserver.enable = true;
           zls.enable = true;
           gopls.enable = true;
+          nushell.enable = true;
         };
         keymaps = {
           silent = true;
-          diagnostic = {
-            "<leader>k" = "goto_prev";
-            "<leader>j" = "goto_next";
-          };
           lspBuf = {
-            "gK" = "signature_help";
-            "ca" = "code_action";
+            "<leader>cf" = "format";
+            # other LSP functionality handled by LspSaga
           };
         };
       };
@@ -65,11 +65,19 @@
         options.desc = "Navbuddy";
         mode = ["n"];
       }
+      {
+        key = "<leader>cR";
+        action = ":LspRestart<CR>";
+        options.desc = "LspRestart";
+        mode = ["n"];
+      }
     ];
-    extraPlugins = [pkgs.vimPlugins.nvim-nu];
-    extraConfigLua = ''
-      -- set up nvim-nu
-      require("nu").setup()
-    '';
+    autoCmd = [
+      {
+        event = ["BufNewFile" "BufRead"];
+        pattern = ["*.nu"];
+        command = "set ft=nu";
+      }
+    ];
   };
 }

@@ -21,6 +21,9 @@ in
             plotly
             pytest
           ]))
+        ruff
+        ruff-lsp
+        pyright
       ];
 
       home.file.".config/ptpython/config.py".source = ./ptpython.py;

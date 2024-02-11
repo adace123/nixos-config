@@ -24,7 +24,6 @@
         };
       };
     };
-
     keymaps = [
       {
         action = "<cmd>Neotree toggle<CR>";

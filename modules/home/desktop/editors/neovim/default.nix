@@ -1,13 +1,12 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.modules.editors.neovim;
 in
   with lib; {
-    imports = [./config ./plugins];
+    imports = [./config];
 
     options.modules.editors.neovim.enable = mkEnableOption "neovim";
 
@@ -22,24 +21,5 @@ in
           xclip.enable = true;
         };
       };
-
-      home.packages = with pkgs; [
-        zig # Treesitter compiler
-        tree-sitter
-        nodejs
-
-        # language-servers
-        nixd
-        lua-language-server
-        rust-analyzer
-        pyright
-        ruff
-        ruff-lsp
-
-        # formatters
-        alejandra
-        stylua
-        yamlfmt
-      ];
     };
   }
