@@ -14,50 +14,52 @@ in
     };
 
     config = mkIf cfg.enable {
-      programs.lazygit.enable = true;
+      programs = {
+        lazygit.enable = true;
+        git = {
+          enable = true;
+          difftastic.enable = true;
+          userName = "adace123";
+          userEmail = "18275490+adace123@users.noreply.github.com";
 
-      programs.git = {
-        enable = true;
-        difftastic.enable = true;
-        userName = "adace123";
-        userEmail = "18275490+adace123@users.noreply.github.com";
+          ignores = [
+            "*.log"
+            "*.swp"
+          ];
 
-        ignores = [
-          "*.log"
-          "*.swp"
-        ];
+          aliases = {
+            b = "branch --color -v";
+            co = "checkout";
+            lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+            dc = "diff --cached";
+          };
 
-        aliases = {
-          b = "branch --color -v";
-          co = "checkout";
-          lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-          dc = "diff --cached";
+          extraConfig = {
+            init.defaultBranch = "main";
+            core.editor = "nvim";
+            push.autoSetupRemote = true;
+            # TODO: make key configurable
+            user.signingkey = osConfig.sops.secrets.github-private-key.path;
+            gpg.format = "ssh";
+            commit.gpgsign = true;
+          };
         };
 
-        extraConfig = {
-          init.defaultBranch = "main";
-          core.editor = "nvim";
-          push.autoSetupRemote = true;
-          # TODO: make key configurable
-          user.signingkey = osConfig.sops.secrets.github-private-key.path;
-          gpg.format = "ssh";
-          commit.gpgsign = true;
+        gh = {
+          enable = true;
+          settings.git_protocol = "ssh";
+          extensions = with pkgs; [
+            gh-dash
+            gh-eco
+          ];
         };
-      };
-
-      programs.gh = {
-        enable = true;
-        settings.git_protocol = "ssh";
-        extensions = with pkgs; [
-          gh-dash
-          gh-eco
-        ];
-      };
-
-      programs.ssh.matchBlocks."github.com" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = [osConfig.sops.secrets.github-private-key.path];
+        ssh = {
+          matchBlocks."github.com" = {
+            hostname = "github.com";
+            user = "git";
+            identityFile = [osConfig.sops.secrets.github-private-key.path];
+          };
+        };
       };
     };
   }
