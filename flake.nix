@@ -20,6 +20,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     hyprkeys.url = "github:hyprland-community/Hyprkeys";
     hyprland-contrib.url = "github:hyprwm/contrib";
+    pyprland.url = "github:hyprland-community/pyprland";
     nix-std.url = "github:chessai/nix-std";
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";

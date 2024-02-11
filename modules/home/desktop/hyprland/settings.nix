@@ -21,6 +21,7 @@
     submap = reset
   '';
 in {
+  imports = [./pyprland.nix];
   wayland.windowManager.hyprland = {
     settings = {
       "$mod" = mod;
@@ -66,8 +67,9 @@ in {
       exec-once = [
         "${TERMINAL}"
         "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"
-        "${TERMINAL} --class scratchpad"
+        # "${TERMINAL} --class scratchpad"
         "${BROWSER}"
+        "pypr"
       ];
 
       bind = let
@@ -160,6 +162,9 @@ in {
         "opacity 1.0 override 1.0 override,class:^(firefox)$"
         "opacity 1.0 override 1.0 override,class:^(qutebrowser)$"
         "workspace special silent, class:^(scratchpad)$"
+        "float, class:^(scratchpad)$"
+        "center, class:^(scratchpad)$"
+        "size 80% 85%, class:^(scratchpad)$"
       ];
     };
     extraConfig = let
