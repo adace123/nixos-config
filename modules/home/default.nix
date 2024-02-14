@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   imports = [
     ./desktop
     ./shell
@@ -7,10 +7,10 @@
   ];
 
   # default home packages
-  home.packages = with pkgs; [
-    home-manager
-    mdcat
-    nvd
-    neovim # uses nixvim overlay
-  ];
+  # home.packages = with pkgs; [
+  #   home-manager
+  #   mdcat
+  #   nvd
+  #   neovim # uses nixvim overlay
+  # ];
 }

@@ -123,6 +123,9 @@ nixos-install host config:
     $ssh_config.url
   )
 
+nix-install:
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
 get-ssh-key host:
   #!/usr/bin/env nu
   let key = pulumi stack output --show-secrets -C keys {{host}} | from json | get privKey

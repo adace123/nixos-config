@@ -11,8 +11,8 @@ in
     options.modules.editors.neovim.enable = mkEnableOption "neovim";
 
     config = mkIf cfg.enable {
-      home.sessionVariables.EDITOR = "nvim";
-      programs.nushell.extraConfig = ''$env.EDITOR = "nvim"'';
+      # home.sessionVariables.EDITOR = "nvim";
+      # programs.nushell.extraConfig = ''$env.EDITOR = "nvim"'';
 
       programs.nixvim = {
         enable = true;

@@ -23,7 +23,7 @@
       if (builtins.pathExists ./${host}/home.nix && fullBuild)
       then [
         inputs.home-manager.nixosModules.home-manager
-        ./home-manager.nix
+        ../modules/home/home-manager.nix
         {
           home-manager.extraSpecialArgs = {
             inherit host inputs pkgs;

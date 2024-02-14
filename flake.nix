@@ -40,6 +40,11 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    darwin = {
+      # MacOS Package Management
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -55,14 +60,14 @@
       outputs.overlays.default
       hyprland-contrib.overlays.default
     ];
-    systems = ["x86_64-linux" "x86_64-darwin"];
+    systems = ["x86_64-linux" "x86_64-darwin" "aarch64-darwin"];
 
     forEachSystem = nixpkgs.lib.genAttrs systems;
     forEachPkgs = f: forEachSystem (system: f (import nixpkgs {inherit system overlays;}));
   in {
     packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
     overlays = import ./overlays {inherit inputs;};
-    devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs self;});
+    devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs self inputs;});
     checks = forEachPkgs (pkgs: {
       pre-commit-check = inputs.pre-commit.lib.${pkgs.system}.run {
         src = ./.;
@@ -74,5 +79,6 @@
       };
     });
     nixosConfigurations = import ./hosts {inherit overlays inputs outputs nixpkgs;};
+    darwinConfigurations = import ./darwin {inherit overlays inputs outputs nixpkgs;};
   };
 }

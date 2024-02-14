@@ -6,8 +6,8 @@
       inherit inputs;
     };
 
-  modifications = _: prev: {
-    neovim = inputs.neovim-flake.packages.${prev.system}.default;
+  modifications = _: _: {
+    # neovim = inputs.neovim-flake.packages.${prev.system}.default;
   };
 in {
   default = final: prev: (additions final prev) // (modifications final prev);
