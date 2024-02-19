@@ -9,14 +9,13 @@
 with lib; let
   cfg = config.modules.user;
 in {
-  # options.modules.user.password = mkEnableOption "Set user password";
   options.modules.user = {
     name = mkOption {
       type = types.str;
       description = "Default user name";
     };
     password.enable = mkEnableOption "Set user password";
-    sudo.enable = mkEnableOption "Enble sudo privileges";
+    sudo.enable = mkEnableOption "Enable sudo privileges";
   };
 
   config = {

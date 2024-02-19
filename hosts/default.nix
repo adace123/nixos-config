@@ -1,24 +1,23 @@
 {
-  nixpkgs,
   inputs,
   overlays,
-  system ? "x86_64-linux",
   ...
 }: let
+  myLib = import ../lib {inherit inputs overlays;};
   sharedModules = with inputs; [
     sops-nix.nixosModules.sops
     ../modules/nixos
   ];
 
-  pkgs = import nixpkgs {
-    inherit overlays system;
-    config.allowUnfree = true;
-  };
-
   mkSystem = {
     host,
+    system ? "x86_64-linux",
     fullBuild ? true,
   }: let
+    pkgs = import inputs.nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
     homeModules =
       if (builtins.pathExists ./${host}/home.nix && fullBuild)
       then [
@@ -33,7 +32,7 @@
       ]
       else [];
   in
-    nixpkgs.lib.nixosSystem {
+    pkgs.lib.nixosSystem {
       inherit system;
       modules =
         [
@@ -49,13 +48,23 @@
         std = inputs.nix-std.lib;
       };
     };
-in {
-  coruscant = mkSystem {host = "coruscant";};
-  # The full system is too large to install via nixos-anywhere
-  # Need to install a minimal version first
-  coruscant-minimal = mkSystem {
-    host = "coruscant";
-    fullBuild = false;
-  };
-  iso = mkSystem {host = "iso";};
-}
+in
+  with myLib; {
+    nixosConfigurations = {
+      coruscant = mkSystem {host = "coruscant";};
+      # The full system is too large to install via nixos-anywhere
+      # Need to install a minimal version first
+      coruscant-minimal = mkSystem {
+        host = "coruscant";
+        fullBuild = false;
+      };
+      iso = mkSystem {host = "iso";};
+    };
+    darwinConfigurations = {
+      endor = mkDarwinSystem {
+        # TODO: update to aarch64-darwin
+        system = "x86_64-darwin";
+        host = "endor";
+      };
+    };
+  }

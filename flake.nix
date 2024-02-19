@@ -64,21 +64,21 @@
 
     forEachSystem = nixpkgs.lib.genAttrs systems;
     forEachPkgs = f: forEachSystem (system: f (import nixpkgs {inherit system overlays;}));
-  in {
-    packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
-    overlays = import ./overlays {inherit inputs;};
-    devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs self inputs;});
-    checks = forEachPkgs (pkgs: {
-      pre-commit-check = inputs.pre-commit.lib.${pkgs.system}.run {
-        src = ./.;
-        hooks = {
-          alejandra.enable = true;
-          deadnix.enable = true;
-          nil.enable = true;
+  in
+    {
+      packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
+      overlays = import ./overlays {inherit inputs;};
+      devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs self inputs;});
+      checks = forEachPkgs (pkgs: {
+        pre-commit-check = inputs.pre-commit.lib.${pkgs.system}.run {
+          src = ./.;
+          hooks = {
+            alejandra.enable = true;
+            deadnix.enable = true;
+            nil.enable = true;
+          };
         };
-      };
-    });
-    nixosConfigurations = import ./hosts {inherit overlays inputs outputs nixpkgs;};
-    darwinConfigurations = import ./darwin {inherit overlays inputs outputs nixpkgs;};
-  };
+      });
+    }
+    // (import ./hosts {inherit inputs overlays;});
 }

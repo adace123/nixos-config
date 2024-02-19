@@ -1,6 +1,7 @@
 alias bios = sudo systemctl reboot --firmware
 alias bt = bluetuith
 alias cat = bat
+alias ctx = kubectx
 alias exa = eza --icons
 alias ga = git add
 alias gc = git commit
@@ -20,6 +21,7 @@ alias lzd = sudo lazydocker
 alias jt = journalctl -xe
 alias k = kubectl
 alias nb = newsboat
+alias ns = kubens
 alias pm = podman
 alias pmc = podman-compose
 alias pmt = podman-tui

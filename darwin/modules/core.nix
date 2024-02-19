@@ -1,41 +1,21 @@
 {
   lib,
-  user,
-  pkgs,
+  config,
   ...
-}:
-with lib; {
-  imports = [
-    ../../modules/nixos/core/nix.nix
-  ];
-  services.nix-daemon.enable = true;
+}: let
+  user = config.modules.user.name;
+in
+  with lib; {
+    imports = [
+      ../../modules/nixos/core/nix.nix
+      ./system.nix
+      ./yabai.nix
+      # TODO: enable homebrew
+      # ./homebrew.nix
+    ];
+    services.nix-daemon.enable = true;
 
-  system.stateVersion = 4;
-
-  users.users.${user} = {
-    home = "/Users/${user}";
-  };
-
-  home-manager = {
-    users.${user} = {
-      home.stateVersion = "22.05";
+    users.users.${user} = {
+      home = "/Users/${user}";
     };
-  };
-
-  environment.systemPackages = with pkgs; [
-    neovim
-  ];
-
-  modules = {
-    editors.neovim.enable = true;
-  };
-  # TODO: reenable on new laptop
-  # homebrew = {
-  #   enable = true;
-  #   onActivation = {
-  #     autoUpdate = false;
-  #     upgrade = false;
-  #     cleanup = "zap";
-  #   };
-  # };
-}
+  }

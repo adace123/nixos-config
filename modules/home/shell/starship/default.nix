@@ -13,13 +13,12 @@ in
         settings = {
           format = lib.concatStrings [
             "[░▒▓](#f5c2e7)"
-            "$username"
-            "$hostname"
-            "[](bg:#f38ba8 fg:#f5c2e7)"
             "$directory"
             "[](fg:#f38ba8 bg:#eb7c92)"
             "$git_branch"
             "$git_status"
+            "[](fg:#f38ba8 bg:#eb7c92)"
+            "$kubernetes"
             "[](fg:#eb7c92 bg:#e6657f)"
             "[](fg:#e6657f bg:#e05a75)"
             "$time"
@@ -42,6 +41,12 @@ in
             format = "[@$hostname]($style)";
             ssh_only = false;
             disabled = false;
+          };
+
+          kubernetes = {
+            disabled = false;
+            style = "bg:#f38ba8 fg:#11111b";
+            format = "[ $symbol on $context / $namespace ]($style)";
           };
 
           directory = {

@@ -21,6 +21,7 @@ in
             enable_wayland = true,
             front_end = "OpenGL",
             hide_tab_bar_if_only_one_tab = true,
+            default_prog = {"nu"},
           }
         '';
       };
