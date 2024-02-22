@@ -22,7 +22,7 @@ in
           bottom_padding = "10";
           left_padding = "10";
           right_padding = "10";
-          window_gap = "5";
+          window_gap = "8";
         };
         extraConfig = ''
           yabai -m rule --add app="System Preferences"  manage="off"
@@ -58,6 +58,17 @@ in
           ctrl - 3 : yabai -m space --focus 3
           ctrl - 4 : yabai -m space --focus 4
           ctrl - 5 : yabai -m space --focus 5
+
+          # move window and focus desktop
+          shift + alt - 1 : yabai -m window --space 1
+          shift + alt - 2 : yabai -m window --space 2
+          shift + alt - 3 : yabai -m window --space 3
+          shift + alt - 4 : yabai -m window --space 4
+          shift + alt - 5 : yabai -m window --space 5
+          shift + alt - 6 : yabai -m window --space 6
+          shift + alt - 7 : yabai -m window --space 7
+          shift + alt - 8 : yabai -m window --space 8
+          shift + alt - 9 : yabai -m window --space 9
         '';
       };
     };
