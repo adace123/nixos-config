@@ -28,5 +28,8 @@
 
   boot.loader.grub.enable = lib.mkForce true;
 
-  isoImage.isoName = lib.mkForce "nixos.iso";
+  isoImage = {
+    isoName = lib.mkForce "nixos.iso";
+    squashfsCompression = "gzip -Xcompression-level 1";
+  };
 }
