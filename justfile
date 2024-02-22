@@ -153,10 +153,6 @@ edit-host-secrets host="common":
     sops $yaml_path
   }
 
-add-host-secret host="common":
-  #!/usr/bin/env nu
-  # TODO
-
 [linux]
 check *args:
   nix flake check {{args}}
