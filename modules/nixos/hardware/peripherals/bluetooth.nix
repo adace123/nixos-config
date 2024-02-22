@@ -13,7 +13,15 @@ in {
       enable = true;
       settings = {
         General = {
-          Experimental = true;
+          FastConnectable = true;
+          JustWorksRepairing = "always";
+          Privacy = "device";
+        };
+        Policy = {
+          AutoEnable = true;
+        };
+        inputs = {
+          UserSpaceHID = true;
         };
       };
       powerOnBoot = true;
