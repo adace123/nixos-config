@@ -14,7 +14,7 @@ in
       environment.systemPackages = [tailscale];
 
       services.tailscale = {
-        enable = true;
+        enable = false;
         interfaceName = "tailscale0";
         port = 41641;
         extraUpFlags = ["--ssh"];
