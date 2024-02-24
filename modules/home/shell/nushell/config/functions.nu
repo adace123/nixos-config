@@ -7,7 +7,7 @@ def sc-list [] {
 
 def jt-debug [] {
   # TODO: Stream to a table
-  journalctl -b -p warning -o json | lines | each {|| from json} | sort-by PRIORITY | select _TRANSPORT PRIORITY MESSAGE | where MESSAGE != null | less
+  journalctl -b -p warning -o json | lines | each {|| from json} | sort-by PRIORITY | select _TRANSPORT PRIORITY MESSAGE | where MESSAGE != null
 }
 
 def hyprlogs [] {
