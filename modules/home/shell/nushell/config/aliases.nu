@@ -34,6 +34,6 @@ alias ts = tailscale
 alias v = nvim
 alias y = yazi
 alias zj = zellij
-alias zjl = zellij list-all-sessions
+alias zjl = zellij list-sessions
 alias zjd = zellij --layout $"($env.HOME)/.config/zellij/layouts/layout.kdl"
 alias zja = zellij kill-all-sessions -y
