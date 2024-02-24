@@ -35,6 +35,7 @@ in
           source ${nu_script_path}/custom-completions/git/git-completions.nu
           source ${nu_script_path}/custom-completions/btm/btm-completions.nu
           source ${nu_script_path}/custom-completions/cargo/cargo-completions.nu
+          source ${nu_script_path}/custom-completions/just/just-completions.nu
           source ${nu_script_path}/custom-completions/nix/nix-completions.nu
           source ${nu_script_path}/custom-completions/tealdeer/tldr-completions.nu
           source ${nu_script_path}/custom-completions/zellij/zellij-completions.nu
