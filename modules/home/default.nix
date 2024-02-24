@@ -11,6 +11,5 @@
     home-manager
     mdcat
     nvd
-    neovim # uses nixvim overlay
   ];
 }

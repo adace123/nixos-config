@@ -1,6 +1,5 @@
 {
   description = "NixOS Config";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-latest.url = "github:NixOS/nixpkgs";
@@ -24,10 +23,6 @@
     nix-std.url = "github:chessai/nix-std";
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
-    neovim-flake = {
-      url = "github:adace123/neovim-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     pre-commit = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,7 +51,6 @@
       hyprland-contrib.overlays.default
     ];
     systems = ["x86_64-linux" "x86_64-darwin"];
-
     forEachSystem = nixpkgs.lib.genAttrs systems;
     forEachPkgs = f: forEachSystem (system: f (import nixpkgs {inherit system overlays;}));
   in {

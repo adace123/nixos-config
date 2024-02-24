@@ -38,6 +38,7 @@
     editors = {
       helix.enable = true;
       vscode.enable = true;
+      neovim.enable = true;
     };
     feeds = {
       enable = true;
