@@ -9,6 +9,8 @@
 in
   with lib; {
     options.modules.desktop.hyprland.enable = mkEnableOption "Enable Hyprland";
+    options.modules.desktop.hyprland.addons.enable = mkEnableOption "Enable Hyprland addons";
+
     imports = [
       ./settings.nix
       ./addons

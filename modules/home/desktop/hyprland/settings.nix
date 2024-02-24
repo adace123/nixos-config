@@ -21,7 +21,6 @@
     submap = reset
   '';
 in {
-  imports = [./pyprland.nix];
   wayland.windowManager.hyprland = {
     settings = {
       "$mod" = mod;
@@ -82,7 +81,7 @@ in {
         apps = [
           "${mod}, b, exec, ${BROWSER}"
           "${mod}, Return, exec, ${TERMINAL}"
-          "${mod} SHIFT, i, exec, systemd-toggle swayidle --user"
+          "${mod} SHIFT, i, exec, systemd-toggle hypridle --user"
           "${mod} SHIFT, b, exec, ${TERMINAL} -e rebuild"
           "${mod} SHIFT, d, exec, makoctl dismiss -a"
           "${mod}, SPACE, exec, rofi -show drun"

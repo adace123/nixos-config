@@ -8,10 +8,10 @@
   modules = {
     desktop = {
       wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/minimal-space.png";
-      idle.enable = true;
-      waybar.enable = true;
-      hyprland.enable = true;
-      notifications.enable = true;
+      hyprland = {
+        enable = true;
+        addons.enable = true;
+      };
       media.enable = true;
       monitor = {
         output = "DP-1";
@@ -28,7 +28,6 @@
         amfora.enable = true;
       };
       pdf.enable = true;
-      rofi.enable = true;
       social.discord.enable = true;
     };
     shell = {

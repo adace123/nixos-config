@@ -4,10 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.rofi;
+  cfg = config.modules.desktop.hyprland.addons;
 in
   with lib; {
-    options.modules.desktop.rofi.enable = mkEnableOption "rofi";
     config = mkIf cfg.enable {
       home.packages = with pkgs; [
         rofi-systemd

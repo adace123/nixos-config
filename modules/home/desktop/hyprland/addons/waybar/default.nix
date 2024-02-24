@@ -4,11 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.waybar;
+  cfg = config.modules.desktop.hyprland.addons;
 in
   with lib; {
-    options.modules.desktop.waybar.enable = mkEnableOption "waybar";
-
     config = mkIf cfg.enable {
       programs.wlogout.enable = true;
       wayland.windowManager.hyprland.settings.exec-once = ["${pkgs.waybar}/bin/waybar"];

@@ -2,70 +2,42 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
-  cfg = config.modules.desktop.idle;
+  cfg = config.modules.desktop.hyprland.addons;
+  suspendScript = pkgs.writeShellScript "suspend-script" ''
+    ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
+    if [ $? == 1 ]; then
+      ${pkgs.systemd}/bin/systemctl suspend
+    fi
+  '';
 in
   with lib; {
-    options.modules.desktop.idle = {
-      enable = mkEnableOption "enable swayidle";
-      timeout = mkOption {
-        type = types.int;
-        default = 500;
-      };
-    };
-
+    imports = [
+      inputs.hypridle.homeManagerModules.default
+    ];
     config = mkIf cfg.enable {
-      home.packages = [pkgs.swayidle];
-
-      programs.swaylock = {
+      services.hypridle = {
         enable = true;
-        package = pkgs.swaylock-effects;
-        settings = {
-          daemonize = true;
-          clock = true;
-          screenshots = true;
-          indicator = true;
-          indicator-radius = 100;
-          indicator-thickness = 7;
-          effect-blur = "7x5";
-          effect-vignette = "0.5:0.5";
-          ring-color = "3b4252";
-          key-hl-color = "880033";
-          line-color = "00000000";
-          inside-color = "00000088";
-          separator-color = "00000000";
-        };
-      };
+        beforeSleepCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+        lockCmd = lib.getExe config.programs.hyprlock.package;
 
-      services.swayidle = {
-        enable = true;
-        events = [
+        listeners = [
           {
-            event = "lock";
-            command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
+            onTimeout = "${getExe config.programs.hyprlock.package}";
+            timeout = 600;
           }
           {
-            event = "before-sleep";
-            command = "${pkgs.systemd}/bin/loginctl lock-session";
+            timeout = 900;
+            onTimeout = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms off";
+            onResume = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms on";
+          }
+          {
+            timeout = 1200;
+            onTimeout = suspendScript.outPath;
           }
         ];
-        timeouts = [
-          {
-            inherit (cfg) timeout;
-            command = "swaylock";
-          }
-          {
-            timeout = cfg.timeout + 320;
-            command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-            resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-          }
-          {
-            timeout = cfg.timeout + 500;
-            command = "${pkgs.systemd}/bin/systemctl suspend";
-          }
-        ];
-        systemdTarget = "hyprland-session.target";
       };
     };
   }

@@ -4,12 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.notifications;
+  cfg = config.modules.desktop.hyprland.addons;
   inherit (config.colorscheme) colors;
 in
   with lib; {
-    options.modules.desktop.notifications.enable = mkEnableOption "Desktop notifications";
-
     config = mkIf cfg.enable {
       home.packages = [pkgs.libnotify];
 
