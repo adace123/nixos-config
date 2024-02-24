@@ -67,7 +67,7 @@ in {
       exec-once = [
         "${TERMINAL}"
         "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"
-        # "${TERMINAL} --class scratchpad"
+        "${TERMINAL} --class scratchpad"
         "${BROWSER}"
         "pypr"
       ];
@@ -83,7 +83,7 @@ in {
           "${mod}, b, exec, ${BROWSER}"
           "${mod}, Return, exec, ${TERMINAL}"
           "${mod} SHIFT, i, exec, systemd-toggle swayidle --user"
-          "${mod} SHIFT, b, exec, rebuild"
+          "${mod} SHIFT, b, exec, ${TERMINAL} -e rebuild"
           "${mod} SHIFT, d, exec, makoctl dismiss -a"
           "${mod}, SPACE, exec, rofi -show drun"
           "${mod}, d, exec, discord"
@@ -126,8 +126,8 @@ in {
         ];
 
         scratchpad = [
-          "${mod}, minus, movetoworkspace, special"
-          "${mod}, equal, togglespecialworkspace"
+          "${mod}, equal, exec, pypr toggle terminal"
+          "${mod} ALT, b, exec, pypr toggle btm"
         ];
 
         workspace = let

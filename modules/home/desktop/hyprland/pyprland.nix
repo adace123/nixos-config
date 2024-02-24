@@ -10,10 +10,16 @@
       pyprland.plugins = ["scratchpads"];
       scratchpads = {
         terminal = {
-          command = "alacritty --class scratchpad";
-          # animation = "fromTop";
-          lazy = true;
-          size = "60% 60%";
+          command = "alacritty --class=scratchpad";
+          animation = "fromTop";
+          unfocus = "hide";
+          margin = 50;
+        };
+        btm = {
+          command = "alacritty --class=scratchpad -e btm";
+          animation = "fromTop";
+          unfocus = "hide";
+          margin = 50;
         };
       };
     };
