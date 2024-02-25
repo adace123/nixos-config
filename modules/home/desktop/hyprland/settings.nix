@@ -90,6 +90,7 @@ in {
           "SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast --notify copy screen"
           ", Print, exec, ${pkgs.grimblast}/bin/grimblast --notify copy area"
           "ALT, Print, exec, ${pkgs.grimblast}/bin/grimblast --notify copy active"
+          "${mod} SHIFT, w, exec, pkill waybar && waybar" # reload waybar
         ];
 
         window = [

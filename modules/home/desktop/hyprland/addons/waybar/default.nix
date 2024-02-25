@@ -21,11 +21,11 @@ in
             spacing = 4;
             "modules-left" = [
               "hyprland/workspaces"
+              "hyprland/submap"
             ];
             "modules-center" = [
               "clock"
               "hyprland/window"
-              "hyprland/submap"
               "custom/playerctl"
             ];
             "modules-right" = [
@@ -118,7 +118,7 @@ in
               format-alt = "{ifname}= {ipaddr}/{cidr}";
             };
             wireplumber = {
-              format = "{volume}% {node_name} {icon}";
+              format = "{volume}% {icon}";
               format-muted = "";
               format-icons = [
                 ""
@@ -152,8 +152,8 @@ in
             };
             "custom/gpu" = {
               format = ''{}% 󰢮'';
-              exec = "${pkgs.coreutils}/bin/cat /sys/class/drm/card1/device/gpu_busy_percent";
-              interval = 2;
+              exec = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
+              interval = 5;
             };
           };
         };
