@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }: let
   cfg = config.modules.desktop.hyprland.addons;
@@ -11,12 +12,10 @@ in
       inputs.hyprlock.homeManagerModules.default
     ];
     config = mkIf cfg.enable {
+      home.packages = [inputs.hyprlock.packages.${pkgs.system}.default];
       programs.hyprlock = {
         enable = true;
-        general = {
-          hide_cursor = false;
-          grace = 300;
-        };
+        general.grace = 300;
         input-fields = [
           {
             outer_color = "rgb(24, 25, 38)";
@@ -24,59 +23,35 @@ in
             font_color = "rgb(202, 211, 245)";
             halign = "center";
             valign = "bottom";
+            placeholder_text = "<i>Input Password...</i>";
           }
         ];
-        backgrounds = [
-          {
-            path = "${config.home.homeDirectory}/Pictures/wallpapers/telescope.jpg";
-            blur_passes = 4;
-          }
-        ];
+
         labels = [
           {
-            text = "<b>$TIME</b>";
-            color = "rgb(255, 255, 255)";
-            font_size = 96;
-            position = {
-              x = 0;
-              y = 0;
-            };
-            halign = "center";
-            valign = "top";
-          }
-          {
-            text = ''cmd[update:1000] echo "$(date "+%a %d %b")"'';
-            color = "rgb(255, 255, 255)";
-            font_size = 24;
-            position = {
-              x = 0;
-              y = -150;
-            };
-            halign = "center";
-            valign = "top";
-          }
-          {
-            text = "Hi there, <i>$USER</i>!";
-            color = "rgb(255, 255, 255)";
-            font_size = 32;
-            position = {
-              x = 0;
-              y = 0;
-            };
+            text = "$TIME";
+            color = "rgba(203, 195, 227, 1.0)";
+            font_family = "JetBrainsMono Nerd Font";
+            font_size = 72;
             halign = "center";
             valign = "center";
           }
           {
-            text = "";
-            color = "rgb(255, 255, 255)";
-            font_family = "monospace";
-            font_size = 32;
-            position = {
-              x = 0;
-              y = 0;
-            };
+            text = "Welcome back, $USER!";
+            color = "rgba(203, 195, 227, 1.0)";
+            font_family = "JetBrainsMono Nerd Font";
+            font_size = 72;
             halign = "center";
-            valign = "bottom";
+            valign = "top";
+            position = {
+              y = -20;
+            };
+          }
+        ];
+
+        backgrounds = [
+          {
+            path = "${config.home.homeDirectory}/Pictures/wallpapers/sci-fi-sunset.png";
           }
         ];
       };

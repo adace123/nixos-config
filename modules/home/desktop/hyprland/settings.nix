@@ -183,7 +183,7 @@ in {
           ", r, execr, systemctl reboot"
           ", p, execr, systemctl poweroff -i"
           ", s, execr, systemctl suspend"
-          ", l, exec, hyprctl dispatch submap reset && swaylock"
+          ", l, exec, hyprctl dispatch submap reset && hyprlock"
         ];
       };
       submaps = with modes;
