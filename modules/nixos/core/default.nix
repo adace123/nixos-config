@@ -20,10 +20,8 @@
     bottom
     curl
     eza
-    fd
     fzf
     git
-    hyperfine
     jq
     just
     kmon
