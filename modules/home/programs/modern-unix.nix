@@ -6,6 +6,7 @@
     dysk
     eva
     fd
+    glow
     gum
     hyperfine
     ouch
