@@ -35,6 +35,12 @@ keybinds {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt ]" { GoToNextTab; }
         bind "Alt [" { GoToPreviousTab; }
+        bind "Alt S" {
+          LaunchOrFocusPlugin "zellij:session-manager" {
+            floating true
+            move_to_focused_tab true
+          }
+        }
     }
     pane clear-defaults=true {
         bind "Enter" "Esc" "Space" { SwitchToMode "normal"; }
@@ -148,6 +154,7 @@ keybinds {
     tmux clear-defaults=true {}
 }
 
+session_serialization true
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
 // eg. when terminal window with an active zellij session is closed
 // Options:
@@ -187,6 +194,11 @@ scroll_buffer_size 100000
 //copy_on_select false
 
 theme "catppuccin-mocha"
+
+plugins {
+  status-bar { path "status-bar"; }
+  session-manager { path "session-manager"; }
+}
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
