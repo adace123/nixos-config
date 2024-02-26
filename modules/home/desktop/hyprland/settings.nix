@@ -120,9 +120,11 @@ in {
 
         media = [
           "${mod}, p, exec, playerctl play-pause"
+          "${mod} SHIFT, p, exec, playerctl stop"
           "${mod} SHIFT, v, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           "${mod}, v, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           "${mod}, m, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          "${mod}, y, exec, yt-music"
         ];
 
         scratchpad = [
