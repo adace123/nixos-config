@@ -1,7 +1,9 @@
+alias bc = eva
 alias bios = sudo systemctl reboot --firmware
 alias bt = bluetuith
 alias cat = bat
 alias ctx = kubectx
+alias df = dysk
 alias dig = doggo
 alias exa = eza --icons
 alias ga = git add
@@ -37,4 +39,4 @@ alias y = yazi
 alias zj = zellij
 alias zjl = zellij ls
 alias zjd = zellij --layout $"($env.HOME)/.config/zellij/layouts/layout.kdl"
-alias zjk = zellij kill-all-sessions -y
+alias zjk = zellij kill-all-sessions -y; zellij delete-all-sessions -y
