@@ -42,20 +42,21 @@ def nxs [pkg: string] {
 }
 
 def zja [] {
-  try { 
     let sessions = zellij ls -s | lines
-    mut selected_session = $sessions | first
-    if (($sessions | length) > 1) {
-      $selected_session = (gum filter --header "Attach to a Zellij session" ...($sessions))
-    }
-    zellij attach $selected_session
-  } catch {
-    let session_name = gum input --placeholder "Name of new session"
-    if ($session_name == "") {
-      zellij
+    if (($sessions | length) == 0) {
+      echo "No sessions found"
+      let session_name = gum input --placeholder "Name of new session"
+      if ($session_name == "") {
+        zellij
+      } else {
+        zellij attach -c $session_name
+      }
     } else {
-      zellij attach -c $session_name
-    }
+        mut selected_session = $sessions | first
+        if (($sessions | length) > 1) {
+          $selected_session = (gum filter --header "Attach to a Zellij session" ...($sessions))
+        }
+        zellij attach $selected_session
   }
 }
 
