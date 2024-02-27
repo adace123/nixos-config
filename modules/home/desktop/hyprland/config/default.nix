@@ -1,3 +1,3 @@
 {
-  imports = [./keybindings.nix];
+  imports = [./keybindings.nix ./options.nix ./windowrules.nix];
 }
