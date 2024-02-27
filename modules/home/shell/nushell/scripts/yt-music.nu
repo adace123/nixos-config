@@ -5,15 +5,19 @@ def main [] {
     "Post-Rock": "MRhplCpkPKE",
     "Space Ambient": "E5WpblyBR38",
     "Classical": "tSlOlKRuudU",
-    "Chillstep": "QxtigSvGnD8"
+    "Chillstep": "QxtigSvGnD8",
+    "Cyberpunk": "xulXmZrC9uI"
   }
-  let selected_stream = $streams | columns | str join "\n" | rofi -dmenu
+  let selected_stream = $streams | columns | str join "\n" | rofi -dmenu -p "Select music stream"
   if ($selected_stream == "") {
     exit 0
   }
 
   let yt_id = $streams | get $selected_stream
-  playerctl stop
+  try {
+    playerctl stop
+  } catch {}
+
   notify-send $"Playing ($selected_stream)"
   hyprctl dispatch exec $'mpv --no-video "https://youtube.com/watch?v=($yt_id)"'
 }
