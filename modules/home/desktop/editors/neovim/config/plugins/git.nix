@@ -34,8 +34,12 @@
       }
       {
         key = "<leader>gS";
-        action = "<cmd>Gitsigns stage_buffer<CR>";
-        options.desc = "Stage buffer";
+        # Gitsigns stage_buffer does not work for new files
+        action = "<cmd>!git add %<CR>";
+        options = {
+          desc = "Stage buffer";
+          silent = true;
+        };
         mode = ["n"];
       }
       {
