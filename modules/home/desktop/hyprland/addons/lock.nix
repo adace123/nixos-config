@@ -15,15 +15,36 @@ in
       home.packages = [inputs.hyprlock.packages.${pkgs.system}.default];
       programs.hyprlock = {
         enable = true;
-        general.grace = 300;
+
+        general = {
+          disable_loading_bar = false;
+          hide_cursor = true;
+          grace = 2;
+          no_fade_in = false;
+        };
+
         input-fields = [
           {
-            outer_color = "rgb(24, 25, 38)";
-            inner_color = "rgb(91, 96, 120)";
-            font_color = "rgb(202, 211, 245)";
-            halign = "center";
-            valign = "bottom";
+            size = {
+              width = 300;
+              height = 50;
+            };
+            outline_thickness = 3;
+            dots_size = 0.33;
+            dots_spacing = 0.15;
+            dots_center = true;
+            outer_color = "rgba(255, 255, 255, 0.1)";
+            inner_color = "rgba(255, 255, 255, 0.1)";
+            font_color = "rgb(255, 255, 255)";
+            fade_on_empty = true;
             placeholder_text = "<i>Input Password...</i>";
+            hide_input = false;
+            position = {
+              x = 0;
+              y = -90;
+            };
+            halign = "center";
+            valign = "center";
           }
         ];
 
