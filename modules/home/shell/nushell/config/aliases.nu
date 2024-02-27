@@ -25,6 +25,7 @@ alias k = kubectl
 alias nb = newsboat
 alias ns = kubens
 alias p = pulumi
+alias pc = playerctl
 alias pm = podman
 alias pmc = podman-compose
 alias pmt = podman-tui

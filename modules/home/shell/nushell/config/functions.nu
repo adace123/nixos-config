@@ -5,13 +5,25 @@ def sc-list [] {
   $system_services | append $user_services
 }
 
+def jt [] {
+  journalctl -xe | tspin
+}
+
+def jtf [service: string] {
+  journalctl -flu $service | tspin
+}
+
+def dmesg [] {
+  sudo dmesg | tspin
+}
+
 def jt-debug [] {
   # TODO: Stream to a table
   journalctl -b -p warning -o json | lines | each {|| from json} | sort-by PRIORITY | select _TRANSPORT PRIORITY MESSAGE | where MESSAGE != null
 }
 
 def hyprlogs [] {
-  tail -f $"/tmp/hypr/($env.HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log"
+  cat $"/tmp/hypr/($env.HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log" | tspin -f
 }
 
 def nix-diff [] {
@@ -23,6 +35,28 @@ def rf [pattern: string] {
   # open ripgrep file matches in editor
   let result = rg -l $pattern | fzf -m | lines
   $result | str join " " | xargs $env.EDITOR
+}
+
+def nxs [pkg: string] {
+  nix shell nixpkgs#($pkg)
+}
+
+def zja [] {
+  try { 
+    let sessions = zellij ls -s | lines
+    mut selected_session = $sessions | first
+    if (($sessions | length) > 1) {
+      $selected_session = (gum filter --header "Attach to a Zellij session" ...($sessions))
+    }
+    zellij attach $selected_session
+  } catch {
+    let session_name = gum input --placeholder "Name of new session"
+    if ($session_name == "") {
+      zellij
+    } else {
+      zellij attach -c $session_name
+    }
+  }
 }
 
 module jc-functions {
