@@ -19,8 +19,11 @@
           };
           diagnostics = {
             deadnix.enable = true;
+            eslint_d.enable = true;
+            ruff.enable = true;
             shellcheck.enable = true;
             statix.enable = true;
+            yamllint.enable = true;
           };
         };
       };

@@ -47,10 +47,6 @@
       which-key.enable = true;
       better-escape.enable = true;
       undotree.enable = true;
-      floaterm = {
-        enable = true;
-        opener = "edit";
-      };
     };
     extraPlugins = with pkgs.vimPlugins; [
       overseer-nvim
