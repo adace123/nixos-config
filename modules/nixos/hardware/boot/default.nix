@@ -20,7 +20,7 @@ in {
 
   config = {
     boot = {
-      kernelPackages = pkgs.linuxKernel.packages.linux_6_7;
+      kernelPackages = pkgs.linuxPackages_latest;
       loader.efi.canTouchEfiVariables = true;
       loader.grub = {
         enable = true;
