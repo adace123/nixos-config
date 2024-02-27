@@ -8,7 +8,7 @@
 in
   with lib; {
     options.modules.desktop.media.enable = mkEnableOption "media";
-    imports = [./cava.nix ./music-player.nix];
+    imports = [./cava.nix ./mpv.nix];
     config = mkIf cfg.enable {
       services.playerctld.enable = true;
       home.packages = [pkgs.playerctl];
