@@ -9,9 +9,12 @@ in
   with lib; {
     config = mkIf cfg.enable {
       programs.wlogout.enable = true;
-      wayland.windowManager.hyprland.settings.exec-once = ["${pkgs.waybar}/bin/waybar"];
       programs.waybar = {
         enable = true;
+        systemd = {
+          enable = true;
+          target = "hyprland-session.target";
+        };
         package = pkgs.waybar.overrideAttrs (oa: {
           mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
         });
