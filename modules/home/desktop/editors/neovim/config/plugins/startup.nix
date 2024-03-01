@@ -4,8 +4,11 @@
     extraConfigLua = "require('persistence').setup()";
     plugins = {
       auto-session = {
-        enable = false;
-        autoSave.enabled = true;
+        enable = true;
+        extraOptions = {
+          auto_save_enabled = true;
+          auto_restore_enabled = true;
+        };
       };
 
       alpha = {
