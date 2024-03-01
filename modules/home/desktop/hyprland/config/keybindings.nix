@@ -16,7 +16,7 @@ in {
         "SUPER, Return, exec, ${TERMINAL}"
         "SUPER, d, exec, discord"
         "SUPER SHIFT, w, exec, pkill waybar && waybar"
-        "SUPER SHIFT, d, exec, makoctl dismiss"
+        "SUPER SHIFT, d, exec, makoctl dismiss -a"
         "SUPER, c, exec, ${TERMINAL} -e cava"
         "SUPER, y, exec, yt-music"
         "SUPER SHIFT, i, exec, systemd-toggle hypridle --user"
