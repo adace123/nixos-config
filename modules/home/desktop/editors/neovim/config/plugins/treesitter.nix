@@ -31,6 +31,7 @@ in {
         };
         grammarPackages = with pkgs;
           vimPlugins.nvim-treesitter.passthru.allGrammars
+          ++ [vimPlugins.nvim-treesitter.grammarPlugins.kdl]
           ++ [nu-grammar];
       };
     };
