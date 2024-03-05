@@ -114,10 +114,8 @@ in
           };
           colors = import ./theme.nix {inherit config;};
           fonts = {
-            default_size = "18px";
             default_family = "JetBrainsMono Nerd Font";
           };
-          zoom.default = "140%";
           editor.command = ["${pkgs.alacritty}/bin/alacritty" "-e" "${pkgs.neovim}/bin/nvim" "{file}"];
         };
 
