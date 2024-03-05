@@ -14,8 +14,8 @@
       };
       media.enable = true;
       monitor = {
-        output = "DP-1";
-        resolution = "3440x1440";
+        output = "DP-2";
+        resolution = "2560x1440";
       };
       terminal = {
         alacritty.enable = true;
