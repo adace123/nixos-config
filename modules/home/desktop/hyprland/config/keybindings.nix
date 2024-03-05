@@ -5,13 +5,13 @@ in {
     settings = {
       bind = [
         "SUPER, Q, killactive"
-        "SUPER SHIFT, e, exit"
+        "SUPER SHIFT, e, exec, sudo systemctl restart greetd"
         "SUPER, f, fullscreen"
         "SUPER SHIFT, f, togglefloating"
         "SUPER SHIFT, r, execr, hyprctl reload"
 
         # Apps / scripts
-        "SUPER, a, exec, rofi -show drun -mode drun"
+        "SUPER, SPACE, exec, rofi -show drun -mode drun"
         "SUPER, b, exec, ${BROWSER}"
         "SUPER, Return, exec, ${TERMINAL}"
         "SUPER, d, exec, discord"
