@@ -155,7 +155,7 @@ in
             };
             "custom/gpu" = {
               format = ''{}% 󰢮'';
-              exec = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
+              exec = "/run/current-system/sw/bin/nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
               interval = 5;
             };
           };
