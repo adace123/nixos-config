@@ -20,7 +20,6 @@ alias lg = lazygit
 alias ll = ls -la
 # TODO: remove need to run lazydocker with sudo
 alias lzd = sudo lazydocker
-alias jt = journalctl -xe
 alias k = kubectl
 alias nb = newsboat
 alias ns = kubens
