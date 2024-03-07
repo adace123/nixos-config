@@ -70,6 +70,7 @@
         src = ./.;
         hooks = {
           alejandra.enable = true;
+          commitizen.enable = true;
           deadnix.enable = true;
           nil.enable = true;
         };
