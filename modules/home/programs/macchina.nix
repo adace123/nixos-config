@@ -5,6 +5,7 @@
 }: {
   home.packages = [pkgs.macchina];
   xdg.configFile."macchina/macchina.toml".text = std.serde.toTOML {
+    theme = "Catppuccin";
     show = [
       "Host"
       "Machine"
@@ -18,6 +19,28 @@
       "Memory"
     ];
   };
+
+  xdg.configFile."macchina/nixos.ascii".text = ''
+              ▜███▙       ▜███▙  ▟███▛
+               ▜███▙       ▜███▙▟███▛
+                ▜███▙       ▜██████▛
+         ▟█████████████████▙ ▜████▛     ▟▙
+        ▟███████████████████▙ ▜███▙    ▟██▙
+               ▄▄▄▄▖           ▜███▙  ▟███▛
+              ▟███▛             ▜██▛ ▟███▛
+             ▟███▛               ▜▛ ▟███▛
+    ▟███████████▛                  ▟██████████▙
+    ▜██████████▛                  ▟███████████▛
+          ▟███▛ ▟▙               ▟███▛
+         ▟███▛ ▟██▙             ▟███▛
+        ▟███▛  ▜███▙           ▝▀▀▀▀
+        ▜██▛    ▜███▙ ▜██████████████████▛
+         ▜▛     ▟████▙ ▜████████████████▛
+               ▟██████▙       ▜███▙
+              ▟███▛▜███▙       ▜███▙
+             ▟███▛  ▜███▙       ▜███▙
+             ▝▀▀▀    ▀▀▀▀▘       ▀▀▀▘
+  '';
 
   xdg.configFile."macchina/themes/Catppuccin.toml".text = ''
     # Catppuccin
@@ -43,7 +66,7 @@
 
     [custom_ascii]
     color           = "Blue"
-    path = "~/.config/art/catppuccin"
+    path = "~/.config/macchina/nixos.ascii"
 
     [randomize]
     key_color       = false
