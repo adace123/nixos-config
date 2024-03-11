@@ -1,11 +1,11 @@
 keys:
   - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf
 creation_rules:
-  - path_regex: hosts/.*/.*.yaml
+  - path_regex: modules/nixos/secrets.yaml
     key_groups:
       - age:
           - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf
-  - path_regex: hosts/.*.yaml
+  - path_regex: modules/home/secrets.yaml
     key_groups:
       - age:
           - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf

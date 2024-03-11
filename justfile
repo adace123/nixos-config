@@ -131,9 +131,9 @@ get-ssh-key host:
 get-host-secret key host="common":
   #!/usr/bin/env nu
   let yaml_path = if ("{{host}}" == "common") {
-    "hosts/secrets.yaml"
+    "modules/nixos/secrets.yaml"
   } else {
-    "hosts/{{host}}/secrets.yaml"
+    "modules/home/secrets.yaml"
   }
 
   let sops_age_key = pulumi stack output --show-secrets -C keys age | from json | get privKey
@@ -141,12 +141,12 @@ get-host-secret key host="common":
     sops -d $yaml_path | from yaml | get {{key}}
   }
 
-edit-host-secrets host="common":
+edit-host-secrets type="system":
   #!/usr/bin/env nu
-  let yaml_path = if ("{{host}}" == "common") {
-    "hosts/secrets.yaml"
+  let yaml_path = if ("{{type}}" == "system") {
+    "modules/nixos/secrets.yaml"
   } else {
-    "hosts/{{host}}/secrets.yaml"
+    "modules/home/secrets.yaml"
   }
   let sops_age_key = pulumi stack output --show-secrets -C keys age | from json | get privKey
   with-env [SOPS_AGE_KEY $sops_age_key] {

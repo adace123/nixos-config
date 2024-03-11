@@ -13,6 +13,7 @@
         ./${config.networking.hostName}/home.nix
         nix-colors.homeManagerModules.default
         nixvim.homeManagerModules.nixvim
+        inputs.sops-nix.homeManagerModules.sops
       ];
     };
   };

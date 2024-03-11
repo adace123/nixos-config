@@ -59,16 +59,4 @@
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # TODO: use sops-nix hm module once https://github.com/Mic92/sops-nix/issues/287 is fixed
-  sops.secrets = {
-    github-private-key = {
-      sopsFile = ./secrets.yaml;
-      owner = config.modules.user.name;
-    };
-    proxmox-private-key = {
-      sopsFile = ./secrets.yaml;
-      owner = config.modules.user.name;
-    };
-  };
 }

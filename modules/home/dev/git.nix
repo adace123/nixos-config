@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  osConfig,
   ...
 }: let
   cfg = config.modules.dev.git;
@@ -14,6 +13,10 @@ in
     };
 
     config = mkIf cfg.enable {
+      sops.secrets.github-private-key = {
+        path = "/home/${config.home.username}/.ssh/github-private-key";
+        mode = "0600";
+      };
       programs = {
         lazygit.enable = true;
         git = {
@@ -38,8 +41,7 @@ in
             init.defaultBranch = "main";
             core.editor = "nvim";
             push.autoSetupRemote = true;
-            # TODO: make key configurable
-            user.signingkey = osConfig.sops.secrets.github-private-key.path;
+            user.signingkey = config.sops.secrets.github-private-key.path;
             gpg.format = "ssh";
             commit.gpgsign = true;
           };
@@ -57,7 +59,7 @@ in
           matchBlocks."github.com" = {
             hostname = "github.com";
             user = "git";
-            identityFile = [osConfig.sops.secrets.github-private-key.path];
+            identityFile = [config.sops.secrets.github-private-key.path];
           };
         };
       };

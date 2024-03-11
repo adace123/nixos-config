@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  osConfig,
   inputs,
   ...
 }: {
@@ -72,9 +71,13 @@
     x11.enable = true;
   };
 
+  sops.secrets = {
+    proxmox-private-key.path = "/home/${config.home.username}/.ssh/proxmox-private-key";
+  };
+
   programs.ssh.matchBlocks."proxmox.homelab" = {
     hostname = "proxmox.homelab";
     user = "root";
-    identityFile = [osConfig.sops.secrets.proxmox-private-key.path];
+    identityFile = [config.sops.secrets.proxmox-private-key.path];
   };
 }

@@ -1,21 +1,12 @@
 {
-  lib,
   config,
+  lib,
   ...
-}: let
-  cfg = config.modules.sops;
-in
-  with lib; {
-    options.modules.sops.enable = mkOption {
-      type = types.bool;
-      description = "Enable sops secrets";
-      default = true;
+}: {
+  config = lib.mkIf (config.networking.hostName != "iso") {
+    sops = {
+      defaultSopsFile = ../secrets.yaml;
+      age.sshKeyPaths = ["/etc/ssh/sops-nix"];
     };
-
-    config = mkIf cfg.enable {
-      sops = {
-        defaultSopsFile = ../../../hosts/secrets.yaml;
-        age.sshKeyPaths = ["/etc/ssh/sops-nix"];
-      };
-    };
-  }
+  };
+}

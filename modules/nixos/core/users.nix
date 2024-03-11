@@ -1,6 +1,5 @@
 {
   config,
-  host,
   options,
   lib,
   pkgs,
@@ -22,7 +21,6 @@ in {
   config = {
     sops.secrets.password = mkIf cfg.password.enable {
       neededForUsers = true;
-      sopsFile = ../../../hosts/${host}/secrets.yaml;
     };
 
     users = {

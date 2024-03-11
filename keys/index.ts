@@ -36,10 +36,10 @@ function generateSshKeyPair(hostConfig: HostSecretConfig): KeyPair {
 
   const sshConfigPath = path.join(os.homedir(), ".ssh");
   const privateKeyPath = path.join(sshConfigPath, hostConfig.name);
-  sshKeyPair.privateKeyOpenssh.apply((key) =>
+  sshKeyPair.privateKeyOpenssh.apply((key: string) =>
     fs.writeFileSync(privateKeyPath, key),
   );
-  sshKeyPair.publicKeyOpenssh.apply((key) =>
+  sshKeyPair.publicKeyOpenssh.apply((key: string) =>
     fs.writeFileSync(`../hosts/${hostConfig.name}/${hostConfig.name}.pub`, key),
   );
 
@@ -50,7 +50,7 @@ function generateSshKeyPair(hostConfig: HostSecretConfig): KeyPair {
 }
 
 function updateSopsConfig(agePubKey: pulumi.Output<string>) {
-  agePubKey.apply((key) => {
+  agePubKey.apply((key: string) => {
     const sopsConfigYAML = parse(fs.readFileSync("../.sops.yaml").toString());
 
     sopsConfigYAML.keys = [key];
@@ -68,7 +68,7 @@ function generateAgeKeyPair(): SopsAgeKeys {
     algorithm: "ED25519",
   });
 
-  const agePrivKey = sopsSSHKey.privateKeyOpenssh.apply((key) => {
+  const agePrivKey = sopsSSHKey.privateKeyOpenssh.apply((key: string) => {
     return new local.Command("ssh-to-age", {
       create: `echo "${key}" | ssh-to-age -private-key`,
     }).stdout;
@@ -103,7 +103,7 @@ const keys = new Map<string, object>([
 ]);
 
 // make sure secrets are encrypted with new private key, not old one
-pulumi.all([age.privKey, age.pubKey]).apply(([privKey, _pubKey]) => {
+pulumi.all([age.privKey, age.pubKey]).apply(([privKey, _pubKey]: Array<string>) => {
   for (const hostConfig of hostConfigs) {
     if (hostConfig.sops?.rawPath !== undefined) {
       new local.Command(`encrypt-sops-${hostConfig.name}`, {

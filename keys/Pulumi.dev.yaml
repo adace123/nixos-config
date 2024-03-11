@@ -2,12 +2,12 @@ config:
   nixos-keys:host-configs:
     - name: common
       sops:
-        encryptedPath: hosts/secrets.yaml
-        rawPath: hosts/secrets-raw.yaml
+        encryptedPath: modules/nixos/secrets.yaml
+        rawPath: modules/nixos/secrets-raw.yaml
     - name: iso
       sshUrl: root@iso.local
     - name: coruscant
       sops:
-        encryptedPath: hosts/coruscant/secrets.yaml
-        rawPath: hosts/coruscant/secrets-raw.yaml
+        encryptedPath: modules/home/secrets.yaml
+        rawPath: modules/home/secrets-raw.yaml
       sshUrl: aaron@coruscant.local
