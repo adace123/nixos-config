@@ -29,6 +29,7 @@ in
           swayimg
           wtype
           inputs.hyprkeys.packages.${pkgs.system}.default
+          xdg-utils
         ];
       };
     };
