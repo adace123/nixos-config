@@ -32,7 +32,10 @@ in {
     modules =
       [
         ../hosts/${host}
-        {networking.hostName = host;}
+        {
+          networking.hostName = host;
+          nix.gc.dates = "weekly";
+        }
         sops-nix.nixosModules.sops
         ../modules/nixos
       ]

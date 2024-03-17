@@ -15,6 +15,12 @@ in
     ];
     services.nix-daemon.enable = true;
 
+    nix.gc.interval = {
+      Hour = 12;
+      Minute = 0;
+      Day = 0;
+    };
+
     users.users.${user} = {
       home = "/Users/${user}";
     };
