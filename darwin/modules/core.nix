@@ -20,6 +20,7 @@ in
       Minute = 0;
       Day = 0;
     };
+    nix.gc.user = "root";
 
     users.users.${user} = {
       home = "/Users/${user}";

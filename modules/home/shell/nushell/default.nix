@@ -50,6 +50,19 @@ in
           # themes
           use ${nu_script_path}/themes/nu-themes/everforest.nu
           $env.config = ($env.config | merge {color_config: (everforest)})
+
+          $env.PATH = ([
+            "${config.home.homeDirectory}/bin"
+            "${config.home.homeDirectory}/.local/bin"
+            "${config.home.homeDirectory}/go/bin"
+            "/run/current-system/sw/bin"
+            "/usr/local/bin"
+            "/opt/homebrew/bin"
+            "/nix/var/nix/profiles/default/bin"
+            "/etc/profiles/per-user/${config.home.username}/bin"
+            "${config.home.homeDirectory}/.nix-profile/bin"
+            ($env.PATH | split row (char esep))
+          ] | flatten)
         '';
       };
     };
