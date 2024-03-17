@@ -88,18 +88,6 @@
         options.desc = "Toggle outline";
         mode = ["n"];
       }
-      {
-        key = "<leader>ci";
-        action = "<cmd>Lspsaga incoming_calls<CR>";
-        options.desc = "Incoming calls";
-        mode = ["n"];
-      }
-      {
-        key = "<leader>co";
-        action = "<cmd>Lspsaga outgoing_calls<CR>";
-        options.desc = "Outgoing calls";
-        mode = ["n"];
-      }
     ];
   };
 }

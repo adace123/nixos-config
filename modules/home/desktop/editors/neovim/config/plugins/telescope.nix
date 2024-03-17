@@ -57,9 +57,17 @@
           action = "command_history";
           desc = "Command history";
         };
-        "<leader>fg" = {
+        "<leader>fW" = {
           action = "grep_string";
           desc = "Search word under cursor";
+        };
+        "<leader>ci" = {
+          action = "lsp_incoming_calls";
+          desc = "Incoming calls";
+        };
+        "<leader>co" = {
+          action = "lsp_outgoing_calls";
+          desc = "Outgoing calls";
         };
       };
       extensions = {
