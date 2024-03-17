@@ -77,10 +77,10 @@ in {
         "SUPER SHIFT, s, submap, system"
 
         # resize
-        "SUPER ALT, h, resizeactive, -20 0"
-        "SUPER ALT, l, resizeactive, 20 0"
-        "SUPER ALT, k, resizeactive, 0 -20"
-        "SUPER ALT, j, resizeactive, 0 20"
+        "SUPER ALT, h, resizeactive, -30 0"
+        "SUPER ALT, l, resizeactive, 30 0"
+        "SUPER ALT, k, resizeactive, 0 -30"
+        "SUPER ALT, j, resizeactive, 0 30"
       ];
 
       bindle = [
