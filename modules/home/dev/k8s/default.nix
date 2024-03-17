@@ -21,7 +21,6 @@ in
         kubectx
         kustomize
         talosctl
-        vault
         podman
         podman-compose
         podman-tui
