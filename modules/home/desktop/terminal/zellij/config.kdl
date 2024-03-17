@@ -55,6 +55,7 @@ keybinds {
         bind "p" { SwitchFocus; }
         bind "n" { NewPane; }
         bind "x" { CloseFocus; }
+        bind "d" { CloseFocus; }
         bind "f" { ToggleFocusFullscreen; }
         bind "z" { TogglePaneFrames; }
     }
