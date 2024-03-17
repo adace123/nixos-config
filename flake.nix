@@ -43,6 +43,10 @@
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -58,24 +62,25 @@
       outputs.overlays.default
       hyprland-contrib.overlays.default
     ];
-    systems = ["x86_64-linux" "x86_64-darwin"];
+    systems = ["x86_64-linux" "x86_64-darwin" "aarch64-darwin"];
     forEachSystem = nixpkgs.lib.genAttrs systems;
     forEachPkgs = f: forEachSystem (system: f (import nixpkgs {inherit system overlays;}));
-  in {
-    packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
-    overlays = import ./overlays {inherit inputs;};
-    devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs self;});
-    checks = forEachPkgs (pkgs: {
-      pre-commit-check = inputs.pre-commit.lib.${pkgs.system}.run {
-        src = ./.;
-        hooks = {
-          alejandra.enable = true;
-          commitizen.enable = true;
-          deadnix.enable = true;
-          nil.enable = true;
+  in
+    {
+      packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
+      overlays = import ./overlays {inherit inputs;};
+      devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs self;});
+      checks = forEachPkgs (pkgs: {
+        pre-commit-check = inputs.pre-commit.lib.${pkgs.system}.run {
+          src = ./.;
+          hooks = {
+            alejandra.enable = true;
+            commitizen.enable = true;
+            deadnix.enable = true;
+            nil.enable = true;
+          };
         };
-      };
-    });
-    nixosConfigurations = import ./hosts {inherit overlays inputs outputs nixpkgs;};
-  };
+      });
+    }
+    // (import ./hosts {inherit inputs overlays;});
 }

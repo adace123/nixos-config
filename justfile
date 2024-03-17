@@ -155,7 +155,7 @@ edit-host-secrets type="system":
 
 [linux]
 check *args:
-  nix flake check {{args}}
+  nix flake check --all-systems {{args}}
 
 [macos]
 check *args: docker

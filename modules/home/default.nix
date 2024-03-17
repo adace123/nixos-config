@@ -1,6 +1,7 @@
 {
-  pkgs,
   config,
+  lib,
+  pkgs,
   ...
 }: {
   imports = [
@@ -16,9 +17,12 @@
   };
 
   # restart sops-nix user service to pick up latest changes to secrets
-  home.activation.setupEtc = config.lib.dag.entryAfter ["writeBoundary"] ''
-    /run/current-system/sw/bin/systemctl start --user sops-nix
-  '';
+  # Todo: Can something similar be implemented for darwin machines?
+  home.activation = lib.mkIf pkgs.stdenv.isLinux {
+    restartSops = config.lib.dag.entryAfter ["writeBoundary"] ''
+      /run/current-system/sw/bin/systemctl start --user sops-nix
+    '';
+  };
 
   # default home packages
   home.packages = with pkgs; [
