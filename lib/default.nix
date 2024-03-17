@@ -74,7 +74,10 @@ in {
         }
         # nixvim.nixDarwinModules.nixvim
         {
-          home-manager.extraSpecialArgs = {inherit inputs pkgs host;};
+          home-manager.extraSpecialArgs = {
+            inherit inputs pkgs host;
+            std = inputs.nix-std.lib;
+          };
         }
       ];
       specialArgs = {
