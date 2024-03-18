@@ -60,6 +60,10 @@ def zja [] {
   }
 }
 
+def gb [] {
+  git branch --sort=-creatordate | fzf --preview='' | xargs git checkout
+}
+
 module jc-functions {
   export def bt-table [] {
     bluetoothctl devices | jc --bluetoothctl | from json

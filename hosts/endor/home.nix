@@ -10,5 +10,8 @@
       nushell.enable = true;
       starship.enable = true;
     };
+    desktop = {
+      terminal.wezterm.enable = true;
+    };
   };
 }
