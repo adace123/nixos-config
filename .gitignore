@@ -4,3 +4,4 @@ infra/vendor
 /.pre-commit-config.yaml
 **/*secrets-raw.yaml
 *.iso
+.DS_store
