@@ -66,6 +66,10 @@ bootstrap-build mode="remote":
   }
 
 [macos]
+nix-install:
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
+[macos]
 bootstrap-write device:
   sudo sh -c "dd if=./nixos.iso of={{device}} bs=10M | pv | dd of={{device}} bs=10M"
   sudo diskutil eject {{device}}
