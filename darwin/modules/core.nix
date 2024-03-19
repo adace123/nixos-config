@@ -10,8 +10,7 @@ in
       ../../modules/nixos/core/nix.nix
       ./system.nix
       ./yabai.nix
-      # TODO: enable homebrew
-      # ./homebrew.nix
+      ./homebrew.nix
     ];
     services.nix-daemon.enable = true;
 
