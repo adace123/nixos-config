@@ -1,4 +1,4 @@
 {pkgs, ...}: {
   imports = [./firefox ./amfora ./qutebrowser];
-  xdg.mimeApps.enable = pkgs.system != "x86_64-darwin";
+  xdg.mimeApps.enable = pkgs.system != "aarch64-darwin";
 }

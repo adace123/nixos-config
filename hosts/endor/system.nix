@@ -1,6 +1,6 @@
 _: {
   modules = {
-    user.name = "aaronfeigenbaum";
+    user.name = "aaron";
     desktop.yabai.enable = true;
   };
 }

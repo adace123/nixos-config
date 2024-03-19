@@ -19,7 +19,7 @@ in
     darwinConfigurations = {
       endor = mkDarwinSystem {
         # TODO: update to aarch64-darwin
-        system = "x86_64-darwin";
+        system = "aarch64-darwin";
         host = "endor";
       };
     };

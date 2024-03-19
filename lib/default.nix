@@ -11,7 +11,7 @@ with inputs; let
     };
 in {
   mkNixosSystem = {
-    system ? "x86_64-linux",
+    system ? "aarch64-darwin",
     host,
     fullBuild ? true,
   }: let
