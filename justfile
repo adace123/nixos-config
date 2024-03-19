@@ -5,6 +5,7 @@ ssh_opts := "-o ConnectTimeout=5 -o UserKnownHostsFile=/dev/null -o StrictHostKe
 default:
   just --list
 
+[linux]
 rebuild host:
   nixos-rebuild switch --flake '.#{{host}}'
 
