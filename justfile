@@ -69,6 +69,10 @@ bootstrap-write device:
   sudo sh -c "dd if=./nixos.iso of={{device}} bs=10M | pv | dd of={{device}} bs=10M"
   sudo diskutil eject {{device}}
 
+[macos]
+rebuild host:
+  sudo darwin-rebuild switch --flake ".#{{host}}"
+
 [linux]
 bootstrap-write:
   nix run "nixpkgs#bootiso" -- ./nixos.iso

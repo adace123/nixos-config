@@ -10,13 +10,16 @@ _: {
     ];
     casks = [
       "1password"
+      "1password-cli"
       "arc"
       "balenaeetcher"
       "colima"
+      "daisydisk"
       "docker"
       "discord"
       "flux"
       "font-fira-code-nerd-font"
+      "ollama"
       "postman"
       "raycast"
       "slack"
