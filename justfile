@@ -67,6 +67,7 @@ bootstrap-build mode="remote":
 
 [macos]
 nix-install:
+  #!/bin/bash
   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 
 [macos]
@@ -76,6 +77,7 @@ bootstrap-write device:
 
 [macos]
 rebuild host:
+  #!/bin/bash
   sudo darwin-rebuild switch --flake ".#{{host}}"
 
 [linux]
