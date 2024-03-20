@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./nix.nix ./users.nix];
+  imports = [./nix.nix ./users.nix ./fonts.nix];
 
   time.timeZone = "America/Los_Angeles";
 
@@ -38,14 +38,5 @@
     unzip
     yq
     tailspin
-  ];
-
-  fonts.packages = with pkgs; [
-    material-symbols
-    roboto
-    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "GeistMono"];})
-    font-awesome
-    fira-code-symbols
-    source-code-pro
   ];
 }
