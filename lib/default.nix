@@ -11,7 +11,7 @@ with inputs; let
     };
 in {
   mkNixosSystem = {
-    system ? "aarch64-darwin",
+    system ? "x86_64-linux",
     host,
     fullBuild ? true,
   }: let
@@ -34,7 +34,7 @@ in {
         ../hosts/${host}
         {
           networking.hostName = host;
-          nix.gc.dates = "weekly";
+          nix.gc.dates = "weekly"; # this option is only compatible with NixOS
         }
         sops-nix.nixosModules.sops
         ../modules/nixos
@@ -51,7 +51,7 @@ in {
     };
 
   mkDarwinSystem = {
-    system ? "x86_64-darwin",
+    system ? "aarch64-darwin",
     host,
   }: let
     pkgs = pkgsForSystem system;

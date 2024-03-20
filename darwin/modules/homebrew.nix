@@ -2,31 +2,32 @@ _: {
   homebrew = {
     enable = true;
     onActivation.upgrade = true;
+    onActivation.cleanup = "zap";
     taps = [
-      "wez/wezterm"
+      "homebrew/cask-drivers"
+      "homebrew/services"
     ];
     brews = [
       "awscli"
+      "vault"
     ];
     casks = [
       "1password"
       "1password-cli"
       "arc"
-      "balenaeetcher"
-      "colima"
+      "balenaetcher"
       "daisydisk"
       "docker"
       "discord"
       "flux"
-      "font-fira-code-nerd-font"
       "ollama"
       "postman"
+      "rapidapi"
       "raycast"
       "slack"
       "spotify"
       "visual-studio-code"
       "warp"
-      "wezterm" # avoid failing build in programs.wezterm
       "zoom"
     ];
   };

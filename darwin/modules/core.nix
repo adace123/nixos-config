@@ -14,12 +14,18 @@ in
     ];
     services.nix-daemon.enable = true;
 
-    nix.gc.interval = {
-      Hour = 12;
-      Minute = 0;
-      Day = 0;
+    nix = {
+      extraOptions = ''
+        extra-platforms = x86_64-darwin aarch64-darwin
+      '';
+      user = "root";
+      gc.interval = {
+        Hour = 12;
+        Minute = 0;
+        Day = 0;
+      };
+      linux-builder.enable = true;
     };
-    nix.gc.user = "root";
 
     users.users.${user} = {
       home = "/Users/${user}";
