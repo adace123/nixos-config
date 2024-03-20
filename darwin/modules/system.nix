@@ -7,7 +7,7 @@
 
   system = {
     defaults = {
-      dock.autohdide = true;
+      dock.autohide = true;
       dock.mru-spaces = false;
       finder = {
         AppleShowAllExtensions = true;
