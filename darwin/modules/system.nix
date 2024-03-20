@@ -5,6 +5,8 @@
     colima
   ];
 
+  environment.loginShell = pkgs.nushell;
+
   system = {
     defaults = {
       dock.autohide = true;

@@ -14,6 +14,7 @@ in
           return {
             font = wezterm.font("JetBrainsMono Nerd Font Mono"),
             font_size = 16,
+            default_prog = {"nu"},
             automatically_reload_config = true,
             window_close_confirmation = "NeverPrompt",
             color_scheme = "Catppuccin Macchiato",
