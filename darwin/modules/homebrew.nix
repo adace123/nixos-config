@@ -4,7 +4,6 @@ _: {
     onActivation.upgrade = true;
     onActivation.cleanup = "zap";
     taps = [
-      "homebrew/cask-drivers"
       "homebrew/services"
     ];
     brews = [
