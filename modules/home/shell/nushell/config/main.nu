@@ -1,6 +1,19 @@
 
 use std
 
+$env.PATH = ([
+  "~/bin"
+  "~/.local/bin"
+  "~/go/bin"
+  "/run/current-system/sw/bin"
+  "/usr/local/bin"
+  "/opt/homebrew/bin"
+  "/nix/var/nix/profiles/default/bin"
+  $"/etc/profiles/per-user/($env.USER)/bin"
+  "~/.nix-profile/bin"
+  ($env.PATH | split row (char esep))
+] | flatten)
+
 source ~/.config/nushell/aliases.nu
 source ~/.config/nushell/functions.nu
 use jc-functions *
