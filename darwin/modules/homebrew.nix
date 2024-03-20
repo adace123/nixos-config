@@ -1,8 +1,12 @@
 _: {
   homebrew = {
     enable = true;
-    onActivation.upgrade = true;
-    onActivation.cleanup = "zap";
+    global.autoUpdate = false;
+    onActivation = {
+      upgrade = true;
+      cleanup = "zap";
+      autoUpdate = false;
+    };
     taps = [
       "homebrew/services"
     ];
@@ -19,6 +23,7 @@ _: {
       "docker"
       "discord"
       "flux"
+      "obsidian"
       "ollama"
       "postman"
       "rapidapi"
