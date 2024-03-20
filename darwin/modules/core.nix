@@ -18,11 +18,13 @@ in
       extraOptions = ''
         extra-platforms = x86_64-darwin aarch64-darwin
       '';
-      user = "root";
-      gc.interval = {
-        Hour = 12;
-        Minute = 0;
-        Day = 0;
+      gc = {
+        interval = {
+          Hour = 12;
+          Minute = 0;
+          Day = 0;
+        };
+        user = "root";
       };
       linux-builder.enable = true;
     };
