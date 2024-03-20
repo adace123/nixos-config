@@ -39,4 +39,3 @@ alias y = yazi
 alias zj = zellij
 alias zjl = zellij ls
 alias zjd = zellij --layout $"($env.HOME)/.config/zellij/layouts/layout.kdl"
-alias zjk = zellij kill-all-sessions -y; zellij delete-all-sessions -y
