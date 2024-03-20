@@ -9,6 +9,7 @@ _: {
     };
     taps = [
       "homebrew/services"
+      "wez/wezterm"
     ];
     brews = [
       "awscli"
@@ -32,6 +33,7 @@ _: {
       "spotify"
       "visual-studio-code"
       "warp"
+      "wezterm"
       "zoom"
     ];
   };
