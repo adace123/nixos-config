@@ -7,6 +7,15 @@
 
   environment.loginShell = pkgs.nushell;
 
+  fonts.fonts = with pkgs; [
+    material-symbols
+    roboto
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "GeistMono"];})
+    font-awesome
+    fira-code-symbols
+    source-code-pro
+  ];
+
   system = {
     defaults = {
       dock.autohide = true;

@@ -8,7 +8,6 @@ in
   with lib; {
     imports = [
       ../../modules/nixos/core/nix.nix
-      ../../modules/nixos/core/fonts.nix
       ./system.nix
       ./yabai.nix
       ./homebrew.nix
