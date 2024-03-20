@@ -78,7 +78,7 @@ bootstrap-write device:
 [macos]
 rebuild host:
   #!/bin/bash
-  sudo nix run nix-darwin -- switch --flake .#{{host}}
+  nix run nix-darwin -- switch --flake .#{{host}}
 
 [linux]
 bootstrap-write:
