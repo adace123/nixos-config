@@ -14,6 +14,7 @@ in
         bpftool
         bpftrace
         s-tui
+        kmon
       ];
     };
   }

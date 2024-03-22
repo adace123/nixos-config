@@ -76,7 +76,7 @@ bootstrap-write device:
   sudo diskutil eject {{device}}
 
 [macos]
-rebuild host:
+switch host:
   #!/bin/bash
   nix run nix-darwin -- switch --flake .#{{host}}
 
@@ -165,23 +165,23 @@ edit-host-secrets type="system":
   }
 
 [linux]
-check *args:
-  nix flake check --all-systems {{args}}
+check:
+  nix flake check --all-systems
 
 [macos]
-check *args: docker
-  docker exec -it nixos nix flake check {{args}}
+check: docker
+  docker exec -it nixos nix flake check
 
 clean:
   sudo nix-collect-garbage --delete-old
 
-ssh host *args:
+ssh host:
   #!/usr/bin/env nu
   let tmp = mktemp -t
   let host_config = pulumi stack output -C keys --show-secrets {{host}} | from json
   $host_config | get privKey | save -f $tmp
   echo $"Creating SSH connection to ($host_config.url)"
-  ssh -i $tmp {{ssh_opts}} ($host_config.url) "{{args}}"
+  ssh -i $tmp {{ssh_opts}} ($host_config.url)
   
 rotate-keys:
   pulumi destroy -y -C keys

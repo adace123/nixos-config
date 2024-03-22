@@ -8,6 +8,7 @@ in
   with lib; {
     imports = [
       ../../modules/nixos/core/nix.nix
+      ../../modules/nixos/core/packages.nix
       ./system.nix
       ./yabai.nix
       ./homebrew.nix

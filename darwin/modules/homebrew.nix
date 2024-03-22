@@ -20,7 +20,6 @@ _: {
       "1password-cli"
       "arc"
       "balenaetcher"
-      "daisydisk"
       "docker"
       "discord"
       "flux"

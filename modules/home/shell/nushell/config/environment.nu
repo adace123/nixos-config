@@ -1,7 +1,21 @@
 # Nushell Environment Config File
+$env.PATH = ([
+  "~/bin"
+  "~/.local/bin"
+  "~/go/bin"
+  "/run/current-system/sw/bin"
+  "/usr/local/bin"
+  "/opt/homebrew/bin"
+  "/nix/var/nix/profiles/default/bin"
+  $"/etc/profiles/per-user/($env.USER)/bin"
+  "~/.nix-profile/bin"
+  ($env.PATH | split row (char esep))
+] | flatten)
+
 $env.STARSHIP_SHELL = "nu"
 $env.DOTFILES_DIR = $"($env.HOME)/nixos-config"
 $env.EDITOR = "nvim"
+$env.SHELL = "nu"
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'

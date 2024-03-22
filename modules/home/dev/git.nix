@@ -18,7 +18,6 @@ in
         mode = "0600";
       };
       programs = {
-        lazygit.enable = true;
         git = {
           enable = true;
           difftastic.enable = true;

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   imports = [./nix.nix ./users.nix ./fonts.nix];
 
   time.timeZone = "America/Los_Angeles";
@@ -14,29 +14,4 @@
       allowPing = true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    bat
-    bottom
-    curl
-    eza
-    fzf
-    git
-    jq
-    just
-    kmon
-    lsof
-    nushell
-    openssl
-    pkg-config
-    ripgrep
-    rsync
-    sops
-    sysz
-    tldr
-    vim
-    unzip
-    yq
-    tailspin
-  ];
 }

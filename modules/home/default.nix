@@ -30,5 +30,7 @@
     nvd
     tgpt
     gopass
+    pre-commit
+    lazygit
   ];
 }

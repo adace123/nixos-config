@@ -3,18 +3,22 @@
 
   environment.systemPackages = with pkgs; [
     colima
+    coreutils
   ];
 
   environment.loginShell = pkgs.nushell;
 
-  fonts.fonts = with pkgs; [
-    material-symbols
-    roboto
-    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "GeistMono"];})
-    font-awesome
-    fira-code-symbols
-    source-code-pro
-  ];
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      material-symbols
+      roboto
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "GeistMono"];})
+      font-awesome
+      fira-code-symbols
+      source-code-pro
+    ];
+  };
 
   system = {
     defaults = {
@@ -28,6 +32,13 @@
       };
       screencapture.location = "~/Pictures/screenshots";
       screensaver.askForPasswordDelay = 10;
+
+      trackpad = {Clicking = true;};
+      NSGlobalDomain = {
+        # tap to click
+        "com.apple.mouse.tapBehavior" = 1;
+        "com.apple.swipescrolldirection" = false;
+      };
     };
 
     keyboard = {
