@@ -14,12 +14,13 @@ in
         poetry
         (python311.withPackages (p:
           with p; [
-            requests
-            ptpython
+            bandit
             jupyterlab # TODO: use jupyenv
             # polars
             plotly
+            ptpython
             pytest
+            requests
           ]))
         ruff
         ruff-lsp
