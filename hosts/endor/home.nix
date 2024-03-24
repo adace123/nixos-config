@@ -1,5 +1,10 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  home.packages = [pkgs.mkcert];
   modules = {
     dev = {
       python.enable = true;
