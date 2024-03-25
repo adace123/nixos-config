@@ -44,6 +44,7 @@ _: {
             installCargo = false;
             installRustc = false;
           };
+          taplo.enable = true;
           tsserver.enable = true;
           zls.enable = true;
           gopls.enable = true;

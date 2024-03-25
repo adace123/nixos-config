@@ -22,78 +22,44 @@
       cmp-nvim-lsp-signature-help.enable = true;
       crates-nvim.enable = true;
 
-      nvim-cmp = {
+      cmp = {
         enable = true;
-        snippet.expand = "luasnip";
-        experimental = {
-          ghost_text = true;
-        };
-        window = {
-          completion = {};
-          documentation = {};
-        };
-        mapping = {
-          "<C-n>" = "cmp.mapping.select_next_item()";
-          "<C-p>" = "cmp.mapping.select_prev_item()";
-          "<C-j>" = "cmp.mapping.select_next_item()";
-          "<C-k>" = "cmp.mapping.select_prev_item()";
-          "<C-d>" = "cmp.mapping.scroll_docs(4)";
-          "<C-u>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-f>" = "cmp.mapping.scroll_docs(4)";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-e>" = "cmp.mapping.close()";
-          "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
-          "<Tab>" = {
-            modes = ["i" "s"];
-            action =
-              # lua
-              ''
-                function(fallback)
-                  local function has_words_before()
-                    local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
-                    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-                  end
-
-                  if cmp.visible() then
-                    cmp.select_next_item()
-                  elseif require("luasnip").expand_or_jumpable() then
-                    require("luasnip").expand_or_jump()
-                  elseif has_words_before() then
-                    cmp.complete()
-                  else
-                    fallback()
-                  end
-                end
-              '';
+        settings = {
+          experimental.ghost_text = true;
+          snippet.expand = ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+          '';
+          sources = [
+            {name = "nvim_lsp";}
+            {name = "nvim_lsp_signature_help";}
+            {name = "nvim_lua";}
+            {name = "luasnip";}
+            {name = "treesitter";}
+            {name = "buffer";}
+            {name = "path";}
+            {name = "crates";}
+          ];
+          mapping = {
+            "<C-n>" = "cmp.mapping.select_next_item()";
+            "<C-p>" = "cmp.mapping.select_prev_item()";
+            "<C-j>" = "cmp.mapping.select_next_item()";
+            "<C-k>" = "cmp.mapping.select_prev_item()";
+            "<C-d>" = "cmp.mapping.scroll_docs(4)";
+            "<C-u>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-e>" = "cmp.mapping.close()";
+            "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           };
-          "<S-Tab>" = {
-            modes = ["i" "s"];
-            action =
-              # lua
-              ''
-                function(fallback)
-                  if cmp.visible() then
-                    cmp.select_prev_item()
-                  elseif require("luasnip").jumpable(-1) then
-                    require("luasnip").jump(-1)
-                  else
-                    fallback()
-                  end
-                end
-              '';
+          window = {
+            completion = {};
+            documentation = {};
           };
         };
-
-        sources = [
-          {name = "nvim_lsp";}
-          {name = "nvim_lsp_signature_help";}
-          {name = "nvim_lua";}
-          {name = "luasnip";}
-          {name = "treesitter";}
-          {name = "buffer";}
-          {name = "path";}
-          {name = "crates";}
-        ];
       };
     };
 
