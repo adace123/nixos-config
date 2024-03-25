@@ -1,11 +1,12 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }: let
   cfg = config.modules.shell.nushell;
-  nu_script_path = "${pkgs.nu_scripts}/share/nu_scripts";
+  nu_script_path = "${inputs.nu_scripts}";
   custom_scripts = builtins.map (x:
     pkgs.nuenv.writeScriptBin {
       name = builtins.replaceStrings [".nu"] [""] (builtins.baseNameOf x);
