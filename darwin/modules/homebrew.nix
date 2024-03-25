@@ -30,6 +30,7 @@ _: {
       "raycast"
       "slack"
       "spotify"
+      "teamviewer"
       "visual-studio-code"
       "warp"
       "wezterm"
