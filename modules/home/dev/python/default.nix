@@ -17,6 +17,7 @@ in
             bandit
             jupyterlab # TODO: use jupyenv
             # polars
+            marimo
             plotly
             ptpython
             pytest
