@@ -8,6 +8,7 @@ let main_keybinds = [
       until: [
         { send: menu name: completion_menu }
         { send: menunext }
+        { edit: complete }
       ]
     }
   }
@@ -70,13 +71,47 @@ let main_keybinds = [
       ]
     }
   }
-  # Keybindings used to trigger the user defined menus
+  {
+    # alternate keybinding for NeoVim terminals
+    name: delete_one_word_backward
+    modifier: alt
+    keycode: char_w
+    mode: [emacs, vi_normal, vi_insert]
+    event: {edit: backspaceword}
+  }
+  {
+    name: move_one_word_left
+    modifier: control
+    keycode: char_b
+    mode: [emacs, vi_normal, vi_insert]
+    event: {edit: movewordleft}
+  }
+  {
+    name: move_one_word_right
+    modifier: control
+    keycode: char_f
+    mode: [emacs, vi_normal, vi_insert]
+    event: {edit: movewordright}
+  }
   {
     name: commands_menu
     modifier: control
     keycode: char_t
     mode: [emacs, vi_normal, vi_insert]
     event: { send: menu name: commands_menu }
+  }
+  {
+    name: prepend_sudo
+    modifier: control
+    keycode: char_s
+    mode: [emacs, vi_normal, vi_insert]
+    event: {
+        send: ExecuteHostCommand
+        cmd:
+            "commandline -c '0';
+            commandline -i 'sudo ';
+            commandline -e"
+    }
   }
   {
     name: vars_menu
@@ -93,13 +128,33 @@ let main_keybinds = [
     event: { send: menu name: commands_with_description }
   }
   {
-    name: skim_history
+    name: fuzzy_history
     modifier: control
     keycode: char_r
     mode: [emacs, vi_normal, vi_insert]
     event: {
       send: executehostcommand
-      cmd: "commandline (history | each { |it| $it.command} | uniq | reverse | str join (char nl) | fzf --layout=reverse --height=40%)"
+      cmd: "commandline edit -r (history | each { |it| $it.command } | uniq | reverse | str join (char -i 0) | | fzf --read0 --layout=reverse --height=40% -q (commandline) | decode utf-8 | str trim)"
+    }
+  }
+  {
+    name: run_last_command
+    modifier: alt
+    keycode: char_.
+    mode: [emacs, vi_normal, vi_insert]
+    event: {
+      send: executehostcommand
+      cmd: "nu -c (history | where command !~ 'history' | last | get command | str trim)"
+    }
+  }
+  {
+    name: run_zoxide
+    modifier: control
+    keycode: char_z
+    mode: [emacs, vi_normal, vi_insert]
+    event: {
+      send: executehostcommand
+      cmd: zi
     }
   }
 ]

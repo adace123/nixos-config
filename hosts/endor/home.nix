@@ -16,7 +16,6 @@
       nushell.enable = true;
       starship.enable = true;
       neofetch.enable = true;
-      atuin.enable = true;
     };
     desktop = {
       terminal = {

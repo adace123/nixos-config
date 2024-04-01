@@ -32,6 +32,6 @@ in
 
     users.users.${user} = {
       home = "/Users/${user}";
-      shell = pkgs.nushell;
+      shell = pkgs.nushellFull;
     };
   }

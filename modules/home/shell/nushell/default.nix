@@ -28,7 +28,7 @@ in
 
       programs.nushell = {
         enable = true;
-        package = pkgs.nushell;
+        package = pkgs.nushellFull;
         envFile.source = ./config/environment.nu;
         configFile.source = ./config/main.nu;
         extraConfig = ''
@@ -43,7 +43,6 @@ in
           source ${nu_script_path}/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu
 
           # modules
-          source ${nu_script_path}/modules/argx/argx.nu
           source ${nu_script_path}/modules/data_extraction/ultimate_extractor.nu
           source ${nu_script_path}/modules/nix/nix.nu
           source ${nu_script_path}/modules/weather/get-weather.nu

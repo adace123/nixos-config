@@ -6,7 +6,7 @@
     coreutils
   ];
 
-  environment.loginShell = pkgs.nushell;
+  environment.loginShell = pkgs.nushellFull;
 
   fonts = {
     fontDir.enable = true;
