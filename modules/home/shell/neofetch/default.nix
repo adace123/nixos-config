@@ -11,11 +11,12 @@ in
     config = mkIf cfg.enable {
       home.packages = [
         pkgs.neofetch
+        pkgs.fastfetch
       ];
 
       xdg.configFile."neofetch/config.conf".source = ./neofetch.conf;
       programs.nushell.extraConfig = ''
-        neofetch
+        fastfetch
       '';
     };
   }
