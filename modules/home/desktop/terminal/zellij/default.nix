@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.modules.desktop.terminal.zellij;
@@ -11,5 +12,6 @@ in
       programs.zellij.enable = true;
       xdg.configFile."zellij/config.kdl".source = ./config.kdl;
       home.file.".config/zellij/layouts/layout.kdl".source = ./layout.kdl;
+      home.file.".config/zellij/layouts/zjstatus.kdl".text = import ./default-layout.nix {inherit pkgs;};
     };
   }

@@ -163,7 +163,7 @@ session_serialization true
 //   - quit
 on_force_close "quit"
 // Request simplified ui (without arrow fonts) of plugins
-simplified_ui true
+// simplified_ui true
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //default_shell "fish"
@@ -171,10 +171,10 @@ simplified_ui true
 pane_frames false
 // Choose the theme that is specified in the themes section.
 // Default: default
-theme "default"
+theme "nord"
 // The name of the default layout to load on startup
 // Default: "default"
-default_layout "compact"
+default_layout "zjstatus"
 // On certain configurations, or terminals mouse_mode can interfere with copying text.
 mouse_mode true
 // 100_000 should never exceed 6MB per shell pane, unless the lines are very long
@@ -193,8 +193,6 @@ scroll_buffer_size 100000
 // Is automatic copy (and clear) of selection when releasing mouse enabled?
 // Default true
 //copy_on_select false
-
-theme "catppuccin-mocha"
 
 plugins {
   status-bar { path "status-bar"; }
