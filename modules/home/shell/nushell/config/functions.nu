@@ -31,6 +31,10 @@ def nix-diff [] {
   nvd diff /run/current-system $"($env.DOTFILES_DIR)/result"
 }
 
+def nix-search [query: string] {
+  nix search nixpkgs $query --json | from json | transpose | flatten | select column0 version description | rename --column { column0: attribute }
+}
+
 def rf [pattern: string] {
   # open ripgrep file matches in editor
   let result = rg -l $pattern | fzf -m | lines

@@ -39,3 +39,4 @@ alias y = yazi
 alias zj = zellij
 alias zjl = zellij ls
 alias zjd = zellij --layout $"($env.HOME)/.config/zellij/layouts/layout.kdl"
+alias zjt = zellij run -f -- tgpt -i
