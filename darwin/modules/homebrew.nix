@@ -13,6 +13,7 @@ _: {
     ];
     brews = [
       "awscli"
+      "gsed"
       "vault"
     ];
     casks = [
