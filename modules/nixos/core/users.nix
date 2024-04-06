@@ -8,7 +8,6 @@
 with lib; let
   cfg = config.modules.user;
 in {
-  # options.modules.user.password = mkEnableOption "Set user password";
   options.modules.user = {
     name = mkOption {
       type = types.str;
@@ -40,6 +39,10 @@ in {
       ];
     };
 
-    security.sudo.wheelNeedsPassword = false;
+    security.sudo = mkIf cfg.sudo.enable {
+      enable = true;
+      keepTermInfo = true;
+      wheelNeedsPassword = false;
+    };
   };
 }
