@@ -41,7 +41,6 @@ in {
 
     security.sudo = mkIf cfg.sudo.enable {
       enable = true;
-      keepTermInfo = true;
       wheelNeedsPassword = false;
     };
   };
