@@ -178,7 +178,7 @@ clean:
 ssh host:
   #!/usr/bin/env nu
   let tmp = mktemp -t
-  let host_config = pulumi stack output -C keys --show-secrets {{host}} | from json
+  let host_config = pulumi stack output -s dev -C keys --show-secrets {{host}} | from json
   $host_config | get privKey | save -f $tmp
   echo $"Creating SSH connection to ($host_config.url)"
   ssh -i $tmp {{ssh_opts}} ($host_config.url)
