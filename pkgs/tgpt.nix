@@ -1,13 +1,13 @@
 {pkgs, ...}:
 pkgs.buildGoModule rec {
   pname = "tgpt";
-  version = "2.7.1";
+  version = "2.7.3";
 
   src = pkgs.fetchFromGitHub {
     owner = "aandrew-me";
     repo = "tgpt";
     rev = "refs/tags/v${version}";
-    hash = "sha256-XuTDEcs1wIrAe7Oaok4aFP01jDcyWB01R3HNrx6UEpo=";
+    hash = "sha256-tInbOCrGXZkyGrkXSppK7Qugh0E2CdjmybMeH49Wc5s=";
   };
 
   # skip failing checkPhase
