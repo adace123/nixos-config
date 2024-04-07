@@ -16,8 +16,8 @@
 // Run `zellij setup --check` for troubleshooting and inspecting
 // current config locations and features that are enabled.
 
-keybinds {
-    normal clear-defaults=true {
+keybinds clear-defaults=true {
+    normal {
         bind "Alt q" { Quit; }
         bind "Alt d" { Detach; }
         bind "Alt p" { SwitchToMode "pane"; }
@@ -41,31 +41,33 @@ keybinds {
             move_to_focused_tab true
           }
         }
+        bind "Alt E" { EditScrollback; }
     }
-    pane clear-defaults=true {
+
+    pane {
         bind "Enter" "Esc" "Space" { SwitchToMode "normal"; }
-        bind "h" "Left" { NewPane "Left"; }
-        bind "l" "Right" { NewPane "Right"; }
-        bind "j" "Down" { NewPane "Down"; }
-        bind "k" "Up" { NewPane "Up"; }
+        bind "h" "Left" { NewPane "Left"; SwitchToMode "normal"; }
+        bind "l" "Right" { NewPane "Right"; SwitchToMode "normal"; }
+        bind "j" "Down" { NewPane "Down"; SwitchToMode "normal"; }
+        bind "k" "Up" { NewPane "Up"; SwitchToMode "normal"; }
         bind "Alt h" "Left" { MoveFocus "Left"; }
         bind "Alt l" "Right" { MoveFocus "Right"; }
         bind "Alt j" "Down" { MoveFocus "Down"; }
         bind "Alt k" "Up" { MoveFocus "Up"; }
         bind "p" { SwitchFocus; }
-        bind "n" { NewPane; }
-        bind "x" { CloseFocus; }
-        bind "d" { CloseFocus; }
-        bind "f" { ToggleFocusFullscreen; }
+        bind "n" { NewPane; SwitchToMode "normal"; }
+        bind "x" { CloseFocus; SwitchToMode "normal"; }
+        bind "d" { CloseFocus; SwitchToMode "normal"; }
+        bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "z" { TogglePaneFrames; }
     }
 
-    tab clear-defaults=true {
+    tab {
         bind "Enter" "Esc" "Space" { SwitchToMode "normal"; }
         bind "h" "Left" { GoToPreviousTab; }
         bind "l" "Right" { GoToNextTab; }
-        bind "n" { NewTab; }
-        bind "x" { CloseTab; }
+        bind "n" { NewTab; SwitchToMode "normal" ;}
+        bind "x" { CloseTab; SwitchToMode "normal"; }
         bind "s" { ToggleActiveSyncTab; }
         bind "Alt h" { MoveFocus "Left"; }
         bind "Alt l" { MoveFocus "Right"; }
@@ -82,7 +84,8 @@ keybinds {
         bind "9" { GoToTab 9; }
         bind "Tab" { ToggleTab; }
     }
-    resize clear-defaults=true {
+
+    resize {
         bind "Enter" "Esc" "Space" { SwitchToMode "normal"; }
         bind "h" "Left" { Resize "Left"; }
         bind "j" "Down" { Resize "Down"; }
@@ -98,7 +101,7 @@ keybinds {
         bind "Alt k" { MoveFocus "Up"; }
     }
 
-    move clear-defaults=true {
+    move {
         bind "Enter" "Esc" "Space" { SwitchToMode "normal"; }
         bind "h" "Left" { MovePane "Left"; }
         bind "j" "Down" { MovePane "Down"; }
@@ -110,7 +113,8 @@ keybinds {
         bind "Alt j" { MoveFocus "Down"; }
         bind "Alt k" { MoveFocus "Up"; }
     }
-    scroll clear-defaults=true {
+
+    scroll {
         bind "e" { EditScrollback; SwitchToMode "normal"; }
         bind "Enter" "Esc" { SwitchToMode "normal"; }
         bind "Alt c" { ScrollToBottom; SwitchToMode "normal"; }
@@ -126,7 +130,8 @@ keybinds {
         bind "Alt k" { MoveFocus "Up"; }
         bind "s" { SwitchToMode "entersearch"; SearchInput 0; }
     }
-    search clear-defaults=true {
+
+    search {
         bind "Alt s" "Enter" "Esc" "Space" { SwitchToMode "normal"; }
         bind "s" { SwitchToMode "entersearch"; SearchInput 0; }
         bind "n" { Search "Down"; }
@@ -140,19 +145,20 @@ keybinds {
         bind "Alt k" "Alt Up" { MoveFocus "Up"; }
     }
 
-    entersearch clear-defaults=true {
+    entersearch {
         bind "Enter" { SwitchToMode "search"; }
-        bind "Alt c" "Esc" { SearchInput 27; SwitchToMode "scroll"; }
+        bind "Ctrl c" "Esc" { SearchInput 27; SwitchToMode "scroll"; }
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
         bind "Alt j" "Alt Down" { MoveFocus "Down"; }
         bind "Alt k" "Alt Up" { MoveFocus "Up"; }
     }
-    locked clear-defaults=true {}
-    renamepane clear-defaults=true {}
-    renametab clear-defaults=true {}
-    session clear-defaults=true {}
-    tmux clear-defaults=true {}
+
+    locked  {}
+    renamepane  {}
+    renametab  {}
+    session  {}
+    tmux  {}
 }
 
 session_serialization true
