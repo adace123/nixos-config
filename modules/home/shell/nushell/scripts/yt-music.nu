@@ -8,7 +8,7 @@ def main [] {
     "Chillstep": "QxtigSvGnD8",
     "Cyberpunk": "xulXmZrC9uI"
   }
-  let selected_stream = $streams | columns | str join "\n" | rofi -i -dmenu -p "Select music stream"
+  let selected_stream = $streams | columns | str join "\n" | anyrun --plugins $env.ANYRUN_STDIN_PLUGIN_PATH
   if ($selected_stream == "") {
     exit 0
   }

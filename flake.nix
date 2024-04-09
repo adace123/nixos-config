@@ -52,6 +52,10 @@
       url = "github:nushell/nu_scripts";
       flake = false;
     };
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

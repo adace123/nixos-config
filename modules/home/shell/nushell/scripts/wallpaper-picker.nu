@@ -17,8 +17,8 @@ def main [--mode: string = "rofi"] {
   | get name)
 
   let choice = match $mode {
-    "rofi" => {
-      ($file_choices | to text | rofi -dmenu)       
+    "anyrun" => {
+      ($file_choices | to text | anyrun --plugin $env.ANYRUN_STDIN_PLUGIN_PATH)
     },
     "random" => {
       ($file_choices | shuffle | first) 
