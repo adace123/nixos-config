@@ -23,7 +23,6 @@ in
           difftastic.enable = true;
           userName = "adace123";
           userEmail = "18275490+adace123@users.noreply.github.com";
-          push.autoSetupRemote = true;
 
           ignores = [
             "*.log"
