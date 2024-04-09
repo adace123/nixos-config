@@ -27,47 +27,80 @@
       keymaps = {
         "<leader>fb" = {
           action = "buffers";
-          desc = "Buffers";
+          options = {
+            silent = true;
+            desc = "Buffers";
+          };
         };
         "<leader>fm" = {
           action = "marks";
-          desc = "Marks";
+          options = {
+            silent = true;
+            desc = "Marks";
+          };
         };
         "<leader>fd" = {
           action = "diagnostics";
-          desc = "LSP Diagnostics";
+          options = {
+            silent = true;
+            desc = "LSP Diagnostics";
+          };
         };
         "<leader>ff" = {
           action = "find_files";
-          desc = "Files";
+          options = {
+            silent = true;
+            desc = "Files";
+          };
         };
         "<leader>fk" = {
           action = "keymaps";
-          desc = "Keymaps";
+          options = {
+            silent = true;
+            desc = "Keymaps";
+          };
         };
         "<leader>fj" = {
           action = "jumplist";
-          desc = "Jumplist";
+          options = {
+            silent = true;
+            desc = "Jumplist";
+          };
         };
         "<leader>fo" = {
           action = "oldfiles";
-          desc = "Recent files";
+          options = {
+            silent = true;
+            desc = "Recent files";
+          };
         };
         "<leader>fc" = {
           action = "command_history";
-          desc = "Command history";
+          options = {
+            silent = true;
+            desc = "Command history";
+          };
         };
         "<leader>fW" = {
           action = "grep_string";
-          desc = "Search word under cursor";
+          options = {
+            silent = true;
+            desc = "Search word under cursor";
+          };
         };
         "<leader>ci" = {
           action = "lsp_incoming_calls";
-          desc = "Incoming calls";
+          options = {
+            silent = true;
+            desc = "Incoming calls";
+          };
         };
         "<leader>co" = {
           action = "lsp_outgoing_calls";
-          desc = "Outgoing calls";
+          options = {
+            silent = true;
+            desc = "Outgoing calls";
+          };
         };
       };
       extensions = {
