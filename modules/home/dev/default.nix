@@ -12,5 +12,8 @@
     alejandra
     stylua
     yamlfmt
+
+    # IaC
+    pulumi
   ];
 }
