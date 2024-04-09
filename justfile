@@ -72,7 +72,7 @@ nix-install:
 
 [macos]
 bootstrap-write device:
-  sudo sh -c "dd if=./nixos.iso of={{device}} bs=10M | pv | dd of={{device}} bs=10M"
+  sudo sh -c "dd if=./nixos.iso of={{device}} bs=10M"
   sudo diskutil eject {{device}}
 
 [macos]
@@ -86,7 +86,7 @@ bootstrap-write:
 
 bootstrap device build-mode="remote":
   just bootstrap-build {{build-mode}}
-  just bootstrap-write
+  just bootstrap-write {{device}}
 
 copy host src dest:
   #!/usr/bin/env nu
