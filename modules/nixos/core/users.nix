@@ -14,7 +14,7 @@ in {
       description = "Default user name";
     };
     password.enable = mkEnableOption "Set user password";
-    sudo.enable = mkEnableOption "Enble sudo privileges";
+    sudo.enable = mkEnableOption "Enable sudo privileges";
   };
 
   config = {

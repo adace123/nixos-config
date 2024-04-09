@@ -124,15 +124,17 @@ nixos-install host config:
  
   let ssh_config = pulumi stack output -s dev --show-secrets -C keys {{host}} | from json
 
-  (
-    nix run github:nix-community/nixos-anywhere --
-    --build-on-remote
-    --flake .#{{config}}
-    --disk-encryption-keys /tmp/secret.key $"($root_tmpdir)/secret.key"
-    --extra-files $root_tmpdir
-    -i $iso_tmp
-    $ssh_config.url
-  )
+  with-env [SHELL "/bin/sh"] { # https://github.com/nix-community/nixos-anywhere/issues/280
+    (
+      nix run github:nix-community/nixos-anywhere --
+      --build-on-remote
+      --flake .#{{config}}
+      --disk-encryption-keys /tmp/secret.key $"($root_tmpdir)/secret.key"
+      --extra-files $root_tmpdir
+      -i $iso_tmp
+      $ssh_config.url
+    )
+  }
 
 get-ssh-key host:
   #!/usr/bin/env nu
