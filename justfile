@@ -84,14 +84,14 @@ switch host:
 bootstrap-write:
   nix run "nixpkgs#bootiso" -- ./nixos.iso
 
-bootstrap build-mode="remote": (bootstrap-build build-mode)
+bootstrap device build-mode="remote":
   just bootstrap-build {{build-mode}}
   just bootstrap-write
 
 copy host src dest:
   #!/usr/bin/env nu
   let privkey_path = mktemp -t
-  let ssh_config = pulumi stack output --show-secrets -C keys {{host}} | from json
+  let ssh_config = pulumi stack output -s dev --show-secrets -C keys {{host}} | from json
   $ssh_config | get privKey | save -f $privkey_path
 
   echo $"Copying {{src}} to {{dest}} on ($ssh_config.url)"
@@ -120,9 +120,9 @@ nixos-install host config:
   # write disk decryption key to temp file
   just get-host-secret luks-password | save -f $"($root_tmpdir)/secret.key"
   # write sops secret decryption key to temp file
-  pulumi stack output --show-secrets -C keys sops | from json | get privKey | save -f $"($root_tmpdir)/etc/ssh/sops-nix"
+  pulumi stack output --show-secrets -s dev -C keys sops | from json | get privKey | save -f $"($root_tmpdir)/etc/ssh/sops-nix"
  
-  let ssh_config = pulumi stack output --show-secrets -C keys {{host}} | from json
+  let ssh_config = pulumi stack output -s dev --show-secrets -C keys {{host}} | from json
 
   (
     nix run github:nix-community/nixos-anywhere --
@@ -136,7 +136,7 @@ nixos-install host config:
 
 get-ssh-key host:
   #!/usr/bin/env nu
-  let key = pulumi stack output --show-secrets -C keys {{host}} | from json | get privKey
+  let key = pulumi stack output -s dev --show-secrets -C keys {{host}} | from json | get privKey
   echo $key
 
 get-host-secret key host="common":
@@ -147,7 +147,7 @@ get-host-secret key host="common":
     "modules/home/secrets.yaml"
   }
 
-  let sops_age_key = pulumi stack output --show-secrets -C keys age | from json | get privKey
+  let sops_age_key = pulumi stack output -s dev --show-secrets -C keys age | from json | get privKey
   with-env [SOPS_AGE_KEY $sops_age_key] {
     sops -d $yaml_path | from yaml | get {{key}}
   }
@@ -159,7 +159,7 @@ edit-host-secrets type="system":
   } else {
     "modules/home/secrets.yaml"
   }
-  let sops_age_key = pulumi stack output --show-secrets -C keys age | from json | get privKey
+  let sops_age_key = pulumi stack output -s dev --show-secrets -C keys age | from json | get privKey
   with-env [SOPS_AGE_KEY $sops_age_key] {
     sops $yaml_path
   }
