@@ -13,10 +13,6 @@ in
     ];
 
     config = mkIf cfg.enable {
-      home.sessionVariables = {
-        ANYRUN_STDIN_PLUGIN_PATH = "${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so";
-      };
-
       programs.nushell.extraEnv = ''
         $env.ANYRUN_STDIN_PLUGIN_PATH = ${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so
       '';
