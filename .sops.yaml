@@ -9,3 +9,11 @@ creation_rules:
     key_groups:
       - age:
           - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf
+  - path_regex: modules/nixos/secrets-raw.yaml
+    key_groups:
+      - age:
+          - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf
+  - path_regex: modules/home/secrets-raw.yaml
+    key_groups:
+      - age:
+          - age1mj78cc7j2e7fkcthn5scs4xzh84jphmqpjmp0uw067ww42gzjgvq9nl4hf
