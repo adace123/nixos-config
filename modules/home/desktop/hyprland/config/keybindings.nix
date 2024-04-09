@@ -72,6 +72,7 @@ in {
         # Sratchpad
         "SUPER, equal, exec, pypr toggle terminal"
         "SUPER ALT, b, exec, pypr toggle btm"
+        "SUPER ALT, t, exec, pypr toggle tgpt"
 
         # Submaps
         "SUPER SHIFT, s, submap, system"

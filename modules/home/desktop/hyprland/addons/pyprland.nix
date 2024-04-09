@@ -19,13 +19,16 @@ in
               command = "alacritty --class=scratchpad";
               animation = "fromTop";
               unfocus = "hide";
-              margin = 50;
             };
             btm = {
               command = "alacritty --class=scratchpad -e btm";
               animation = "fromTop";
               unfocus = "hide";
-              margin = 50;
+            };
+            tgpt = {
+              command = "alacritty --class=scratchpad -e tgpt -i";
+              animation = "fromTop";
+              unfocus = "hide";
             };
           };
         };
