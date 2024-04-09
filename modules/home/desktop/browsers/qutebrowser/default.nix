@@ -62,6 +62,14 @@ in
           downloads.location.directory = "~/Downloads";
           confirm_quit = ["multiple-tabs" "downloads"];
           auto_save.session = true;
+          qt.highdpi = true;
+          qt.args = [
+            "enable-accelerated-video-decode"
+            "enable-gpu-rasterization"
+            "ignore-gpu-blocklist"
+            "use-egl=desktop"
+            "enable-native-gpu-memory-buffers"
+          ];
           content = {
             autoplay = false;
             blocking = {

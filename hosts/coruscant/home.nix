@@ -13,7 +13,7 @@
       };
       media.enable = true;
       monitor = {
-        output = "DP-2";
+        output = "DP-1";
         resolution = "2560x1440";
       };
       terminal = {
