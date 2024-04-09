@@ -20,7 +20,7 @@
     plugins = {
       surround.enable = true;
       nvim-ufo.enable = true;
-      comment-nvim.enable = true;
+      comment.enable = true;
       trouble.enable = true;
       luasnip.enable = true;
       flash.enable = true;

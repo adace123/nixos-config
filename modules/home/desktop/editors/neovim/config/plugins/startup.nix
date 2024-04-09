@@ -13,7 +13,7 @@
       };
 
       alpha = {
-        enable = true;
+        enable = false;
         iconsEnabled = true;
         layout = [
           {

@@ -2,7 +2,7 @@
   programs.nixvim = {
     plugins.telescope = {
       enable = true;
-      extraOptions = {
+      settings = {
         defaults = {
           mappings = {
             i = {
