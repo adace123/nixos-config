@@ -73,6 +73,8 @@ in
           content = {
             autoplay = false;
             blocking = {
+              enabled = true;
+              method = "both";
               adblock.lists = [
                 "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt"
                 "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt"
@@ -80,7 +82,6 @@ in
                 "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/quick-fixes.txt"
                 "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt"
                 "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt"
-                "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_English/filter.txt"
                 "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_11_Mobile/filter.txt"
                 "https://easylist.to/easylist/easylist.txt"
                 "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Spyware/filter.txt"
@@ -111,10 +112,9 @@ in
                 "https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt"
                 "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
               ];
-
-              method = "both";
             };
           };
+          content.headers.user_agent = "Mozilla/5.0 (X11; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0";
           tabs = {
             background = true;
             position = "left";
