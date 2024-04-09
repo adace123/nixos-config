@@ -1,5 +1,5 @@
 alias bc = eva
-alias bios = sudo systemctl reboot --firmware
+alias bios = /run/wrappers/bin/sudo systemctl reboot --firmware
 alias bt = bluetuith
 alias cat = bat
 alias ctx = kubectx
@@ -19,7 +19,7 @@ alias htop = btm --fahrenheit
 alias lg = lazygit
 alias ll = ls -la
 # TODO: remove need to run lazydocker with sudo
-alias lzd = sudo lazydocker
+alias lzd = /run/wrappers/bin/sudo lazydocker
 alias k = kubectl
 alias nb = newsboat
 alias ns = kubens
@@ -31,6 +31,7 @@ alias pmt = podman-tui
 alias py = ptpython
 alias rm = rm -i
 alias sc = systemctl
+alias sudo = /run/wrappers/bin/sudo
 alias tail = spin
 alias tree = exa -T --icons
 alias ts = tailscale

@@ -109,7 +109,7 @@ let main_keybinds = [
         send: ExecuteHostCommand
         cmd:
             "commandline -c '0';
-            commandline -i 'sudo ';
+            commandline -i '/run/wrappers/bin/sudo ';
             commandline -e"
     }
   }

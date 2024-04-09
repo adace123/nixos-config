@@ -14,7 +14,7 @@ def jtf [service: string] {
 }
 
 def dmesg [] {
-  sudo dmesg | tspin
+  /run/wrappers/bin/sudo dmesg | tspin
 }
 
 def jt-debug [] {
@@ -104,7 +104,7 @@ module sys {
   }
 
   export def "sys disk-health" [disk: string] {
-    sudo smartctl $disk --attributes | str trim | detect columns --skip 6
+    /run/wrappers/bin/sudo smartctl $disk --attributes | str trim | detect columns --skip 6
   }
 
   export def "sys vuln" [] {
@@ -131,7 +131,7 @@ module sys {
   }
 
   export def "sys bpf" [] {
-    sudo bpftool prog show -j | from json
+    /run/wrappers/bin/sudo bpftool prog show -j | from json
   }
 }
 
