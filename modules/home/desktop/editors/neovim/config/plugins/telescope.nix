@@ -102,6 +102,14 @@
             desc = "Outgoing calls";
           };
         };
+        "<leader>f" = {
+          action = "grep_string";
+          options = {
+            silent = true;
+            desc = "Visual grep";
+          };
+          mode = ["v"];
+        };
       };
       extensions = {
         fzf-native.enable = true;
@@ -125,7 +133,7 @@
         key = "<leader>fw";
         action = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '--smart-case'} }) end";
         lua = true;
-        options.desc = "Grep";
+        options.desc = "Live grep";
         mode = ["n"];
       }
     ];
