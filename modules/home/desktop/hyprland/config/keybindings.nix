@@ -73,6 +73,7 @@ in {
         "SUPER, equal, exec, pypr toggle terminal"
         "SUPER ALT, b, exec, pypr toggle btm"
         "SUPER ALT, t, exec, pypr toggle tgpt"
+        "SUPER ALT, y, exec, pypr toggle yazi"
 
         # Submaps
         "SUPER SHIFT, s, submap, system"

@@ -30,6 +30,11 @@ in
               animation = "fromTop";
               unfocus = "hide";
             };
+            yazi = {
+              command = "alacritty --class=scratchpad -e yazi ~";
+              animation = "fromTop";
+              unfocus = "hide";
+            };
           };
         };
       };
