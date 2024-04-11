@@ -213,6 +213,13 @@
         mode = ["n" "x"];
       }
       {
+        key = "<leader>y";
+        action = "function() vim.fn.setreg('*', vim.fn.expand('%:.')) end";
+        lua = true;
+        options.desc = "Copy current file name";
+        mode = ["n"];
+      }
+      {
         key = "<C-d>";
         action = "<C-d>zz";
         options.desc = "Half-page jump down";
