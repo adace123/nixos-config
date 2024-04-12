@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-latest.url = "github:NixOS/nixpkgs";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

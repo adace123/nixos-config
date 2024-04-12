@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.nixvim = {
     autoCmd = [
       {
@@ -13,9 +17,11 @@
       }
     ];
 
-    plugins.neorg = {
+    plugins.neorg = let
+      nixpkgs-stable = import inputs.nixpkgs-stable {inherit (pkgs) system;};
+    in {
       enable = true;
-
+      package = nixpkgs-stable.vimPlugins.neorg;
       modules = {
         "core.defaults".__empty = null;
 
@@ -44,4 +50,5 @@
     extraPlugins = [pkgs.vimPlugins.headlines-nvim];
     extraConfigLua = "require('headlines').setup()";
   };
+  home.packages = [pkgs.lua54Packages.lua-utils-nvim];
 }
