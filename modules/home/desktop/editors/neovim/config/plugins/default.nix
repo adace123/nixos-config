@@ -24,6 +24,7 @@
       trouble.enable = true;
       luasnip.enable = true;
       flash.enable = true;
+      markdown-preview.enable = true;
       harpoon = {
         enable = true;
         keymapsSilent = true;

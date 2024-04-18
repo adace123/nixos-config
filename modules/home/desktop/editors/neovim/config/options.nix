@@ -11,6 +11,7 @@
       swapfile = false;
       hlsearch = false;
       incsearch = true;
+      ignorecase = true;
 
       shiftwidth = 2;
       tabstop = 4;
