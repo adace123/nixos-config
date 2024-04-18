@@ -8,7 +8,6 @@ let main_keybinds = [
       until: [
         { send: menu name: completion_menu }
         { send: menunext }
-        { edit: complete }
       ]
     }
   }
@@ -89,9 +88,19 @@ let main_keybinds = [
   {
     name: move_one_word_right
     modifier: control
-    keycode: char_f
+    keycode: char_e
     mode: [emacs, vi_normal, vi_insert]
     event: {edit: movewordright}
+  }
+  {
+    name: "change_dir_with_fzf"
+    modifier: control
+    keycode: char_f
+    mode: [emacs, vi_normal, vi_insert]
+    event: {
+      send: executehostcommand,
+      cmd: "cd (ls | where type == dir | each { |it| $it.name} | str join (char nl) | fzf | decode utf-8 | str trim)"
+    }
   }
   {
     name: commands_menu
