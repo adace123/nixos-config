@@ -1,6 +1,7 @@
 {
-  pkgs,
+  config,
   inputs,
+  pkgs,
   ...
 }: {
   programs.nixvim = {
@@ -17,14 +18,15 @@
       }
     ];
 
+    plugins.treesitter.grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [norg];
     plugins.neorg = let
       nixpkgs-stable = import inputs.nixpkgs-stable {inherit (pkgs) system;};
     in {
       enable = true;
       package = nixpkgs-stable.vimPlugins.neorg;
+      lazyLoading = true;
       modules = {
         "core.defaults".__empty = null;
-
         "core.keybinds".config.hook.__raw = ''
           function(keybinds)
             keybinds.unmap('norg', 'n', '<C-s>')
@@ -39,16 +41,18 @@
           end
         '';
 
-        "core.dirman".config.workspaces = {
-          notes = "~/notes";
+        "core.dirman".config = {
+          workspaces = {
+            work = "~/Notes/work";
+            personal = "~/Notes/personal";
+          };
+          default_workspace = "personal";
         };
 
         "core.concealer".__empty = null;
         "core.completion".config.engine = "nvim-cmp";
+        "core.export".__empty = null;
       };
     };
-    extraPlugins = [pkgs.vimPlugins.headlines-nvim];
-    extraConfigLua = "require('headlines').setup()";
   };
-  home.packages = [pkgs.lua54Packages.lua-utils-nvim];
 }
