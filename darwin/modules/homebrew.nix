@@ -24,6 +24,7 @@ _: {
       "docker"
       "discord"
       "flux"
+      "microsoft-teams"
       "obsidian"
       "ollama"
       "postman"
