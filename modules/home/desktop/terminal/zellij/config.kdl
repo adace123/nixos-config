@@ -26,11 +26,14 @@ keybinds clear-defaults=true {
         bind "Alt t" { SwitchToMode "tab"; }
         bind "Alt s" { SwitchToMode "scroll"; }
         bind "Alt m" { SwitchToMode "move"; }
-        bind "Alt n" { NewPane; }
         bind "Alt h" { MoveFocusOrTab "Left"; }
+        bind "Alt H" { NewPane "Left"; }
         bind "Alt l" { MoveFocusOrTab "Right"; }
+        bind "Alt L" { NewPane "Right"; }
         bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt J" { NewPane "Down"; }
         bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt K" { NewPane "Up"; }
         bind "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt ]" { GoToNextTab; }
