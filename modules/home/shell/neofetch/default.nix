@@ -20,8 +20,5 @@ in
       ];
 
       xdg.configFile."neofetch/config.conf".source = "${neofetch_themes}/normal/ozozfetch.conf";
-      programs.nushell.extraConfig = ''
-        neofetch
-      '';
     };
   }
