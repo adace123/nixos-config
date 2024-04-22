@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
     plugins.telescope = {
       enable = true;
@@ -136,6 +136,12 @@
         options.desc = "Live grep";
         mode = ["n"];
       }
+      {
+        key = "<leader>fy";
+        action = ":Telescope neoclip<CR>";
+        options.desc = "Clipboard history";
+      }
     ];
+    extraPlugins = [pkgs.vimPlugins.telescope-live-grep-args-nvim];
   };
 }
