@@ -22,6 +22,7 @@ in
             ptpython
             pytest
             requests
+            virtualenv
           ]))
         ruff
         ruff-lsp
