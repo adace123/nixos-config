@@ -49,7 +49,18 @@ keybinds clear-defaults=true {
             close_on_exit true
           };
         }
+        bind "Alt y" {
+          Run "zellij" "run" "-f" "-c" "--" "yazi" {
+            close_on_exit true
+          };
+        }
+        bind "Alt b" {
+          Run "zellij" "run" "-c" "--" "btm" {
+            close_on_exit true
+          };
+        } 
         bind "Alt E" { EditScrollback; }
+        bind "Alt x" { CloseFocus; }
     }
 
     pane {
