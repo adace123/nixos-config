@@ -1,22 +1,23 @@
 {pkgs, ...}: {
   imports = [
-    ./lsp.nix
-    ./telescope.nix
-    ./treesitter.nix
     ./barbar.nix
-    ./git.nix
+    ./cmp.nix
     ./file-explorer.nix
+    ./git.nix
     ./indent-blankline.nix
+    ./lsp.nix
     ./lspsaga.nix
     ./lualine.nix
-    ./neorg.nix
     ./none-ls.nix
+    ./obsidian.nix
     ./startup.nix
+    ./telescope.nix
+    ./treesitter.nix
     ./toggleterm.nix
-    ./cmp.nix
   ];
 
   programs.nixvim = {
+    extraConfigLua = ''require("neoclip").setup()'';
     plugins = {
       surround.enable = true;
       nvim-ufo.enable = true;
@@ -24,6 +25,7 @@
       trouble.enable = true;
       luasnip.enable = true;
       flash.enable = true;
+      headlines.enable = true;
       markdown-preview.enable = true;
       harpoon = {
         enable = true;
@@ -52,6 +54,7 @@
     extraPlugins = with pkgs.vimPlugins; [
       overseer-nvim
       plenary-nvim
+      nvim-neoclip-lua
       nvim-web-devicons
       nvim-spectre
       persistence-nvim
