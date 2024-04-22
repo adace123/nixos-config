@@ -15,6 +15,8 @@ in
             "$os"
             "$directory"
             "$git_branch$git_status"
+            "$python"
+            "$nix_shell"
             "$time"
             "$line_break"
             "$character"
@@ -23,6 +25,8 @@ in
           right_format = "$kubernetes";
 
           add_newline = true;
+
+          os.disabled = false;
 
           username = {
             show_always = true;
@@ -59,6 +63,15 @@ in
           kubernetes = {
             disabled = false;
             format = "[$symbol$context \($namespace\)]($style)";
+          };
+
+          python = {
+            format = "[$symbol$version]($style)";
+            symbol = " ";
+          };
+
+          nix_shell = {
+            format = " [$symbol\($name\)]($style) ";
           };
         };
       };
