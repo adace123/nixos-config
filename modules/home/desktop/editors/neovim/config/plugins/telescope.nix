@@ -103,6 +103,13 @@
           };
           mode = ["v"];
         };
+        "<leader>." = {
+          action = "resume";
+          options = {
+            silent = true;
+            desc = "Repeat last query";
+          };
+        };
       };
       extensions = {
         fzf-native.enable = true;
