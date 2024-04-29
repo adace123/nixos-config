@@ -68,6 +68,11 @@ def gb [] {
   git branch --sort=-creatordate | fzf --preview='' | xargs git checkout
 }
 
+def bt-connect-all [] {
+  # BT sometimes do not automatically connect
+  bluetoothctl devices Trusted | detect columns -n | get column1 | each { |dev| bluetoothctl connect $dev }
+}
+
 module jc-functions {
   export def bt-table [] {
     bluetoothctl devices | jc --bluetoothctl | from json
