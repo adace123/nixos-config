@@ -3,10 +3,12 @@
     plugins = {
       toggleterm = {
         enable = true;
-        insertMappings = true;
-        closeOnExit = true;
-        direction = "horizontal";
-        autoScroll = true;
+        settings = {
+          insertMappings = true;
+          direction = "horizontal";
+          autoScroll = true;
+          closeOnExit = true;
+        };
       };
       which-key.registrations = {
         "<leader>t" = "terminal+";

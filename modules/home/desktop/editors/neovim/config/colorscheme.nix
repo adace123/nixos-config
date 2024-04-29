@@ -3,13 +3,15 @@
     colorschemes = {
       catppuccin = {
         enable = true;
-        flavour = "mocha";
-        integrations = {
-          cmp = true;
-          treesitter = true;
-          telescope.enabled = true;
-          indent_blankline.enabled = true;
-          barbar = true;
+        settings = {
+          flavour = "mocha";
+          integrations = {
+            cmp = true;
+            treesitter = true;
+            telescope.enabled = true;
+            indent_blankline.enabled = true;
+            barbar = true;
+          };
         };
       };
     };

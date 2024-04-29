@@ -43,7 +43,7 @@
       };
       nvim-autopairs = {
         enable = true;
-        checkTs = true;
+        settings.check_ts = true;
       };
       nvim-colorizer.enable = true;
       illuminate.enable = true;

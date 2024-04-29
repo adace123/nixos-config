@@ -15,7 +15,6 @@ in
         WLR_NO_HARDWARE_CURSORS = "1";
         NIXOS_OZONE_WL = "1";
         XDG_SESSION_TYPE = "wayland";
-        QT_QPA_PLATFORM = "xcb";
         LIBSEAT_BACKEND = "logind";
       };
 
