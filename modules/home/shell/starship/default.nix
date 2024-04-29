@@ -26,7 +26,12 @@ in
 
           add_newline = true;
 
-          os.disabled = false;
+          os = {
+            disabled = false;
+            symbols = {
+              Macos = " ";
+            };
+          };
 
           username = {
             show_always = true;
