@@ -11,10 +11,8 @@ in
 
     config = mkIf cfg.enable {
       home.packages = with pkgs; [
-        poetry
-        (python311.withPackages (p:
+        (python312.withPackages (p:
           with p; [
-            bandit
             jupyterlab # TODO: use jupyenv
             # polars
             marimo
