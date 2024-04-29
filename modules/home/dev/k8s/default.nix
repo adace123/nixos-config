@@ -16,7 +16,6 @@ in
         kubernetes-helm
         kind
         k9s
-        krew
         kubectl
         kubectx
         kustomize
