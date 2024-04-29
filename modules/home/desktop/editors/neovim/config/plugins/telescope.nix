@@ -32,13 +32,6 @@
             desc = "Buffers";
           };
         };
-        "<leader>fm" = {
-          action = "marks";
-          options = {
-            silent = true;
-            desc = "Marks";
-          };
-        };
         "<leader>fd" = {
           action = "diagnostics";
           options = {
@@ -140,6 +133,12 @@
         key = "<leader>fy";
         action = ":Telescope neoclip<CR>";
         options.desc = "Clipboard history";
+      }
+      {
+        key = "<leader>fm";
+        action = "function() require('telescope').extensions.marks_nvim.marks_list_all() end";
+        lua = true;
+        options.desc = "Marks";
       }
     ];
     extraPlugins = [pkgs.vimPlugins.telescope-live-grep-args-nvim];

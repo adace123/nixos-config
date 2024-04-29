@@ -8,6 +8,7 @@
     ./lsp.nix
     ./lspsaga.nix
     ./lualine.nix
+    ./marks.nix
     ./none-ls.nix
     ./obsidian.nix
     ./startup.nix
@@ -17,7 +18,9 @@
   ];
 
   programs.nixvim = {
-    extraConfigLua = ''require("neoclip").setup()'';
+    extraConfigLua = ''
+      require("neoclip").setup()
+    '';
     plugins = {
       surround.enable = true;
       nvim-ufo.enable = true;

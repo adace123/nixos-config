@@ -34,9 +34,130 @@ in {
           ++ [vimPlugins.nvim-treesitter.grammarPlugins.kdl]
           ++ [nu-grammar];
       };
+      treesitter-textobjects = {
+        enable = true;
+        lspInterop = {
+          enable = true;
+          border = "rounded";
+        };
+        select = {
+          enable = true;
+          lookahead = true;
+          keymaps = {
+            "a=" = {
+              query = "@assignment.outer";
+              desc = "Select outer part of an assignment";
+            };
+            "i=" = {
+              query = "@assignment.inner";
+              desc = "Select outer part of an assignment";
+            };
+            "l=" = {
+              query = "@assignment.lhs";
+              desc = "Select the left hand side of a statement";
+            };
+            "r=" = {
+              query = "@assignment.rhs";
+              desc = "Select the right hand side of a statement";
+            };
+            "aa" = {
+              query = "@parameter.outer";
+              desc = "Select the outer part of the parameter";
+            };
+            "ia" = {
+              query = "@parameter.inner";
+              desc = "Select the inner part of the parameter";
+            };
+            "ai" = {
+              query = "@conditional.outer";
+              desc = "Select the outer part of the conditional";
+            };
+            "ii" = {
+              query = "@conditional.inner";
+              desc = "Select the inner part of the conditional";
+            };
+            "al" = {
+              query = "@loop.outer";
+              desc = "Select the outer part of the loop";
+            };
+            "il" = {
+              query = "@loop.inner";
+              desc = "Select the inner part of the loop";
+            };
+            "am" = {
+              query = "@call.outer";
+              desc = "Select the outer part of a function call";
+            };
+            "if" = {
+              query = "@call.inner";
+              desc = "Select the inner part of a function call";
+            };
+            "af" = {
+              query = "@function.outer";
+              desc = "Select the outer part of a function definition";
+            };
+            "im" = {
+              query = "@function.inner";
+              desc = "Select the inner part of a function definition";
+            };
+            "ic" = {
+              query = "@class.inner";
+              desc = "Select the inner part of a class";
+            };
+            "ac" = {
+              query = "@class.outer";
+              desc = "Select the outer part of a class";
+            };
+          };
+        };
+        move = {
+          enable = true;
+          setJumps = true;
+
+          gotoNextStart = {
+            "]f" = {
+              query = "@function.outer";
+              desc = "Next function start";
+            };
+            "]c" = {
+              query = "@class.outer";
+              desc = "Next class start";
+            };
+          };
+          gotoNextEnd = {
+            "]F" = {
+              query = "@function.outer";
+              desc = "Next function end";
+            };
+            "]C" = {
+              query = "@class.outer";
+              desc = "Next class end";
+            };
+          };
+          gotoPreviousStart = {
+            "[f" = {
+              query = "@function.outer";
+              desc = "Prev function start";
+            };
+            "[c" = {
+              query = "@class.outer";
+              desc = "Prev class start";
+            };
+          };
+          gotoPreviousEnd = {
+            "[F" = {
+              query = "@function.outer";
+              desc = "Prev function end";
+            };
+            "[C" = {
+              query = "@class.outer";
+              desc = "Prev class end";
+            };
+          };
+        };
+      };
     };
     extraPlugins = with pkgs.vimPlugins; [
-      nvim-treesitter-textobjects
       vim-just
     ];
 
@@ -50,71 +171,6 @@ in {
       parser_config.nu = {
         filetype = "nu",
       }
-
-      require'nvim-treesitter.configs'.setup {
-        textobjects = {
-            select = {
-                enable = true,
-                keymaps = {
-                    ["aa"] = "@parameter.outer",
-                    ["ia"] = "@parameter.inner",
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
-                    ["ac"] = "@class.outer",
-                    ["ic"] = "@class.inner",
-                    ["ai"] = "@conditional.outer",
-                    ["ii"] = "@conditional.inner",
-                    ["al"] = "@loop.outer",
-                    ["il"] = "@loop.inner",
-                    ["ak"] = "@block.outer",
-                    ["ik"] = "@block.inner",
-                },
-            },
-
-            move = {
-                enable = true,
-                set_jumps = true,
-                goto_next_start = {
-                    ["]m"] = "@function.outer",
-                    ["]c"] = "@class.outer",
-                },
-                goto_next_end = {
-                    ["]M"] = "@function.outer",
-                    ["]["] = "@class.outer",
-                },
-                goto_previous_start = {
-                    ["[m"] = "@function.outer",
-                    ["[c"] = "@class.outer",
-                },
-                goto_previous_end = {
-                    ["[M"] = "@function.outer",
-                    ["[]"] = "@class.outer",
-                },
-            },
-
-            swap = {
-                enable = true,
-                swap_next = {
-                    [')a'] = '@parameter.inner',
-                },
-                swap_previous = {
-                    [')A'] = '@parameter.inner',
-                },
-            },
-        },
-      }
-
-      local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-
-      -- vim way: ; goes to the direction you were moving.
-      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
-      -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-      vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-      vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-      vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-      vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
     '';
   };
 }
