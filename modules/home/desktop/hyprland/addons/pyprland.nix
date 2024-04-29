@@ -21,7 +21,7 @@ in
               unfocus = "hide";
             };
             btm = {
-              command = "alacritty --class=scratchpad -e btm";
+              command = "alacritty --class=scratchpad -e btm -f";
               animation = "fromTop";
               unfocus = "hide";
             };

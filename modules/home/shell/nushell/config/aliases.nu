@@ -1,6 +1,7 @@
 alias bc = eva
 alias bios = /run/wrappers/bin/sudo systemctl reboot --firmware
 alias bt = bluetuith
+alias btm = btm -f
 alias cat = bat
 alias ctx = kubectx
 alias dcd = docker compose down
@@ -17,7 +18,6 @@ alias grep = rg
 alias gs = git status
 alias hc = hyprctl
 alias hf = hyperfine
-alias htop = btm --fahrenheit
 alias lg = lazygit
 alias ll = ls -la
 alias lzd = lazydocker
