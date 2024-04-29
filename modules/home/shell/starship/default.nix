@@ -71,7 +71,7 @@ in
           };
 
           python = {
-            format = "[$symbol$version]($style)";
+            format = "[$symbol$version]($style) ";
             symbol = " ";
           };
 
