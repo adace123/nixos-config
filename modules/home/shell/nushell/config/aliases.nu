@@ -20,8 +20,7 @@ alias hf = hyperfine
 alias htop = btm --fahrenheit
 alias lg = lazygit
 alias ll = ls -la
-# TODO: remove need to run lazydocker with sudo
-alias lzd = /run/wrappers/bin/sudo lazydocker
+alias lzd = lazydocker
 alias k = kubectl
 alias nb = newsboat
 alias ns = kubens
