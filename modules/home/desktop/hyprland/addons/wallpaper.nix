@@ -16,7 +16,7 @@ in
       home.file."Pictures/wallpapers".source = inputs.wallpapers;
 
       wayland.windowManager.hyprland.settings.exec-once = [
-        "${pkgs.swww}/bin/swww init; sleep 1; ${pkgs.swww}/bin/swww img ${wallpaper}"
+        "${pkgs.swww}/bin/swww-daemon; sleep 1; ${pkgs.swww}/bin/swww img ${wallpaper}"
       ];
     };
   }
