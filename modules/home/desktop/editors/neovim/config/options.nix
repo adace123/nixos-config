@@ -12,6 +12,7 @@
       hlsearch = false;
       incsearch = true;
       ignorecase = true;
+      conceallevel = 2;
 
       shiftwidth = 2;
       tabstop = 4;
