@@ -10,7 +10,9 @@
             black.enable = true;
             gofmt.enable = true;
             isort.enable = true;
+            just.enable = true;
             markdownlint.enable = true;
+            prettierd.enable = true;
             stylua.enable = true;
             shfmt.enable = true;
           };
