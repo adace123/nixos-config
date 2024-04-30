@@ -20,8 +20,8 @@ in
               animation = "fromTop";
               unfocus = "hide";
             };
-            btm = {
-              command = "alacritty --class=scratchpad -e btm -f";
+            btop = {
+              command = "alacritty --class=scratchpad -e btop";
               animation = "fromTop";
               unfocus = "hide";
             };

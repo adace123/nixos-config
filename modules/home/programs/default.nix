@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./modern-unix.nix ./file-explorer ./rss ./pdf ./ssh];
+  imports = [./btop.nix ./modern-unix.nix ./file-explorer ./rss ./pdf ./ssh];
 }

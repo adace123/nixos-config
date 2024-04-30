@@ -55,7 +55,7 @@ keybinds clear-defaults=true {
           };
         }
         bind "Alt b" {
-          Run "zellij" "run" "-c" "--" "btm" "-f" {
+          Run "zellij" "run" "-c" "--" "btop" {
             close_on_exit true
           };
         } 
