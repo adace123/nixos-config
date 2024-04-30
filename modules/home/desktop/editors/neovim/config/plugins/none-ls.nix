@@ -15,6 +15,7 @@
             prettierd.enable = true;
             stylua.enable = true;
             shfmt.enable = true;
+            yamlfmt.enable = true;
           };
           diagnostics = {
             deadnix.enable = true;
