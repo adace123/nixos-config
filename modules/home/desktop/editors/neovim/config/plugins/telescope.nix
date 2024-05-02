@@ -6,7 +6,11 @@
         defaults = {
           mappings = {
             i = {
-              "<Esc>" = "close";
+              "<esc>" = "close";
+              "<C-x>" = "close";
+              "<tab>" = "move_selection_next";
+              "<s-tab>" = "move_selection_previous";
+              "<C-/>" = "which_key";
             };
           };
         };
@@ -25,13 +29,6 @@
         };
       };
       keymaps = {
-        "<leader>fb" = {
-          action = "buffers";
-          options = {
-            silent = true;
-            desc = "Buffers";
-          };
-        };
         "<leader>fd" = {
           action = "diagnostics";
           options = {
@@ -146,6 +143,11 @@
         action = "function() require('telescope').extensions.marks_nvim.marks_list_all() end";
         lua = true;
         options.desc = "Marks";
+      }
+      {
+        key = "<leader><space>";
+        action = ":Telescope buffers theme=dropdown<CR>";
+        options.desc = "Buffers";
       }
     ];
     extraPlugins = [pkgs.vimPlugins.telescope-live-grep-args-nvim];
