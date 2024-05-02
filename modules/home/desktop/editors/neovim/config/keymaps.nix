@@ -23,7 +23,6 @@
         key = "U";
         action = "<C-r>";
         options.desc = "Undo";
-        mode = ["n"];
       }
       {
         key = "<C-z>";
@@ -35,7 +34,6 @@
         key = "<C-x>";
         action = "<C-w>q";
         options.desc = "Close window";
-        mode = ["n"];
       }
       {
         key = "<leader>/";
@@ -46,7 +44,6 @@
         '';
         lua = true;
         options.desc = "Toggle comment line";
-        mode = ["n"];
       }
       {
         key = "<leader>/";
@@ -60,7 +57,6 @@
         key = "<C-s>";
         action = ":w<CR>";
         options.desc = "Save";
-        mode = ["n"];
       }
       {
         action = "'_dP";
@@ -100,97 +96,81 @@
         key = "<C-h>";
         action = "<C-w>g";
         options.desc = "Navigate left";
-        mode = ["n"];
       }
       {
         key = "<C-h>";
         action = "<C-w>h";
         options.desc = "Navigate left";
-        mode = ["n"];
       }
       {
         key = "<C-l>";
         action = "<C-w>l";
         options.desc = "Navigate right";
-        mode = ["n"];
       }
       {
         key = "<C-j>";
         action = "<C-w>j";
         options.desc = "Navigate down";
-        mode = ["n"];
       }
       {
         key = "<C-k>";
         action = "<C-w>k";
         options.desc = "Navigate up";
-        mode = ["n"];
       }
       {
         key = "<C-Up>";
         action = ":resize -2<CR>";
         options.desc = "Resize up";
-        mode = ["n"];
       }
       {
         key = "<C-Down>";
         action = ":resize +2<CR>";
         options.desc = "Resize down";
-        mode = ["n"];
       }
       {
         key = "<C-Left>";
         action = ":vertical resize -2<CR>";
         options.desc = "Resize left";
-        mode = ["n"];
       }
       {
         key = "<C-Up>";
         action = ":vertical resize +2<CR>";
         options.desc = "Resize right";
-        mode = ["n"];
       }
       {
         key = "<leader>sv";
         action = "<C-w>v";
         options.desc = "Vertical split";
-        mode = ["n"];
       }
       {
         key = "<leader>sh";
         action = "<C-w>s";
         options.desc = "Horizontal split";
-        mode = ["n"];
       }
       {
         key = "<leader><tab>n";
         action = "<cmd>tabnew<CR>";
         options.desc = "New tab";
-        mode = ["n"];
       }
       {
         key = "<leader><tab>x";
         action = "<cmd>tabclose<CR>";
         options.desc = "Close tab";
-        mode = ["n"];
       }
       {
         key = "[t";
         action = "<cmd>tabprevious<CR>";
         options.desc = "Prev tab";
-        mode = ["n"];
       }
       {
         key = "]t";
         action = "<cmd>tabnext<CR>";
         options.desc = "Next tab";
-        mode = ["n"];
       }
       {
         key = "<leader>r";
         action = "*:%s//";
         options.desc = "Replace under cursor";
-        mode = ["n"];
       }
       {
         key = "p";
@@ -217,19 +197,16 @@
         action = "function() vim.fn.setreg('*', vim.fn.expand('%:.')) end";
         lua = true;
         options.desc = "Copy current file name";
-        mode = ["n"];
       }
       {
         key = "<C-d>";
         action = "<C-d>zz";
         options.desc = "Half-page jump down";
-        mode = ["n"];
       }
       {
         key = "<C-u>";
         action = "<C-u>zz";
         options.desc = "Half-page jump up";
-        mode = ["n"];
       }
       {
         key = "J";
@@ -247,62 +224,52 @@
         key = "W";
         action = ":noautocmd w<CR>";
         options.desc = "Write without formatting";
-        mode = ["n"];
       }
       {
         key = "<leader>R";
         action = ":Spectre<CR>";
         options.desc = "Spectre";
-        mode = ["n"];
       }
       {
         key = "<leader>D";
         action = "ggVGd";
         options.desc = "Blank out file";
-        mode = ["n"];
       }
       {
         key = "<C-Q>";
         action = "<cmd>qa!<CR>";
         options.desc = "Exit";
-        mode = ["n"];
       }
       {
         key = "n";
         action = "nzz";
         options.desc = "Recenter search";
-        mode = ["n"];
       }
       {
         key = "N";
         action = "Nzz";
         options.desc = "Recenter search";
-        mode = ["n"];
       }
       # resize window
       {
         key = "<S-Up>";
         action = ":resize +2<CR>";
         options.desc = "Increase vertical window size";
-        mode = ["n"];
       }
       {
         key = "<S-Down>";
         action = ":resize -2<CR>";
         options.desc = "Decrease vertical window size";
-        mode = ["n"];
       }
       {
         key = "<S-Right>";
         action = ":vertical resize +2<CR>";
         options.desc = "Increase horizontal window size";
-        mode = ["n"];
       }
       {
         key = "<S-Left>";
         action = ":vertical resize -2<CR>";
         options.desc = "Decrease horizontal window size";
-        mode = ["n"];
       }
     ];
   };
