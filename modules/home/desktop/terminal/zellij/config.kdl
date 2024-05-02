@@ -33,7 +33,6 @@ keybinds clear-defaults=true {
         bind "Alt j" { MoveFocus "Down"; }
         bind "Alt J" { NewPane "Down"; }
         bind "Alt k" { MoveFocus "Up"; }
-        bind "Alt K" { NewPane "Up"; }
         bind "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt ]" { GoToNextTab; }
@@ -55,10 +54,20 @@ keybinds clear-defaults=true {
           };
         }
         bind "Alt b" {
-          Run "zellij" "run" "-c" "--" "btop" {
+          Run "zellij" "run" "-f" "-c" "--" "btop" {
             close_on_exit true
           };
         } 
+        bind "Alt K" {
+          Run "zellij" "run" "-f" "-c" "--" "k9s" {
+            close_on_exit true
+          }
+        }
+        bind "Alt G" {
+          Run "zellij" "run" "-f" "-c" "--" "lazygit" {
+            close_on_exit true
+          }
+        }
         bind "Alt E" { EditScrollback; }
         bind "Alt x" { CloseFocus; }
     }
