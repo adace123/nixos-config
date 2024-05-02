@@ -6,11 +6,15 @@
         settings = {
           flavour = "mocha";
           integrations = {
+            aerial = true;
+            barbar = true;
             cmp = true;
+            gitsigns = true;
+            harpoon = true;
+            indent_blankline.enabled = true;
+            lsp_saga = true;
             treesitter = true;
             telescope.enabled = true;
-            indent_blankline.enabled = true;
-            barbar = true;
           };
         };
       };
