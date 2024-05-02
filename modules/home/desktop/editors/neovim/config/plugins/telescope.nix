@@ -11,6 +11,10 @@
               "<tab>" = "move_selection_next";
               "<s-tab>" = "move_selection_previous";
               "<C-/>" = "which_key";
+              "<C-u>" = "results_scrolling_up";
+              "<C-d>" = "results_scrolling_down";
+              "<C-U>" = "preview_scrolling_up";
+              "<C-D>" = "preview_scrolling_down";
             };
           };
         };
