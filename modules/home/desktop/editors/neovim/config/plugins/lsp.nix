@@ -1,10 +1,6 @@
 _: {
   programs.nixvim = {
     plugins = {
-      navbuddy = {
-        enable = true;
-        lsp.autoAttach = true;
-      };
       fidget.enable = true;
       lsp = {
         enable = true;
@@ -60,12 +56,6 @@ _: {
       };
     };
     keymaps = [
-      {
-        key = "<leader>n";
-        action = ":Navbuddy<CR>";
-        options.desc = "Navbuddy";
-        mode = ["n"];
-      }
       {
         key = "<leader>cR";
         action = ":LspRestart<CR>";

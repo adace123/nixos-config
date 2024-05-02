@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./aerial.nix
     ./barbar.nix
     ./cmp.nix
     ./file-explorer.nix
@@ -9,6 +10,7 @@
     ./lspsaga.nix
     ./lualine.nix
     ./marks.nix
+    ./noice.nix
     ./none-ls.nix
     ./obsidian.nix
     ./startup.nix
@@ -55,7 +57,6 @@
       undotree.enable = true;
     };
     extraPlugins = with pkgs.vimPlugins; [
-      overseer-nvim
       plenary-nvim
       nvim-neoclip-lua
       nvim-web-devicons
