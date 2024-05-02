@@ -16,6 +16,7 @@
         followCurrentFile.enabled = true;
         filteredItems = {
           visible = true;
+          hideHidden = false;
           hideDotfiles = false;
           hideByName = [
             ".git"

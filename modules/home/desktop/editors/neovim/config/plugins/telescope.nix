@@ -18,6 +18,10 @@
             };
           };
         };
+        pickers.find_files = {
+          hidden = true;
+          file_ignore_patterns = ["%.git/.*"];
+        };
         pickers.buffers = {
           show_all_buffers = "true";
           show_lastused = "true";
