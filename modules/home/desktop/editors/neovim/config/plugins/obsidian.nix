@@ -8,6 +8,10 @@
             name = "personal";
             path = "~/Notes/personal";
           }
+          {
+            name = "work";
+            path = "~/Notes/work";
+          }
         ];
       };
     };
@@ -46,6 +50,11 @@
         key = "<leader>ol";
         action = ":ObsidianLinks<CR>";
         options.desc = "Links";
+      }
+      {
+        key = "<leader>ow";
+        action = ":ObsidianWorkspace<CR>";
+        options.desc = "Workspace";
       }
     ];
   };
