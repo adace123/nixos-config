@@ -19,6 +19,7 @@ in
         clang
         mold
         rustc
+        rustfmt
         rust-analyzer
       ];
 

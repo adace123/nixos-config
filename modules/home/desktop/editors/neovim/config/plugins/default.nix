@@ -3,6 +3,7 @@
     ./aerial.nix
     ./barbar.nix
     ./cmp.nix
+    ./conform.nix
     ./file-explorer.nix
     ./git.nix
     ./indent-blankline.nix
@@ -11,7 +12,8 @@
     ./lualine.nix
     ./marks.nix
     ./noice.nix
-    ./none-ls.nix
+    # ./none-ls.nix
+    ./ollama.nix
     ./obsidian.nix
     ./startup.nix
     ./telescope.nix
@@ -27,7 +29,13 @@
       surround.enable = true;
       nvim-ufo.enable = true;
       comment.enable = true;
-      trouble.enable = true;
+      trouble = {
+        enable = true;
+        settings = {
+          mode = "document_diagnostics";
+          position = "right";
+        };
+      };
       luasnip.enable = true;
       flash.enable = true;
       headlines.enable = true;

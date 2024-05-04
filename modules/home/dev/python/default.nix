@@ -11,10 +11,12 @@ in
 
     config = mkIf cfg.enable {
       home.packages = with pkgs; [
+        bandit
         (python312.withPackages (p:
           with p; [
+            black
+            isort
             jupyterlab # TODO: use jupyenv
-            # polars
             marimo
             plotly
             ptpython
@@ -22,9 +24,10 @@ in
             requests
             virtualenv
           ]))
+        pyright
+        pyenv
         ruff
         ruff-lsp
-        pyright
       ];
 
       home.file.".config/ptpython/config.py".source = ./ptpython.py;

@@ -13,6 +13,7 @@ in
         bun
         nodejs
         typescript
+        prettierd
       ];
 
       home.file.".eslintrc".text = builtins.toJSON {

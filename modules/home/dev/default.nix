@@ -12,6 +12,11 @@
     alejandra
     stylua
     yamlfmt
+    shfmt
+
+    # linters
+    yamllint
+    shellcheck
 
     # IaC
     pulumi

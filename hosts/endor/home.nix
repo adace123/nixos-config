@@ -8,6 +8,8 @@
   modules = {
     dev = {
       python.enable = true;
+      rust.enable = true;
+      go.enable = true;
       kubernetes.enable = true;
       typescript.enable = true;
     };

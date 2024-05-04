@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   programs.nixvim = {
     opts.completeopt = "menu,menuone,noselect";
     plugins = {
@@ -6,6 +6,7 @@
         enable = true;
         fromVscode = [{}];
       };
+      friendly-snippets.enable = true;
       lspkind = {
         enable = true;
         cmp.enable = true;
@@ -81,6 +82,5 @@
           sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
       })
     '';
-    extraPlugins = [pkgs.vimPlugins.friendly-snippets];
   };
 }
