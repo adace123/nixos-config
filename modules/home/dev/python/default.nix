@@ -24,6 +24,7 @@ in
             requests
             virtualenv
           ]))
+        poetry
         pyright
         pyenv
         ruff
