@@ -4,11 +4,19 @@
     import ../pkgs {
       pkgs = final;
       inherit inputs;
+    }
+    // {
+      zjstatus = inputs.zjstatus.packages.${final.system}.default;
     };
 
-  modifications = _: prev: {
-    # neovim = inputs.neovim-flake.packages.${prev.system}.default;
-    zjstatus = inputs.zjstatus.packages.${prev.system}.default;
+  modifications = _: prev: let
+    mkPackage = path:
+      prev.callPackage path {
+        inherit inputs;
+        pkgs = prev;
+      };
+  in {
+    tgpt = mkPackage ./tgpt.nix;
   };
 in {
   default = final: prev: (additions final prev) // (modifications final prev);
