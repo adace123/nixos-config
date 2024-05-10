@@ -15,8 +15,9 @@
     shfmt
 
     # linters
-    yamllint
+    tflint
     shellcheck
+    yamllint
 
     # IaC
     pulumi
