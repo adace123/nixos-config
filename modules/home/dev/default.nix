@@ -21,5 +21,6 @@
 
     # IaC
     pulumi
+    terraform
   ];
 }
