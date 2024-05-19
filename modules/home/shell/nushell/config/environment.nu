@@ -3,6 +3,7 @@ $env.PATH = ([
   "~/bin"
   "~/.local/bin"
   "~/go/bin"
+  "~/.cargo/bin"
   "/run/current-system/sw/bin"
   "/usr/local/bin"
   "/opt/homebrew/bin"
