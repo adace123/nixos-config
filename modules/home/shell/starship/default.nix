@@ -71,12 +71,12 @@ in
           };
 
           python = {
-            format = "[$symbol$version]($style) ";
+            format = "[$symbol($version )(\($virtualenv\) )]($style)";
             symbol = " ";
           };
 
           nix_shell = {
-            format = " [$symbol\($name\)]($style) ";
+            format = "[$symbol\($name\)]($style) ";
           };
         };
       };
