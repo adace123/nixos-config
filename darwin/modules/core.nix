@@ -17,7 +17,7 @@ in
 
     nix = {
       extraOptions = ''
-        extra-platforms = x86_64-darwin aarch64-darwin
+        extra-platforms = aarch64-darwin
       '';
       gc = {
         interval = {
