@@ -29,7 +29,7 @@ alias pc = playerctl
 alias pm = podman
 alias pmc = podman-compose
 alias pmt = podman-tui
-alias py = ptpython
+alias py = ptpython --config=~/.config/ptpython/config.py
 alias rm = rm -i
 alias sc = systemctl
 alias tail = spin
