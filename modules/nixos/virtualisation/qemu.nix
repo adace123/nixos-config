@@ -9,7 +9,7 @@ in
   with lib; {
     options.modules.virtualisation.qemu.enable = mkEnableOption "qemu";
     config = mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [qemu];
+      environment.systemPackages = with pkgs; [qemu virt-viewer];
       virtualisation.libvirtd = {
         enable = true;
         qemu = {

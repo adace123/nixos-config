@@ -28,6 +28,7 @@
     };
     virtualisation = {
       podman.enable = fullBuild;
+      qemu.enable = fullBuild;
     };
     monitoring = {
       tools.enable = fullBuild;
