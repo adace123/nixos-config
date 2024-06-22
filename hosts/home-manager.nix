@@ -4,6 +4,7 @@
   ...
 }: {
   home-manager = {
+    backupFileExtension = "bak";
     useGlobalPkgs = true;
     useUserPackages = true;
     users.${config.modules.user.name} = {
