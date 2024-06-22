@@ -208,7 +208,7 @@ pane_frames false
 theme "nord"
 // The name of the default layout to load on startup
 // Default: "default"
-default_layout "zjstatus"
+default_layout "default"
 // On certain configurations, or terminals mouse_mode can interfere with copying text.
 mouse_mode true
 // 100_000 should never exceed 6MB per shell pane, unless the lines are very long

@@ -6,19 +6,7 @@
     coreutils
   ];
 
-  environment.loginShell = pkgs.nushellFull;
-
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      material-symbols
-      roboto
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "GeistMono"];})
-      font-awesome
-      fira-code-symbols
-      source-code-pro
-    ];
-  };
+  environment.loginShell = pkgs.nushell;
 
   system = {
     defaults = {

@@ -1,17 +1,15 @@
-{pkgs, ...}: let
-  weather_command = "http get https://wttr.in/Los_Angeles?format=%c%t%20Los_Angeles";
-in ''
+{pkgs, ...}: ''
   layout {
       default_tab_template {
           children
-          pane size=1 borderless=true {
+          pane size=1 borderless=true focus=true {
               plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
                   format_left   "{mode} #[fg=#89B4FA,bold]{session}"
                   format_center "{tabs}"
                   format_right  "{command_weather} {datetime}"
                   format_space  ""
 
-                  border_enabled  "true"
+                  border_enabled  "false"
                   border_char     "─"
                   border_format   "#[fg=#6C7086]{char}"
                   border_position "top"
@@ -26,11 +24,6 @@ in ''
 
                   tab_normal   "#[fg=#6C7086] {name} "
                   tab_active   "#[fg=#9399B2,bold,italic] {name} "
-
-                  command_weather_command "nu -c \"${weather_command}\""
-                  command_weather_format "{stdout}"
-                  command_weather_interval "750"
-                  command_weather_rendermode  "static"
 
                   datetime        "#[fg=#6C7086,bold] {format} "
                   datetime_format "%A, %d %b %Y %H:%M"

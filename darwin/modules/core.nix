@@ -9,6 +9,7 @@ in
     imports = [
       ../../modules/nixos/core/nix.nix
       ../../modules/nixos/core/packages.nix
+      ../../modules/nixos/core/fonts.nix
       ./system.nix
       ./yabai.nix
       ./homebrew.nix
@@ -23,7 +24,7 @@ in
         interval = {
           Hour = 12;
           Minute = 0;
-          Day = 0;
+          Day = 1;
         };
         user = "root";
       };
@@ -32,6 +33,6 @@ in
 
     users.users.${user} = {
       home = "/Users/${user}";
-      shell = pkgs.nushellFull;
+      shell = pkgs.nushell;
     };
   }

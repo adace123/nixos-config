@@ -131,15 +131,13 @@
       }
       {
         key = "<leader>fC";
-        action = "function() require('telescope.builtin').colorscheme({ enable_preview = true }) end";
-        lua = true;
+        action.__raw = "function() require('telescope.builtin').colorscheme({ enable_preview = true }) end";
         options.desc = "Colorscheme";
         mode = ["n"];
       }
       {
         key = "<leader>fw";
-        action = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '--smart-case'} }) end";
-        lua = true;
+        action.__raw = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '--smart-case'} }) end";
         options.desc = "Live grep";
         mode = ["n"];
       }
@@ -150,8 +148,7 @@
       }
       {
         key = "<leader>fm";
-        action = "function() require('telescope').extensions.marks_nvim.marks_list_all() end";
-        lua = true;
+        action.__raw = "function() require('telescope').extensions.marks_nvim.marks_list_all() end";
         options.desc = "Marks";
       }
       {

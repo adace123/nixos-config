@@ -35,8 +35,7 @@
       }
       {
         key = "<leader>cf";
-        action = "function() vim.lsp.buf.format() end";
-        lua = true;
+        action.__raw = "function() vim.lsp.buf.format() end";
         options.desc = "Format";
         mode = ["n"];
       }

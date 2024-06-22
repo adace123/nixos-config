@@ -28,7 +28,6 @@ in
 
       programs.nushell = {
         enable = true;
-        package = pkgs.nushellFull;
         envFile.source = ./config/environment.nu;
         configFile.source = ./config/main.nu;
         extraConfig = ''

@@ -45,7 +45,7 @@
         keymapsSilent = true;
         enableTelescope = true;
         keymaps = {
-          addFile = "<leader>a";
+          addFile = "<leader>A";
           toggleQuickMenu = "<leader>h";
           navNext = "]]";
           navPrev = "[[";

@@ -2,11 +2,13 @@
   programs.nixvim = {
     plugins.barbar = {
       enable = true;
-      clickable = true;
-      semanticLetters = true;
-      sidebarFiletypes = {
-        neo-tree = {
-          event = "BufWipeout";
+      settings = {
+        clickable = true;
+        semanticLetters = true;
+        sidebarFiletypes = {
+          neo-tree = {
+            event = "BufWipeout";
+          };
         };
       };
     };

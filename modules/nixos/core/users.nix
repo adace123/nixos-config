@@ -27,7 +27,7 @@ in {
       users.${cfg.name} = mkMerge [
         {
           isNormalUser = true;
-          shell = pkgs.nushellFull;
+          shell = pkgs.nushell;
           extraGroups =
             (optionals cfg.sudo.enable ["wheel"])
             ++ (optionals config.virtualisation.podman.enable ["podman"])

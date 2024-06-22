@@ -2,7 +2,7 @@
   description = "NixOS Config";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-latest.url = "github:NixOS/nixpkgs";
+    nixpkgs-latest.url = "github:NixOS/nixpkgs/master";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     disko = {
       url = "github:nix-community/disko";
@@ -36,19 +36,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zjstatus.url = "github:dj95/zjstatus";
     nu_scripts = {
       url = "github:nushell/nu_scripts";
       flake = false;

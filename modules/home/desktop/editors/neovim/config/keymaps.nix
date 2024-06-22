@@ -14,6 +14,11 @@
         mode = ["i"];
       }
       {
+        key = "<Esc>";
+        action = ":nohl<CR>";
+        options.desc = "No highlight";
+      }
+      {
         key = "jj";
         action = "<Esc>";
         options.desc = "Escape";
@@ -37,12 +42,11 @@
       }
       {
         key = "<leader>/";
-        action = ''
+        action.__raw = ''
           function()
             require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1)
           end
         '';
-        lua = true;
         options.desc = "Toggle comment line";
       }
       {
@@ -180,22 +184,19 @@
       }
       {
         key = "s";
-        action = "function() require('flash').jump() end";
-        lua = true;
+        action.__raw = "function() require('flash').jump() end";
         options.desc = "Run flash";
         mode = ["n" "x"];
       }
       {
         key = "S";
-        action = "function() require('flash').treesitter() end";
-        lua = true;
+        action.__raw = "function() require('flash').treesitter() end";
         options.desc = "Run flash treesitter";
         mode = ["n" "x"];
       }
       {
         key = "<leader>y";
-        action = "function() vim.fn.setreg('*', vim.fn.expand('%:.')) end";
-        lua = true;
+        action.__raw = "function() vim.fn.setreg('*', vim.fn.expand('%:.')) end";
         options.desc = "Copy current file name";
       }
       {

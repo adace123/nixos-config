@@ -41,15 +41,13 @@
       }
       {
         key = "]h";
-        action = "function() require('gitsigns').next_hunk({navigation_message = false}) end";
+        action.__raw = "function() require('gitsigns').next_hunk({navigation_message = false}) end";
         options.desc = "Next hunk";
-        lua = true;
         mode = ["n"];
       }
       {
         key = "[h";
-        action = "function() require('gitsigns').prev_hunk({navigation_message = false}) end";
-        lua = true;
+        action.__raw = "function() require('gitsigns').prev_hunk({navigation_message = false}) end";
         options.desc = "Prev hunk";
         mode = ["n"];
       }
