@@ -40,20 +40,20 @@
     extraHosts = ''
       192.168.4.90 proxmox.homelab
     '';
-    interfaces.wlan0 = {
-      ipv4.addresses = [
-        {
-          address = "192.168.4.10";
-          prefixLength = 32;
-        }
-      ];
-      ipv4.routes = [
-        {
-          address = "192.168.4.90";
-          prefixLength = 32;
-        }
-      ];
-    };
+    # interfaces.wlan0 = {
+    #   ipv4.addresses = [
+    #     {
+    #       address = "192.168.4.10";
+    #       prefixLength = 32;
+    #     }
+    #   ];
+    #   ipv4.routes = [
+    #     {
+    #       address = "192.168.4.90";
+    #       prefixLength = 32;
+    #     }
+    #   ];
+    # };
   };
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
