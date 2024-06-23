@@ -20,8 +20,7 @@ in
             window_close_confirmation = "NeverPrompt",
             color_scheme = "Catppuccin Macchiato",
             bold_brightens_ansi_colors = true,
-            enable_wayland = true,
-            front_end = "OpenGL",
+            enable_wayland = false,
             hide_tab_bar_if_only_one_tab = true,
           }
         '';
