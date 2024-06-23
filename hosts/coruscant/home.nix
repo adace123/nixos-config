@@ -22,7 +22,10 @@
         zellij.enable = true;
       };
       browsers = {
-        firefox.enable = true;
+        firefox = {
+          enable = true;
+          isDefaultBrowser = true;
+        };
         qutebrowser.enable = true;
         amfora.enable = true;
       };
@@ -61,7 +64,6 @@
 
   home.sessionVariables = {
     TERMINAL = "alacritty";
-    BROWSER = "firefox";
   };
 
   home.pointerCursor = {

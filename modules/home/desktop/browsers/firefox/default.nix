@@ -7,9 +7,21 @@
   cfg = config.modules.desktop.browsers.firefox;
 in
   with lib; {
-    options.modules.desktop.browsers.firefox.enable = mkEnableOption "Firefox browser";
+    options.modules.desktop.browsers.firefox = {
+      enable = mkEnableOption "Firefox";
+      isDefaultBrowser = mkEnableOption "Set Firefox as default browser";
+    };
     config = mkIf cfg.enable {
       home.file.".config/tridactyl/tridactylrc".source = ./tridactylrc;
+
+      xdg.mimeApps.defaultApplications = mkIf cfg.isDefaultBrowser {
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+      };
+      home.sessionVariables.BROWSER = mkIf cfg.isDefaultBrowser "firefox";
 
       programs.firefox = {
         enable = true;

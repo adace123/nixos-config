@@ -7,16 +7,20 @@
   cfg = config.modules.desktop.browsers.qutebrowser;
 in
   with lib; {
-    options.modules.desktop.browsers.qutebrowser.enable = mkEnableOption "qutebrowser";
+    options.modules.desktop.browsers.qutebrowser = {
+      enable = mkEnableOption "qutebrowser";
+      isDefaultBrowser = mkEnableOption "set qutebrowser as default";
+    };
     config = mkIf cfg.enable {
       home.packages = [pkgs.python311Packages.adblock];
-      xdg.mimeApps.defaultApplications = {
+      xdg.mimeApps.defaultApplications = mkIf cfg.isDefaultBrowser {
         "text/html" = "org.qutebrowser.qutebrowser.desktop";
         "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
         "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
         "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
         "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
       };
+      home.sessionVariables.BROWSER = mkIf cfg.isDefaultBrowser "qutebrowser";
       xdg.configFile."qutebrowser/greasemonkey/youtube-sponsorblock.js".source =
         pkgs.fetchurl
         {
