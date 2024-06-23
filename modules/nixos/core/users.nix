@@ -1,6 +1,5 @@
 {
   config,
-  options,
   lib,
   pkgs,
   ...
@@ -42,6 +41,13 @@ in {
     security.sudo = mkIf cfg.sudo.enable {
       enable = true;
       wheelNeedsPassword = false;
+    };
+
+    security.wrappers.sudo = mkIf cfg.sudo.enable {
+      source = "${pkgs.sudo.out}/bin/sudo";
+      owner = "root";
+      group = "root";
+      setuid = true;
     };
   };
 }
