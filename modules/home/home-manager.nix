@@ -8,6 +8,7 @@
   home-manager = with pkgs; {
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "bak";
     users.${config.modules.user.name} = {
       home = {
         stateVersion = "21.11";

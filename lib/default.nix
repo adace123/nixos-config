@@ -41,7 +41,6 @@ in {
         ../modules/nixos
       ]
       ++ homeModules;
-    inherit (pkgs) lib;
   in
     nixpkgs.lib.nixosSystem {
       inherit system modules;
@@ -73,7 +72,6 @@ in {
             description = "Default user name";
           };
         }
-        # nixvim.nixDarwinModules.nixvim
         {
           home-manager.extraSpecialArgs = {
             inherit inputs pkgs host;
