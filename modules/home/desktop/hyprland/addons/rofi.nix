@@ -12,7 +12,14 @@ in
         enable = true;
         package = pkgs.rofi-wayland;
         font = "JetBrainsMono Nerd Font";
-        terminal = "wezterm";
+        catppuccin.enable = true;
+        plugins = [];
+        extraConfig = {
+          modi = "run,drun,window";
+          icon-theme = "Fluent-dark";
+          show-icons = true;
+          disable-history = true;
+        };
       };
     };
   }

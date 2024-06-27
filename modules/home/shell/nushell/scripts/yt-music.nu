@@ -4,11 +4,12 @@ def main [] {
     "Chillhop": "5yx6BWlEVcY",
     "Post-Rock": "MRhplCpkPKE",
     "Space Ambient": "E5WpblyBR38",
-    "Classical": "tSlOlKRuudU",
+    "Classical": "y6TZHLAzg5o",
     "Chillstep": "QxtigSvGnD8",
-    "Cyberpunk": "xulXmZrC9uI"
+    "Cyberpunk": "xulXmZrC9uI",
+    "Dark Ambient": "nohM0W27xus",
   }
-  let selected_stream = $streams | columns | str join "\n" | anyrun --plugins $env.ANYRUN_STDIN_PLUGIN_PATH
+  let selected_stream = $streams | columns | str join "\n" | rofi -dmenu -i -P "Select stream"
   if ($selected_stream == "") {
     exit 0
   }

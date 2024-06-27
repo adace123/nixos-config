@@ -11,7 +11,7 @@ in {
         "SUPER SHIFT, r, execr, hyprctl reload"
 
         # Apps / scripts
-        "SUPER, d, exec, anyrun"
+        "SUPER, space, exec, rofi -show drun"
         "SUPER, b, exec, ${BROWSER}"
         "SUPER, Return, exec, ${TERMINAL}"
         "SUPER SHIFT, d, exec, discord"
