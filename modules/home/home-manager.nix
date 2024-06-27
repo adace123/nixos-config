@@ -21,7 +21,6 @@
       imports = with inputs; [
         ./.
         ../../hosts/${host}/home.nix
-        nix-colors.homeManagerModules.default
         nixvim.homeManagerModules.nixvim
         sops-nix.homeManagerModules.sops
         catppuccin.homeManagerModules.catppuccin
