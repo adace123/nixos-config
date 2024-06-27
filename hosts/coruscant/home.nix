@@ -60,7 +60,7 @@
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home.sessionVariables = {
-    TERMINAL = "alacritty";
+    TERMINAL = "wezterm";
     BROWSER = "firefox";
   };
 
