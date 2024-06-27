@@ -23,7 +23,7 @@ def jt-debug [] {
 }
 
 def hyprlogs [] {
-  cat $"/tmp/hypr/($env.HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log" | tspin -f
+  cat $"/($env.XDG_RUNTIME_DIR)/hypr/($env.HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log" | tspin -f
 }
 
 def nix-diff [] {
