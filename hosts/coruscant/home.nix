@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   modules = {
     desktop = {
       wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/minimal-space.png";
@@ -60,19 +55,9 @@
     file-explorer.enable = true;
   };
 
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-
   home.sessionVariables = {
-    TERMINAL = "wezterm";
+    TERMINAL = "alacritty";
     BROWSER = "firefox";
-  };
-
-  home.pointerCursor = {
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
-    gtk.enable = true;
-    x11.enable = true;
   };
 
   sops.secrets = {

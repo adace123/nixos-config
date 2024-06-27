@@ -1,9 +1,7 @@
 {
   config,
   lib,
-  options,
   pkgs,
-  inputs,
   ...
 }:
 with lib; let
@@ -29,7 +27,7 @@ in {
         device = "nodev";
         useOSProber = true;
         configurationLimit = cfg.configLimit;
-        theme = inputs.grub-theme;
+        catppuccin.enable = true;
       };
     };
   };

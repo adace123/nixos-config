@@ -30,7 +30,6 @@ in
           ];
         };
         settings = {
-          theme = "catppuccin_mocha";
           editor = {
             auto-completion = true;
             bufferline = "always";

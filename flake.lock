@@ -38,6 +38,21 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1719457243,
+        "narHash": "sha256-5rOWwMAp/suWVKGavhfdyLsF2mA7Fv2DQWXlt7S+QWA=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "53967ef237edd38a5b5cc5441e9b6a44b9554977",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -326,22 +341,6 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
-        "type": "github"
-      }
-    },
-    "grub-theme": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1690166758,
-        "narHash": "sha256-mvb44mFVToZ11V09fTeEQRplabswQhqnkYHH/057wLE=",
-        "owner": "shvchk",
-        "repo": "fallout-grub-theme",
-        "rev": "e8433860b11abb08720d7c32f5b9a2a534011bca",
-        "type": "github"
-      },
-      "original": {
-        "owner": "shvchk",
-        "repo": "fallout-grub-theme",
         "type": "github"
       }
     },
@@ -836,9 +835,9 @@
     "root": {
       "inputs": {
         "anyrun": "anyrun",
+        "catppuccin": "catppuccin",
         "darwin": "darwin",
         "disko": "disko",
-        "grub-theme": "grub-theme",
         "home-manager": "home-manager",
         "hyprkeys": "hyprkeys",
         "hyprland-contrib": "hyprland-contrib",

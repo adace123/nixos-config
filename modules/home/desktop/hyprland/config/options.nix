@@ -15,11 +15,10 @@ in {
       ];
       general = {
         sensitivity = 1.0;
-        gaps_in = 8;
-        gaps_out = 10;
+        gaps_in = 6;
+        gaps_out = 8;
         border_size = 3;
         "col.active_border" = "0xff9b5de5";
-        "col.inactive_border" = "0xff${config.colorScheme.palette.base02}";
       };
 
       decoration = {
@@ -58,6 +57,7 @@ in {
         "${TERMINAL} --class scratchpad"
         "${BROWSER}"
         "pypr"
+        "ulauncher --no-window-shadow"
       ];
     };
   };

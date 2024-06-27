@@ -123,7 +123,6 @@ in
             position = "left";
             width = "10%";
           };
-          colors = import ./theme.nix {inherit config;};
           fonts = {
             default_family = "JetBrainsMono Nerd Font";
           };

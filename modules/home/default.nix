@@ -33,4 +33,6 @@
     pre-commit
     lazygit
   ];
+
+  catppuccin.enable = true;
 }

@@ -36,6 +36,7 @@ in {
           networking.hostName = host;
           nix.gc.dates = "weekly"; # this option is only compatible with NixOS
         }
+        catppuccin.nixosModules.catppuccin
         sops-nix.nixosModules.sops
         ../modules/nixos
       ]

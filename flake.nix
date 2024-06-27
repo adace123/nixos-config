@@ -8,6 +8,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
     wallpapers = {
       url = "github:adace123/wallpapers";
       flake = false;
@@ -22,15 +23,10 @@
     hyprland-contrib.url = "github:hyprwm/contrib";
     pyprland.url = "github:hyprland-community/pyprland";
     nix-std.url = "github:chessai/nix-std";
-    nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
     pre-commit = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    grub-theme = {
-      url = "github:shvchk/fallout-grub-theme";
-      flake = false;
     };
     nixvim = {
       url = "github:nix-community/nixvim";

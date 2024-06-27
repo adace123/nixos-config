@@ -23,7 +23,8 @@
         ../../hosts/${host}/home.nix
         nix-colors.homeManagerModules.default
         nixvim.homeManagerModules.nixvim
-        inputs.sops-nix.homeManagerModules.sops
+        sops-nix.homeManagerModules.sops
+        catppuccin.homeManagerModules.catppuccin
       ];
     };
   };

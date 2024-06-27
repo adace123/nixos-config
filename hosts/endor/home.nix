@@ -1,9 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+{pkgs, ...}: {
   home.packages = [pkgs.mkcert];
   modules = {
     dev = {
