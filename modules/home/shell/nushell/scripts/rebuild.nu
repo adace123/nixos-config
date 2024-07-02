@@ -2,9 +2,9 @@ def main [--verbose (-v)] {
   notify-send "Rebuilding system..."
   try {
     if $verbose {
-        /run/wrappers/bin/sudo nixos-rebuild switch --flake $"($env.DOTFILES_DIR)#(hostname)" --show-trace
+        nh os switch -v $env.DOTFILES_DIR
     } else {
-        /run/wrappers/bin/sudo nixos-rebuild switch --flake $"($env.DOTFILES_DIR)#(hostname)"
+        nh os switch $env.DOTFILES_DIR
     }
   } catch {
     notify-send -u critical "Failed to rebuild!"
