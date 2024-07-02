@@ -9,6 +9,7 @@
     jq
     just
     lsof
+    nh
     nushell
     openssl
     pkg-config

@@ -23,7 +23,12 @@ def jt-debug [] {
 }
 
 def hyprlogs [] {
-  cat $"/($env.XDG_RUNTIME_DIR)/hypr/($env.HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log" | tspin -f
+  cat $"($env.XDG_RUNTIME_DIR)/hypr/($env.HYPRLAND_INSTANCE_SIGNATURE)/hyprland.log" | tspin -f
+}
+
+def hyprdebug [] {
+  let crash_report = ls ~/.cache/hyprland | sort-by modified | first | get name
+  cat $crash_report
 }
 
 def nix-diff [] {
