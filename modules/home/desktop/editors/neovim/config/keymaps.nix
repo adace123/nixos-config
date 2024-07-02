@@ -177,6 +177,11 @@
         options.desc = "Replace under cursor";
       }
       {
+        key = "<leader>Y";
+        action = ":%y+<CR>";
+        options.desc = "Copy file";
+      }
+      {
         key = "p";
         action = "\"_dP";
         options.desc = "Better paste";
