@@ -109,6 +109,7 @@ in {
       bind = , p, execr, systemctl poweroff -i
       bind = , s, execr, systemctl suspend
       bind = , l, exec, hyprctl dispatch submap reset && hyprlock
+      bind = , L, exec, hyprctl dispatch exit
       bind = , Return, submap, reset
       bind = , Escape, submap, reset
       bind = CTRL, C, submap, reset
