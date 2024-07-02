@@ -33,6 +33,7 @@ alias py = ptpython --config=~/.config/ptpython/config.py
 alias rm = rm -i
 alias sc = systemctl
 alias tail = spin
+alias tf = tofu
 alias tree = exa -T --icons
 alias ts = tailscale
 alias v = nvim
