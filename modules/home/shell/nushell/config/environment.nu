@@ -12,6 +12,10 @@ $env.PATH = ([
   ($env.PATH | split row (char esep))
 ] | flatten)
 
+if ((uname | get kernel-name) == "Darwin") {
+  $env.PATH = $env.PATH ++ "/run/current-system/sw/bin"
+}
+
 $env.STARSHIP_SHELL = "nu"
 $env.DOTFILES_DIR = $"($env.HOME)/nixos-config"
 $env.EDITOR = "nvim"
