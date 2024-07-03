@@ -25,6 +25,7 @@ _: {
       "discord"
       "flux"
       "microsoft-teams"
+      "notion"
       "obsidian"
       "ollama"
       "postman"
