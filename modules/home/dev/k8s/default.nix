@@ -15,6 +15,7 @@ in
         fluxcd
         kubernetes-helm
         kind
+        k8sgpt
         k9s
         kubectl
         kubectx
