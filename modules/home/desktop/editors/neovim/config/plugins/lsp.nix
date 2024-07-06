@@ -40,6 +40,8 @@ _: {
             installCargo = false;
             installRustc = false;
           };
+          terraformls.enable = true;
+          tflint.enable = true;
           taplo.enable = true;
           tsserver.enable = true;
           zls.enable = true;

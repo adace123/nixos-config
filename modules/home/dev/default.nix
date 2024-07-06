@@ -10,9 +10,9 @@
 
     # formatters
     alejandra
+    shfmt
     stylua
     yamlfmt
-    shfmt
 
     # linters
     tflint

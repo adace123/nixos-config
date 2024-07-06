@@ -11,7 +11,11 @@
   };
 in {
   programs.nixvim = {
-    filetype.extension.nu = "nu";
+    filetype.extension = {
+      nu = "nu";
+      tf = "hcl";
+      tfvars = "hcl";
+    };
     plugins = {
       ts-autotag.enable = true;
       rainbow-delimiters.enable = true;
