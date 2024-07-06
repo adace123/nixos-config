@@ -27,10 +27,7 @@ in {
         {
           isNormalUser = true;
           shell = pkgs.nushell;
-          extraGroups =
-            (optionals cfg.sudo.enable ["wheel"])
-            ++ (optionals config.virtualisation.podman.enable ["podman"])
-            ++ (optionals config.modules.virtualisation.qemu.enable ["libvirtd"]);
+          extraGroups = optionals cfg.sudo.enable ["wheel"];
         }
         (mkIf cfg.password.enable {
           hashedPasswordFile = config.sops.secrets.password.path;
