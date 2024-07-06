@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./podman.nix ./qemu.nix];
+  imports = [./incus.nix ./podman.nix ./qemu.nix];
 }

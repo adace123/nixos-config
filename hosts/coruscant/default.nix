@@ -27,6 +27,7 @@
       plymouth.enable = true;
     };
     virtualisation = {
+      incus.enable = true;
       podman.enable = fullBuild;
       qemu.enable = fullBuild;
     };

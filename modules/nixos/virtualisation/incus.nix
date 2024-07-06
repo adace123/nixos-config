@@ -1,15 +1,16 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.modules.virtualisation.incus;
+  user = config.modules.user;
 in
   with lib; {
     options.modules.virtualisation.incus.enable = mkEnableOption "qemu";
     config = mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [];
+      users.users.${user.name}.extraGroups = ["incus-admin"];
+      networking.firewall.trustedInterfaces = ["incusbr0"];
       virtualisation.incus = {
         enable = true;
         preseed = {

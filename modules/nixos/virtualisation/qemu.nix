@@ -5,11 +5,13 @@
   ...
 }: let
   cfg = config.modules.virtualisation.qemu;
+  user = config.modules.user;
 in
   with lib; {
     options.modules.virtualisation.qemu.enable = mkEnableOption "qemu";
     config = mkIf cfg.enable {
       environment.systemPackages = with pkgs; [libvirt qemu virt-viewer];
+      users.users.${user.name}.extraGroups = ["libvirtd"];
       virtualisation.libvirtd = {
         enable = true;
         qemu = {
