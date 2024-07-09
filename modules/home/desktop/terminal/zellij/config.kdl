@@ -68,6 +68,11 @@ keybinds clear-defaults=true {
             close_on_exit true
           }
         }
+        bind "Alt D" {
+          Run "zellij" "run" "-f" "-c" "--" "lazydocker" {
+            close_on_exit true
+          }
+        }
         bind "Alt E" { EditScrollback; }
         bind "Alt x" { CloseFocus; }
     }
