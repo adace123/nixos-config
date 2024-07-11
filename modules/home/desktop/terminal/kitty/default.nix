@@ -24,7 +24,8 @@ in
           tab_bar_style = "powerline";
           tab_powerline_style = "slanted";
           tab_title_template = "{title.split('/')[-1]} {' :{}:'.format(num_windows) if num_windows > 1 else ''}";
-          window_margin_width = 7;
+          window_margin_width = 1;
+          window_padding_width = 7;
         };
       };
     };
