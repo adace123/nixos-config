@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./wezterm ./alacritty ./zellij];
+  imports = [./alacritty ./kitty ./wezterm ./zellij];
 }

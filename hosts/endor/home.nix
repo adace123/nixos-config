@@ -19,6 +19,7 @@
       terminal = {
         wezterm.enable = true;
         zellij.enable = true;
+        kitty.enable = true;
       };
     };
     file-explorer.enable = true;
