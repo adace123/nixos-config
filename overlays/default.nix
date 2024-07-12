@@ -1,22 +1,21 @@
 # credit: https://github.com/rxyhn/yuki
 {inputs}: let
-  additions = final: _:
+  additions = pkgs: _:
     import ../pkgs {
-      pkgs = final;
-      inherit inputs;
+      inherit inputs pkgs;
     }
     // {
-      zjstatus = inputs.zjstatus.packages.${final.system}.default;
+      zjstatus = inputs.zjstatus.packages.${pkgs.system}.default;
+      kittyScrollback = import ./kitty-scrollback.nix {inherit pkgs;};
     };
 
-  modifications = _: prev: let
-    mkPackage = path:
-      prev.callPackage path {
-        inherit inputs;
-        pkgs = prev;
-      };
+  modifications = _: _: let
+    # mkPackage = path:
+    #   prev.callPackage path {
+    #     inherit inputs;
+    #     pkgs = prev;
+    #   };
   in {
-    tgpt = mkPackage ./tgpt.nix;
   };
 in {
   default = final: prev: (additions final prev) // (modifications final prev);
