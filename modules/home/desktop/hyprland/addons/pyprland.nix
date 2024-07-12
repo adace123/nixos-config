@@ -25,6 +25,11 @@ in
               animation = "fromTop";
               unfocus = "hide";
             };
+            k9s = {
+              command = "alacritty --class=scratchpad -e k9s";
+              animation = "fromTop";
+              unfocus = "hide";
+            };
             tgpt = {
               command = "alacritty --class=scratchpad -e tgpt -i";
               animation = "fromTop";
