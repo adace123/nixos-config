@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   inherit (config.modules.desktop) monitor;
   inherit (config.home.sessionVariables) TERMINAL BROWSER;
 in {
@@ -11,7 +6,6 @@ in {
     settings = {
       env = [
         "DOTFILES_DIR,${config.home.homeDirectory}/nixos-config"
-        "ANYRUN_STDIN_PLUGIN_PATH,${inputs.anyrun.packages.${pkgs.system}.stdin}/lib/libstdin.so"
       ];
       general = {
         sensitivity = 1.0;
