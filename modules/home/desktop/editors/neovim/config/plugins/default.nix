@@ -7,12 +7,12 @@
     ./file-explorer.nix
     ./git.nix
     ./indent-blankline.nix
+    ./kitty.nix
     ./lsp.nix
     ./lspsaga.nix
     ./lualine.nix
     ./marks.nix
     ./noice.nix
-    # ./none-ls.nix
     ./ollama.nix
     ./obsidian.nix
     ./startup.nix
