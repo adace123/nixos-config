@@ -17,11 +17,26 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nuenv.url = "github:DeterminateSystems/nuenv";
-    sops-nix.url = "github:Mic92/sops-nix";
-    hyprkeys.url = "github:hyprland-community/Hyprkeys";
-    hyprland-contrib.url = "github:hyprwm/contrib";
-    pyprland.url = "github:hyprland-community/pyprland";
+    nuenv = {
+      url = "github:DeterminateSystems/nuenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprkeys = {
+      url = "github:hyprland-community/Hyprkeys";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    pyprland = {
+      url = "github:hyprland-community/pyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-std.url = "github:chessai/nix-std";
     nur.url = "github:nix-community/NUR";
     pre-commit = {
@@ -39,10 +54,6 @@
     nu_scripts = {
       url = "github:nushell/nu_scripts";
       flake = false;
-    };
-    anyrun = {
-      url = "github:Kirottu/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
