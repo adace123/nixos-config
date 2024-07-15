@@ -6,6 +6,7 @@
   ...
 }: let
   cfg = config.modules.desktop.hyprland.addons;
+  inherit (config.home.sessionVariables) TERMINAL;
 in
   with lib; {
     config = mkIf cfg.enable {
@@ -16,27 +17,27 @@ in
           pyprland.plugins = ["scratchpads"];
           scratchpads = {
             terminal = {
-              command = "alacritty --class=scratchpad";
+              command = "${TERMINAL} --class=scratchpad";
               animation = "fromTop";
               unfocus = "hide";
             };
             btop = {
-              command = "alacritty --class=scratchpad -e btop";
+              command = "${TERMINAL} --class=scratchpad -e btop";
               animation = "fromTop";
               unfocus = "hide";
             };
             k9s = {
-              command = "alacritty --class=scratchpad -e k9s";
+              command = "${TERMINAL} --class=scratchpad -e k9s";
               animation = "fromTop";
               unfocus = "hide";
             };
             tgpt = {
-              command = "alacritty --class=scratchpad -e tgpt -i";
+              command = "${TERMINAL} --class=scratchpad -e tgpt -i";
               animation = "fromTop";
               unfocus = "hide";
             };
             yazi = {
-              command = "alacritty --class=scratchpad -e yazi ~";
+              command = "${TERMINAL} --class=scratchpad -e yazi ~";
               animation = "fromTop";
               unfocus = "hide";
             };

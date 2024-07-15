@@ -45,6 +45,7 @@ in
           "ctrl+shift+d" = "launch lazydocker";
           "ctrl+shift+k" = "launch k9s";
           "ctrl+shift+t" = "launch tgpt -i";
+          "ctrl+shift+y" = "launch --cwd yazi";
         };
 
         extraConfig = ''

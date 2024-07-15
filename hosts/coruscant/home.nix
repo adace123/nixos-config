@@ -14,7 +14,7 @@
       terminal = {
         alacritty.enable = true;
         kitty.enable = true;
-        wezterm.enable = true;
+        wezterm.enable = false; # disabling due to Wayland rendering issues
         zellij.enable = true;
       };
       browsers = {
@@ -57,7 +57,7 @@
   };
 
   home.sessionVariables = {
-    TERMINAL = "alacritty";
+    TERMINAL = "kitty";
     BROWSER = "firefox";
   };
 
