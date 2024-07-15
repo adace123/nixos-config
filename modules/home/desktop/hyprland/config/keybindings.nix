@@ -74,7 +74,7 @@ in {
         "SUPER ALT, b, exec, pypr toggle btop"
         "SUPER ALT, t, exec, pypr toggle tgpt"
         "SUPER ALT, y, exec, pypr toggle yazi"
-        "SUPER ALT, k, exec pypr toggle k9s"
+        "SUPER ALT, k, exec, pypr toggle k9s"
 
         # Submaps
         "SUPER SHIFT, s, submap, system"
