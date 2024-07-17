@@ -42,6 +42,18 @@ in
       programs.qutebrowser = {
         enable = true;
         extraConfig = ''
+          # Appearance
+          c.statusbar.padding['bottom'] = 5
+          c.statusbar.padding['left'] = 5
+          c.statusbar.padding['right'] = 5
+          c.statusbar.padding['top'] = 5
+          c.tabs.padding['bottom'] = 5
+          c.tabs.padding['left'] = 0
+          c.tabs.padding['right'] = 5
+          c.tabs.padding['top'] = 5
+          c.tabs.title.format = "{current_title}"
+
+          # Theme
           import catppuccin
           catppuccin.setup(c, "mocha", False)
         '';
@@ -50,6 +62,7 @@ in
             ",a" = "cmd-set-text -s :open -t amazon";
             ",e" = "cmd-set-text -s :open -t ebay";
             ",g" = "cmd-set-text -s :open -t github";
+            ",m" = "cmd-set-text -s :open -t maps";
             ",n" = "cmd-set-text -s :open -t nixpkgs";
             ",N" = "cmd-set-text -s :open -t nix-code";
             ",y" = "cmd-set-text -s :open -t youtube";
@@ -61,6 +74,9 @@ in
             "<Alt-d>" = "config-cycle colors.webpage.darkmode.enabled";
             "<Ctrl-Shift-i>" = "devtools";
             "<Ctrl-p>" = "print";
+            "<Ctrl-Shift-o>" = "cmd-set-text -s :open -p";
+            "<" = "tab-move -";
+            ">" = "tab-move +";
           };
           insert = {
             "<Ctrl-b>" = "fake-key <Left>";
@@ -73,6 +89,7 @@ in
             "<Ctrl-a>" = "fake-key <Home>";
             "<Ctrl-w>" = "fake-key <Ctrl-Backspace>";
             "<Ctrl-u>" = "fake-key <Shift-Home>;; cmd-later 3 fake-key <Delete>";
+            "<Ctrl-Return>" = "mode-enter normal";
           };
         };
         settings = {
@@ -90,6 +107,7 @@ in
             "use-egl=desktop"
             "enable-native-gpu-memory-buffers"
           ];
+
           content = {
             autoplay = false;
             blocking = {
@@ -163,6 +181,7 @@ in
           ebay = "https://www.ebay.com/sch/items/?_nkw={}";
           github = "https://github.com/search?q={}";
           github-nix = "https://github.com/search?q={}+language:Nix&type=code";
+          maps = "https://maps.google.com/maps?q={}";
           nix-code = "https://github.com/search?q={}+language:Nix&type=code";
           nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
           perplexity = "https://perplexity.ai/search/?q={}";
