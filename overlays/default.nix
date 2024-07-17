@@ -5,7 +5,6 @@
       inherit inputs pkgs;
     }
     // {
-      zjstatus = inputs.zjstatus.packages.${pkgs.system}.default;
       kittyScrollback = import ./kitty-scrollback.nix {inherit pkgs;};
     };
 
