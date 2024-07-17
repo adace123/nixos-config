@@ -19,10 +19,12 @@ in
           allow_remote_control = "yes";
           shell_integration = "enabled";
           listen_on = "unix:/tmp/mykitty";
+          confirm_os_window_close = 0;
           cursor_blink_interval = 0;
           enabled_layouts = "fat, grid";
           shell = "${pkgs.nushell}/bin/nu";
           background_opacity = "0.94";
+          resize_debounce_time = "0";
           tab_bar_edge = "top";
           tab_bar_style = "powerline";
           tab_powerline_style = "slanted";
