@@ -18,11 +18,11 @@
         zellij.enable = true;
       };
       browsers = {
-        firefox = {
+        floorp.enable = true;
+        qutebrowser = {
           enable = true;
           isDefaultBrowser = true;
         };
-        qutebrowser.enable = true;
         amfora.enable = true;
       };
       pdf.enable = true;
@@ -58,7 +58,6 @@
 
   home.sessionVariables = {
     TERMINAL = "kitty";
-    BROWSER = "firefox";
   };
 
   sops.secrets = {

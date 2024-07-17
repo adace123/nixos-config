@@ -28,8 +28,23 @@ in
           url = "https://raw.githubusercontent.com/afreakk/greasemonkeyscripts/1d1be041a65c251692ee082eda64d2637edf6444/youtube_adblock.js";
           sha256 = "sha256-EuGTJ9Am5C6g3MeTsjBQqyNFBiGAIWh+f6cUtEHu3iI=";
         };
+
+      home.file.".config/qutebrowser/catppuccin" = {
+        recursive = true;
+        source = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "qutebrowser";
+          rev = "78bb72b4c60b421c8ea64dd7c960add6add92f83";
+          sha256 = "sha256-lp7HWYuD4aUyX1nRipldEojZVIvQmsxjYATdyHWph0g=";
+        };
+      };
+
       programs.qutebrowser = {
         enable = true;
+        extraConfig = ''
+          import catppuccin
+          catppuccin.setup(c, "mocha", False)
+        '';
         keyBindings = {
           normal = {
             ",a" = "cmd-set-text -s :open -t amazon";
@@ -41,9 +56,9 @@ in
             ",p" = "cmd-set-text -s :open -t perplexity";
             ",w" = "cmd-set-text -s :open -t wikipedia";
             ",x" = "cmd-set-text -s :open -t arxiv";
-            "tt" = "set tabs.show never";
-            "tT" = "set tabs.show always";
+            "tt" = "config-cycle tabs.show always never";
             "gu" = "hint inputs --first;; cmd-later 3 fake-key <Shift-Home>;; cmd-later 3 fake-key <Delete>";
+            "<Alt-d>" = "config-cycle colors.webpage.darkmode.enabled";
             "<Ctrl-Shift-i>" = "devtools";
             "<Ctrl-p>" = "print";
           };
@@ -67,6 +82,7 @@ in
           confirm_quit = ["multiple-tabs" "downloads"];
           auto_save.session = true;
           qt.highdpi = true;
+          colors.webpage.darkmode.enabled = true;
           qt.args = [
             "enable-accelerated-video-decode"
             "enable-gpu-rasterization"
@@ -121,12 +137,14 @@ in
           tabs = {
             background = true;
             position = "left";
-            width = "10%";
+            width = "15%";
           };
           fonts = {
             default_family = "JetBrainsMono Nerd Font";
+            default_size = "16pt";
           };
-          editor.command = ["${pkgs.alacritty}/bin/alacritty" "-e" "${pkgs.neovim}/bin/nvim" "{file}"];
+          zoom.default = 125;
+          editor.command = ["kitty" "-e" "${pkgs.neovim}/bin/nvim" "{file}"];
         };
 
         aliases = {
