@@ -26,11 +26,8 @@ in
       programs.firefox = {
         enable = true;
         package =
-          (
-            if config.modules.desktop.hyprland.enable
-            then pkgs.firefox-wayland
-            else pkgs.firefox
-          )
+          pkgs
+          .floorp
           .override {
             nativeMessagingHosts = [pkgs.tridactyl-native];
             cfg = {
