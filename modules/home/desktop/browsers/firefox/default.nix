@@ -4,24 +4,24 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.desktop.browsers.firefox;
+  cfg = config.modules.desktop.browsers.floorp;
 in
   with lib; {
-    options.modules.desktop.browsers.firefox = {
-      enable = mkEnableOption "Firefox";
-      isDefaultBrowser = mkEnableOption "Set Firefox as default browser";
+    options.modules.desktop.browsers.floorp = {
+      enable = mkEnableOption "Floorp";
+      isDefaultBrowser = mkEnableOption "Set Floorp as default browser";
     };
     config = mkIf cfg.enable {
       home.file.".config/tridactyl/tridactylrc".source = ./tridactylrc;
 
       xdg.mimeApps.defaultApplications = mkIf cfg.isDefaultBrowser {
         "text/html" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/about" = "firefox.desktop";
-        "x-scheme-handler/unknown" = "firefox.desktop";
+        "x-scheme-handler/http" = "floorp.desktop";
+        "x-scheme-handler/https" = "floorp.desktop";
+        "x-scheme-handler/about" = "floorp.desktop";
+        "x-scheme-handler/unknown" = "floorp.desktop";
       };
-      home.sessionVariables.BROWSER = mkIf cfg.isDefaultBrowser "firefox";
+      home.sessionVariables.BROWSER = mkIf cfg.isDefaultBrowser "floorp";
 
       programs.firefox = {
         enable = true;
@@ -48,7 +48,6 @@ in
             ++ (with pkgs.nur.repos.bandithedoge.firefoxAddons; [
               material-icons-for-github
             ]);
-
           bookmarks = [
             {
               name = "Bookmarked sites";
@@ -129,6 +128,15 @@ in
             "browser.sessionstore.warnOnQuit" = true;
             "media.autoplay.default" = 2;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+            # Floorp-specific settings
+            "floorp.browser.tabs.verticaltab.enabled" = true;
+            "floorp.browser.tabs.verticaltab" = true;
+            "floorp.browser.tabs.verticaltab.width" = 208;
+            "floorp.browser.user.interface" = 1;
+            "floorp.tabsleep.enabled" = true;
+            "floorp.verticaltab.hover.enabled" = true;
+            "floorp.verticaltab.show.newtab.button" = true;
           };
         };
       };
