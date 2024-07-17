@@ -11,6 +11,7 @@ in
     options.modules.virtualisation.qemu.enable = mkEnableOption "qemu";
     config = mkIf cfg.enable {
       environment.systemPackages = with pkgs; [libvirt qemu virt-viewer];
+      environment.sessionVariables.LIBVIRT_DEFAULT_URI = "qemu:///system";
       users.users.${user.name}.extraGroups = ["libvirtd"];
       virtualisation.libvirtd = {
         enable = true;
