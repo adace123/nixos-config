@@ -42,7 +42,7 @@ in
           "ctrl+l" = "kitten pass_keys.py right  ctrl+l";
           "ctrl+]" = "next_tab";
           "ctrl+[" = "previous_tab";
-          "ctrl+backspace" = "clear_terminal to_cursor active";
+          "alt+l" = "clear_terminal to_cursor active";
           "ctrl+shift+b" = "launch btop";
           "ctrl+shift+d" = "launch lazydocker";
           "ctrl+shift+k" = "launch k9s";
