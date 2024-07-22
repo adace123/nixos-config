@@ -20,6 +20,7 @@ in
           wl-copy.enable = true;
           xclip.enable = true;
         };
+        luaLoader.enable = true;
       };
     };
   }
