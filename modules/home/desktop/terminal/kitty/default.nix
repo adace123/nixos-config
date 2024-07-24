@@ -32,6 +32,7 @@ in
           window_margin_width = 1;
           window_padding_width = 7;
           exe_search_path = "+/etc/profiles/per-user/${config.home.username}/bin";
+          startup_session = mkIf pkgs.stdenv.isDarwin "~/.config/kitty/work.conf"; # Only enable session for work laptop
         };
 
         keybindings = {
