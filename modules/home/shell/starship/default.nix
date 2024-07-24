@@ -22,8 +22,6 @@ in
             "$character"
           ];
 
-          right_format = "$kubernetes";
-
           add_newline = true;
 
           os = {
