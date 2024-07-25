@@ -6,6 +6,7 @@ source ~/.config/nushell/functions.nu
 use jc-functions *
 use sys *
 use ssh *
+use aws *
 source ~/.config/nushell/keybindings.nu
 
 let carapace_completer = {|spans|

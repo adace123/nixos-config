@@ -162,3 +162,18 @@ module ssh {
     } else { $in }
   }
 }
+
+module aws {
+  export def "s3-cat-file" [--bucket (-b): string, --prefix (-p): string] {
+    let files = aws s3api list-objects --bucket $bucket --prefix $prefix | from json
+    if (not ("Contents" in ($files | columns))) {
+      error make {msg: $"No results found in bucket ($bucket) for prefix ($prefix)"}
+    }
+
+    let files = $files | get Contents | where Size > 0 | sort-by --reverse LastModified 
+    let selected_file = $files | each { |x| $"($x.LastModified) ($x.Key)" } | to text | fzf --preview="echo {1}" --bind "enter:become(echo {2})" --with-nth=2
+    let tmp = mktemp -t
+    aws s3api get-object --bucket $bucket --key $selected_file $tmp o> /dev/null
+    less $tmp
+  }
+}
