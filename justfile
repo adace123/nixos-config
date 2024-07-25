@@ -9,6 +9,11 @@ default:
 rebuild host:
     nixos-rebuild switch --flake '.#{{ host }}'
 
+[macos]
+rebuild host:
+    #!/bin/bash
+    nix run nix-darwin -- switch --flake .#{{ host }}
+
 docker:
     #!/usr/bin/env nu
     if (docker ps | detect columns | where NAMES =~ "nixos" | is-empty) {
@@ -74,11 +79,6 @@ nix-install:
 bootstrap-write device:
     sudo sh -c "dd if=./nixos.iso of={{ device }} bs=10M"
     sudo diskutil eject {{ device }}
-
-[macos]
-switch host:
-    #!/bin/bash
-    nix run nix-darwin -- switch --flake .#{{ host }}
 
 [linux]
 bootstrap-write:
