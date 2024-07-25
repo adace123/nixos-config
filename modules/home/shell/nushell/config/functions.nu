@@ -171,7 +171,7 @@ module aws {
     }
 
     let files = $files | get Contents | where Size > 0 | sort-by --reverse LastModified 
-    let selected_file = $files | each { |x| $"($x.LastModified) ($x.Key)" } | to text | fzf --preview="echo {1}" --bind "enter:become(echo {2})" --with-nth=2 --reverse
+    let selected_file = $files | each { |x| $"($x.LastModified) ($x.Key)" } | to text | fzf --preview="echo {2} {1}" --bind "enter:become(echo {2})" --with-nth=2 --reverse --preview-window="right:50%:wrap"
     let tmp = mktemp -t
     aws s3api get-object --bucket $bucket --key $selected_file $tmp o> /dev/null
     less $tmp
