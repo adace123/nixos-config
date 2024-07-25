@@ -1,12 +1,12 @@
-{pkgs, ...}: {
+{
   programs.nixvim = {
     plugins = {
       gitsigns.enable = true;
       which-key.registrations = {
         "<leader>g" = "+git";
       };
+      lazygit.enable = true;
     };
-    extraPlugins = [pkgs.vimPlugins.lazygit-nvim];
     keymaps = [
       {
         key = "<leader>gr";
