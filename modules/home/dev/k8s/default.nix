@@ -13,6 +13,7 @@ in
       home.packages = with pkgs; [
         cilium-cli
         clusterctl
+        cmctl
         fluxcd
         kubernetes-helm
         kind
