@@ -109,7 +109,7 @@ let main_keybinds = [
     modifier: control
     keycode: char_f
     mode: [emacs, vi_normal, vi_insert]
-    events: {
+    event: {
       send: executehostcommand
       cmd: "cd (zoxide query -i)"
     }
