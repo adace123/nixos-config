@@ -88,18 +88,30 @@ let main_keybinds = [
   {
     name: move_one_word_right
     modifier: control
-    keycode: char_e
+    keycode: char_n
     mode: [emacs, vi_normal, vi_insert]
     event: {edit: movewordright}
   }
   {
-    name: "change_dir_with_fzf"
+    name: move_to_line_end_or_take_history_hint
+    modifier: control
+    keycode: char_e
+    mode: [emacs, vi_normal, vi_insert]
+    event: {
+        until: [
+            { send: historyhintcomplete }
+            { edit: movetolineend }
+        ]
+    }
+  }
+  {
+    name: zoxide_cd
     modifier: control
     keycode: char_f
     mode: [emacs, vi_normal, vi_insert]
-    event: {
-      send: executehostcommand,
-      cmd: "cd (ls | where type == dir | each { |it| $it.name} | str join (char nl) | fzf | decode utf-8 | str trim)"
+    events: {
+      send: executehostcommand
+      cmd: "cd (zoxide query -i)"
     }
   }
   {
@@ -128,13 +140,6 @@ let main_keybinds = [
     keycode: char_o
     mode: [emacs, vi_normal, vi_insert]
     event: { send: menu name: vars_menu }
-  }
-  {
-    name: commands_with_description
-    modifier: control
-    keycode: char_s
-    mode: [emacs, vi_normal, vi_insert]
-    event: { send: menu name: commands_with_description }
   }
   {
     name: fuzzy_history
