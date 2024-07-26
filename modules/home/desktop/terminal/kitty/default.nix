@@ -28,7 +28,7 @@ in
           tab_bar_edge = "top";
           tab_bar_style = "powerline";
           tab_powerline_style = "slanted";
-          tab_title_template = "{title.split('/')[-1]} {' :{}:'.format(num_windows) if num_windows > 1 else ''}";
+          tab_title_template = "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{index}:{title}";
           window_margin_width = 1;
           window_padding_width = 7;
           exe_search_path = "+/etc/profiles/per-user/${config.home.username}/bin";
