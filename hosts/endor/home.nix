@@ -13,7 +13,7 @@
     shell = {
       nushell.enable = true;
       starship.enable = true;
-      neofetch.enable = true;
+      fastfetch.enable = true;
     };
     desktop = {
       terminal = {

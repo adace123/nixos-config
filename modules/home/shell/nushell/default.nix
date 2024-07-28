@@ -49,6 +49,8 @@ in
           # themes
           use ${nu_script_path}/themes/nu-themes/everforest.nu
           $env.config = ($env.config | merge {color_config: (everforest)})
+
+          fastfetch
         '';
       };
     };

@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./atuin ./nushell ./neofetch ./starship];
+  imports = [./atuin ./nushell ./fastfetch ./starship];
 }

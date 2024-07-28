@@ -31,7 +31,7 @@
     shell = {
       nushell.enable = true;
       starship.enable = true;
-      neofetch.enable = true;
+      fastfetch.enable = true;
     };
     editors = {
       helix.enable = true;
