@@ -15,6 +15,7 @@
       nix = ["alejandra"];
       python = ["ruff_format"];
       rust = ["rustfmt"];
+      tf = ["terraform_fmt"];
       terraform = ["terraform_fmt"];
       toml = ["taplo"];
       typescript = ["prettierd" "prettier"];

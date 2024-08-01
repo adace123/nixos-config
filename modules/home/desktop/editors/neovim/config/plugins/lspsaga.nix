@@ -1,9 +1,12 @@
 {
   programs.nixvim = {
     plugins = {
-      which-key.registrations = {
-        "<leader>c" = "code+";
-      };
+      which-key.settings.spec = [
+        {
+          __unkeyed-1 = "<leader>c";
+          desc = "code+";
+        }
+      ];
       lspsaga = {
         enable = true;
         lightbulb.sign = false;

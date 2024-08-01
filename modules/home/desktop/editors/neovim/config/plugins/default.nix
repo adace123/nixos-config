@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./aerial.nix
-    ./barbar.nix
+    ./bufferline.nix
     ./cmp.nix
     ./conform.nix
     ./file-explorer.nix
@@ -11,7 +11,6 @@
     ./lsp.nix
     ./lspsaga.nix
     ./lualine.nix
-    ./marks.nix
     ./noice.nix
     ./ollama.nix
     ./obsidian.nix
@@ -22,12 +21,11 @@
   ];
 
   programs.nixvim = {
-    extraConfigLua = ''
-      require("neoclip").setup()
-    '';
     plugins = {
       surround.enable = true;
       nvim-ufo.enable = true;
+      neoclip.enable = true;
+      bufdelete.enable = true;
       comment.enable = true;
       trouble = {
         enable = true;
@@ -63,13 +61,12 @@
       which-key.enable = true;
       better-escape.enable = true;
       undotree.enable = true;
+      #spectre.enable = true;
+      persistence.enable = true;
     };
     extraPlugins = with pkgs.vimPlugins; [
       plenary-nvim
-      nvim-neoclip-lua
       nvim-web-devicons
-      nvim-spectre
-      persistence-nvim
     ];
     userCommands = {
       SessionRestore = {
@@ -82,11 +79,4 @@
       };
     };
   };
-
-  # autoCmd = [
-  #   {
-  #     event = "BufReadPre";
-  #     command = ":lua require('persistence').save()";
-  #   }
-  # ];
 }

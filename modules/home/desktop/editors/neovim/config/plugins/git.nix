@@ -2,9 +2,12 @@
   programs.nixvim = {
     plugins = {
       gitsigns.enable = true;
-      which-key.registrations = {
-        "<leader>g" = "+git";
-      };
+      which-key.settings.spec = [
+        {
+          __unkeyed-1 = "<leader>g";
+          desc = "+git";
+        }
+      ];
       lazygit.enable = true;
     };
     keymaps = [

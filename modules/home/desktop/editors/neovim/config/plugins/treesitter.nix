@@ -1,18 +1,6 @@
-{pkgs, ...}: let
-  nu-grammar = pkgs.tree-sitter.buildGrammar {
-    language = "nu";
-    version = "0.0.0+rev=358c4f5";
-    src = pkgs.fetchFromGitHub {
-      owner = "nushell";
-      repo = "tree-sitter-nu";
-      rev = "2d0dd587dbfc3363d2af4e4141833e718647a67e";
-      hash = "sha256-A0Lpsx0VFRYUWetgX3Bn5osCsLQrZzg90unGg9kTnVg=";
-    };
-  };
-in {
+{pkgs, ...}: {
   programs.nixvim = {
     filetype.extension = {
-      nu = "nu";
       tf = "hcl";
       tfvars = "hcl";
     };
@@ -23,20 +11,24 @@ in {
         enable = true;
         nixvimInjections = true;
         folding = true;
-        indent = true;
-        incrementalSelection = {
-          enable = true;
-          keymaps = {
-            initSelection = "<CR>";
-            nodeIncremental = "<CR>";
-            scopeIncremental = "<S-CR>";
-            nodeDecremental = "<BS>";
+        languageRegister.nu = "nu";
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+          incremental_selection = {
+            enable = true;
+            keymaps = {
+              init_selection = "<CR>";
+              node_incremental = "<CR>";
+              scope_incremental = "<S-CR>";
+              node_decremental = "<BS>";
+            };
           };
         };
         grammarPackages = with pkgs;
           vimPlugins.nvim-treesitter.passthru.allGrammars
           ++ [vimPlugins.nvim-treesitter.grammarPlugins.kdl]
-          ++ [nu-grammar];
+          ++ (with pkgs.tree-sitter-grammars; [tree-sitter-nu]);
       };
       treesitter-textobjects = {
         enable = true;
@@ -164,17 +156,5 @@ in {
     extraPlugins = with pkgs.vimPlugins; [
       vim-just
     ];
-
-    extraFiles = {
-      "/queries/nu/highlights.scm" = builtins.readFile "${nu-grammar}/queries/nu/highlights.scm";
-      "/queries/nu/injections.scm" = builtins.readFile "${nu-grammar}/queries/nu/injections.scm";
-    };
-
-    extraConfigLua = ''
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.nu = {
-        filetype = "nu",
-      }
-    '';
   };
 }

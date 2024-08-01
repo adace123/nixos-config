@@ -6,12 +6,8 @@
     inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
     nativeBuildInputs = with pkgs;
       [
-        alejandra
-        sops
         ssh-to-age
-        just
-        gh
-        pulumi-bin
+        alejandra
       ]
       ++ self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
   };

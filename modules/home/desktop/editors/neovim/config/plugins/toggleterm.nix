@@ -10,9 +10,12 @@
           closeOnExit = true;
         };
       };
-      which-key.registrations = {
-        "<leader>t" = "terminal+";
-      };
+      which-key.settings.spec = [
+        {
+          __unkeyed-1 = "<leader>t";
+          desc = "terminal+";
+        }
+      ];
     };
     extraConfigLua = ''
       function _G.set_terminal_keymaps()
