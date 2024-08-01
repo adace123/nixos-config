@@ -49,6 +49,21 @@ in
           "ctrl+shift+k" = "launch k9s";
           "ctrl+shift+t" = "launch tgpt -i";
           "ctrl+shift+y" = "launch --cwd yazi";
+          "alt+b" = "launch --type=overlay btop";
+          "alt+d" = "launch --type=overlay lazydocker";
+          "alt+k" = "launch --type=overlay k9s";
+          "alt+g" = "launch --type=overlay lazygit";
+          "alt+t" = "launch --type=overlay tgpt -i";
+          "alt+y" = "launch --type=overlay --cwd yazi";
+          "ctrl+1" = "goto_tab 1";
+          "ctrl+2" = "goto_tab 2";
+          "ctrl+3" = "goto_tab 3";
+          "ctrl+4" = "goto_tab 4";
+          "ctrl+5" = "goto_tab 5";
+          "ctrl+6" = "goto_tab 6";
+          "ctrl+7" = "goto_tab 7";
+          "ctrl+8" = "goto_tab 9";
+          "ctrl+9" = "goto_tab 9";
         };
 
         extraConfig = ''
