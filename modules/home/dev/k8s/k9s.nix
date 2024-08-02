@@ -14,6 +14,13 @@ in
     config = mkIf cfg.enable {
       programs.k9s = {
         enable = true;
+        settings.k9s = {
+          ui = {
+            logoless = true;
+          };
+          logger.textWrap = true;
+          skipLatestRevCheck = true;
+        };
         plugin.plugins = {
           copy-ingress-url = {
             shortCut = "Ctrl-Y";
