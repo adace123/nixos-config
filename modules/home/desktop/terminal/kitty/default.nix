@@ -52,9 +52,9 @@ in
           "alt+b" = "launch --type=overlay btop";
           "alt+d" = "launch --type=overlay lazydocker";
           "alt+k" = "launch --type=overlay k9s";
-          "alt+g" = "launch --type=overlay lazygit";
+          "alt+g" = "launch --cwd=current --type=overlay lazygit";
           "alt+t" = "launch --type=overlay tgpt -i";
-          "alt+y" = "launch --type=overlay --cwd yazi";
+          "alt+y" = "launch --cwd=current --type=overlay yazi";
           "ctrl+1" = "goto_tab 1";
           "ctrl+2" = "goto_tab 2";
           "ctrl+3" = "goto_tab 3";
