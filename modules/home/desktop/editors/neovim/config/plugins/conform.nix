@@ -3,6 +3,7 @@
     extraPackages = with pkgs; [
       alejandra
       markdownlint-cli
+      nodePackages.fixjson
       prettierd
       rustfmt
       shfmt
@@ -25,7 +26,7 @@
         lua = ["stylua"];
         markdown = ["markdownlint"];
         nix = ["alejandra"];
-        python = ["ruff_format"];
+        python = ["ruff_fix" "ruff_format" "ruff_organize_imports"];
         rust = ["rustfmt"];
         tf = ["terraform_fmt"];
         terraform = ["terraform_fmt"];
