@@ -16,6 +16,7 @@
     ./obsidian.nix
     ./telescope.nix
     ./treesitter.nix
+    ./trouble.nix
   ];
 
   programs.nixvim = {
@@ -25,13 +26,6 @@
       neoclip.enable = true;
       bufdelete.enable = true;
       comment.enable = true;
-      trouble = {
-        enable = true;
-        settings = {
-          mode = "document_diagnostics";
-          position = "right";
-        };
-      };
       luasnip.enable = true;
       flash.enable = true;
       headlines.enable = true;

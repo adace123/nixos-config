@@ -142,7 +142,7 @@
       }
       {
         key = "<leader>fw";
-        action.__raw = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '--smart-case'} }) end";
+        action.__raw = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '-i'} }) end";
         options.desc = "Live grep";
       }
       {
@@ -151,9 +151,9 @@
         options.desc = "Clipboard history";
       }
       {
-        key = "<leader>fm";
-        action.__raw = "function() require('telescope').extensions.marks_nvim.marks_list_all() end";
-        options.desc = "Marks";
+        key = "<leader>ft";
+        action = ":TodoTelescope<CR>";
+        options.desc = "Todos";
       }
       {
         key = "<leader><space>";
