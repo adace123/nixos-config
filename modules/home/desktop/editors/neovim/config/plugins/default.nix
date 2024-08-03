@@ -16,7 +16,6 @@
     ./obsidian.nix
     ./telescope.nix
     ./treesitter.nix
-    ./toggleterm.nix
   ];
 
   programs.nixvim = {
