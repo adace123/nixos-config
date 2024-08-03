@@ -61,7 +61,12 @@
       better-escape.enable = true;
       undotree.enable = true;
       spectre.enable = true;
-      persistence.enable = true;
+      auto-session = {
+        enable = true;
+        autoRestore.enabled = true;
+        autoSave.enabled = true;
+        autoSession.enableLastSession = true;
+      };
     };
     extraPlugins = with pkgs.vimPlugins; [
       plenary-nvim

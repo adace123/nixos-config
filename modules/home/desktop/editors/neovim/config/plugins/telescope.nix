@@ -88,6 +88,13 @@
             desc = "Search word under cursor";
           };
         };
+        "<leader>fs" = {
+          action = "session-lens";
+          options = {
+            silent = true;
+            desc = "Sessions";
+          };
+        };
         "<leader>ci" = {
           action = "lsp_incoming_calls";
           options = {
