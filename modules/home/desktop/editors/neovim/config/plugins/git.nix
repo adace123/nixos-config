@@ -9,6 +9,7 @@
         }
       ];
       lazygit.enable = true;
+      diffview.enable = true;
     };
     keymaps = [
       {
@@ -43,13 +44,13 @@
         mode = ["n"];
       }
       {
-        key = "]h";
+        key = "]]";
         action.__raw = "function() require('gitsigns').next_hunk({navigation_message = false}) end";
         options.desc = "Next hunk";
         mode = ["n"];
       }
       {
-        key = "[h";
+        key = "[[";
         action.__raw = "function() require('gitsigns').prev_hunk({navigation_message = false}) end";
         options.desc = "Prev hunk";
         mode = ["n"];
@@ -68,7 +69,7 @@
       }
       {
         key = "<leader>gd";
-        action = "<cmd>Gitsigns diffthis<CR>";
+        action = "<cmd>DiffviewOpen<CR>";
         options.desc = "Diff";
         mode = ["n"];
       }

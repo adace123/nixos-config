@@ -45,8 +45,8 @@
         keymaps = {
           addFile = "<leader>A";
           toggleQuickMenu = "<leader>h";
-          navNext = "]]";
-          navPrev = "[[";
+          navNext = "]h";
+          navPrev = "[h";
         };
       };
       nvim-autopairs = {
