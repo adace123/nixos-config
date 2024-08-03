@@ -7,7 +7,6 @@
     nativeBuildInputs = with pkgs;
       [
         ssh-to-age
-        alejandra
       ]
       ++ self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
   };

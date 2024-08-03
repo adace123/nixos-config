@@ -156,5 +156,9 @@
     extraPlugins = with pkgs.vimPlugins; [
       vim-just
     ];
+    extraFiles = with pkgs.tree-sitter-grammars; {
+      "/queries/nu/highlights.scm".source = "${tree-sitter-nu}/queries/nu/highlights.scm";
+      "/queries/nu/injections.scm".source = "${tree-sitter-nu}/queries/nu/injections.scm";
+    };
   };
 }

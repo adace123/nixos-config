@@ -62,7 +62,6 @@ _: {
         key = "<leader>cR";
         action = ":LspRestart<CR>";
         options.desc = "LspRestart";
-        mode = ["n"];
       }
     ];
     autoCmd = [

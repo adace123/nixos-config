@@ -8,12 +8,6 @@
     lua-language-server
     nixd
 
-    # formatters
-    alejandra
-    shfmt
-    stylua
-    yamlfmt
-
     # linters
     tflint
     shellcheck

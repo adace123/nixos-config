@@ -127,19 +127,16 @@
         key = "<leader>fh";
         action = ":Telescope harpoon marks<CR>";
         options.desc = "Harpoon";
-        mode = ["n"];
       }
       {
         key = "<leader>fC";
         action.__raw = "function() require('telescope.builtin').colorscheme({ enable_preview = true }) end";
         options.desc = "Colorscheme";
-        mode = ["n"];
       }
       {
         key = "<leader>fw";
         action.__raw = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '--smart-case'} }) end";
         options.desc = "Live grep";
-        mode = ["n"];
       }
       {
         key = "<leader>fy";

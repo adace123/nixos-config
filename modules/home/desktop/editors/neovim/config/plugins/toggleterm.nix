@@ -36,13 +36,11 @@
         key = "<leader>th";
         action = "<cmd>ToggleTerm direction=horizontal<CR>";
         options.desc = "Horizontal terminal";
-        mode = ["n"];
       }
       {
         key = "<leader>tf";
         action = "<cmd>ToggleTerm direction=float<CR>";
         options.desc = "Floating terminal";
-        mode = ["n"];
       }
     ];
   };

@@ -30,7 +30,6 @@
         action = "<cmd>Neotree toggle<CR>";
         key = "<leader>e";
         options.desc = "Neotree";
-        mode = ["n"];
       }
     ];
   };

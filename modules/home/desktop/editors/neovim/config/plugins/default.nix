@@ -14,7 +14,6 @@
     ./noice.nix
     ./ollama.nix
     ./obsidian.nix
-    ./startup.nix
     ./telescope.nix
     ./treesitter.nix
     ./toggleterm.nix
@@ -61,7 +60,7 @@
       which-key.enable = true;
       better-escape.enable = true;
       undotree.enable = true;
-      #spectre.enable = true;
+      spectre.enable = true;
       persistence.enable = true;
     };
     extraPlugins = with pkgs.vimPlugins; [
