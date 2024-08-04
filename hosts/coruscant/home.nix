@@ -47,6 +47,7 @@
       git.enable = true;
       go.enable = true;
       kubernetes.enable = true;
+      nix.enable = true;
       python.enable = true;
       rust.enable = true;
       typescript.enable = true;

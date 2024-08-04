@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     bat
-    bottom
     curl
     eza
     fzf
@@ -9,7 +8,6 @@
     jq
     just
     lsof
-    nh
     nushell
     openssl
     pkg-config

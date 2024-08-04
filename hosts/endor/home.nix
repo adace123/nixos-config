@@ -6,6 +6,7 @@
       python.enable = true;
       rust.enable = true;
       go.enable = true;
+      nix.enable = true;
       kubernetes.enable = true;
       typescript.enable = true;
     };

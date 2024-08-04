@@ -31,19 +31,11 @@ def hyprdebug [] {
   cat $crash_report
 }
 
-def nix-diff [] {
-  nixos-rebuild build --flake $"($env.DOTFILES_DIR)#(hostname)"
-  nvd diff /run/current-system $"($env.DOTFILES_DIR)/result"
-}
 
 def rf [pattern: string] {
   # open ripgrep file matches in editor
   let result = rg -l $pattern | fzf -m | lines
   $result | str join " " | xargs $env.EDITOR
-}
-
-def nxs [pkg: string] {
-  nix shell nixpkgs#($pkg)
 }
 
 def zja [] {
@@ -160,6 +152,17 @@ module ssh {
         $"...($end)"
       }
     } else { $in }
+  }
+}
+
+module nix-local {
+  export def nix-diff [] {
+    nixos-rebuild build --flake $"($env.DOTFILES_DIR)#(hostname)"
+    nvd diff /run/current-system $"($env.DOTFILES_DIR)/result"
+  }
+  
+  export def nxs [pkg: string] {
+    nix shell nixpkgs#($pkg)
   }
 }
 

@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./elixir ./go ./python ./rust ./git.nix ./typescript ./zig ./k8s];
+  imports = [./elixir ./go ./python ./rust ./git.nix ./nix.nix ./typescript ./zig ./k8s];
   programs.direnv.enable = true;
 
   # misc dev packages
