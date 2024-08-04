@@ -5,16 +5,28 @@
         enable = true;
         settings = {
           flavour = "mocha";
+          styles = {
+            booleans = ["bold" "italic"];
+            conditionals = ["bold"];
+            functions = ["bold"];
+            keywords = ["italic"];
+            loops = ["bold"];
+            operators = ["bold"];
+            properties = ["italic"];
+          };
           integrations = {
             aerial = true;
-            barbar = true;
             cmp = true;
             gitsigns = true;
             harpoon = true;
-            indent_blankline.enabled = true;
+            indent_blankline = {
+              enabled = true;
+              colored_indent_levels = true;
+            };
             lsp_saga = true;
             treesitter = true;
             telescope.enabled = true;
+            which_key = true;
           };
         };
       };
@@ -25,6 +37,7 @@
       nord-nvim
       everforest
       kanagawa-nvim
+      nightfox-nvim
     ];
   };
 }
