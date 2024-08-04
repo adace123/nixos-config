@@ -57,8 +57,14 @@
             "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           };
           window = {
-            completion = {};
-            documentation = {};
+            documentation.border = "rounded";
+            documentation.winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,Search:None";
+            completion = {
+              colOffset = -3;
+              sidePadding = 0;
+              winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,Search:None";
+              border = "rounded";
+            };
           };
         };
       };

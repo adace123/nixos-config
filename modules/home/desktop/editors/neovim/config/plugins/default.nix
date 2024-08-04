@@ -60,20 +60,11 @@
         autoSave.enabled = true;
         autoSession.enableLastSession = true;
       };
+      oil.enable = true;
     };
     extraPlugins = with pkgs.vimPlugins; [
       plenary-nvim
       nvim-web-devicons
     ];
-    userCommands = {
-      SessionRestore = {
-        nargs = "*";
-        command = ":lua require('persistence').load()";
-      };
-      LastSessionRestore = {
-        nargs = "*";
-        command = ":lua require('persistence').load({ last = true })";
-      };
-    };
   };
 }

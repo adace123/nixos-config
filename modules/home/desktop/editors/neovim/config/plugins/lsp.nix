@@ -50,10 +50,6 @@ _: {
         };
         keymaps = {
           silent = true;
-          lspBuf = {
-            "<leader>cf" = "format";
-            # other LSP functionality handled by LspSaga
-          };
         };
       };
     };
