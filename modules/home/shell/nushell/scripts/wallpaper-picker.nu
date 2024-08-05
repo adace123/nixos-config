@@ -3,7 +3,7 @@ def fetch-apod [] {
   http get $img_url | swww img -
 }
 
-def main [--mode: string = "rofi"] {
+def main [--mode: string = "yazi"] {
   # fast transition
   $env.SWWW_TRANSITION_STEP = 25
 
@@ -12,16 +12,13 @@ def main [--mode: string = "rofi"] {
     return
   }
 
-  let file_choices = (ls -la "~/Pictures/wallpapers"
-  | where {|x| $x.type == "file" and $x.name =~ ".(jpe?g|png)"}
-  | get name)
-
   let choice = match $mode {
-    "rofi" => {
-      ($file_choices | to text | rofi -dmenu -i -P "Select wallpaper")
+    "yazi" => {
+      (yazi --chooser-file=/dev/stdout ~/Pictures/wallpapers)
     },
     "random" => {
-      ($file_choices | shuffle | first) 
+      let files = ls -la ~/Pictures/wallpapers/ | where {|x| $x.type == "file" and $x.name =~ ".(jpe?g|png)"} | get name
+      ($files | shuffle | first) 
     },
     _ => { error make {msg: $"($mode) is not a recognized wallpaper mode"} }
   }

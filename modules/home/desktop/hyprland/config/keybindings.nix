@@ -75,6 +75,7 @@ in {
         "SUPER ALT, t, exec, pypr toggle tgpt"
         "SUPER ALT, y, exec, pypr toggle yazi"
         "SUPER ALT, k, exec, pypr toggle k9s"
+        "SUPER ALT, w, exec, pypr toggle wallpaper-picker"
 
         # Submaps
         "SUPER SHIFT, s, submap, system"

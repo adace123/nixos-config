@@ -13,6 +13,7 @@ in
       home.packages = [pkgs.pyprland];
       xdg.configFile.pypr = {
         target = "hypr/pyprland.toml";
+        onChange = "${pkgs.pyprland}/bin/pypr reload";
         text = std.serde.toTOML {
           pyprland.plugins = ["scratchpads"];
           scratchpads = {
@@ -38,6 +39,11 @@ in
             };
             yazi = {
               command = "${TERMINAL} --class=scratchpad -e yazi ~";
+              animation = "fromTop";
+              unfocus = "hide";
+            };
+            wallpaper-picker = {
+              command = "${TERMINAL} --class=scratchpad -e wallpaper-picker";
               animation = "fromTop";
               unfocus = "hide";
             };
