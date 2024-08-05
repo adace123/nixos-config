@@ -1,9 +1,5 @@
 {pkgs, ...}: {
   programs.nixvim = {
-    filetype.extension = {
-      tf = "hcl";
-      tfvars = "hcl";
-    };
     plugins = {
       ts-autotag.enable = true;
       rainbow-delimiters.enable = true;
