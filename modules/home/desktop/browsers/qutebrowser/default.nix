@@ -100,6 +100,18 @@ in
           auto_save.session = true;
           qt.highdpi = true;
           colors.webpage.darkmode.enabled = true;
+
+          input.insert_mode = {
+            auto_enter = true;
+            auto_leave = true;
+            auto_load = true;
+          };
+
+          hints = {
+            auto_follow = "unique-match";
+            auto_follow_timeout = 700;
+          };
+
           qt.args = [
             "enable-accelerated-video-decode"
             "enable-gpu-rasterization"
@@ -200,6 +212,7 @@ in
           reddit = "https://reddit.com";
           notion = "https://notion.so";
           nixpkgs = "https://search.nixos.org";
+          perplexity = "https://perplexity.ai";
           protonmail = "https://mail.proton.me/u/0/inbox";
           youtube = "https://www.youtube.com/feed/subscriptions";
           wikipedia = "https://en.wikipedia.org/wiki/Portal:Current_events";
