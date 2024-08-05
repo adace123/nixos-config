@@ -47,11 +47,9 @@ in {
 
       exec-once = [
         "${TERMINAL}"
-        "hyprctl setcursor ${config.home.pointerCursor.name} ${toString config.home.pointerCursor.size}"
         "${TERMINAL} --class scratchpad"
         "${BROWSER}"
         "pypr"
-        "ulauncher --no-window-shadow"
       ];
     };
   };

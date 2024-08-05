@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   home.packages = [pkgs.mkcert];
-  catppuccin.pointerCursor.enable = false;
   modules = {
     dev = {
       python.enable = true;
