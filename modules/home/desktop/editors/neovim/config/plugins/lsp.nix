@@ -18,7 +18,12 @@ _: {
           vim.diagnostic.config({
             update_in_insert = true,
             underline = true,
-            signs = true,
+            signs = {
+              severity = { min = vim.diagnostic.severity.WARN },
+            },
+            virtual_text = {
+              severity = { min = vim.diagnostic.severity.WARN }
+            },
           })
         '';
         servers = {
