@@ -44,12 +44,12 @@
         options.desc = "Stage buffer";
       }
       {
-        key = "]]";
+        key = "}";
         action.__raw = "function() require('gitsigns').next_hunk({navigation_message = false}) end";
         options.desc = "Next Git hunk";
       }
       {
-        key = "[[";
+        key = "{";
         action.__raw = "function() require('gitsigns').prev_hunk({navigation_message = false}) end";
         options.desc = "Prev Git hunk";
       }
