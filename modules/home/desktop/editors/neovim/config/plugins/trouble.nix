@@ -22,7 +22,7 @@
       }
       {
         key = "<leader>xe";
-        action = "<cmd>Touble diagnostics toggle focus=true filter.severity=vim.diagnostic.severity.ERROR<CR>";
+        action = "<cmd>Trouble diagnostics toggle focus=true filter.severity=vim.diagnostic.severity.ERROR<CR>";
         options.desc = "Errors";
       }
       {

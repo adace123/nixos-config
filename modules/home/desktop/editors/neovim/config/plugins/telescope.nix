@@ -60,6 +60,13 @@
             desc = "Keymaps";
           };
         };
+        "<leader>fg" = {
+          action = "git_status";
+          options = {
+            silent = true;
+            desc = "Git status";
+          };
+        };
         "<leader>fj" = {
           action = "jumplist";
           options = {
@@ -93,6 +100,13 @@
           options = {
             silent = true;
             desc = "Sessions";
+          };
+        };
+        "<leader>fm" = {
+          action = "marks";
+          options = {
+            silent = true;
+            desc = "Marks";
           };
         };
         "<leader>ci" = {
@@ -142,7 +156,7 @@
       }
       {
         key = "<leader>fw";
-        action.__raw = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '-i'} }) end";
+        action.__raw = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '-S'} }) end";
         options.desc = "Live grep";
       }
       {
@@ -157,8 +171,19 @@
       }
       {
         key = "<leader><space>";
-        action = ":Telescope buffers theme=dropdown<CR>";
+        action = ":Telescope find_files<CR>";
+        options.desc = "Files";
+      }
+      {
+        key = "<leader>b";
+        action = ":Telescope buffers<CR>";
         options.desc = "Buffers";
+      }
+      {
+        key = "<leader>w";
+        action.__raw = "function() require('telescope.builtin').live_grep({ find_command = {'rg', '-S'} }) end";
+
+        options.desc = "Live grep";
       }
     ];
     extraPlugins = [pkgs.vimPlugins.telescope-live-grep-args-nvim];

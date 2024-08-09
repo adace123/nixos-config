@@ -6,7 +6,6 @@
     ./conform.nix
     ./file-explorer.nix
     ./git.nix
-    ./indent-blankline.nix
     ./kitty.nix
     ./lsp.nix
     ./lspsaga.nix
@@ -21,6 +20,19 @@
 
   programs.nixvim = {
     plugins = {
+      mini = {
+        enable = true;
+        modules = {
+          indentscope = {
+            symbol = "│";
+            options = {
+              border = "top";
+              indent_at_cursor = true;
+              try_as_border = true;
+            };
+          };
+        };
+      };
       surround.enable = true;
       nvim-ufo.enable = true;
       neoclip.enable = true;
@@ -29,7 +41,6 @@
       luasnip.enable = true;
       flash.enable = true;
       headlines.enable = true;
-      markdown-preview.enable = true;
       harpoon = {
         enable = true;
         keymapsSilent = true;
@@ -49,7 +60,6 @@
       illuminate.enable = true;
       nix.enable = true;
       todo-comments.enable = true;
-      lspkind.enable = true;
       which-key.enable = true;
       better-escape.enable = true;
       undotree.enable = true;
@@ -60,7 +70,6 @@
         autoSave.enabled = true;
         autoSession.enableLastSession = true;
       };
-      oil.enable = true;
     };
     extraPlugins = with pkgs.vimPlugins; [
       plenary-nvim

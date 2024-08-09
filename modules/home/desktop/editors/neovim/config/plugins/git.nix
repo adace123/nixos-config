@@ -28,6 +28,11 @@
         options.desc = "Stage hunk";
       }
       {
+        key = "<leader>gu";
+        action = "<cmd>Gitsigns undo_stage_hunk<CR>";
+        options.desc = "Undo stage hunk";
+      }
+      {
         key = "<leader>gg";
         action = "<cmd>LazyGit<CR>";
         options.desc = "LazyGit";
@@ -41,10 +46,12 @@
       {
         key = "]]";
         action.__raw = "function() require('gitsigns').next_hunk({navigation_message = false}) end";
+        options.desc = "Next Git hunk";
       }
       {
         key = "[[";
         action.__raw = "function() require('gitsigns').prev_hunk({navigation_message = false}) end";
+        options.desc = "Prev Git hunk";
       }
       {
         key = "<leader>gp";
