@@ -20,5 +20,6 @@
     unzip
     yq
     tailspin
+    viddy
   ];
 }

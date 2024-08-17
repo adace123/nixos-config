@@ -39,6 +39,7 @@ alias tf = tofu
 alias tree = exa -T --icons
 alias ts = tailscale
 alias v = nvim
+alias watch = viddy
 alias y = yazi
 alias zj = zellij
 alias zjl = zellij ls
