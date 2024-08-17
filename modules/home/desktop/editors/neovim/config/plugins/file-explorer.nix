@@ -1,5 +1,25 @@
 {
   programs.nixvim = {
+    plugins.oil = {
+      enable = true;
+      settings = {
+        view_options = {
+          show_hidden = true;
+        };
+        keymaps = {
+          q = "actions.close";
+          h = "actions.parent";
+          l = "actions.select";
+        };
+        float = {
+          padding = 10;
+          max_width = 70;
+          win_options = {
+            winblend = 0;
+          };
+        };
+      };
+    };
     plugins.neo-tree = {
       enable = true;
       addBlankLineAtTop = true;
@@ -27,9 +47,14 @@
     };
     keymaps = [
       {
-        action = "<cmd>Neotree toggle<CR>";
         key = "<leader>e";
+        action = "<cmd>Neotree toggle<CR>";
         options.desc = "Neotree";
+      }
+      {
+        key = "-";
+        action = "<cmd>Oil --float<CR>";
+        options.desc = "Oil";
       }
     ];
   };
