@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.mkcert];
+  home.packages = with pkgs; [mkcert devenv];
   modules = {
     dev = {
       python.enable = true;
