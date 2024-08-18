@@ -16,5 +16,8 @@
     # IaC
     pulumi
     terraform
+
+    # DB
+    pgcli
   ];
 }
