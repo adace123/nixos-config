@@ -4,12 +4,14 @@
     ./bufferline.nix
     ./cmp.nix
     ./conform.nix
+    ./dap.nix
     ./file-explorer.nix
     ./git.nix
     ./kitty.nix
     ./lsp.nix
     ./lspsaga.nix
     ./lualine.nix
+    ./neotest.nix
     ./noice.nix
     ./ollama.nix
     ./obsidian.nix

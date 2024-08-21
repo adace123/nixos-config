@@ -165,6 +165,11 @@
         options.desc = "Clipboard history";
       }
       {
+        key = "<leader>fb";
+        action = ":Telescope dap list_breakpoints<CR>";
+        options.desc = "Breakpoints";
+      }
+      {
         key = "<leader>ft";
         action = ":TodoTelescope<CR>";
         options.desc = "Todos";
@@ -186,6 +191,9 @@
         options.desc = "Live grep";
       }
     ];
-    extraPlugins = [pkgs.vimPlugins.telescope-live-grep-args-nvim];
+    extraPlugins = with pkgs.vimPlugins; [telescope-live-grep-args-nvim telescope-dap-nvim];
+    extraConfigLua = ''
+      require("telescope").load_extension('dap')
+    '';
   };
 }

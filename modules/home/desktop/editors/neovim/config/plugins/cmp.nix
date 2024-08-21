@@ -79,6 +79,18 @@
         cmp_autopairs.on_confirm_done()
       )
 
+      cmp.setup({
+        enabled = function()
+          return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+              or require("cmp_dap").is_dap_buffer()
+        end
+      })
+
+      cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
         -- Use buffer source for `/`
       cmp.setup.cmdline("/", { mapping = cmp.mapping.preset.cmdline(), sources = { { name = "buffer" } } })
 
