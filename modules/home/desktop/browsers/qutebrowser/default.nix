@@ -119,6 +119,18 @@ in
             auto_follow_timeout = 700;
           };
 
+          completion = {
+            height = "30%";
+            open_categories = ["quickmarks" "bookmarks" "history"];
+            scrollbar = {
+              padding = 0;
+              width = 0;
+            };
+            show = "always";
+            shrink = true;
+            timestamp_format = "";
+          };
+
           qt.args = [
             "enable-accelerated-video-decode"
             "enable-gpu-rasterization"
@@ -220,7 +232,8 @@ in
           lobsters = "https://lobste.rs";
           reddit = "https://reddit.com";
           notion = "https://notion.so";
-          nixpkgs = "https://search.nixos.org";
+          nix-search = "https://search.nixos.org";
+          nixpkgs = "https://github.com/NixOS/nixpkgs";
           perplexity = "https://perplexity.ai";
           protonmail = "https://mail.proton.me/u/0/inbox";
           youtube = "https://www.youtube.com/feed/subscriptions";
