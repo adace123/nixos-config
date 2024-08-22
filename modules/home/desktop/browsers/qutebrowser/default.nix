@@ -129,7 +129,7 @@ in
 
           content = {
             autoplay = false;
-            headers.user_agent = "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}";
+            cookies.accept = "no-3rdparty";
             blocking = {
               enabled = true;
               method = "both";
