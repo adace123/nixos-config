@@ -71,11 +71,11 @@ in {
 
         # Sratchpad
         "SUPER, equal, exec, pypr toggle terminal"
-        "SUPER ALT, b, exec, pypr toggle btop"
-        "SUPER ALT, t, exec, pypr toggle tgpt"
-        "SUPER ALT, y, exec, pypr toggle yazi"
-        "SUPER ALT, k, exec, pypr toggle k9s"
-        "SUPER ALT, w, exec, pypr toggle wallpaper-picker"
+        "SUPER CTRL, b, exec, pypr toggle btop"
+        "SUPER CTRL, t, exec, pypr toggle tgpt"
+        "SUPER CTRL, y, exec, pypr toggle yazi"
+        "SUPER CTRL, k, exec, pypr toggle k9s"
+        "SUPER CTRL, w, exec, pypr toggle wallpaper-picker"
 
         # Submaps
         "SUPER SHIFT, s, submap, system"
