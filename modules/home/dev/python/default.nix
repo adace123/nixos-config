@@ -17,6 +17,7 @@ in
             black
             isort
             jupyterlab # TODO: use jupyenv
+            jupytext
             marimo
             plotly
             ptpython
