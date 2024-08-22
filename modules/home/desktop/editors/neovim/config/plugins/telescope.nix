@@ -8,8 +8,8 @@
             i = {
               "<esc>" = "close";
               "<C-x>" = "close";
-              "<tab>" = "move_selection_next";
-              "<s-tab>" = "move_selection_previous";
+              "<C-j>" = "move_selection_next";
+              "<C-k>" = "move_selection_previous";
               "<C-/>" = "which_key";
               "<C-u>" = false;
               "<C-d>" = false;
@@ -17,6 +17,7 @@
               "<C-y>" = "results_scrolling_up";
               "<C-U>" = "preview_scrolling_up";
               "<C-D>" = "preview_scrolling_down";
+              "<C-q>".__raw = "require('telescope.actions').send_selected_to_qflist + require('telescope.actions').open_qflist";
             };
           };
         };
