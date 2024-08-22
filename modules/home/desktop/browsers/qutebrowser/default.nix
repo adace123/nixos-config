@@ -66,16 +66,17 @@ in
         '';
         keyBindings = {
           normal = {
-            ",a" = "cmd-set-text -s :open -t amazon";
-            ",e" = "cmd-set-text -s :open -t ebay";
-            ",g" = "cmd-set-text -s :open -t github";
-            ",m" = "cmd-set-text -s :open -t maps";
-            ",n" = "cmd-set-text -s :open -t nixpkgs";
-            ",N" = "cmd-set-text -s :open -t nix-code";
-            ",y" = "cmd-set-text -s :open -t youtube";
-            ",p" = "cmd-set-text -s :open -t perplexity";
-            ",w" = "cmd-set-text -s :open -t wikipedia";
-            ",x" = "cmd-set-text -s :open -t arxiv";
+            "sa" = "cmd-set-text -s :open -t amazon";
+            "se" = "cmd-set-text -s :open -t ebay";
+            "sg" = "cmd-set-text -s :open -t github";
+            "sm" = "cmd-set-text -s :open -t maps";
+            "sN" = "cmd-set-text -s :open -t nixpkgs";
+            "sn" = "cmd-set-text -s :open -t nix-code";
+            "sy" = "cmd-set-text -s :open -t youtube";
+            "sp" = "cmd-set-text -s :open -t perplexity";
+            "sw" = "cmd-set-text -s :open -t wikipedia";
+            "sx" = "cmd-set-text -s :open -t arxiv";
+            ";m" = "hint links spawn --detach mpv {hint-url}";
             "tt" = "config-cycle tabs.show always never";
             "gu" = "hint inputs --first;; cmd-later 3 fake-key <Shift-Home>;; cmd-later 3 fake-key <Delete>";
             "<Alt-d>" = "config-cycle colors.webpage.darkmode.enabled";
@@ -84,6 +85,8 @@ in
             "<Ctrl-Shift-o>" = "cmd-set-text -s :open -p";
             "<" = "tab-move -";
             ">" = "tab-move +";
+            ";M" = "hint links spawn --detach mpv --ytdl --no-video --force-window=immediate {hint-url}";
+            ",dm" = ''hint links spawn --verbose yt-dlp -x {hint-url} --embed-thumbnail --embed-metadata --audio-format mp3 --audio-quality 0 -o "$HOME/music/%(artist)s/%(title)s.%(ext)s" '';
           };
           insert = {
             "<Ctrl-b>" = "fake-key <Left>";
@@ -98,10 +101,14 @@ in
             "<Ctrl-u>" = "fake-key <Shift-Home>;; cmd-later 3 fake-key <Delete>";
             "<Ctrl-Return>" = "mode-enter normal";
           };
+          command = {
+            "<Ctrl-j>" = "completion-item-focus next";
+            "<Ctrl-k>" = "completion-item-focus prev";
+          };
         };
         settings = {
-          url.start_pages = "https://google.com";
-          url.default_page = "https://google.com";
+          url.start_pages = "https://perplexity.ai";
+          url.default_page = "https://perplexity.ai";
           downloads.location.directory = "~/Downloads";
           confirm_quit = ["multiple-tabs" "downloads"];
           auto_save.session = true;
@@ -189,6 +196,7 @@ in
             background = true;
             position = "left";
             width = "15%";
+            title.format = "{audio}{private} {current_title}";
           };
           fonts = {
             default_family = "JetBrainsMono Nerd Font";

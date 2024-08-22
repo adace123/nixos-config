@@ -32,5 +32,11 @@ in
           K = "cycle sub down";
         };
       };
+      programs.yt-dlp = {
+        enable = true;
+        settings = {
+          embed-metadata = true;
+        };
+      };
     };
   }
