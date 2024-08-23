@@ -25,6 +25,16 @@
         mode = ["i"];
       }
       {
+        key = "<C-e>";
+        action = "<C-o>$";
+        mode = ["i"];
+      }
+      {
+        key = "<C-a>";
+        action = "<C-o>^";
+        mode = ["i"];
+      }
+      {
         key = "U";
         action = "<C-r>";
         options.desc = "Undo";
