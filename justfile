@@ -19,7 +19,11 @@ docker:
     if (docker ps | detect columns | where NAMES =~ "nixos" | is-empty) {
       (
         docker run --name=nixos --restart=always -d  
-        -e NIX_CONFIG="experimental-features = nix-command flakes" 
+        -e NIX_CONFIG="
+          experimental-features = nix-command flakes
+          filter-syscalls = false
+          extra-platforms = aarch64-linux
+        "
         --network=host -it
         -v $"(pwd):/nixos-config" 
         -w /nixos-config nixos/nix
@@ -170,7 +174,7 @@ check:
 
 [macos]
 check: docker
-    docker exec -it nixos nix flake check
+    docker exec -it nixos nix flake check --all-systems
 
 clean:
     sudo nix-collect-garbage --delete-old
