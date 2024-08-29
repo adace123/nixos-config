@@ -8,6 +8,7 @@ def main [] {
     "Chillstep": "QxtigSvGnD8",
     "Cyberpunk": "xulXmZrC9uI",
     "Dark Ambient": "nohM0W27xus",
+    "Progressive House": "6Q7tdD5lJxg",
   }
   let selected_stream = $streams | columns | str join "\n" | rofi -dmenu -i -P "Select stream"
   if ($selected_stream == "") {
