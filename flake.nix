@@ -4,6 +4,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-latest.url = "github:NixOS/nixpkgs/master";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,47 +52,55 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
-      url = "github:lnl7/nix-darwin/master";
+      url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nu_scripts = {
       url = "github:nushell/nu_scripts";
       flake = false;
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nuenv,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    overlays = with inputs; [
-      nuenv.overlays.nuenv
-      nur.overlay
-      outputs.overlays.default
-      hyprland-contrib.overlays.default
-    ];
-    systems = ["x86_64-linux" "aarch64-darwin"];
-    forEachSystem = nixpkgs.lib.genAttrs systems;
-    forEachPkgs = f: forEachSystem (system: f (import nixpkgs {inherit system overlays;}));
-  in
-    {
-      packages = forEachPkgs (pkgs: (import ./pkgs {inherit pkgs inputs;}));
-      overlays = import ./overlays {inherit inputs;};
-      devShells = forEachPkgs (pkgs: import ./shell.nix {inherit pkgs self;});
-      checks = forEachPkgs (pkgs: {
-        pre-commit-check = inputs.pre-commit.lib.${pkgs.system}.run {
-          src = ./.;
-          hooks = {
-            alejandra.enable = true;
-            commitizen.enable = true;
-            deadnix.enable = true;
-            nil.enable = true;
+  outputs =
+    inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
+        snowfall = {
+          namespace = "adace";
+          meta = {
+            name = "adace";
+            title = "Aaron's Nix Flake";
           };
         };
-      });
-    }
-    // (import ./hosts {inherit inputs overlays;});
+      };
+    in
+    lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
+      };
+
+      systems.modules.nixos = with inputs; [
+        home-manager.nixosModules.home-manager
+        catppuccin.nixosModules.catppuccin
+        sops-nix.nixosModules.sops
+      ];
+
+      homes.modules = with inputs; [
+        nixvim.homeManagerModules.nixvim
+        sops-nix.homeManagerModules.sops
+        catppuccin.homeManagerModules.catppuccin
+      ];
+
+      overlays = with inputs; [
+        nuenv.overlays.nuenv
+        nur.overlay
+        hyprland-contrib.overlays.default
+      ];
+    };
 }

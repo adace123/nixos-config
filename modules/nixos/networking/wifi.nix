@@ -3,9 +3,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.networking.wifi;
-in {
+in
+{
   options.modules.networking.wifi.enable = mkEnableOption "wifi";
 
   config = mkIf cfg.enable {

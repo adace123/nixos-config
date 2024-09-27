@@ -1,3 +1,0 @@
-{...}: {
-  imports = [./helix ./vscode ./neovim];
-}

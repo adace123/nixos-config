@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.user;
-in {
+in
+{
   options.modules.user = {
     name = mkOption {
       type = types.str;
@@ -27,7 +29,7 @@ in {
         {
           isNormalUser = true;
           shell = pkgs.nushell;
-          extraGroups = optionals cfg.sudo.enable ["wheel"];
+          extraGroups = optionals cfg.sudo.enable [ "wheel" ];
         }
         (mkIf cfg.password.enable {
           hashedPasswordFile = config.sops.secrets.password.path;

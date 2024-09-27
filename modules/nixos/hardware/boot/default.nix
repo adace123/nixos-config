@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.boot;
-in {
+in
+{
   options.modules.boot = {
     configLimit = mkOption {
       default = 5;

@@ -1,3 +1,4 @@
-{...}: {
-  imports = [./nvidia.nix];
+{ ... }:
+{
+  imports = [ ./nvidia.nix ];
 }

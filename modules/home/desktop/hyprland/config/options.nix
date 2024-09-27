@@ -1,7 +1,9 @@
-{config, ...}: let
+{ config, ... }:
+let
   inherit (config.modules.desktop) monitor;
   inherit (config.home.sessionVariables) TERMINAL BROWSER;
-in {
+in
+{
   wayland.windowManager.hyprland = {
     settings = {
       env = [
@@ -16,7 +18,7 @@ in {
       };
 
       decoration = {
-        active_opacity = 0.90;
+        active_opacity = 0.9;
         inactive_opacity = 0.84;
         fullscreen_opacity = 1.0;
         rounding = 5;
@@ -29,7 +31,7 @@ in {
 
       animations = {
         enabled = true;
-        bezier = ["overshot, 0.13, 0.99, 0.29, 1.1"];
+        bezier = [ "overshot, 0.13, 0.99, 0.29, 1.1" ];
         animation = [
           "windows, 1, 4, overshot, slide"
           "border, 1, 10, default"
@@ -43,7 +45,7 @@ in {
         force_split = 0;
       };
 
-      monitor = ["${monitor.output}, ${monitor.resolution}, 0x0, 1"];
+      monitor = [ "${monitor.output}, ${monitor.resolution}, 0x0, 1" ];
 
       exec-once = [
         "${TERMINAL}"

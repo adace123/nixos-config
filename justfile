@@ -18,7 +18,7 @@ docker:
     #!/usr/bin/env nu
     if (docker ps | detect columns | where NAMES =~ "nixos" | is-empty) {
       (
-        docker run --name=nixos --restart=always -d  
+        docker run --platform=linux/amd64 --name=nixos --restart=always -d  
         -e NIX_CONFIG="
           experimental-features = nix-command flakes
           filter-syscalls = false
@@ -165,8 +165,10 @@ edit-host-secrets type="system":
     } else {
       "modules/home/secrets.yaml"
     }
-    $env.SOPS_AGE_KEY = (pulumi stack output -s dev --show-secrets -C keys age | from json | get privKey)
-    sops $yaml_path
+    let sops_age_key = (pulumi stack output -s dev --show-secrets -C keys age | from json | get privKey)
+    with-env [SOPS_AGE_KEY $sops_age_key] {
+      sops $yaml_path
+    }
 
 [linux]
 check:

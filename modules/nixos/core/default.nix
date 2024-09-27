@@ -1,5 +1,10 @@
 _: {
-  imports = [./nix.nix ./users.nix ./fonts.nix ./packages.nix];
+  imports = [
+    ./nix.nix
+    ./users.nix
+    ./fonts.nix
+    ./packages.nix
+  ];
 
   time.timeZone = "America/Los_Angeles";
 

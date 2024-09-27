@@ -8,8 +8,14 @@ _: {
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;
-      experimental-features = ["nix-command" "flakes"];
-      trusted-users = ["root" "@wheel"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"

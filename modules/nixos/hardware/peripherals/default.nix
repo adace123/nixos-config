@@ -1,3 +1,7 @@
-{...}: {
-  imports = [./bluetooth.nix ./pipewire.nix];
+{ ... }:
+{
+  imports = [
+    ./bluetooth.nix
+    ./pipewire.nix
+  ];
 }

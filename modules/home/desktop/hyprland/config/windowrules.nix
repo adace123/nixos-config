@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   wayland.windowManager.hyprland.settings.windowrulev2 = [
     "opacity 1.0 override 1.0 override,class:^(qutebrowser)$"
     "workspace special silent, class:^(scratchpad)$"

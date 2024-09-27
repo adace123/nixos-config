@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   modules = {
     desktop = {
       wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/minimal-space.png";
@@ -23,7 +24,6 @@
           enable = true;
           isDefaultBrowser = true;
         };
-        amfora.enable = true;
       };
       pdf.enable = true;
       social.discord.enable = true;
@@ -68,6 +68,6 @@
   programs.ssh.matchBlocks."proxmox.homelab" = {
     hostname = "proxmox.homelab";
     user = "root";
-    identityFile = [config.sops.secrets.proxmox-private-key.path];
+    identityFile = [ config.sops.secrets.proxmox-private-key.path ];
   };
 }

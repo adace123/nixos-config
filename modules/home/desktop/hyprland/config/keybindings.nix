@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   inherit (config.home.sessionVariables) TERMINAL BROWSER;
-in {
+in
+{
   wayland.windowManager.hyprland = {
     settings = {
       bind = [

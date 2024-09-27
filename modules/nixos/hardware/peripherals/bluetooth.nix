@@ -4,9 +4,11 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.bluetooth;
-in {
+in
+{
   options.modules.bluetooth.enable = mkEnableOption "bluetooth";
   config = mkIf cfg.enable {
     hardware.bluetooth = {
@@ -26,6 +28,9 @@ in {
       };
       powerOnBoot = true;
     };
-    environment.systemPackages = with pkgs; [bluez bluetuith];
+    environment.systemPackages = with pkgs; [
+      bluez
+      bluetuith
+    ];
   };
 }

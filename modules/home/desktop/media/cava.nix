@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.modules.desktop.media;
 in
-  with lib; {
-    config = mkIf cfg.enable {
-      home.packages = [pkgs.cava];
-    };
-  }
+with lib;
+{
+  config = mkIf cfg.enable {
+    home.packages = [ pkgs.cava ];
+  };
+}

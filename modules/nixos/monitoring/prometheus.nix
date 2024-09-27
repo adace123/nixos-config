@@ -3,9 +3,11 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.monitoring;
-in {
+in
+{
   options.modules.monitoring.enable = mkEnableOption "prometheus";
   config = mkIf cfg.enable {
     services.prometheus = {
