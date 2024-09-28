@@ -128,7 +128,7 @@ nixos-install host config:
 
     let ssh_config = pulumi stack output -s dev --show-secrets -C keys {{ host }} | from json
 
-    with-env [SHELL "/bin/sh"] { # https://github.com/nix-community/nixos-anywhere/issues/280
+    with-env {SHELL: "/bin/sh"} { # https://github.com/nix-community/nixos-anywhere/issues/280
       (
         nix run github:nix-community/nixos-anywhere --
         --build-on-remote
@@ -139,6 +139,12 @@ nixos-install host config:
         $ssh_config.url
       )
     }
+
+save-sops-key:
+    #!/usr/bin/env nu
+    mkdir ~/.config/sops/age
+    let sops_age_key = pulumi stack output -s dev --show-secrets -C keys age | from json | get privKey
+    echo $sops_age_key | save -f ~/.config/sops/age/keys.txt
 
 get-ssh-key host:
     #!/usr/bin/env nu
@@ -154,21 +160,28 @@ get-host-secret key host="common":
     }
 
     let sops_age_key = pulumi stack output -s dev --show-secrets -C keys age | from json | get privKey
-    with-env [SOPS_AGE_KEY $sops_age_key] {
+    with-env {SOPS_AGE_KEY: $sops_age_key} {
       sops -d $yaml_path | from yaml | get {{ key }}
     }
 
-edit-host-secrets type="system":
+[private]
+edit-secrets type:
     #!/usr/bin/env nu
     let yaml_path = if ("{{ type }}" == "system") {
       "modules/nixos/secrets.yaml"
     } else {
       "modules/home/secrets.yaml"
     }
-    let sops_age_key = (pulumi stack output -s dev --show-secrets -C keys age | from json | get privKey)
-    with-env [SOPS_AGE_KEY $sops_age_key] {
+    let sops_age_key = pulumi stack output -s dev --show-secrets -C keys age | from json | get privKey
+    with-env {SOPS_AGE_KEY: $sops_age_key} {
       sops $yaml_path
     }
+
+edit-user-secrets:
+    just edit-secrets user
+
+edit-system-secrets:
+    just edit-secrets system
 
 [linux]
 check:
@@ -192,3 +205,6 @@ ssh host *args:
 rotate-keys:
     pulumi destroy -y -C keys
     pulumi up -y -C keys
+
+repl:
+    nix repl -f repl.nix
