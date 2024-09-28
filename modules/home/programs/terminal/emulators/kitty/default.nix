@@ -18,6 +18,9 @@ with lib;
         name = "JetBrainsMono Nerd Font Mono";
         size = 16;
       };
+      # TODO: remove once catppuccin.nix has been updated
+      catppuccin.enable = mkForce false;
+      themeFile = "Catppuccin-Mocha";
       settings = {
         allow_remote_control = "yes";
         shell_integration = "enabled";
