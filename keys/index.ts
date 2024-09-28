@@ -11,7 +11,6 @@ interface HostSopsConfig {
   rawPath: string;
 }
 
-
 interface HostSecretConfig {
   name: string;
   url?: string;
@@ -56,7 +55,7 @@ function updateSopsConfig(agePubKey: pulumi.Output<string>) {
     sopsConfigYAML.keys = [key];
 
     for (const rule of sopsConfigYAML.creation_rules) {
-      rule.key_groups = [{ age: [key] }]
+      rule.key_groups = [{ age: [key] }];
     }
 
     fs.writeFileSync("../.sops.yaml", stringify(sopsConfigYAML));
@@ -103,30 +102,32 @@ const keys = new Map<string, object>([
 ]);
 
 // make sure secrets are encrypted with new private key, not old one
-pulumi.all([age.privKey, age.pubKey]).apply(([privKey, _pubKey]: Array<string>) => {
-  for (const hostConfig of hostConfigs) {
-    if (hostConfig.sops?.rawPath !== undefined) {
-      new local.Command(`encrypt-sops-${hostConfig.name}`, {
-        create: `sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
-        update: `sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
-        environment: {
-          SOPS_AGE_KEY: privKey,
-        },
-        dir: ".."
-      })
+pulumi
+  .all([age.privKey, age.pubKey])
+  .apply(([privKey, _pubKey]: Array<string>) => {
+    for (const hostConfig of hostConfigs) {
+      if (hostConfig.sops?.rawPath !== undefined) {
+        new local.Command(`encrypt-sops-${hostConfig.name}`, {
+          create: `sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
+          update: `sops -e ${hostConfig.sops?.rawPath} > ${hostConfig.sops?.encryptedPath}`,
+          environment: {
+            SOPS_AGE_KEY: privKey,
+          },
+          dir: "..",
+        });
+      }
     }
-  }
-})
+  });
 
 for (const hostConfig of hostConfigs) {
   if (hostConfig.sshUrl !== undefined) {
-    const sshKeyPair = generateSshKeyPair(hostConfig)
+    const sshKeyPair = generateSshKeyPair(hostConfig);
     keys.set(hostConfig.name, {
       privKey: pulumi.secret(sshKeyPair.privKey),
       pubKey: sshKeyPair.pubKey,
       url: pulumi.output(hostConfig.sshUrl),
-    })
+    });
   }
 }
 
-module.exports = Object.fromEntries(keys)
+module.exports = Object.fromEntries(keys);

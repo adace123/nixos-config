@@ -17,7 +17,7 @@ with lib;
 
   config = mkIf cfg.enable {
     sops.secrets.github-private-key = {
-      path = "/Users/aaron/.ssh/github-private-key";
+      path = "~/.ssh/github-private-key";
       mode = "0600";
     };
     home.packages = [ pkgs.pre-commit ];
