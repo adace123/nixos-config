@@ -6,21 +6,24 @@
       nixfmt-rfc-style
       nodePackages.fixjson
       prettierd
+      ruff
       rustfmt
+      shellcheck
       shfmt
       stylua
       taplo
       yamlfmt
       yamllint
     ];
+
     plugins.conform-nvim = {
       enable = true;
       settings = {
         format_on_save = {
-          lspFallback = true;
-          timeoutMs = 500;
+          lsp_format = "fallback";
+          timeout_ms = 500;
         };
-        formattersByFt = {
+        formatters_by_ft = {
           bash = [
             "shellcheck"
             "shfmt"
@@ -35,9 +38,9 @@
           markdown = [ "markdownlint" ];
           nix = [ "nixfmt" ];
           python = [
-            "ruff_fix"
             "ruff_format"
             "ruff_organize_imports"
+            # "ruff_fix" TODO: Uncomment once fixed
           ];
           rust = [ "rustfmt" ];
           tf = [ "terraform_fmt" ];
@@ -51,7 +54,6 @@
           zig = [ "zigfmt" ];
         };
       };
-
     };
   };
 }

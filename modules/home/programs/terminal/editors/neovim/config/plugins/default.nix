@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+_: {
   imports = [
     ./aerial.nix
     ./bufferline.nix
@@ -73,10 +72,7 @@
         autoSave.enabled = true;
         # autoSession.enableLastSession = true;
       };
+      web-devicons.enable = true;
     };
-    extraPlugins = with pkgs.vimPlugins; [
-      plenary-nvim
-      nvim-web-devicons
-    ];
   };
 }
