@@ -1,11 +1,3 @@
-{ ... }:
-{
-  imports = [
-    ./boot
-    ./peripherals
-    ./graphics
-    ./tools.nix
-  ];
-
+_: {
   hardware.enableRedistributableFirmware = true;
 }

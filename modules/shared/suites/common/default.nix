@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -9,24 +8,13 @@ let
 in
 with lib;
 {
+  imports = snowfall.fs.get-default-nix-files-recursive ../../system;
   options.adace.suites.common.enable = mkEnableOption "Enable common configuration for all platforms";
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      curl
-      fzf
-      git
-      jq
-      just
-      lsof
-      nushell
-      openssl
-      pkg-config
-      rsync
-      sysz
-      tldr
-      vim
-      unzip
-      yq
-    ];
+    adace.system = {
+      fonts.enable = true;
+      nix.enable = true;
+      packages.enable = true;
+    };
   };
 }

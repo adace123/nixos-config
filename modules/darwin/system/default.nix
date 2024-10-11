@@ -1,6 +1,9 @@
 { lib, ... }:
+with lib;
 {
-  imports = [ (lib.snowfall.fs.get-file "modules/shared/suites/common/default.nix") ];
+  imports = [
+    (snowfall.fs.get-file "modules/shared/suites/common/default.nix")
+  ];
   system = {
     stateVersion = 5;
     defaults = {

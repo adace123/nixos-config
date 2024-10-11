@@ -9,7 +9,6 @@ On macOS, this is: ~/Library/Application Support/ptpython/config.py
 from prompt_toolkit.filters import ViInsertMode
 from prompt_toolkit.key_binding.key_processor import KeyPress
 from prompt_toolkit.keys import Keys
-from prompt_toolkit.styles import Style
 from ptpython.layout import CompletionVisualisation
 
 __all__ = ["configure"]

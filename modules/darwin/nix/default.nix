@@ -1,20 +1,25 @@
-{ lib, ... }:
+{ config, lib, ... }:
+let
+  cfg = config.adace.system.nix;
+in
+with lib;
 {
-  imports = [ (lib.snowfall.fs.get-file "modules/shared/nix/default.nix") ];
-  nix = {
-    gc = {
-      interval = {
-        Hour = 12;
-        Minute = 0;
-        Day = 1;
+  config = mkIf cfg.enable {
+    nix = {
+      gc = {
+        interval = {
+          Hour = 12;
+          Minute = 0;
+          Day = 1;
+        };
+        user = "aaron";
       };
-      user = "aaron";
-    };
 
-    optimise = {
-      interval = {
-        Hour = 13;
-        Day = 1;
+      optimise = {
+        interval = {
+          Hour = 13;
+          Day = 1;
+        };
       };
     };
   };
