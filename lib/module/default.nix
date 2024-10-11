@@ -1,11 +1,17 @@
 {
-  lib,
   inputs,
-  # overlays,
   ...
 }:
 {
+  inherit (inputs.nix-std.lib.serde) toTOML;
   std = inputs.nix-std.lib;
+  # toYAML =
+  #   config:
+  #   builtins.readFile (
+  #     pkgs.runCommand "to-yaml" { } ''
+  #       ${pkgs.yq}/bin/yq -y . ${pkgs.writeText "to-json" (builtins.toJSON config)}  > $out
+  #     ''
+  #   );
   # mkNixosSystem = {
   #   system ? "x86_64-linux",
   #   host,

@@ -13,7 +13,9 @@
     name = "aaron";
   };
   adace = {
-    security.sops.enable = true;
+    services = {
+      sops.enable = true;
+    };
     suites.development.enable = true;
   };
   programs.kitty.settings.startup_session = "~/.config/kitty/work.conf";

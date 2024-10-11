@@ -37,6 +37,8 @@ with lib;
 
     programs.zoxide.enable = true;
 
+    sops.secrets.google-api-key = { };
+
     programs.nushell = {
       enable = true;
       envFile.source = ./config/environment.nu;
@@ -60,6 +62,7 @@ with lib;
         # themes
         use ${nu_script_path}/themes/nu-themes/everforest.nu
         $env.config = ($env.config | merge {color_config: (everforest)})
+        $env.GOOGLE_API_KEY = (open ${config.sops.secrets.google-api-key.path})
 
         fastfetch
       '';

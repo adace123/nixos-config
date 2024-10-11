@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.security.sops;
+  cfg = config.adace.services.sops;
 in
 with lib;
 {
-  options.adace.security.sops.enable = mkEnableOption "sops";
+  options.adace.services.sops.enable = mkEnableOption "sops";
   config = mkIf cfg.enable {
     # restart sops-nix user service to pick up latest changes to secrets
     # TODO: Can something similar be implemented for darwin machines?
@@ -25,7 +25,7 @@ with lib;
       defaultSopsFile = snowfall.fs.get-file "modules/home/secrets.yaml";
       age = {
         keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-        sshKeyPaths = [ "/home/${config.snowfallorg.user.name}/.ssh/id_ed25519" ];
+        sshKeyPaths = [ "${builtins.getEnv "HOME"}/.ssh/id_ed25519" ];
       };
     };
   };
