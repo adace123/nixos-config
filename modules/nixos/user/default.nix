@@ -13,10 +13,23 @@ with lib;
     name = mkOption {
       type = types.str;
       description = "Default user name";
-      # default = config.snowfallorg.user.name;
+      default = "aaron";
     };
-    password.enable = mkEnableOption "Set user password";
-    sudo.enable = mkEnableOption "Enable sudo privileges";
+    password.enable = mkOption {
+      type = types.bool;
+      description = "Enable user password";
+      default = true;
+    };
+    sudo.enable = mkOption {
+      type = types.bool;
+      description = "Enable sudo privileges";
+      default = true;
+    };
+    extraGroups = mkOption {
+      type = types.listOf types.str;
+      description = "Extra user groups";
+      default = [ ];
+    };
   };
 
   config = {
@@ -30,7 +43,7 @@ with lib;
         {
           isNormalUser = true;
           shell = pkgs.nushell;
-          extraGroups = optionals cfg.sudo.enable [ "wheel" ];
+          extraGroups = (optionals cfg.sudo.enable [ "wheel" ]) ++ cfg.extraGroups;
         }
         (mkIf cfg.password.enable {
           hashedPasswordFile = config.sops.secrets.password.path;

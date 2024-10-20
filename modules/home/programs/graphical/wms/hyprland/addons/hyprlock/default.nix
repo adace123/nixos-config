@@ -4,11 +4,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland.addons.waybar;
+  cfg = config.adace.programs.graphical.window-managers.hyprland.addons.hyprlock;
 in
 with lib;
 {
-  options.adace.programs.graphical.window-managers.hyprland.addons.waybar.enable = mkEnableOption "Hyprlock";
+  options.adace.programs.graphical.window-managers.hyprland.addons.hyprlock.enable = mkEnableOption "Hyprlock";
   config = mkIf cfg.enable {
     programs.hyprlock = {
       enable = true;

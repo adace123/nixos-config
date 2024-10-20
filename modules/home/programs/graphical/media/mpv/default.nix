@@ -9,7 +9,7 @@ let
 in
 with lib;
 {
-  options.adace.programs.graphical.media.mpv = mkEnableOption "mpv";
+  options.adace.programs.graphical.media.mpv.enable = mkEnableOption "mpv";
   config = mkIf cfg.enable {
     programs.mpv = {
       enable = true;

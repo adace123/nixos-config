@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  std,
   ...
 }:
 let
@@ -17,7 +16,7 @@ with lib;
     xdg.configFile.pypr = {
       target = "hypr/pyprland.toml";
       onChange = "${pkgs.pyprland}/bin/pypr reload";
-      text = std.serde.toTOML {
+      text = lib.std.serde.toTOML {
         pyprland.plugins = [ "scratchpads" ];
         scratchpads = {
           terminal = {

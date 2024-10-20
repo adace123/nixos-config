@@ -12,6 +12,7 @@
 
   # Cannot use sops-nix secrets in ISO
   adace.system.networking.wifi.setupProfiles = lib.mkForce false;
+  adace.system.user.password.enable = false;
 
   imports = [
     "${toString modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
