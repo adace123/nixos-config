@@ -26,8 +26,8 @@ in
     # TODO: Replace with Tailscale SSH
     networking.firewall.allowedTCPPorts = [ 22 ];
 
-    # users.users.${config.modules.user.name}.openssh.authorizedKeys.keys = [
-    #   (builtins.readFile ../../../hosts/${host}/${host}.pub)
-    # ];
+    users.users.${config.adace.system.user.name}.openssh.authorizedKeys.keys = [
+      (snowfall.fs.get-file "systems/x86_64-linux/${config.networking.hostName}/ssh.pub")
+    ];
   };
 }

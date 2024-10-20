@@ -4,6 +4,10 @@
   ...
 }:
 {
+  imports = [
+    "${toString modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+  ];
+
   adace.suites = {
     system.base.enable = true;
   };
@@ -14,11 +18,7 @@
   adace.system.networking.wifi.setupProfiles = lib.mkForce false;
   adace.system.user.password.enable = false;
 
-  imports = [
-    "${toString modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-  ];
-
-  users.users.nixos.openssh.authorizedKeys.keys = [ (builtins.readFile ./iso.pub) ];
+  users.users.root.openssh.authorizedKeys.keys = [ (builtins.readFile ./ssh.pub) ];
 
   isoImage = {
     isoName = lib.mkForce "nixos.iso";
