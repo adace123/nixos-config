@@ -1,7 +1,6 @@
 {
   config,
   lib,
-
   pkgs,
   ...
 }:
@@ -12,7 +11,10 @@ with lib;
 {
   options.adace.programs.terminal.editors.helix.enable = mkEnableOption "Helix editor";
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ pkgs.nodePackages.typescript-language-server ];
+    home.packages = with pkgs; [
+      pkgs.pyright
+      pkgs.nodePackages.typescript-language-server
+    ];
     programs.helix = {
       enable = true;
       languages = {

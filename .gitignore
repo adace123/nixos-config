@@ -5,3 +5,4 @@ infra/vendor
 **/*secrets-raw.yaml
 *.iso
 .DS_store
+.env

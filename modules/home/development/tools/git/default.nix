@@ -59,7 +59,7 @@ with lib;
         matchBlocks."github.com" = {
           hostname = "github.com";
           user = "git";
-          identityFile = [ config.sops.secrets.github-private-key.path ];
+          identityFile = config.sops.secrets.github-private-key.path;
         };
       };
     };

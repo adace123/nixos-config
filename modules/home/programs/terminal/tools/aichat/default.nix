@@ -1,34 +1,27 @@
 {
   config,
   lib,
-
   pkgs,
   ...
 }:
 let
   cfg = config.adace.programs.terminal.tools.aichat;
-  toYAML =
-    config:
-    builtins.readFile (
-      pkgs.runCommand "to-yaml" { } ''
-        ${pkgs.yq}/bin/yq -y . ${pkgs.writeText "to-json" (builtins.toJSON config)}  > $out
-      ''
-    );
 in
 with lib;
+with lib.adace;
 {
   options.adace.programs.terminal.tools.aichat.enable = mkEnableOption "aichat";
   config = mkIf cfg.enable {
     home.packages = [ pkgs.aichat ];
-    xdg.configFile."aichat/config.yaml".text = toYAML {
+    xdg.configFile."aichat/config.yaml".text = builtins.toJSON {
       highlight = true;
       keybindings = "vi";
-      model = "ollama:llama3.1";
+      model = "ollama:llama3.2:1b";
       clients = [
         {
           type = "ollama";
           api_base = "http://localhost:11434";
-          models = [ { name = "gemma2"; } ];
+          models = [ { name = "llama:3.2:1b"; } ];
         }
         {
           type = "gemini";
@@ -36,17 +29,6 @@ with lib;
         }
       ];
     };
-
-    home.file.".config/aichat/roles.yaml".text = toYAML [
-      {
-        name = "nushell";
-        prompt = ''
-          Act as a Nushell expert.
-          Answer only with code.
-          Do not write any explanations.
-        '';
-      }
-    ];
 
     programs.nushell.extraConfig = ''
       def _aichat_nushell [] {
