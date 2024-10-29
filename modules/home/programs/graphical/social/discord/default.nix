@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.social.discord;
+  cfg = config.adace.desktop.social.discord;
 in
 with lib;
 {
-  options.adace.programs.graphical.social.discord.enable = mkEnableOption "discord";
+  options.adace.desktop.social.discord.enable = mkEnableOption "discord";
   config = mkIf cfg.enable {
     home.packages = [ pkgs.discord ];
   };

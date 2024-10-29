@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.tools.btop;
+  cfg = config.adace.terminal.tools.btop;
 in
 with lib;
 {
-  options.adace.programs.terminal.tools.btop.enable = mkEnableOption "btop";
+  options.adace.terminal.tools.btop.enable = mkEnableOption "btop";
   config = mkIf cfg.enable {
     programs.btop = {
       enable = true;

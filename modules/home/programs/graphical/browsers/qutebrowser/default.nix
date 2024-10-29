@@ -6,11 +6,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.browsers.qutebrowser;
+  cfg = config.adace.desktop.browsers.qutebrowser;
 in
 with lib;
 {
-  options.adace.programs.graphical.browsers.qutebrowser = {
+  options.adace.desktop.browsers.qutebrowser = {
     enable = mkEnableOption "qutebrowser";
     isDefaultBrowser = mkEnableOption "set qutebrowser as default";
   };

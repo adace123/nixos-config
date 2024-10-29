@@ -6,11 +6,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland;
+  cfg = config.adace.desktop.window-managers.hyprland;
 in
 with lib;
 {
-  options.adace.programs.graphical.window-managers.hyprland = {
+  options.adace.desktop.window-managers.hyprland = {
     enable = mkEnableOption "Enable Hyprland";
     addons.enable = mkEnableOption "Enable Hyprland addons";
   };

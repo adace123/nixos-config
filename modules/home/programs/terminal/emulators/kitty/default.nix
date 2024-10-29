@@ -6,12 +6,16 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.emulators.kitty;
+  cfg = config.adace.terminal.emulators.kitty;
 in
 with lib;
 {
-  options.adace.programs.terminal.emulators.kitty.enable = mkEnableOption "kitty";
+  options.adace.terminal.emulators.kitty = {
+    enable = mkEnableOption "kitty";
+    isDefaultTerminal = mkEnableOption "Make kitty the default terminal";
+  };
   config = mkIf cfg.enable {
+    home.sessionVariables.TERMINAL = mkIf cfg.isDefaultTerminal "kitty";
     programs.kitty = {
       enable = true;
       font = {

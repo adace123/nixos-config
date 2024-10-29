@@ -1,22 +1,23 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland.addons.waybar;
+  cfg = config.adace.desktop.window-managers.hyprland.addons.waybar;
   inherit (config.home.sessionVariables) TERMINAL;
 in
 with lib;
 {
-  options.adace.programs.graphical.window-managers.hyprland.addons.pyprland.enable = mkEnableOption "pyprland";
+  options.adace.desktop.window-managers.hyprland.addons.pyprland.enable = mkEnableOption "pyprland";
   config = mkIf cfg.enable {
     home.packages = [ pkgs.pyprland ];
     xdg.configFile.pypr = {
       target = "hypr/pyprland.toml";
       onChange = "${pkgs.pyprland}/bin/pypr reload";
-      text = lib.std.serde.toTOML {
+      text = inputs.nix-std.lib.serde.toTOML {
         pyprland.plugins = [ "scratchpads" ];
         scratchpads = {
           terminal = {

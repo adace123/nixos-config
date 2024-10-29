@@ -6,12 +6,12 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.tools.lazygit;
+  cfg = config.adace.terminal.tools.lazygit;
 
 in
 with lib;
 {
-  options.adace.programs.terminal.tools.lazygit.enable = mkEnableOption "lazygit";
+  options.adace.terminal.tools.lazygit.enable = mkEnableOption "lazygit";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ delta ];
     programs.lazygit = {

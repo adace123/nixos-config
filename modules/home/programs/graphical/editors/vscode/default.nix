@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.editors.vscode;
+  cfg = config.adace.desktop.editors.vscode;
 in
 with lib;
 {
-  options.adace.programs.graphical.editors.vscode.enable = mkEnableOption "VS Code";
+  options.adace.desktop.editors.vscode.enable = mkEnableOption "VS Code";
   config = mkIf cfg.enable {
     programs.vscode = {
       enable = true;

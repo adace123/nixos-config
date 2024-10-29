@@ -23,30 +23,28 @@ with lib;
           git.enable = true;
         };
       };
-      programs = {
-        terminal = {
-          emulators = {
-            kitty.enable = true;
-          };
-          editors = {
-            helix.enable = true;
-            neovim.enable = true;
-          };
-          shells.nushell.enable = true;
-          tools = {
-            aichat.enable = true;
-            btop.enable = true;
-            direnv.enable = true;
-            fastfetch.enable = true;
-            lazygit.enable = true;
-            modern-unix.enable = true;
-            starship.enable = true;
-            tgpt.enable = true;
-            yazi.enable = true;
+      terminal = {
+        emulators = {
+          kitty = {
+            enable = true;
+            isDefaultTerminal = true;
           };
         };
-        graphical = {
-          editors.vscode.enable = true;
+        editors = {
+          helix.enable = true;
+          neovim.enable = true;
+        };
+        shells.nushell.enable = true;
+        tools = {
+          aichat.enable = true;
+          btop.enable = true;
+          direnv.enable = true;
+          fastfetch.enable = true;
+          lazygit.enable = true;
+          modern-unix.enable = true;
+          starship.enable = true;
+          tgpt.enable = true;
+          yazi.enable = true;
         };
       };
     };

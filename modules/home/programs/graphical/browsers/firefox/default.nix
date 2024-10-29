@@ -6,11 +6,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.browsers.floorp;
+  cfg = config.adace.desktop.browsers.floorp;
 in
 with lib;
 {
-  options.adace.programs.graphical.browsers.floorp = {
+  options.adace.desktop.browsers.floorp = {
     enable = mkEnableOption "Floorp";
     isDefaultBrowser = mkEnableOption "Set Floorp as default browser";
   };

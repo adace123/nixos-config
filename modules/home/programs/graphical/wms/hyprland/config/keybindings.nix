@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (config.home.sessionVariables) TERMINAL BROWSER;
-  cfg = config.adace.programs.graphical.window-managers.hyprland;
+  cfg = config.adace.desktop.window-managers.hyprland;
 in
 with lib;
 {

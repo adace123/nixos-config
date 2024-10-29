@@ -5,12 +5,12 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.tools.aichat;
+  cfg = config.adace.terminal.tools.aichat;
 in
 with lib;
 with lib.adace;
 {
-  options.adace.programs.terminal.tools.aichat.enable = mkEnableOption "aichat";
+  options.adace.terminal.tools.aichat.enable = mkEnableOption "aichat";
   config = mkIf cfg.enable {
     home.packages = [ pkgs.aichat ];
     xdg.configFile."aichat/config.yaml".text = builtins.toJSON {

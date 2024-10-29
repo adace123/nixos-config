@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland.addons.waybar;
+  cfg = config.adace.desktop.window-managers.hyprland.addons.waybar;
 in
 with lib;
 {
-  options.adace.programs.graphical.window-managers.hyprland.addons.waybar.enable = mkEnableOption "Waybar";
+  options.adace.desktop.window-managers.hyprland.addons.waybar.enable = mkEnableOption "Waybar";
   config = mkIf cfg.enable {
     programs.wlogout.enable = true;
     programs.waybar = {

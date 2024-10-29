@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland.addons.notifications;
+  cfg = config.adace.desktop.window-managers.hyprland.addons.notifications;
 in
 with lib;
 {
-  options.adace.programs.graphical.window-managers.hyprland.addons.notifications.enable = mkEnableOption "notifications";
+  options.adace.desktop.window-managers.hyprland.addons.notifications.enable = mkEnableOption "notifications";
   config = mkIf cfg.enable {
     home.packages = [ pkgs.libnotify ];
     services.mako = {

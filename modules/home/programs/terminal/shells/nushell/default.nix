@@ -7,7 +7,7 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.shells.nushell;
+  cfg = config.adace.terminal.shells.nushell;
   nu_script_path = "${inputs.nu_scripts}";
   custom_scripts = builtins.map (
     x:
@@ -19,7 +19,7 @@ let
 in
 with lib;
 {
-  options.adace.programs.terminal.shells.nushell.enable = mkEnableOption "nushell";
+  options.adace.terminal.shells.nushell.enable = mkEnableOption "nushell";
 
   config = mkIf cfg.enable {
     home.packages =

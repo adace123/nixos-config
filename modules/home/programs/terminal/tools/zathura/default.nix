@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.tools.zathura;
+  cfg = config.adace.terminal.tools.zathura;
 in
 with lib;
 {
-  options.adace.programs.terminal.tools.zathura.enable = mkEnableOption "zathura";
+  options.adace.terminal.tools.zathura.enable = mkEnableOption "zathura";
   config = mkIf cfg.enable {
     xdg.mimeApps = {
       defaultApplications."application/pdf" = [ "org.pwmt.zathura.desktop" ];

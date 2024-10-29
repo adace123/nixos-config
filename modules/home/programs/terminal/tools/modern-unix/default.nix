@@ -6,11 +6,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.tools.modern-unix;
+  cfg = config.adace.terminal.tools.modern-unix;
 in
 with lib;
 {
-  options.adace.programs.terminal.tools.modern-unix.enable = mkEnableOption "Modern Unix tools";
+  options.adace.terminal.tools.modern-unix.enable = mkEnableOption "Modern Unix tools";
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [

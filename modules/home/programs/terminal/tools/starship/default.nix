@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.tools.starship;
+  cfg = config.adace.terminal.tools.starship;
 in
 with lib;
 {
-  options.adace.programs.terminal.tools.starship.enable = mkEnableOption "starship prompt";
+  options.adace.terminal.tools.starship.enable = mkEnableOption "starship prompt";
   config = mkIf cfg.enable {
     programs.starship = {
       enable = true;

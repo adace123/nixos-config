@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.media.mpv;
+  cfg = config.adace.desktop.media.mpv;
 in
 with lib;
 {
-  options.adace.programs.graphical.media.mpv.enable = mkEnableOption "mpv";
+  options.adace.desktop.media.mpv.enable = mkEnableOption "mpv";
   config = mkIf cfg.enable {
     programs.mpv = {
       enable = true;

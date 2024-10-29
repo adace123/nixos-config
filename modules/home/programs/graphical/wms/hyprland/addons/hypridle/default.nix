@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland.addons.hypridle;
+  cfg = config.adace.desktop.window-managers.hyprland.addons.hypridle;
 
   suspendScript = pkgs.writeShellScript "suspend-script" ''
     ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
@@ -16,7 +16,7 @@ let
 in
 with lib;
 {
-  options.adace.programs.graphical.window-managers.hyprland.addons.hypridle.enable = mkEnableOption "Hypridle";
+  options.adace.desktop.window-managers.hyprland.addons.hypridle.enable = mkEnableOption "Hypridle";
 
   config = mkIf cfg.enable {
     services.hypridle = {

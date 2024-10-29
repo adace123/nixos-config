@@ -4,11 +4,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland.addons.wlsunset;
+  cfg = config.adace.desktop.window-managers.hyprland.addons.wlsunset;
 in
 with lib;
 {
-  options.adace.programs.graphical.window-managers.hyprland.addons.wlsunset.enable = mkEnableOption "wlsunset";
+  options.adace.desktop.window-managers.hyprland.addons.wlsunset.enable = mkEnableOption "wlsunset";
   config = mkIf cfg.enable {
     services.wlsunset = {
       enable = true;

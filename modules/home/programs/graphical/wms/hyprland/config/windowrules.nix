@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland;
+  cfg = config.adace.desktop.window-managers.hyprland;
 in
 with lib;
 {

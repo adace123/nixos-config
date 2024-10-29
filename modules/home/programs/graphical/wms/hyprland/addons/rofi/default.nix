@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.graphical.window-managers.hyprland.addons.rofi;
+  cfg = config.adace.desktop.window-managers.hyprland.addons.rofi;
 in
 with lib;
 {
-  options.adace.programs.graphical.window-managers.hyprland.addons.rofi.enable = mkEnableOption "rofi";
+  options.adace.desktop.window-managers.hyprland.addons.rofi.enable = mkEnableOption "rofi";
   config = mkIf cfg.enable {
     programs.rofi = {
       enable = true;

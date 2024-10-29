@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.editors.helix;
+  cfg = config.adace.terminal.editors.helix;
 in
 with lib;
 {
-  options.adace.programs.terminal.editors.helix.enable = mkEnableOption "Helix editor";
+  options.adace.terminal.editors.helix.enable = mkEnableOption "Helix editor";
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       pkgs.pyright

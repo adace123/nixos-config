@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.tools.fastfetch;
+  cfg = config.adace.terminal.tools.fastfetch;
 in
 with lib;
 {
-  options.adace.programs.terminal.tools.fastfetch.enable = mkEnableOption "fastfetch";
+  options.adace.terminal.tools.fastfetch.enable = mkEnableOption "fastfetch";
   config = mkIf cfg.enable {
     programs.fastfetch = {
       enable = true;
