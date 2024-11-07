@@ -24,27 +24,9 @@ with lib;
         };
       };
       terminal = {
-        emulators = {
-          kitty = {
-            enable = true;
-            isDefaultTerminal = true;
-          };
-        };
         editors = {
           helix.enable = true;
           neovim.enable = true;
-        };
-        shells.nushell.enable = true;
-        tools = {
-          aichat.enable = true;
-          btop.enable = true;
-          direnv.enable = true;
-          fastfetch.enable = true;
-          lazygit.enable = true;
-          modern-unix.enable = true;
-          starship.enable = true;
-          tgpt.enable = true;
-          yazi.enable = true;
         };
       };
     };
