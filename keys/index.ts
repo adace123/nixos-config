@@ -13,6 +13,7 @@ interface HostSopsConfig {
 
 interface HostSecretConfig {
   name: string;
+  system?: string;
   url?: string;
   sops?: HostSopsConfig;
   sshUrl?: string;
@@ -28,6 +29,8 @@ interface SopsAgeKeys {
   age: KeyPair;
 }
 
+// Create SSH key pair for each host
+// TODO: Deprecate in favor of Tailscale SSH
 function generateSshKeyPair(hostConfig: HostSecretConfig): KeyPair {
   const sshKeyPair = new tls.PrivateKey(`${hostConfig.name}-ssh-key`, {
     algorithm: "ED25519",
@@ -39,7 +42,7 @@ function generateSshKeyPair(hostConfig: HostSecretConfig): KeyPair {
     fs.writeFileSync(privateKeyPath, key),
   );
   sshKeyPair.publicKeyOpenssh.apply((key: string) =>
-    fs.writeFileSync(`../hosts/${hostConfig.name}/${hostConfig.name}.pub`, key),
+    fs.writeFileSync(`../systems/x86_64-linux/${hostConfig.name}/ssh.pub`, key),
   );
 
   return {
@@ -48,6 +51,7 @@ function generateSshKeyPair(hostConfig: HostSecretConfig): KeyPair {
   };
 }
 
+// Update sops.yaml with age public key
 function updateSopsConfig(agePubKey: pulumi.Output<string>) {
   agePubKey.apply((key: string) => {
     const sopsConfigYAML = parse(fs.readFileSync("../.sops.yaml").toString());
@@ -62,6 +66,7 @@ function updateSopsConfig(agePubKey: pulumi.Output<string>) {
   });
 }
 
+// Generate SSH key pair and convert it to age format
 function generateAgeKeyPair(): SopsAgeKeys {
   const sopsSSHKey = new tls.PrivateKey("sops-key", {
     algorithm: "ED25519",
@@ -101,7 +106,7 @@ const keys = new Map<string, object>([
   ["sops", { privKey: sops.privKey, pubKey: sops.pubKey }],
 ]);
 
-// make sure secrets are encrypted with new private key, not old one
+// Encrypt raw secrets file using age key pair
 pulumi
   .all([age.privKey, age.pubKey])
   .apply(([privKey, _pubKey]: Array<string>) => {
@@ -119,6 +124,7 @@ pulumi
     }
   });
 
+// Create SSH keys for each host
 for (const hostConfig of hostConfigs) {
   if (hostConfig.sshUrl !== undefined) {
     const sshKeyPair = generateSshKeyPair(hostConfig);
