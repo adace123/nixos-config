@@ -12,6 +12,11 @@ with lib;
   options.adace.system.boot = {
     enable = mkEnableOption "Boot options";
     silent = mkEnableOption "Silent boot";
+    configLimit = mkOption {
+      type = types.int;
+      description = "NixOS generation limit";
+      default = 5;
+    };
   };
   config = mkIf cfg.enable {
     boot = {
