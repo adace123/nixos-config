@@ -1,9 +1,15 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 with lib;
 {
   imports = [
     (snowfall.fs.get-file "modules/shared/suites/common/default.nix")
   ];
+
+  users.users.aaron = {
+    home = "/Users/aaron";
+    shell = pkgs.nushell;
+  };
+
   system = {
     stateVersion = 5;
     defaults = {

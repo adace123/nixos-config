@@ -13,6 +13,7 @@ _: {
     ];
     brews = [
       "awscli"
+      "colima"
       "gsed"
       "vault"
     ];

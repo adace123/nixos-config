@@ -8,6 +8,7 @@ mkShell {
   packages =
     with pkgs;
     [
+      just
       home-manager
       pulumi
       ssh-to-age

@@ -1,11 +1,12 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
   cfg = config.adace.services.ai.ollama;
-  ollamaPackage = cfg.package.override {
+  ollamaPackage = pkgs.ollama.override {
     inherit (cfg) acceleration;
   };
 in
@@ -16,10 +17,6 @@ with lib;
     models = lib.mkOption {
       type = with lib.types; listOf str;
       default = [ "llama3.2" ];
-      example = [
-        "llama3"
-        "phi3:3.8b"
-      ];
     };
 
     acceleration = lib.mkOption {
@@ -30,10 +27,8 @@ with lib;
         ]
       );
       default = null;
-      example = "rocm";
       description = ''
         Specifies the interface to use for hardware acceleration.
-
         - `rocm`: supported by modern AMD GPUs
         - `cuda`: supported by modern NVIDIA GPUs
       '';
@@ -42,6 +37,7 @@ with lib;
   config = mkIf cfg.enable (mkMerge [
     {
       home.packages = [ ollamaPackage ];
+      sops.secrets.google-api-key = { };
     }
     (lib.mkIf pkgs.stdenv.isLinux {
       systemd.user.services.ollama = {

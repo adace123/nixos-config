@@ -41,6 +41,7 @@ alias ts = tailscale
 alias v = nvim
 alias watch = viddy
 alias weather = http get https://wttr.in/Los_Angeles
+alias wz = wezterm
 alias y = yazi
 alias zj = zellij
 alias zjl = zellij ls

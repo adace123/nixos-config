@@ -2,7 +2,6 @@
   config,
   inputs,
   lib,
-
   pkgs,
   ...
 }:
@@ -19,7 +18,10 @@ let
 in
 with lib;
 {
-  options.adace.terminal.shells.nushell.enable = mkEnableOption "nushell";
+  options.adace.terminal.shells.nushell = {
+    enable = mkEnableOption "nushell";
+    setDefaultShell = mkEnableOption "Set nushell as default shell";
+  };
 
   config = mkIf cfg.enable {
     home.packages =
@@ -36,8 +38,6 @@ with lib;
     };
 
     programs.zoxide.enable = true;
-
-    sops.secrets.google-api-key = { };
 
     programs.nushell = {
       enable = true;
@@ -62,7 +62,6 @@ with lib;
         # themes
         use ${nu_script_path}/themes/nu-themes/everforest.nu
         $env.config = ($env.config | merge {color_config: (everforest)})
-        $env.GOOGLE_API_KEY = (open ${config.sops.secrets.google-api-key.path})
 
         fastfetch
       '';

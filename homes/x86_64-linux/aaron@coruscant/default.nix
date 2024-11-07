@@ -9,5 +9,13 @@ _: {
     output = "DP-2";
     resolution = "2560x1440";
   };
-  adace.services.sops.enable = true;
+  adace.services = {
+    security.sops.enable = true;
+    ai = {
+      ollama = {
+        enable = true;
+        acceleration = "cuda";
+      };
+    };
+  };
 }

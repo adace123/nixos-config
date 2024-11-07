@@ -108,47 +108,42 @@
       }
       {
         key = "<C-h>";
-        action = "<C-w>g";
-        options.desc = "Navigate left";
-      }
-      {
-        key = "<C-h>";
-        action = "<C-w>h";
+        action.__raw = "function () require('smart-splits').move_cursor_left() end";
         options.desc = "Navigate left";
       }
       {
         key = "<C-l>";
-        action = "<C-w>l";
+        action.__raw = "function () require('smart-splits').move_cursor_right() end";
         options.desc = "Navigate right";
       }
       {
         key = "<C-j>";
-        action = "<C-w>j";
+        action.__raw = "function () require('smart-splits').move_cursor_down() end";
         options.desc = "Navigate down";
       }
       {
         key = "<C-k>";
-        action = "<C-w>k";
+        action.__raw = "function () require('smart-splits').move_cursor_up() end";
         options.desc = "Navigate up";
       }
       {
         key = "<C-Up>";
-        action = ":resize -2<CR>";
+        action.__raw = "function () require('smart-splits').resize_up() end";
         options.desc = "Resize up";
       }
       {
         key = "<C-Down>";
-        action = ":resize +2<CR>";
+        action.__raw = "function () require('smart-splits').resize_down() end";
         options.desc = "Resize down";
       }
       {
         key = "<C-Left>";
-        action = ":vertical resize -2<CR>";
+        action.__raw = "function () require('smart-splits').resize_left() end";
         options.desc = "Resize left";
       }
       {
         key = "<C-Up>";
-        action = ":vertical resize +2<CR>";
+        action.__raw = "function () require('smart-splits').resize_right() end";
         options.desc = "Resize right";
       }
       {

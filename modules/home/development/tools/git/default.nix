@@ -17,7 +17,10 @@ with lib;
 
   config = mkIf cfg.enable {
     sops.secrets.github-private-key = { };
-    home.packages = [ pkgs.pre-commit ];
+    home.packages = with pkgs; [
+      pre-commit
+      delta
+    ];
     programs = {
       git = {
         enable = true;

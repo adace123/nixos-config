@@ -46,10 +46,6 @@ with lib;
 
       keybindings = {
         "ctrl+enter" = "launch --cwd=current";
-        "ctrl+j" = "kitten pass_keys.py bottom ctrl+j";
-        "ctrl+k" = "kitten pass_keys.py top    ctrl+k";
-        "ctrl+h" = "kitten pass_keys.py left   ctrl+h";
-        "ctrl+l" = "kitten pass_keys.py right  ctrl+l";
         "ctrl+]" = "next_tab";
         "ctrl+[" = "previous_tab";
         "alt+l" = "clear_terminal to_cursor active";
@@ -77,11 +73,31 @@ with lib;
 
       extraConfig = ''
         # kitty-scrollback.nvim Kitten alias
-        action_alias kitty_scrollback_nvim kitten ${pkgs.kitty-scrollback}/python/kitty_scrollback_nvim.py
         # Browse scrollback buffer in nvim
         map kitty_mod+h kitty_scrollback_nvim
         # Browse output of the last shell command in nvim
         map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+        map ctrl+j neighboring_window down
+        map ctrl+k neighboring_window up
+        map ctrl+h neighboring_window left
+        map ctrl+l neighboring_window right
+
+        # Unset the mapping to pass the keys to neovim
+        map --when-focus-on var:IS_NVIM ctrl+j
+        map --when-focus-on var:IS_NVIM ctrl+k
+        map --when-focus-on var:IS_NVIM ctrl+h
+        map --when-focus-on var:IS_NVIM ctrl+l
+
+        # the 3 here is the resize amount, adjust as needed
+        map alt+j kitten relative_resize.py down  3
+        map alt+k kitten relative_resize.py up    3
+        map alt+h kitten relative_resize.py left  3
+        map alt+l kitten relative_resize.py right 3
+
+        map --when-focus-on var:IS_NVIM alt+j
+        map --when-focus-on var:IS_NVIM alt+k
+        map --when-focus-on var:IS_NVIM alt+h
+        map --when-focus-on var:IS_NVIM alt+l
       '';
     };
   };
