@@ -13,7 +13,10 @@ with lib;
     adace.terminal = {
       emulators = {
         kitty.enable = true;
-        wezterm.enable = true;
+        wezterm = {
+          enable = true;
+          isDefaultTerminal = true;
+        };
       };
       shells.nushell.enable = true;
       tools = {
