@@ -8,7 +8,7 @@ let
 in
 with lib;
 {
-  options.adace.suites.virtualisation = mkEnableOption "virtualization";
+  options.adace.suites.virtualisation.enable = mkEnableOption "virtualization";
   config = mkIf cfg.enable {
     adace.system.virtualisation = {
       incus.enable = true;
