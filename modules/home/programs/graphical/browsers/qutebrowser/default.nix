@@ -80,6 +80,7 @@ with lib;
           "gu" = "hint inputs --first;; cmd-later 3 fake-key <Shift-Home>;; cmd-later 3 fake-key <Delete>";
           "<Alt-d>" = "config-cycle colors.webpage.darkmode.enabled";
           "<Ctrl-Shift-i>" = "devtools";
+          "<Ctrl-Shift-h>" = "history";
           "<Ctrl-p>" = "print";
           "<Ctrl-Shift-o>" = "cmd-set-text -s :open -p";
           "<" = "tab-move -";
