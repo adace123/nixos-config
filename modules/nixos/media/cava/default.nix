@@ -11,6 +11,6 @@ with lib;
 {
   options.adace.terminal.tools.cava.enable = mkEnableOption "cava";
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.cava ];
+    environment.systemPackages = [ pkgs.cava ];
   };
 }

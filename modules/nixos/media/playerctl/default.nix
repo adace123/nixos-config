@@ -12,6 +12,6 @@ with lib;
   options.adace.terminal.tools.playerctl.enable = mkEnableOption "media";
   config = mkIf cfg.enable {
     services.playerctld.enable = true;
-    home.packages = [ pkgs.playerctl ];
+    environment.systemPackages = [ pkgs.playerctl ];
   };
 }
