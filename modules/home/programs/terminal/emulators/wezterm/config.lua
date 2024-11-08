@@ -50,7 +50,7 @@ return {
 	window_close_confirmation = "NeverPrompt",
 	color_scheme = "Catppuccin Macchiato",
 	bold_brightens_ansi_colors = true,
-	enable_wayland = false,
+	enable_wayland = true,
 	hide_tab_bar_if_only_one_tab = true,
 	front_end = "WebGpu",
 	window_background_opacity = 0.94,
