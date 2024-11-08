@@ -25,8 +25,8 @@ with lib;
       git = {
         enable = true;
         delta.enable = true;
-        # userName = "adace123";
-        # userEmail = "18275490+adace123@users.noreply.github.com";
+        userName = "adace123";
+        userEmail = "18275490+adace123@users.noreply.github.com";
 
         ignores = [
           "*.log"
