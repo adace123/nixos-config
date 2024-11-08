@@ -1,5 +1,9 @@
 _: {
   home.stateVersion = "23.11";
+  snowfallorg.user = {
+    enable = true;
+    name = "aaron";
+  };
   adace.suites = {
     desktop.enable = true;
     development.enable = true;
