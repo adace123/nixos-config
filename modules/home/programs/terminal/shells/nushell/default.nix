@@ -37,6 +37,11 @@ with lib;
       source = ./config;
     };
 
+    home.sessionVariables = {
+      SHELL = "${pkgs.nushell}/bin/nu";
+      STARSHIP_SHELL = "${pkgs.nushell}/bin/nu";
+    };
+
     programs.zoxide.enable = true;
 
     programs.nushell = {

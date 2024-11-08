@@ -16,10 +16,7 @@ if ((uname | get kernel-name) == "Darwin") {
   $env.PATH = $env.PATH ++ "/run/current-system/sw/bin"
 }
 
-$env.STARSHIP_SHELL = "nu"
 $env.DOTFILES_DIR = $"($env.HOME)/nixos-config"
-$env.EDITOR = "nvim"
-$env.SHELL = "nu"
 
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'

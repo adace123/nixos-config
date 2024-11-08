@@ -14,8 +14,7 @@ with lib;
   options.adace.terminal.editors.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {
-    home.sessionVariables.EDITOR = "nvim";
-    programs.nushell.extraConfig = ''$env.EDITOR = "nvim"'';
+    home.sessionVariables.EDITOR = "${pkgs.neovim}/bin/nvim";
 
     programs.nixvim = {
       enable = true;
