@@ -36,17 +36,14 @@ with lib;
       };
 
       profiles.default = {
-        extensions =
-          with pkgs.nur.repos.rycee.firefox-addons;
-          [
-            ublock-origin
-            tridactyl
-            nighttab
-            tree-style-tab
-            darkreader
-            return-youtube-dislikes
-          ]
-          ++ (with pkgs.nur.repos.bandithedoge.firefoxAddons; [ material-icons-for-github ]);
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          tridactyl
+          nighttab
+          tree-style-tab
+          darkreader
+          return-youtube-dislikes
+        ];
         bookmarks = [
           {
             name = "Bookmarked sites";
