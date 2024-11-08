@@ -17,7 +17,7 @@ _: {
     security.sops.enable = true;
     ai = {
       ollama = {
-        enable = true;
+        enable = false;
         acceleration = "cuda";
       };
     };
