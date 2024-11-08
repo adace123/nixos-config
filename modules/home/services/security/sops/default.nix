@@ -25,7 +25,7 @@ with lib;
       defaultSopsFile = snowfall.fs.get-file "modules/home/secrets.yaml";
       age = {
         keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-        sshKeyPaths = [ "${builtins.getEnv "HOME"}/.ssh/id_ed25519" ];
+        sshKeyPaths = [ "/home/aaron/.ssh/id_ed25519" ];
       };
     };
   };
