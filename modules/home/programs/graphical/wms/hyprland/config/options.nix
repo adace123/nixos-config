@@ -13,7 +13,6 @@ with lib;
           "DOTFILES_DIR,${config.home.homeDirectory}/nixos-config"
         ];
         general = {
-          sensitivity = 1.0;
           gaps_in = 6;
           gaps_out = 8;
           border_size = 3;
