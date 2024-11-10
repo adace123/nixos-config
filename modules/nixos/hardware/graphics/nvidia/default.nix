@@ -14,7 +14,7 @@ with lib;
   config = mkIf cfg.enable {
     hardware.nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.stable;
-      open = true;
+      open = false;
       modesetting.enable = true;
       powerManagement.enable = true;
     };
@@ -32,7 +32,7 @@ with lib;
 
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
-      GBM_BACKEND = "nvidia";
+      GBM_BACKEND = "nvidia-drm";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       MOZ_DISABLE_RDD_SANDBOX = "1";
     };

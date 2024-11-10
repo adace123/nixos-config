@@ -11,6 +11,7 @@ with lib;
       settings = {
         env = [
           "DOTFILES_DIR,${config.home.homeDirectory}/nixos-config"
+          "ELECTRON_OZONE_PLATFORM_HINT,auto"
         ];
         general = {
           gaps_in = 6;
@@ -41,6 +42,8 @@ with lib;
             "workspaces, 1, 6, overshot, slidevert"
           ];
         };
+
+        cursor.no_hardware_cursors = true;
 
         dwindle = {
           pseudotile = 1;

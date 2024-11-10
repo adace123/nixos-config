@@ -13,7 +13,6 @@ with lib;
 
   config = mkIf cfg.enable {
     environment.sessionVariables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
       XDG_SESSION_TYPE = "wayland";
       LIBSEAT_BACKEND = "logind";
