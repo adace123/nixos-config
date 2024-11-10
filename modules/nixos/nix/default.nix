@@ -11,8 +11,6 @@ with lib;
         options = "--delete-older-than 7d";
       };
 
-      optimise.automatic = true;
-
       settings = {
         builders-use-substitutes = true;
         experimental-features = [
