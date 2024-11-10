@@ -23,10 +23,7 @@ with lib;
 
     sops = {
       defaultSopsFile = snowfall.fs.get-file "modules/home/secrets.yaml";
-      age = {
-        keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-        sshKeyPaths = [ "/home/aaron/.ssh/id_ed25519" ];
-      };
+      age.sshKeyPaths = [ "/etc/ssh/sops-nix" ];
     };
   };
 }
