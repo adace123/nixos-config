@@ -10,7 +10,7 @@ mkShell {
     [
       just
       home-manager
-      pulumi
+      pulumi-bin
       ssh-to-age
     ]
     ++ inputs.self.checks.${pkgs.system}.pre-commit.enabledPackages;
