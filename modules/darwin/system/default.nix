@@ -10,6 +10,7 @@ with lib;
     shell = pkgs.nushell;
   };
 
+  security.pam.enableSudoTouchIdAuth = true;
   system = {
     stateVersion = 5;
     defaults = {

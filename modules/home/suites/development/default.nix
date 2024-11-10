@@ -14,7 +14,7 @@ with lib;
           python.enable = true;
           rust.enable = true;
           typescript.enable = true;
-          zig.enable = true;
+          zig.enable = false;
         };
         tools = {
           iac.enable = true;

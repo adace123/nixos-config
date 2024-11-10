@@ -12,8 +12,12 @@ with lib;
         options = "--delete-older-than 7d";
       };
 
+      optimise = {
+        automatic = true;
+        user = "aaron";
+      };
+
       settings = {
-        auto-optimise-store = true;
         builders-use-substitutes = true;
         experimental-features = [
           "nix-command"

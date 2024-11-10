@@ -68,8 +68,10 @@ _: {
       spectre.enable = true;
       auto-session = {
         enable = true;
-        autoRestore.enabled = true;
-        autoSave.enabled = true;
+        settings = {
+          autoRestore.enabled = true;
+          autoSave.enabled = true;
+        };
         # autoSession.enableLastSession = true;
       };
       web-devicons.enable = true;

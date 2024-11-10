@@ -24,9 +24,10 @@
         };
         grammarPackages =
           with pkgs;
-          vimPlugins.nvim-treesitter.passthru.allGrammars
-          ++ [ vimPlugins.nvim-treesitter.grammarPlugins.kdl ]
-          ++ (with pkgs.tree-sitter-grammars; [ tree-sitter-nu ]);
+          vimPlugins.nvim-treesitter.allGrammars
+          ++ [
+            vimPlugins.nvim-treesitter.grammarPlugins.kdl
+          ];
       };
       treesitter-textobjects = {
         enable = true;
@@ -154,9 +155,10 @@
     extraPlugins = with pkgs.vimPlugins; [
       vim-just
     ];
-    extraFiles = with pkgs.tree-sitter-grammars; {
-      "/queries/nu/highlights.scm".source = "${tree-sitter-nu}/queries/nu/highlights.scm";
-      "/queries/nu/injections.scm".source = "${tree-sitter-nu}/queries/nu/injections.scm";
-    };
+    # extraFiles = {
+    #   "/queries/nu/highlights.scm".source = "${treesitter-nu-grammar}/queries/nu/highlights.scm";
+    #   "/queries/nu/injections.scm".source = "${treesitter-nu-grammar}/queries/nu/injections.scm";
+    #   "/queries/nu/indents.scm".source = "${treesitter-nu-grammar}/queries/nu/indents.scm";
+    # };
   };
 }

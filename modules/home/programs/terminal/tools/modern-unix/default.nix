@@ -28,7 +28,7 @@ with lib;
       ouch
       ripgrep
       sd
-      tailspin
+      # tailspin
       viddy
     ];
   };

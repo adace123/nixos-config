@@ -28,7 +28,7 @@ _: {
         '';
         servers = {
           bashls.enable = true;
-          lua-ls.enable = true;
+          lua_ls.enable = true;
           pyright.enable = true;
           jsonls.enable = true;
           yamlls = {
@@ -39,8 +39,8 @@ _: {
             };
           };
           nixd.enable = true;
-          ruff-lsp.enable = true;
-          rust-analyzer = {
+          ruff_lsp.enable = true;
+          rust_analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
@@ -48,8 +48,8 @@ _: {
           terraformls.enable = true;
           tflint.enable = true;
           taplo.enable = true;
-          ts-ls.enable = true;
-          zls.enable = true;
+          ts_ls.enable = true;
+          # zls.enable = true;
           gopls.enable = true;
           nushell.enable = true;
         };
