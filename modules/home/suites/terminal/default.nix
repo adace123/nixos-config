@@ -14,10 +14,11 @@ with lib;
       emulators = {
         kitty = {
           enable = true;
+          isDefaultTerminal = true;
         };
         wezterm = {
           enable = true;
-          isDefaultTerminal = true;
+          # isDefaultTerminal = true;
         };
       };
       shells.nushell.enable = true;
