@@ -14,24 +14,16 @@ with lib;
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      bandit
       (python312.withPackages (
         p: with p; [
           black
           isort
-          jupyterlab # TODO: use jupyenv
           jupytext
-          marimo
-          plotly
           ptpython
-          pytest
           requests
-          virtualenv
         ]
       ))
-      poetry
       pyright
-      pyenv
       ruff
       ruff-lsp
       uv
