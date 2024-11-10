@@ -13,7 +13,7 @@ with lib;
 
   config = mkIf cfg.enable {
     hardware.nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.stable;
       open = false;
       modesetting.enable = true;
       powerManagement.enable = true;
