@@ -15,7 +15,10 @@ with lib;
       boot.enable = true;
       nix.enable = true;
       networking = {
-        network-manager.enable = true;
+        network-manager = {
+          enable = true;
+          setupProfiles = true;
+        };
         dns.enable = true;
         ssh.enable = true;
         wifi = {
