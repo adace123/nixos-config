@@ -33,9 +33,7 @@ with lib;
   };
 
   config = {
-    sops.secrets.password = mkIf cfg.password.enable {
-      neededForUsers = true;
-    };
+    sops.secrets.password = mkIf cfg.password.enable { };
 
     users = {
       mutableUsers = false;
