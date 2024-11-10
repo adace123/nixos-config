@@ -16,6 +16,7 @@ with lib;
       };
 
       optimise = {
+        user = "aaron";
         interval = {
           Hour = 13;
           Day = 1;
