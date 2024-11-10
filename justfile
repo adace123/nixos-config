@@ -81,7 +81,7 @@ nix-install:
 
 [macos]
 bootstrap-write device:
-    sudo sh -c "dd if=./nixos.iso of={{ device }} bs=10M"
+    sudo sh -c "dd if=./nixos.iso of={{ device }} bs=10M status=progress"
     sudo diskutil eject {{ device }}
 
 [linux]
@@ -107,7 +107,7 @@ copy host src dest:
       {{ src }} $"($ssh_config.url):{{ dest }}"
     )
 
-nixos-install host config:
+nixos-install config:
     #!/usr/bin/env nu
     let root_tmpdir = mktemp -d
 
@@ -126,7 +126,7 @@ nixos-install host config:
     # write sops secret decryption key to temp file
     pulumi stack output --show-secrets -s dev -C keys sops | from json | get privKey | save -f $"($root_tmpdir)/etc/ssh/sops-nix"
 
-    let ssh_config = pulumi stack output -s dev --show-secrets -C keys {{ host }} | from json
+    let ssh_config = pulumi stack output -s dev --show-secrets -C keys iso | from json
 
     with-env {SHELL: "/bin/sh"} { # https://github.com/nix-community/nixos-anywhere/issues/280
       (
