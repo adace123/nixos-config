@@ -15,8 +15,7 @@ let carapace_completer = {|spans|
 }
 
 $env.config = {
-  use_grid_icons: true
-  footer_mode: "25"
+  footer_mode: "auto"
   float_precision: 2
   use_ansi_coloring: true
   edit_mode: vi
