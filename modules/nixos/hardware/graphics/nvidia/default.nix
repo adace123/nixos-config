@@ -32,7 +32,7 @@ with lib;
 
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";
-      GBM_BACKEND = "nvidia-drm";
+      GBM_BACKEND = "nvidia";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       MOZ_DISABLE_RDD_SANDBOX = "1";
     };
