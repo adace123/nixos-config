@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
-      url = "github:Mic92/sops-nix";
+      url = "github:Mic92/sops-nix/fe63071416471abdab06caa234122932a7c4b980";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprkeys = {
