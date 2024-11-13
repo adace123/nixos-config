@@ -35,7 +35,6 @@ with lib;
   config = {
     sops.secrets.password = mkIf cfg.password.enable {
       neededForUsers = true;
-      owner = "aaron";
     };
 
     users = {
