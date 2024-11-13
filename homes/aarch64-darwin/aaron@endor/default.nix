@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     mkcert
     devenv
+    tailscale
   ];
   home.stateVersion = "23.11";
   snowfallorg.user = {
