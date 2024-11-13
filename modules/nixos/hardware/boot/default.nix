@@ -54,9 +54,9 @@ with lib;
         catppuccin.enable = true;
       };
 
-      initrd = {
-        systemd.enable = true;
-      };
+      # initrd = {
+      #   systemd.enable = true;
+      # };
 
       # TODO: enable lanzaboote
       # TODO: enable tailscale in initramfs
