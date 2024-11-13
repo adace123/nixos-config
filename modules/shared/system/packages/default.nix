@@ -21,6 +21,7 @@ with lib;
       nushell
       openssl
       pkg-config
+      ripgrep
       rsync
       sysz
       tldr
