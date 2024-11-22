@@ -152,9 +152,6 @@
         };
       };
     };
-    extraPlugins = with pkgs.vimPlugins; [
-      vim-just
-    ];
     # extraFiles = {
     #   "/queries/nu/highlights.scm".source = "${treesitter-nu-grammar}/queries/nu/highlights.scm";
     #   "/queries/nu/injections.scm".source = "${treesitter-nu-grammar}/queries/nu/injections.scm";
