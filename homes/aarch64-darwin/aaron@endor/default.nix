@@ -14,7 +14,7 @@
     name = "aaron";
   };
   adace = {
-    services.security.sops.enable = true;
+    security.sops.enable = true;
     suites = {
       development.enable = true;
       terminal.enable = true;

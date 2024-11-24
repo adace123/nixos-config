@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.services.security.sops;
+  cfg = config.adace.security.sops;
 in
 with lib;
 {
-  options.adace.services.security.sops.enable = mkEnableOption "sops";
+  options.adace.security.sops.enable = mkEnableOption "sops";
   config = mkIf cfg.enable {
     # restart sops-nix user service to pick up latest changes to secrets
     # TODO: Can something similar be implemented for darwin machines?
