@@ -67,14 +67,14 @@ return {
 		split_nav("resize", "l"),
 		{
 			key = "Enter",
-			mods = "CTRL",
+			mods = "CTRL|SHIFT",
 			action = act.SplitPane({
 				direction = "Down",
 			}),
 		},
 		{
 			key = "Enter",
-			mods = "CTRL|SHIFT",
+			mods = "CTRL",
 			action = act.SplitPane({
 				direction = "Right",
 			}),
