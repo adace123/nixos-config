@@ -64,23 +64,7 @@ let
       alt-k = "focus up";
       alt-l = "focus right";
 
-      # Join with adjacent windows
-      alt-shift-h = [
-        "join-with left"
-        "mode main"
-      ];
-      alt-shift-j = [
-        "join-with down"
-        "mode main"
-      ];
-      alt-shift-k = [
-        "join-with up"
-        "mode main"
-      ];
-      alt-shift-l = [
-        "join-with right"
-        "mode main"
-      ];
+      "alt-shift-semicolon" = "mode service";
 
       # See: https://nikitabobko.github.io/AeroSpace/commands#resize
       alt-shift-minus = "resize smart -50";
@@ -120,6 +104,26 @@ let
       l = "resize width +50";
       enter = "mode main";
       esc = "mode main";
+    };
+
+    mode.service.binding = {
+      # Join with adjacent windows
+      alt-shift-h = [
+        "join-with left"
+        "mode main"
+      ];
+      alt-shift-j = [
+        "join-with down"
+        "mode main"
+      ];
+      alt-shift-k = [
+        "join-with up"
+        "mode main"
+      ];
+      alt-shift-l = [
+        "join-with right"
+        "mode main"
+      ];
     };
 
     on-window-detected = [
