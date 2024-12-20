@@ -48,7 +48,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim/58d2a5ac9cc4ff987e6edb77f2b55d1dec05ce50";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {

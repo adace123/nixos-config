@@ -64,6 +64,11 @@ _: {
         action = ":LspRestart<CR>";
         options.desc = "LspRestart";
       }
+      {
+        key = "<leader>cf";
+        action.__raw = "function() vim.lsp.buf.format() end";
+        options.desc = "Format";
+      }
     ];
     autoCmd = [
       {

@@ -167,11 +167,6 @@
         options.desc = "Clipboard history";
       }
       {
-        key = "<leader>fb";
-        action = ":Telescope dap list_breakpoints<CR>";
-        options.desc = "Breakpoints";
-      }
-      {
         key = "<leader>ft";
         action = ":TodoTelescope<CR>";
         options.desc = "Todos";
@@ -182,7 +177,7 @@
         options.desc = "Files";
       }
       {
-        key = "<leader>b";
+        key = "<leader>B";
         action = ":Telescope buffers<CR>";
         options.desc = "Buffers";
       }

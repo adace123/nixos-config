@@ -1,25 +1,4 @@
 _: {
-  imports = [
-    ./aerial.nix
-    ./bufferline.nix
-    ./cmp.nix
-    ./conform.nix
-    ./dap.nix
-    ./file-explorer.nix
-    ./git.nix
-    ./kitty.nix
-    ./lsp.nix
-    ./lspsaga.nix
-    ./lualine.nix
-    ./neotest.nix
-    ./noice.nix
-    ./ollama.nix
-    ./obsidian.nix
-    ./telescope.nix
-    ./treesitter.nix
-    ./trouble.nix
-  ];
-
   programs.nixvim = {
     plugins = {
       mini = {
@@ -58,7 +37,7 @@ _: {
         enable = true;
         settings.check_ts = true;
       };
-      nvim-colorizer.enable = true;
+      colorizer.enable = true;
       illuminate.enable = true;
       nix.enable = true;
       todo-comments.enable = true;

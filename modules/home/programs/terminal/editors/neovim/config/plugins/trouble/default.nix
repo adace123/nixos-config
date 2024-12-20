@@ -32,7 +32,7 @@
       }
       {
         key = "gd";
-        action = "<cmd>Trouble lsp_definitions<CR>";
+        action = "<cmd>Trouble lsp_definitions toggle focus=true<CR>";
         options.desc = "Goto definition";
       }
       {
@@ -44,11 +44,6 @@
         key = "[d";
         action = "<cmd>Trouble diagnostics prev jump=true<CR>";
         options.desc = "Prev diagnostic";
-      }
-      {
-        key = "<leader>cf";
-        action.__raw = "function() vim.lsp.buf.format() end";
-        options.desc = "Format";
       }
     ];
   };

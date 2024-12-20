@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   programs.nixvim = {
+    keymaps =
+      [
+      ];
     plugins = {
       ts-autotag.enable = true;
       rainbow-delimiters.enable = true;
