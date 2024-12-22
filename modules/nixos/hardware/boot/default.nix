@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -19,8 +18,9 @@ with lib;
     };
   };
   config = mkIf cfg.enable {
+    catppuccin.grub.enable = true;
     boot = {
-      kernelPackages = pkgs.linuxKernel.packages.linux_6_11;
+      # kernelPackages = pkgs.linuxKernel.packages.linux_6_11;
       kernelParams = optionals cfg.silent [
         # tell the kernel to not be verbose
         "quiet"
@@ -51,7 +51,6 @@ with lib;
         device = "nodev";
         useOSProber = true;
         configurationLimit = cfg.configLimit;
-        catppuccin.enable = true;
       };
 
       # initrd = {

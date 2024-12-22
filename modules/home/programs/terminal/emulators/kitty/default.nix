@@ -16,14 +16,13 @@ with lib;
   };
   config = mkIf cfg.enable {
     home.sessionVariables.TERMINAL = mkIf cfg.isDefaultTerminal "kitty";
+    catppuccin.kitty.enable = mkForce false;
     programs.kitty = {
       enable = true;
       font = {
         name = "JetBrainsMono Nerd Font Mono";
         size = 16;
       };
-      # TODO: remove once catppuccin.nix has been updated
-      catppuccin.enable = mkForce false;
       themeFile = "Catppuccin-Mocha";
       settings = {
         allow_remote_control = "yes";

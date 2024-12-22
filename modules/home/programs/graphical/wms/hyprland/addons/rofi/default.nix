@@ -11,11 +11,11 @@ with lib;
 {
   options.adace.desktop.window-managers.hyprland.addons.rofi.enable = mkEnableOption "rofi";
   config = mkIf cfg.enable {
+    catppuccin.rofi.enable = true;
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
       font = "JetBrainsMono Nerd Font";
-      catppuccin.enable = true;
       plugins = [ ];
       extraConfig = {
         modi = "run,drun,window";
