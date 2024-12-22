@@ -25,7 +25,7 @@ with lib;
         ++ (with pkgs.nerd-fonts; [
           fira-code
           geist-mono
-          jetbrains-mino
+          jetbrains-mono
         ]);
     };
   };
