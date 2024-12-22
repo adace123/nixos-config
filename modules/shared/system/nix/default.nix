@@ -23,7 +23,6 @@ with lib;
         trusted-users = [
           "root"
           "@wheel"
-          "nix-builder"
         ];
         substituters = [
           "https://cache.nixos.org"
