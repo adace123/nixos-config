@@ -15,7 +15,6 @@ _: {
   };
   adace.security.sops.enable = true;
   adace.services = {
-    security.sops.enable = true;
     ai = {
       ollama = {
         enable = false;
