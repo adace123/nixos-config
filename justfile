@@ -18,14 +18,14 @@ docker:
     #!/usr/bin/env nu
     if (docker ps | detect columns | where NAMES =~ "nixos" | is-empty) {
       (
-        docker run --platform=linux/amd64 --name=nixos --restart=always -d  
+        docker run --platform=linux/amd64 --name=nixos --restart=always -d
         -e NIX_CONFIG="
           experimental-features = nix-command flakes
           filter-syscalls = false
           extra-platforms = aarch64-linux
         "
         --network=host -it
-        -v $"(pwd):/nixos-config" 
+        -v $"(pwd):/nixos-config"
         -w /nixos-config nixos/nix
       )
       docker exec -it nixos git config --global --add safe.directory /nixos-config
@@ -71,13 +71,18 @@ bootstrap-build mode="remote":
     if ("{{ mode }}" == "remote") {
       just bootstrap-build-remote
     } else {
-      just bootstrap-build-local 
+      just bootstrap-build-local
     }
 
 [macos]
 nix-install:
     #!/bin/bash
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+
+[macos]
+nix-uninstall:
+    sudo nix run nix-darwin#darwin-uninstaller
+    /nix/nix-installer uninstall
 
 [macos]
 bootstrap-write device:
@@ -115,6 +120,7 @@ nixos-install config:
     let luks_tmp = mktemp -t
     mkdir $"($root_tmpdir)/etc/ssh"
     mkdir $"($root_tmpdir)/boot/initrd"
+    mkdir $"($root_tmpdir)/home/aaron/.ssh"
 
     chmod -R 0755 $root_tmpdir
 
@@ -124,7 +130,10 @@ nixos-install config:
     # write disk decryption key to temp file
     just get-host-secret luks-password | save -f $"($root_tmpdir)/secret.key"
     # write sops secret decryption key to temp file
-    pulumi stack output --show-secrets -s dev -C keys sops | from json | get privKey | save -f $"($root_tmpdir)/etc/ssh/sops-nix"
+    let sops_priv_key = pulumi stack output --show-secrets -s dev -C keys sops | from json | get privKey
+
+    $sops_priv_key | save -f $"($root_tmpdir)/etc/ssh-sops-nix"
+    $sops_priv_key | save -f $"($root_tmpdir)/home/aaron/.ssh/sops-nix"
 
     let ssh_config = pulumi stack output -s dev --show-secrets -C keys iso | from json
 
