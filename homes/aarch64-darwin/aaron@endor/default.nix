@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     mkcert
     devenv
+    snowflake-cli
     tailscale
   ];
   home.stateVersion = "23.11";

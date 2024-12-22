@@ -14,7 +14,10 @@ _: {
     brews = [
       "awscli"
       "colima"
+      "docker"
+      "docker-credential-helper"
       "gsed"
+      "qemu"
       "vault"
     ];
     casks = [
@@ -22,9 +25,11 @@ _: {
       "1password-cli"
       "arc"
       "balenaetcher"
+      "chatgpt"
       "docker"
       "discord"
       "flux"
+      "hammerspoon"
       "microsoft-teams"
       "notion"
       "obsidian"
