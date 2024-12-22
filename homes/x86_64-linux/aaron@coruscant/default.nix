@@ -13,6 +13,7 @@ _: {
     output = "DP-2";
     resolution = "2560x1440";
   };
+  adace.security.sops.enable = true;
   adace.services = {
     security.sops.enable = true;
     ai = {
