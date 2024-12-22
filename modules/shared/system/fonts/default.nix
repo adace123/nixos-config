@@ -13,20 +13,20 @@ with lib;
     enable = mkEnableOption "Enable system fonts";
     packages = mkOption {
       type = types.listOf types.package;
-      default = with pkgs; [
-        material-symbols
-        roboto
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "JetBrainsMono"
-            "GeistMono"
-          ];
-        })
-        font-awesome
-        fira-code-symbols
-        source-code-pro
-      ];
+      default =
+        with pkgs;
+        [
+          material-symbols
+          roboto
+          font-awesome
+          fira-code-symbols
+          source-code-pro
+        ]
+        ++ (with pkgs.nerd-fonts; [
+          fira-code
+          geist-mono
+          jetbrains-mino
+        ]);
     };
   };
 
