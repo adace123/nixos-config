@@ -99,7 +99,7 @@
 
       overlays = with inputs; [
         nuenv.overlays.nuenv
-        nur.overlay
+        nur.overlays.default
         hyprland-contrib.overlays.default
       ];
     };
