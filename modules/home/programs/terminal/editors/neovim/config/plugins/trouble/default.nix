@@ -36,6 +36,11 @@
         options.desc = "Goto definition";
       }
       {
+        key = "gv";
+        action = ":vsplit<CR>:Trouble lsp_definitions toggle focus=true<CR>";
+        options.desc = "Goto definition in new window";
+      }
+      {
         key = "]d";
         action = "<cmd>Trouble diagnostics next jump=true<CR>";
         options.desc = "Next diagnostic";
