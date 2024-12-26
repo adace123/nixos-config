@@ -217,3 +217,13 @@ rotate-keys:
 
 repl:
     nix repl -f repl.nix
+
+[macos]
+setup-yubikey-chal-resp:
+    ykman otp chalresp 2 -g -t
+    mkdir -m 0700 ~/.yubico
+    # TODO: This should not need to be run as sudo.
+    # Need to fix USB error: Access denied (insufficient permissions)
+    sudo ykpamcfg -2 -v
+    sudo cp /var/root/.yubico ~/.yubico
+    sudo chown -R $env.USER ~/.yubico
