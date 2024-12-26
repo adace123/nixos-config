@@ -42,12 +42,12 @@
       }
       {
         key = "]d";
-        action = "<cmd>Trouble diagnostics next jump=true<CR>";
+        action = "<cmd>Trouble diagnostics next focus=true jump=true filter.buf=0<CR>";
         options.desc = "Next diagnostic";
       }
       {
         key = "[d";
-        action = "<cmd>Trouble diagnostics prev jump=true<CR>";
+        action = "<cmd>Trouble diagnostics prev focus=true jump=true filter.buf=0<CR>";
         options.desc = "Prev diagnostic";
       }
     ];
