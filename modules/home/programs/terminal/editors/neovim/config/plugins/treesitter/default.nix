@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   programs.nixvim = {
-    keymaps =
-      [
-      ];
     plugins = {
       ts-autotag.enable = true;
       rainbow-delimiters.enable = true;
@@ -26,10 +23,11 @@
           };
         };
         grammarPackages =
-          with pkgs;
-          vimPlugins.nvim-treesitter.allGrammars
+          with pkgs.vimPlugins.nvim-treesitter;
+          allGrammars
           ++ [
-            vimPlugins.nvim-treesitter.grammarPlugins.kdl
+            grammarPlugins.kdl
+            builtGrammars.nu
           ];
       };
       treesitter-textobjects = {
