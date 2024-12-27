@@ -27,6 +27,7 @@ with lib;
         substituters = [
           "https://cache.nixos.org"
           "https://nix-community.cachix.org"
+          "https://ghostty.cachix.org"
           "https://hyprland.cachix.org"
           "https://nixpkgs-wayland.cachix.org"
           "https://nixpkgs-unfree.cachix.org"
@@ -39,6 +40,7 @@ with lib;
           "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
           "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
           "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+          "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
         ];
       };
     };

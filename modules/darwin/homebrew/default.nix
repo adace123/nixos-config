@@ -29,6 +29,7 @@ _: {
       "docker"
       "discord"
       "flux"
+      "ghostty" # TODO: Use nixpkgs instead
       "hammerspoon"
       "microsoft-teams"
       "notion"

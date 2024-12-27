@@ -23,7 +23,7 @@ let
     on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
     mode.main.binding = {
       alt-1 = "workspace Arc";
-      alt-2 = "workspace Wezterm";
+      alt-2 = "workspace Ghostty";
       alt-3 = "workspace Discord";
       alt-4 = "workspace 1Password";
       alt-5 = "workspace Zed";
@@ -35,8 +35,8 @@ let
         "workspace Arc"
       ];
       alt-shift-2 = [
-        "move-node-to-workspace Wezterm"
-        "workspace Wezterm"
+        "move-node-to-workspace Ghostty"
+        "workspace Ghostty"
       ];
       alt-shift-3 = [
         "move-node-to-workspace Discord"
@@ -86,7 +86,7 @@ let
 
       alt-f = "macos-native-fullscreen";
 
-      alt-enter = "exec-and-forget open -n -a wezterm";
+      alt-enter = "exec-and-forget open -n -a ghostty";
 
       alt-shift-tab = [
         "move-node-to-monitor --wrap-around next"
@@ -134,8 +134,8 @@ let
         ];
       }
       {
-        "if".app-id = "com.github.wez.wezterm";
-        run = [ "move-node-to-workspace Wezterm" ];
+        "if".app-id = "com.mitchellh.ghostty";
+        run = [ "move-node-to-workspace Ghostty" ];
       }
       {
         "if".app-id = "com.hnc.Discord";
@@ -162,7 +162,8 @@ let
 in
 with lib;
 {
-  options.adace.desktop.window-managers.aerospace.enable = mkEnableOption "aerospace tiling window manager";
+  options.adace.desktop.window-managers.aerospace.enable =
+    mkEnableOption "aerospace tiling window manager";
   config = mkIf cfg.enable {
     environment.systemPackages = [ pkgs.aerospace ];
 

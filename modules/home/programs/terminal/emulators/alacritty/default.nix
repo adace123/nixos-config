@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.adace.programs.terminal.emulators.alacritty;
+  cfg = config.adace.terminal.emulators.alacritty;
 in
 with lib;
 {
-  options.adace.programs.terminal.emulators.alacritty.enable = mkEnableOption "alacritty";
+  options.adace.terminal.emulators.alacritty.enable = mkEnableOption "alacritty";
 
   config = mkIf cfg.enable {
     programs.alacritty = {

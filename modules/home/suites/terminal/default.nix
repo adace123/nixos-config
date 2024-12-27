@@ -12,13 +12,11 @@ with lib;
   config = mkIf cfg.enable {
     adace.terminal = {
       emulators = {
-        kitty = {
+        kitty.enable = true;
+        wezterm.enable = true;
+        ghostty = {
           enable = true;
           isDefaultTerminal = true;
-        };
-        wezterm = {
-          enable = true;
-          # isDefaultTerminal = true;
         };
       };
       shells.nushell.enable = true;
