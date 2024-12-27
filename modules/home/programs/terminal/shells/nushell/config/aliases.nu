@@ -9,6 +9,7 @@ alias dcu = docker compose up
 alias df = dysk
 alias dig = doggo
 alias exa = eza --icons
+alias ff = fastfetch
 alias ga = git add
 alias gc = git commit
 alias gcm = git commit -m
