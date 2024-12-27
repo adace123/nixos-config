@@ -107,46 +107,6 @@
         mode = [ "v" ];
       }
       {
-        key = "<C-h>";
-        action.__raw = "function () require('smart-splits').move_cursor_left() end";
-        options.desc = "Navigate left";
-      }
-      {
-        key = "<C-l>";
-        action.__raw = "function () require('smart-splits').move_cursor_right() end";
-        options.desc = "Navigate right";
-      }
-      {
-        key = "<C-j>";
-        action.__raw = "function () require('smart-splits').move_cursor_down() end";
-        options.desc = "Navigate down";
-      }
-      {
-        key = "<C-k>";
-        action.__raw = "function () require('smart-splits').move_cursor_up() end";
-        options.desc = "Navigate up";
-      }
-      {
-        key = "<C-Up>";
-        action.__raw = "function () require('smart-splits').resize_up() end";
-        options.desc = "Resize up";
-      }
-      {
-        key = "<C-Down>";
-        action.__raw = "function () require('smart-splits').resize_down() end";
-        options.desc = "Resize down";
-      }
-      {
-        key = "<C-Left>";
-        action.__raw = "function () require('smart-splits').resize_left() end";
-        options.desc = "Resize left";
-      }
-      {
-        key = "<C-Up>";
-        action.__raw = "function () require('smart-splits').resize_right() end";
-        options.desc = "Resize right";
-      }
-      {
         key = "<leader>sv";
         action = "<C-w>v";
         options.desc = "Vertical split";
