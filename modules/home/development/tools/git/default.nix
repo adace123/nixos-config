@@ -18,8 +18,9 @@ with lib;
   config = mkIf cfg.enable {
     sops.secrets.github-private-key = { };
     home.packages = with pkgs; [
-      pre-commit
       delta
+      jujutsu
+      pre-commit
     ];
     programs = {
       git = {
