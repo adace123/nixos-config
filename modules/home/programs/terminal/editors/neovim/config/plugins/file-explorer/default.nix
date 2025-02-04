@@ -11,6 +11,8 @@
           q = "actions.close";
           h = "actions.parent";
           l = "actions.select";
+          s = "actions.select_vsplit";
+          yy = "actions.yank_entry";
         };
         float = {
           padding = 10;

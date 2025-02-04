@@ -9,8 +9,6 @@ let
 in
 with lib;
 {
-  imports = [ ./config ];
-
   options.adace.terminal.editors.neovim.enable = mkEnableOption "neovim";
 
   config = mkIf cfg.enable {

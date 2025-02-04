@@ -19,7 +19,6 @@ _: {
       neoclip.enable = true;
       bufdelete.enable = true;
       comment.enable = true;
-      luasnip.enable = true;
       flash.enable = true;
       headlines.enable = true;
       harpoon = {

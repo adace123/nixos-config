@@ -5,9 +5,8 @@
       adapters = {
         go.enable = true;
         python = {
-          settings =
-            {
-            };
+          settings = {
+          };
         };
         python.enable = true;
         rust.enable = true;
