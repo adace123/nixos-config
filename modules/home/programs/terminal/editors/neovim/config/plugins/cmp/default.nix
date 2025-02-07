@@ -22,7 +22,7 @@
       cmp-cmdline-history.enable = true;
       cmp-nvim-lsp-document-symbol.enable = true;
       cmp-nvim-lsp-signature-help.enable = true;
-      crates-nvim.enable = true;
+      crates.enable = true;
 
       cmp = {
         enable = true;

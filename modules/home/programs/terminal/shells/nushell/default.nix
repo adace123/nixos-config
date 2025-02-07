@@ -18,10 +18,7 @@ let
 in
 with lib;
 {
-  options.adace.terminal.shells.nushell = {
-    enable = mkEnableOption "nushell";
-    setDefaultShell = mkEnableOption "Set nushell as default shell";
-  };
+  options.adace.terminal.shells.nushell.enable = mkEnableOption "nushell";
 
   config = mkIf cfg.enable {
     home.packages =
@@ -35,11 +32,6 @@ with lib;
     home.file.".config/nushell" = {
       recursive = true;
       source = ./config;
-    };
-
-    home.sessionVariables = {
-      SHELL = "${pkgs.nushell}/bin/nu";
-      STARSHIP_SHELL = "${pkgs.nushell}/bin/nu";
     };
 
     programs.zoxide.enable = true;

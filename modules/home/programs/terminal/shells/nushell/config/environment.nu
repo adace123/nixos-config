@@ -13,7 +13,7 @@ $env.PATH = ([
 ] | flatten)
 
 if ((uname | get kernel-name) == "Darwin") {
-  $env.PATH = $env.PATH ++ "/run/current-system/sw/bin"
+  $env.PATH = $env.PATH ++ ["/run/current-system/sw/bin"]
 }
 
 $env.DOTFILES_DIR = $"($env.HOME)/nixos-config"

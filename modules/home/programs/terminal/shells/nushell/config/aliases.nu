@@ -1,5 +1,4 @@
 alias bc = eva
-alias bios = /run/wrappers/bin/sudo systemctl reboot --firmware
 alias bt = bluetuith
 alias btm = btm -f
 alias cat = bat

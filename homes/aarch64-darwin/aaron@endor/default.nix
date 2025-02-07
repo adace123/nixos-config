@@ -4,9 +4,10 @@
 }:
 {
   home.packages = with pkgs; [
-    mkcert
     devenv
-    snowflake-cli
+    mkcert
+    hurl
+    # snowflake-cli
     tailscale
   ];
   home.stateVersion = "23.11";
@@ -20,6 +21,7 @@
       development.enable = true;
       terminal.enable = true;
     };
+    terminal.tools.zellij.defaultLayout = "work";
   };
   programs.kitty.settings.startup_session = "~/.config/kitty/work.conf";
 }

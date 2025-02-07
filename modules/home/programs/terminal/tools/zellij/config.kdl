@@ -1,59 +1,59 @@
-// Taken from https://github.com/zellij-org/zellij/blob/main/example/alt-centered-config.kdl
-
-// ############################################################
-// ###   ###  Alt-centered configuration for Zellij  ###   ####
-// ############################################################
-// - 1 prefix key (Alt) for most common actions in normal mode
-// - Less common actions require switching mode or are removed
-// - Press escape, enter or space to switch back to normal mode
-// - Press Alt-q for quitting and Alt-d for detaching
-//
-// To access other modes from normal mode press
-// 1. Alt-r for resize, 2. Alt-p for pane,
-// 3. .. move, 4. .. tab, 5. .. scroll,
-// 6. in scroll mode s to type text, 7. enter to search.
-//
-// Run `zellij setup --check` for troubleshooting and inspecting
-// current config locations and features that are enabled.
-
 keybinds clear-defaults=true {
     normal {
-        bind "Alt q" { Quit; }
-        bind "Alt d" { Detach; }
-        bind "Alt p" { SwitchToMode "pane"; }
-        bind "Alt f" { ToggleFloatingPanes; }
-        bind "Alt r" { SwitchToMode "resize"; }
-        bind "Alt t" { SwitchToMode "tab"; }
-        bind "Alt s" { SwitchToMode "scroll"; }
-        bind "Alt m" { SwitchToMode "move"; }
-        bind "Alt h" { MoveFocusOrTab "Left"; }
-        bind "Alt H" { NewPane "Left"; }
-        bind "Alt l" { MoveFocusOrTab "Right"; }
-        bind "Alt L" { NewPane "Right"; }
-        bind "Alt j" { MoveFocus "Down"; }
-        bind "Alt J" { NewPane "Down"; }
-        bind "Alt k" { MoveFocus "Up"; }
-        bind "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
-        bind "Alt ]" { GoToNextTab; }
-        bind "Alt [" { GoToPreviousTab; }
-        bind "Alt S" {
-          LaunchOrFocusPlugin "zellij:session-manager" {
-            floating true
-            move_to_focused_tab true
-          }
+    bind "Ctrl h" {
+            MessagePlugin "vim-zellij-navigator" {
+                name "move_focus_or_tab";
+                payload "left";
+            };
         }
+        bind "Ctrl j" {
+            MessagePlugin "vim-zellij-navigator" {
+                name "move_focus";
+                payload "down";
+            };
+        }
+        bind "Ctrl k" {
+            MessagePlugin "vim-zellij-navigator" {
+                name "move_focus";
+                payload "up";
+            };
+        }
+        bind "Ctrl l" {
+            MessagePlugin "vim-zellij-navigator" {
+                name "move_focus_or_tab";
+                payload "right";
+            };
+        }
+        bind "Ctrl q" { Quit; }
+        bind "Ctrl X" { CloseFocus; }
+        bind "Ctrl W" { CloseTab; }
+        bind "Ctrl D" { Detach; }
+        bind "Ctrl p" { SwitchToMode "pane"; }
+        bind "Ctrl f" { ToggleFloatingPanes; }
+        bind "Ctrl F" {
+          LaunchOrFocusPlugin "https://github.com/rvcas/room/releases/latest/download/room.wasm" {
+                floating true;
+                ignore_case true;
+                quick_jump true;
+            }
+        }
+        bind "Ctrl R" { SwitchToMode "resize"; }
+        bind "Ctrl t" { SwitchToMode "tab"; }
+        bind "Ctrl S" { SwitchToMode "scroll"; }
+        bind "Ctrl m" { SwitchToMode "move"; }
+        bind "Ctrl H" { NewPane "Left"; }
+        bind "Ctrl L" { Clear; }
+        bind "Ctrl +" { Resize "Increase"; }
+        bind "Ctrl -" { Resize "Decrease"; }
+        bind "Ctrl T" { NewTab; }
+        bind "Ctrl ]" { GoToNextTab; }
+        bind "Ctrl [" { GoToPreviousTab; }
         bind "Alt T" {
           Run "zellij" "run" "-f" "-c" "--" "tgpt" "-i" {
             close_on_exit true
           };
         }
-        bind "Alt y" {
-          Run "zellij" "run" "-f" "-c" "--" "yazi" {
-            close_on_exit true
-          };
-        }
-        bind "Alt b" {
+        bind "Alt B" {
           Run "zellij" "run" "-f" "-c" "--" "btop" {
             close_on_exit true
           };
@@ -73,8 +73,6 @@ keybinds clear-defaults=true {
             close_on_exit true
           }
         }
-        bind "Alt E" { EditScrollback; }
-        bind "Alt x" { CloseFocus; }
     }
 
     pane {
@@ -202,7 +200,7 @@ session_serialization true
 //   - quit
 on_force_close "quit"
 // Request simplified ui (without arrow fonts) of plugins
-// simplified_ui true
+simplified_ui true
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //default_shell "fish"
@@ -210,10 +208,7 @@ on_force_close "quit"
 pane_frames false
 // Choose the theme that is specified in the themes section.
 // Default: default
-theme "nord"
-// The name of the default layout to load on startup
-// Default: "default"
-default_layout "default"
+theme "kanagawa"
 // On certain configurations, or terminals mouse_mode can interfere with copying text.
 mouse_mode true
 // 100_000 should never exceed 6MB per shell pane, unless the lines are very long
@@ -234,8 +229,13 @@ scroll_buffer_size 100000
 //copy_on_select false
 
 plugins {
-  status-bar { path "status-bar"; }
-  session-manager { path "session-manager"; }
+  "status-bar"
+  "tab-bar"
+  "session-manager"
+  "strider"
+  "compact-bar"
+  "filepicker"
+  vim-zellij-navigator location="https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm"
 }
 
 // Path to the default editor to use to edit pane scrollbuffer

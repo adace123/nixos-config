@@ -1,33 +1,40 @@
 layout {
-      default_tab_template {
-          children
-          pane size=1 borderless=true focus=true {
-              plugin location="https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
-                  format_left   "{mode} #[fg=#89B4FA,bold]{session}"
-                  format_center "{tabs}"
-                  format_right  "{command_weather} {datetime}"
-                  format_space  ""
+    default_tab_template {
+        pane size=1 borderless=true focus=true {
+          plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+              format_left   "{mode} #[fg=#89B4FA,bold]{session}"
+              format_center "{tabs}"
+              format_right  "#[fg=#49507a,bg=#89b4fa,bold] {command_weather} {datetime}"
+              format_space  ""
 
-                  border_enabled  "false"
-                  border_char     "─"
-                  border_format   "#[fg=#6C7086]{char}"
-                  border_position "top"
+              border_enabled  "false"
+              border_char     "─"
+              border_format   "#[fg=#6C7086]{char}"
+              border_position "top"
 
-                  hide_frame_for_single_pane "true"
+              mode_normal  "#[bg=blue] "
+              mode_pane    "#[fg=purple] PANE "
+              mode_tab     "#[fg=red] TAB "
+              mode_resize  "#[fg=red] RESIZE "
+              mode_tmux    "#[bg=#ffc387] "
 
-                  mode_normal  "#[bg=blue] "
-                  mode_pane    "#[fg=purple] PANE "
-                  mode_tab     "#[fg=red] TAB "
-                  mode_resize  "#[fg=red] RESIZE "
-                  mode_tmux    "#[bg=#ffc387] "
+              tab_normal   "#[fg=#6C7086] {name} "
+              tab_active   "#[fg=#9399B2,bold,italic] {name} "
 
-                  tab_normal   "#[fg=#6C7086] {name} "
-                  tab_active   "#[fg=#9399B2,bold,italic] {name} "
+              // WEATHER
+              // the command that should be executed
+              command_weather_command "curl \"wttr.in/Los+Angeles?format=3\""
+              // themeing and format of the command
+              command_weather_format "{stdout}"
+              // interval in seconds, between two command runs
+              command_weather_interval "3600" // every hour
+              command_weather_rendermode "raw"
 
-                  datetime        "#[fg=#6C7086,bold] {format} "
-                  datetime_format "%A, %d %b %Y %H:%M"
-                  datetime_timezone "America/Los_Angeles"
-              }
+              datetime        "#[fg=#6C7086,bold] {format} "
+              datetime_format "%A, %d %b %Y %I:%M %p"
+              datetime_timezone "America/Los_Angeles"
           }
       }
+      pane borderless=true
+    }
   }

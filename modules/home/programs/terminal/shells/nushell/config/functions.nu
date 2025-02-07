@@ -131,6 +131,12 @@ module sys {
   export def "sys bpf" [] {
     /run/wrappers/bin/sudo bpftool prog show -j | from json
   }
+
+  export def "sys firmware" [] {
+    if ((input "Restart in UEFI? ") == "y") {
+      /run/wrappers/bin/sudo systemctl reboot --firmware
+    }
+  }
 }
 
 module ssh {

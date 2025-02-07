@@ -10,6 +10,15 @@ with lib;
     shell = pkgs.nushell;
   };
 
+  networking = {
+    # get via `networksetup -listallnetworkservices`
+    knownNetworkServices = [ "Wi-Fi" ];
+    dns = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
+  };
+
   security.pam.enableSudoTouchIdAuth = true;
   system = {
     stateVersion = 5;
@@ -29,6 +38,7 @@ with lib;
         Clicking = true;
       };
       NSGlobalDomain = {
+        AppleInterfaceStyle = "Dark";
         # tap to click
         "com.apple.mouse.tapBehavior" = 1;
         "com.apple.swipescrolldirection" = false;

@@ -26,9 +26,9 @@ let
       alt-2 = "workspace Ghostty";
       alt-3 = "workspace Discord";
       alt-4 = "workspace 1Password";
-      alt-5 = "workspace Zed";
+      alt-5 = "workspace Obsidian";
       alt-6 = "workspace Zen";
-      alt-7 = "workspace Notion";
+      alt-7 = "workspace Zed";
 
       alt-shift-1 = [
         "move-node-to-workspace Arc"
@@ -47,16 +47,16 @@ let
         "workspace 1Password"
       ];
       alt-shift-5 = [
-        "move-node-to-workspace Zed"
-        "workspace Zed"
+        "move-node-to-workspace Obsidian"
+        "workspace Obsidian"
       ];
       alt-shift-6 = [
         "move-node-to-workspace Zen"
         "workspace Zen"
       ];
       alt-shift-7 = [
-        "move-node-to-workspace Notion"
-        "workspace Notion"
+        "move-node-to-workspace Zed"
+        "workspace Zed"
       ];
 
       alt-h = "focus left";
@@ -154,8 +154,8 @@ let
         run = [ "move-node-to-workspace Zen" ];
       }
       {
-        "if".app-id = "notion.id";
-        run = [ "move-node-to-workspace Notion" ];
+        "if".app-id = "obsidian.id";
+        run = [ "move-node-to-workspace Obsidian" ];
       }
     ];
   };
