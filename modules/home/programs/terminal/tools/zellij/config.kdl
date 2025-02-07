@@ -31,11 +31,14 @@ keybinds clear-defaults=true {
         bind "Ctrl p" { SwitchToMode "pane"; }
         bind "Ctrl f" { ToggleFloatingPanes; }
         bind "Ctrl F" {
-          LaunchOrFocusPlugin "https://github.com/rvcas/room/releases/latest/download/room.wasm" {
-                floating true;
-                ignore_case true;
-                quick_jump true;
-            }
+          Run "zellij" "run" "-f" "-c" "--" "zellij-tab-search" {
+            close_on_exit true
+          }
+        }
+        bind "Ctrl Z" {
+          Run "zellij" "run" "-f" "-c" "--" "zellij-zoxide-picker" {
+            close_on_exit true
+          }
         }
         bind "Ctrl R" { SwitchToMode "resize"; }
         bind "Ctrl t" { SwitchToMode "tab"; }
