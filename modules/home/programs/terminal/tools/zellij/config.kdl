@@ -29,8 +29,8 @@ keybinds clear-defaults=true {
         bind "Ctrl W" { CloseTab; }
         bind "Ctrl D" { Detach; }
         bind "Ctrl p" { SwitchToMode "pane"; }
-        bind "Ctrl f" { ToggleFloatingPanes; }
-        bind "Ctrl F" {
+        bind "Ctrl F" { ToggleFloatingPanes; }
+        bind "Ctrl f" {
           Run "zellij" "run" "-f" "-c" "--" "zellij-tab-search" {
             close_on_exit true
           }
