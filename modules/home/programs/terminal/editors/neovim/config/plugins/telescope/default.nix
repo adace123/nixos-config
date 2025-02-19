@@ -178,7 +178,7 @@
         options.desc = "Files";
       }
       {
-        key = "<leader>B";
+        key = "<leader>b";
         action = ":Telescope buffers<CR>";
         options.desc = "Buffers";
       }
