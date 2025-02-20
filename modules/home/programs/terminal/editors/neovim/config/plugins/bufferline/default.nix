@@ -28,7 +28,7 @@
       }
       {
         key = "<S-x>";
-        action = "<cmd>Bdelete<CR>";
+        action = "<cmd>lua Snacks.bufdelete()<CR>";
         options.desc = "Close buffer";
       }
       {

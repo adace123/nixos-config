@@ -23,6 +23,7 @@
         };
       };
     };
+    # Disable once Snacks explorer has cut functionality
     plugins.neo-tree = {
       enable = true;
       addBlankLineAtTop = true;

@@ -8,7 +8,6 @@
           desc = "+git";
         }
       ];
-      lazygit.enable = true;
       diffview.enable = true;
     };
     keymaps = [
@@ -34,7 +33,7 @@
       }
       {
         key = "<leader>gg";
-        action = "<cmd>LazyGit<CR>";
+        action = "<cmd>lua Snacks.lazygit()<CR>";
         options.desc = "LazyGit";
       }
       {

@@ -29,7 +29,6 @@
             };
             lsp_saga = true;
             treesitter = true;
-            telescope.enabled = true;
             which_key = true;
           };
         };

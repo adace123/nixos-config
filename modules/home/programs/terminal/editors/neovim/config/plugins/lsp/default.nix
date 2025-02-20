@@ -4,16 +4,6 @@ _: {
       fidget.enable = true;
       lsp = {
         enable = true;
-        preConfig = ''
-          -- add additional capabilities supported by nvim-cmp
-          -- nvim has not added foldingRange to default capabilities, users must add it manually
-          local capabilities = require("cmp_nvim_lsp").default_capabilities()
-          capabilities = vim.lsp.protocol.make_client_capabilities()
-          capabilities.textDocument.foldingRange = {
-              dynamicRegistration = false,
-              lineFoldingOnly = true,
-          }
-        '';
         postConfig = ''
           vim.diagnostic.config({
             update_in_insert = true,
@@ -24,6 +14,9 @@ _: {
             virtual_text = {
               severity = { min = vim.diagnostic.severity.WARN }
             },
+            float = {
+              border = "rounded"
+            }
           })
         '';
         servers = {
@@ -68,6 +61,16 @@ _: {
         key = "<leader>cf";
         action.__raw = "function() vim.lsp.buf.format() end";
         options.desc = "Format";
+      }
+      {
+        key = "<leader>cd";
+        action.__raw = "vim.diagnostic.open_float";
+        options.desc = "Show diagnostic";
+      }
+      {
+        key = "K";
+        action.__raw = "vim.lsp.buf.hover";
+        options.desc = "LSP Docs";
       }
     ];
     autoCmd = [
