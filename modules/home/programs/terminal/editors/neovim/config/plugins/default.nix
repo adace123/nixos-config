@@ -12,6 +12,7 @@ _: {
         settings.check_ts = true;
       };
       dropbar.enable = true;
+      inc-rename.enable = true;
       colorizer.enable = true;
       illuminate.enable = true;
       nix.enable = true;

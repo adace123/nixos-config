@@ -248,6 +248,11 @@
         action = ":vertical resize -2<CR>";
         options.desc = "Decrease horizontal window size";
       }
+      {
+        key = "<C-w>";
+        action = ":wa<CR>";
+        options.desc = "Save all";
+      }
     ];
   };
 }

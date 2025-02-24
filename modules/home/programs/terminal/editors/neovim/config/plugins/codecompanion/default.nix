@@ -13,7 +13,7 @@
                   },
                   schema = {
                     model = {
-                      default = "llama3.2",
+                      default = "qwen2.5-coder:latest",
                     },
                   },
                 })

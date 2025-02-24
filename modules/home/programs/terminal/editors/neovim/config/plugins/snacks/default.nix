@@ -120,7 +120,7 @@ in
     }
     {
       key = "<leader>fd";
-      action.__raw = "Snacks.picker.diagnostics";
+      action.__raw = "Snacks.picker.diagnostics_buffer";
       options.desc = "LSP diagnostics";
     }
     {

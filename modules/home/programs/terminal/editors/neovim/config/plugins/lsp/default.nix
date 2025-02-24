@@ -32,7 +32,7 @@ _: {
             };
           };
           nixd.enable = true;
-          ruff_lsp.enable = true;
+          ruff.enable = true;
           rust_analyzer = {
             enable = true;
             installCargo = false;
@@ -51,6 +51,7 @@ _: {
         };
       };
     };
+    opts.inccommand = "split";
     keymaps = [
       {
         key = "<leader>cR";
@@ -66,6 +67,11 @@ _: {
         key = "<leader>cd";
         action.__raw = "vim.diagnostic.open_float";
         options.desc = "Show diagnostic";
+      }
+      {
+        key = "<leader>cr";
+        action = ":IncRename ";
+        options.desc = "Rename";
       }
       {
         key = "K";
