@@ -32,6 +32,11 @@
         options.desc = "Undo stage hunk";
       }
       {
+        key = "<leader>gU";
+        action = "<cmd>Gitsigns reset_buffer_index<CR>";
+        options.desc = "Unstage buffer";
+      }
+      {
         key = "<leader>gg";
         action = "<cmd>lua Snacks.lazygit()<CR>";
         options.desc = "LazyGit";
