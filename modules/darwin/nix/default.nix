@@ -12,11 +12,9 @@ with lib;
           Minute = 0;
           Day = 1;
         };
-        user = "aaron";
       };
 
       optimise = {
-        user = "aaron";
         interval = {
           Hour = 13;
           Day = 1;
