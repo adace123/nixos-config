@@ -102,6 +102,7 @@ keybinds clear-defaults=true {
         bind "l" "Right" { GoToNextTab; }
         bind "n" { NewTab; SwitchToMode "normal" ;}
         bind "x" { CloseTab; SwitchToMode "normal"; }
+        bind "d" { CloseTab; SwitchToMode "normal"; }
         bind "s" { ToggleActiveSyncTab; }
         bind "Alt h" { MoveFocus "Left"; }
         bind "Alt l" { MoveFocus "Right"; }
