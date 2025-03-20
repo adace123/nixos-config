@@ -1,20 +1,6 @@
-{ pkgs, ... }:
-let
-  snacks-nvim = pkgs.vimPlugins.snacks-nvim.overrideAttrs {
-    src = pkgs.fetchFromGitHub {
-      owner = "folke";
-      repo = "snacks.nvim";
-      rev = "4f8b9ebf717b8acf41be02b0bd5a6d75f6038ea7";
-      hash = "sha256-ZKCAWVoJCU+AS1A+1hyf27jVs9jKymSUwXN5/K3bRek=";
-    };
-    doCheck = false;
-    doInstallCheck = false;
-  };
-in
 {
   programs.nixvim.plugins.snacks = {
     enable = true;
-    package = snacks-nvim;
     settings = {
       bufdelete.enable = true;
       bigfile.enable = true;
