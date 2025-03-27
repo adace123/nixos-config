@@ -14,13 +14,14 @@ with lib;
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      (python312.withPackages (
+      (python313.withPackages (
         p: with p; [
           black
           isort
           jupytext
-          ptpython
           requests
+          ipython
+          polars
         ]
       ))
       pyright
@@ -29,6 +30,6 @@ with lib;
       uv
     ];
 
-    home.file.".config/ptpython/config.py".source = ./ptpython.py;
+    home.file.".ipython/profile_default/ipython_config.py".source = ./ipython_config.py;
   };
 }

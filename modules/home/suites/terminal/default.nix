@@ -21,7 +21,6 @@ with lib;
       };
       shells.nushell.enable = true;
       tools = {
-        aichat.enable = true;
         btop.enable = true;
         direnv.enable = true;
         fastfetch.enable = true;
