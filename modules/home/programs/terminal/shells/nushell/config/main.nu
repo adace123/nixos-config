@@ -7,6 +7,7 @@ use jc-functions *
 use sys *
 use ssh *
 use aws *
+use docker *
 use nix-local *
 source ~/.config/nushell/keybindings.nu
 

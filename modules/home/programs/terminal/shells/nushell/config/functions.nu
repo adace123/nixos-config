@@ -186,3 +186,10 @@ module aws {
     less $tmp
   }
 }
+
+module docker {
+  export def "dcs" [] {
+    let selection = docker context list | from ssv | get NAME | sort | to text | fzf
+    docker context use $selection
+  }
+}
