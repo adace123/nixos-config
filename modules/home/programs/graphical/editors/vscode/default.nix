@@ -33,6 +33,8 @@ with lib;
         catppuccin.catppuccin-vsc-icons
         golang.go
         esbenp.prettier-vscode
+        github.copilot
+        github.copilot-chat
       ];
     };
   };
