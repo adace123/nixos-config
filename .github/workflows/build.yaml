@@ -1,14 +1,11 @@
 name: Build Nixos ISO
-
 on: workflow_dispatch
-
 jobs:
   build-iso:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: |
           nix build ".#nixosConfigurations.iso.config.system.build.isoImage"
           ISO_PATH=$(readlink ./result)/iso/nixos.iso

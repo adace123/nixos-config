@@ -35,16 +35,6 @@ with lib;
       sha256 = "sha256-e3QgDPa3AOpPyzwvVjPQyEsSUC9goisjBUDMxLwg8ZE=";
     };
 
-    home.file.".config/qutebrowser/catppuccin" = {
-      recursive = true;
-      source = pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "qutebrowser";
-        rev = "78bb72b4c60b421c8ea64dd7c960add6add92f83";
-        sha256 = "sha256-lp7HWYuD4aUyX1nRipldEojZVIvQmsxjYATdyHWph0g=";
-      };
-    };
-
     programs.qutebrowser = {
       enable = true;
       extraConfig = ''
@@ -86,7 +76,8 @@ with lib;
           "<" = "tab-move -";
           ">" = "tab-move +";
           ";M" = "hint links spawn --detach mpv --ytdl --no-video --force-window=immediate {hint-url}";
-          ",dm" = ''hint links spawn --verbose yt-dlp -x {hint-url} --embed-thumbnail --embed-metadata --audio-format mp3 --audio-quality 0 -o "$HOME/music/%(artist)s/%(title)s.%(ext)s" '';
+          ",dm" =
+            ''hint links spawn --verbose yt-dlp -x {hint-url} --embed-thumbnail --embed-metadata --audio-format mp3 --audio-quality 0 -o "$HOME/music/%(artist)s/%(title)s.%(ext)s" '';
         };
         insert = {
           "<Ctrl-b>" = "fake-key <Left>";
