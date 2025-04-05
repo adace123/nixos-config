@@ -15,6 +15,7 @@ in
     extraPlugins = [
       zellij-nav
     ];
+    extraPackages = [ pkgs.zellij ];
     extraConfigLua = ''
       require('zellij-nav').setup()
     '';
