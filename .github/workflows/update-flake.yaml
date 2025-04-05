@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 0 * * 0' # runs every Sunday at 00:00
 jobs:
-  lockfile:
+  run-update-flake-lock:
     runs-on: ubuntu-latest
     environment: update
     steps:
