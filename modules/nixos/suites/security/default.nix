@@ -4,7 +4,7 @@ let
 in
 with lib;
 {
-  options.adace.suites.security.enable = mkEnableOption "Enable security settings";
+  options.adace.suites.system.security.enable = mkEnableOption "Enable security settings";
   config = mkIf cfg.enable {
     adace.system.security = {
       "1password".enable = true;

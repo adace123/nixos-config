@@ -7,7 +7,6 @@ _: {
   adace.suites = {
     desktop.enable = true;
     development.enable = true;
-    security.enable = true;
     terminal.enable = true;
   };
   adace.home.desktop.monitor = {

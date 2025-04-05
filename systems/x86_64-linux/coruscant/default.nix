@@ -3,6 +3,7 @@ _: {
   adace.suites.system = {
     desktop.enable = true;
     peripherals.enable = true;
+    security.enable = true;
   };
   adace.system = {
     networking.tailscale.enable = true;
