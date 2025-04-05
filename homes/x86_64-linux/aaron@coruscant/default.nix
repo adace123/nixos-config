@@ -7,13 +7,13 @@ _: {
   adace.suites = {
     desktop.enable = true;
     development.enable = true;
+    security.enable = true;
     terminal.enable = true;
   };
   adace.home.desktop.monitor = {
     output = "DP-2";
     resolution = "2560x1440";
   };
-  adace.security.sops.enable = true;
   adace.services = {
     ai = {
       ollama = {
