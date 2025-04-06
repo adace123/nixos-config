@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
       - run: |
-          nix build ".#nixosConfigurations.iso.config.system.build.isoImage"
+          nix build ".#nixosConfigurations.iso.config.system.build.isoImage" --out-link ./result/iso/nixos.iso
           ls ./result
           ls ./result/iso
           ISO_PATH=$(readlink ./result)/iso/nixos.iso
