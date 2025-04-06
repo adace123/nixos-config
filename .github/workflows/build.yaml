@@ -8,6 +8,8 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
       - run: |
           nix build ".#nixosConfigurations.iso.config.system.build.isoImage" --out-link ./result/iso
+          ls ./result
+          ls ./result/iso
       - uses: actions/upload-artifact@v4
         with:
           name: nixos.iso
