@@ -6,29 +6,27 @@ with lib;
 {
   options.adace.system.networking.dns.enable = mkEnableOption "DNS";
   config = mkIf cfg.enable {
-    # services.resolved = {
-    #   enable = true;
-    #   dnssec = "allow-downgrade";
-    #   extraConfig = ''
-    #     Domains=~.
-    #     MulticastDNS=true
-    #   '';
-    # };
+    services.resolved = {
+      enable = true;
+      dnssec = "allow-downgrade";
+      extraConfig = ''
+        Domains=~.
+        DNS=127.0.0.1
+        MulticastDNS=true
+        DNSStubListener=yes
+      '';
+    };
 
     networking = {
       nameservers = [
-        "127.0.0.1"
-        "::1"
-        "192.168.4.1"
-        "1.1.1.1"
-        "8.8.8.8"
+        "127.0.0.53"
       ];
       networkmanager.dns = "none";
     };
 
     services.avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       publish.enable = true;
       publish.addresses = true;
       publish.workstation = true;
