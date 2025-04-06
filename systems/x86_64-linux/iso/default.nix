@@ -16,6 +16,7 @@
 
   # Cannot use sops-nix secrets in ISO
   adace.system.networking.wifi.setupProfiles = lib.mkForce false;
+  adace.system.networking.dns.enable = true;
   adace.system.user.password.enable = false;
 
   users.users.root.openssh.authorizedKeys.keys = [ (builtins.readFile ./ssh.pub) ];
