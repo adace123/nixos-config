@@ -24,8 +24,4 @@
     isoName = lib.mkForce "nixos.iso";
     squashfsCompression = "gzip -Xcompression-level 1";
   };
-
-  # Cannot use NetworkManager config in ISO since it requires sops-nix secrets
-  networking.networkmanager.enable = lib.mkForce false;
-  networking.wireless.enable = lib.mkForce true;
 }
