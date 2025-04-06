@@ -10,7 +10,7 @@ jobs:
           nix build ".#nixosConfigurations.iso.config.system.build.isoImage" --out-link ./result/iso/nixos.iso
           ls ./result
           ls ./result/iso
-          ISO_PATH=$(readlink ./result)/iso/nixos.iso
+          ISO_PATH=$(readlink ./result/iso/nixos.iso)
           echo "iso_path=$ISO_PATH" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v4
         with:
