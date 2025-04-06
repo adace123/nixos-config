@@ -21,12 +21,9 @@ jobs:
           pr-labels: |
             dependencies
             automated
+            automerge
             nix
           git-author-name: "Nix flake updater"
           git-author-email: "github-actions[bot]@users.noreply.github.com"
           git-committer-name: "Nix flake updater"
           git-committer-email: "github-actions[bot]@users.noreply.github.com"
-      - run: "gh pr merge --auto --rebase --delete-branch ${{ steps.update-flake-lock.outputs.pull-request-number }}"
-        env:
-          GH_TOKEN: ${{ secrets.NIX_FLAKE_UPDATE_TOKEN }}
-        if: ${{ steps.update-flake-lock.outputs.pull-request-number != '' }}
