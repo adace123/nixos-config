@@ -98,7 +98,7 @@
       homes.modules = with inputs; [
         nixvim.homeManagerModules.nixvim
         sops-nix.homeManagerModules.sops
-        catppuccin.homeManagerModules.catppuccin
+        catppuccin.homeModules.catppuccin
       ];
 
       overlays = with inputs; [

@@ -6,3 +6,4 @@ infra/vendor
 *.iso
 .DS_store
 .env
+nix-support
