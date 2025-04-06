@@ -12,7 +12,6 @@ with lib;
 {
   options.adace.development.tools.git = {
     enable = mkEnableOption "git user config";
-    signingKey = mkOption { type = types.str; };
   };
 
   config = mkIf cfg.enable {
@@ -45,7 +44,7 @@ with lib;
           init.defaultBranch = "main";
           core.editor = "nvim";
           push.autoSetupRemote = true;
-          user.signingkey = config.sops.secrets.github-private-key.path;
+          user.signingKey = config.sops.secrets.github-private-key.path;
           gpg.format = "ssh";
           commit.gpgsign = true;
         };
