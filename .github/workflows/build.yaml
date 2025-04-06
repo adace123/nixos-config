@@ -7,29 +7,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
       - run: |
-          # Build the ISO image with a simple output link
-          nix build ".#nixosConfigurations.iso.config.system.build.isoImage" --out-link ./result
-          
-          # Debug - show the structure of the result
-          echo "Result directory structure:"
-          find ./result -type f | grep -E '\.iso$' || echo "No ISO files found in ./result"
-          
-          # Find the ISO by looking through all subdirectories
-          ISO_PATH=$(find ./result -type f -name "*.iso" | head -n 1)
-          
-          if [ -z "$ISO_PATH" ]; then
-            echo "ERROR: Could not find any ISO file in the build output"
-            echo "Directory listing of ./result:"
-            ls -la ./result
-            exit 1
-          fi
-          
-          echo "Found ISO at: $ISO_PATH"
-          cp "$ISO_PATH" ./nixos.iso
-          echo "iso_path=./nixos.iso" >> $GITHUB_ENV
-          echo "ISO file size: $(du -h ./nixos.iso | cut -f1)"
-      
+          nix build ".#nixosConfigurations.iso.config.system.build.isoImage" --out-link ./result/iso
+          ISO_PATH=$(readlink ./result/iso/nixos.iso)
+          echo "iso_path=$ISO_PATH" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v4
         with:
           name: nixos.iso
-          path: ./nixos.iso
+          path: ${{ env.iso_path }}
