@@ -6,11 +6,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
-      - run: |
+      - name: Build ISO image
+        run: |
+          # Build the ISO image
           nix build ".#nixosConfigurations.iso.config.system.build.isoImage"
-          ISO_PATH=$(readlink ./result)/iso/nixos.iso
+          
+          # Find the actual ISO path using find, independent of specific path structure
+          ISO_PATH=$(find $(readlink -f result) -name "*.iso" | head -n 1)
+          
+          if [ -z "$ISO_PATH" ]; then
+            echo "ERROR: No ISO file found in build output"
+            find $(readlink -f result) -type f | grep -v '\.drv$' # Show available files for debugging
+            exit 1
+          fi
+          
+          echo "Found ISO at: $ISO_PATH"
           echo "iso_path=$ISO_PATH" >> $GITHUB_ENV
-      - uses: actions/upload-artifact@v4
+          
+          # Copy the ISO to a predictable location
+          cp "$ISO_PATH" ./nixos.iso
+          
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
         with:
           name: nixos.iso
-          path: ${{ env.iso_path }}
+          path: ./nixos.iso
+          if-no-files-found: error  # Fail explicitly if no file found
