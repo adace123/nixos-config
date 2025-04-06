@@ -8,6 +8,7 @@ mkShell {
   packages =
     with pkgs;
     [
+      age
       just
       home-manager
       pulumi-bin
