@@ -7,8 +7,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
       - run: |
-          nix build ".#nixosConfigurations.iso.config.system.build.isoImage" --out-link=./nixos.iso
-          ISO_PATH=$(readlink ./nixos.iso)
+          nix build ".#nixosConfigurations.iso.config.system.build.isoImage"
+          ls ./result
+          ls ./result/iso
+          ISO_PATH=$(readlink ./result)/iso/nixos.iso
           echo "iso_path=$ISO_PATH" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v4
         with:
