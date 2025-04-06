@@ -21,7 +21,6 @@ with lib;
       nameservers = [
         "127.0.0.53"
       ];
-      networkmanager.dns = "none";
     };
 
     services.avahi = {
