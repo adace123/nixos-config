@@ -14,6 +14,7 @@ with lib;
     # get via `networksetup -listallnetworkservices`
     knownNetworkServices = [ "Wi-Fi" ];
     dns = [
+      "192.168.4.1"
       "1.1.1.1"
       "1.0.0.1"
     ];
