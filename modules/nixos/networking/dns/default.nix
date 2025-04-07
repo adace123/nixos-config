@@ -26,11 +26,6 @@ with lib;
       ];
     };
 
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-    };
-
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {

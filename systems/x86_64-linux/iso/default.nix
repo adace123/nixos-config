@@ -24,4 +24,13 @@
   isoImage = {
     squashfsCompression = "gzip -Xcompression-level 1";
   };
+
+  networking.interfaces.wlan0.ipv4 = {
+    addresses = [
+      {
+        address = "192.168.4.100";
+        prefixLength = 32;
+      }
+    ];
+  };
 }
