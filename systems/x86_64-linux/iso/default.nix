@@ -22,8 +22,6 @@
   users.users.root.openssh.authorizedKeys.keys = [ (builtins.readFile ./ssh.pub) ];
 
   isoImage = {
-    isoName = lib.mkForce "nixos.iso";
-    isoBaseName = lib.mkForce "nixos.iso";
     squashfsCompression = "gzip -Xcompression-level 1";
   };
 }
