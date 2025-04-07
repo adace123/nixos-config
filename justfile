@@ -47,12 +47,15 @@ bootstrap-build-remote:
       exit 1
     }
 
-    if ("nixos.iso" | path exists) {
-      rm --force nixos.iso
-      echo "Removed old iso file"
+    if ("./nixos-iso" | path exists) {
+      ^rm -rf ./nixos-iso
+      echo "Removed old iso directory"
     }
-    echo "Downloading new iso file"
-    gh run download -n nixos.iso $run_id
+    echo $"Downloading new iso file, run_id: ($run_id)"
+    let current_time = date now
+    gh run download $run_id
+    let finish_time = (date now) - $current_time
+    echo $"Finished downloading in ($finish_time)"
 
 [macos]
 [private]
@@ -86,7 +89,9 @@ nix-uninstall:
 
 [macos]
 bootstrap-write device:
-    sudo sh -c "dd if=./nixos.iso of={{ device }} bs=10M status=progress"
+    #!/usr/bin/env nu
+    let iso_path = ls ./nixos-iso | first | get name
+    sudo sh -c $"dd if=($iso_path) of={{ device }} bs=10M status=progress"
     sudo diskutil eject {{ device }}
 
 [linux]
