@@ -86,8 +86,6 @@ let
 
       alt-f = "macos-native-fullscreen";
 
-      alt-enter = "exec-and-forget open -n -a ghostty";
-
       alt-shift-tab = [
         "move-node-to-monitor --wrap-around next"
         "focus-monitor --wrap-around next"
