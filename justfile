@@ -181,6 +181,7 @@ get-host-secret key host="common":
 [private]
 edit-secrets type:
     #!/usr/bin/env nu
+    $env.EDITOR = "nvim"
     let yaml_path = if ("{{ type }}" == "system") {
       "modules/nixos/secrets.yaml"
     } else {
