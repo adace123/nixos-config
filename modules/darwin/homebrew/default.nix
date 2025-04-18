@@ -41,7 +41,9 @@ _: {
       "slack"
       "spotify"
       "teamviewer"
+      "utm"
       "warp"
+      "zed@preview"
       "zoom"
     ];
   };
