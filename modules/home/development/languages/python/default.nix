@@ -1,7 +1,6 @@
 {
   config,
   lib,
-
   pkgs,
   ...
 }:
@@ -26,7 +25,6 @@ with lib;
       ))
       pyright
       ruff
-      ruff-lsp
       uv
     ];
 

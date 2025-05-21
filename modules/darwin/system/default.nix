@@ -22,6 +22,7 @@ with lib;
 
   security.pam.services.sudo_local.touchIdAuth = true;
   system = {
+    primaryUser = "aaron";
     stateVersion = 5;
     defaults = {
       dock.autohide = true;

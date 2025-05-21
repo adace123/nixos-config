@@ -22,21 +22,12 @@ with lib;
       cargo-watch
       cargo-xbuild
       clang
-      mold
       rustc
       rustfmt
       rust-analyzer
     ];
 
     home.file.".cargo/config.toml".text = inputs.nix-std.lib.serde.toTOML {
-      target.x86_64-unknown-linux-gnu = {
-        linker = "clang";
-        rustflags = [
-          "-C"
-          "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"
-        ];
-      };
-
       registries.crates-io = {
         protocol = "sparse";
       };

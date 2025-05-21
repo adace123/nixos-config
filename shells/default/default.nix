@@ -13,7 +13,7 @@ mkShell {
       home-manager
       pulumi-bin
       ssh-to-age
-      caligula # disk imaging
+      yamlfmt
     ]
     ++ inputs.self.checks.${pkgs.system}.pre-commit.enabledPackages
     ++ (pkgs.lib.optional pkgs.stdenv.isDarwin inputs.darwin.packages.${pkgs.system}.default);

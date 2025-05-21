@@ -18,7 +18,6 @@ with lib;
       doggo
       delta
       duf
-      dysk
       eva
       eza
       fd
