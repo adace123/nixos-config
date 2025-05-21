@@ -18,8 +18,7 @@ with lib;
         editor.fontSize = 14;
         editor.formatOnSave = true;
         terminal.integrated.defaultProfile.linux = "nu";
-        terminal.integrated.shell.linux = "${pkgs.kitty}/bin/kitty";
-        terminal.external.linuxExec = "${pkgs.kitty}/bin/kitty";
+        terminal.integrated.shell.linux = toString pkgs.nushell;
         vim.useSystemClipboard = true;
         window.titleBarStyle = "custom";
         window.zoomLevel = 1;
@@ -35,6 +34,7 @@ with lib;
         esbenp.prettier-vscode
         github.copilot
         github.copilot-chat
+        RooVeterinaryInc.roo-cline
       ];
     };
   };
