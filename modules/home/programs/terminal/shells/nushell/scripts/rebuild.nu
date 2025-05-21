@@ -1,6 +1,6 @@
 def main [--verbose (-v)] {
   if ((uname | get kernel-name) == "Darwin") {
-    darwin-rebuild switch --flake .#endor
+    sudo darwin-rebuild switch --flake .#endor
   } else {
     notify-send "Rebuilding system..."
     try {
